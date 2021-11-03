@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="Login_BTF">
+    <default-activity id="__1">Login</default-activity>
+    <managed-bean id="__4">
+      <managed-bean-name id="__3">UserBean</managed-bean-name>
+      <managed-bean-class id="__2">com.nordstrom.auth.UserBean</managed-bean-class>
+      <managed-bean-scope id="__5">request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__7">
+      <managed-bean-name id="__8">loginBeanMB</managed-bean-name>
+      <managed-bean-class id="__6">com.nordstrom.auth.loginBeanMB</managed-bean-class>
+      <managed-bean-scope id="__9">request</managed-bean-scope>
+    </managed-bean>
+    <view id="Login">
+      <page>/fragments/Login.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

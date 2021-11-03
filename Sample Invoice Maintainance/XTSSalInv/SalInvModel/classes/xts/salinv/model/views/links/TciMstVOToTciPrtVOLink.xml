@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TciMstVOToTciPrtVOLink"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  EntityAssociation="xts.common.model.entities.assocs.CiptCimsFkAssoc">
+  <ViewLinkDefEnd
+    Name="TciMstVO"
+    Cardinality="1"
+    Source="true"
+    Owner="xts.salinv.model.views.TciMstVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_accessor" Value="true"/>
+      <Attr Name="_finderName" Value="TciMstVO"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.TciMstVO.CimsDivcod"/>
+      <Item Value="xts.salinv.model.views.TciMstVO.CimsRunnum"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="TciPrtVO"
+    Cardinality="1"
+    Owner="xts.salinv.model.views.TciPrtVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="TciPrtVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.TciPrtVO.CiptDivcod"/>
+      <Item Value="xts.salinv.model.views.TciPrtVO.CiptRunnum"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

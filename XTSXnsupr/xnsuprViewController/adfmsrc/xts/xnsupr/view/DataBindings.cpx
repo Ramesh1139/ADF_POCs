@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.20.47" id="DataBindings"
+             SeparateXMLFiles="false" Package="xts.xnsupr.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+   
+    <page path="/WEB-INF/flows/suppliercodeconfirmation-tf.xml#suppliercodeconfirmation-tf@XnsuprAmImplEvents_nfi"
+          usageId="view_suppliercodeconfirmation_tf_suppliercodeconfirmation_tf_XnsuprAmImplEvents_nfiPageDef"/>
+    <page path="/fragments/supplierccView.jsff" usageId="view_supplierccViewPageDef"/>
+    <page path="/fragments/approve1View.jsff" usageId="view_approve1ViewPageDef"/>
+    <page path="/fragments/approve5View.jsff" usageId="view_approve5ViewPageDef"/>
+    <page path="/fragments/approve2View.jsff" usageId="view_approve2ViewPageDef"/>
+    <page path="/fragments/approve3View.jsff" usageId="view_approve3ViewPageDef"/>
+    <page path="/fragments/approve4View.jsff" usageId="view_approve4ViewPageDef"/>
+    <page path="/testXnsupr.jsf" usageId="xts_xnsupr_view_testXnsuprPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    
+    <page id="view_suppliercodeconfirmation_tf_suppliercodeconfirmation_tf_XnsuprAmImplEvents_nfiPageDef"
+          path="taskflows.suppliercodeconfirmation_tf_suppliercodeconfirmation_tf_XnsuprAmImplEvents_nfiPageDef"/>
+    <page id="view_supplierccViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.supplierccViewPageDef"/>
+    <page id="view_approve1ViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.approve1ViewPageDef"/>
+    <page id="view_approve5ViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.approve5ViewPageDef"/>
+    <page id="view_approve2ViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.approve2ViewPageDef"/>
+    <page id="view_approve3ViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.approve3ViewPageDef"/>
+    <page id="view_approve4ViewPageDef" path="xts.xnsupr.view.pageDefs.fragments.approve4ViewPageDef"/>
+    <page id="xts_xnsupr_view_testXnsuprPageDef" path="xts.xnsupr.view.pageDefs.testXnsuprPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="xnsuprAMDataControl" Package="xts.xnsupr.model.services"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="xnsuprAMLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editShpitmAddamtPageDef"
+                Package="xts.salinv.view.pageDefs.fragments.shpitm">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="TciActshiamtVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciActshiamtVOIterator" ChangeEventPolicy="none"/>
+        <iterator Binds="TacChrtypmstVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TacChrtypmstVOIterator"/>
+        <iterator Binds="LoadTplInputVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="LoadTplInputVOIterator"/>
+        <iterator id="TciMstVOIterator" Binds="TciMstVO" DataControl="XTSSalInvAMDataControl" RangeSize="10" ChangeEventPolicy="none"/>
+    </executables>
+    <bindings>
+        <tree IterBinding="TciActshiamtVOIterator" id="TciActshiamtVO">
+            <nodeDefinition DefName="xts.salinv.model.views.TciActshiamtVO" Name="TciActshiamtVO0">
+                <AttrNames>
+                    <Item Value="CisaDes"/>
+                    <Item Value="CisaRat"/>
+                    <Item Value="CisaItmamt"/>
+                    <Item Value="CisaAmt"/>
+                    <Item Value="CisaInvshw" Binds="CisaInvshw"/>
+                    <Item Value="CisaChrtyp"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <button IterBinding="TciActshiamtVOIterator" id="CisaInvshw" DTSupportsMRU="false" StaticList="true">
+            <AttrNames>
+                <Item Value="CisaInvshw"/>
+            </AttrNames>
+            <ValueList>
+                <Item Value="Y"/>
+                <Item Value="N"/>
+            </ValueList>
+        </button>
+        <action IterBinding="TciActshiamtVOIterator" id="CreateInsert" InstanceName="XTSSalInvAMDataControl.TciActshiamtVO" DataControl="XTSSalInvAMDataControl"
+                RequiresUpdateModel="true" Action="createInsertRow"/>
+        <methodAction id="removeRow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeRow" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciActshiamtVO"/>
+        <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyChrtyp">
+            <AttrNames>
+                <Item Value="ActyChrtyp"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyDes">
+            <AttrNames>
+                <Item Value="ActyDes"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyRmk">
+            <AttrNames>
+                <Item Value="ActyRmk"/>
+            </AttrNames>
+        </attributeValues>
+        <methodAction id="setVarExe" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setVarExe" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TacChrtypmstVO">
+            <NamedData NDName="chrTyp" NDType="java.lang.String"/>
+        </methodAction>
+        <methodAction id="setDefaultVar" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setDefaultVar" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.LoadTplInputVO"/>
+        <attributeValues IterBinding="LoadTplInputVOIterator" id="Tpldes">
+            <AttrNames>
+                <Item Value="Tpldes"/>
+            </AttrNames>
+        </attributeValues>
+        <listOfValues IterBinding="LoadTplInputVOIterator" StaticList="false" Uses="LOV_Tplcod" id="Tplcod"/>
+        <methodAction id="proecssLoadTemplate" RequiresUpdateModel="true" Action="invokeMethod" MethodName="proecssLoadTemplate" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.LoadTemplateVO">
+            <NamedData NDName="loc" NDType="java.lang.String"/>
+        </methodAction>
+        <attributeValues IterBinding="TciActshiamtVOIterator" id="CisaAmtTotal">
+            <AttrNames>
+                <Item Value="CisaAmtTotal"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TciMstVOIterator" id="CimsRunnum">
+            <AttrNames>
+                <Item Value="CimsRunnum"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TciMstVOIterator" id="CimsStscod">
+            <AttrNames>
+                <Item Value="CimsStscod"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TciMstVOIterator" id="CimsDivcod">
+            <AttrNames>
+                <Item Value="CimsDivcod"/>
+            </AttrNames>
+        </attributeValues>
+    </bindings>
+</pageDefinition>

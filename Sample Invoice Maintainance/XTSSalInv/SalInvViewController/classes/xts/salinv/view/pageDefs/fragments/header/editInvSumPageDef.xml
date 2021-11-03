@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editInvSumPageDef" Package="xts.salinv.view.pageDefs.fragments.header">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TciMstVO" RangeSize="10" DataControl="XTSSalInvAMDataControl" id="TciMstVOIterator"/>
+    <iterator Binds="TciPrtVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciPrtVOIterator"/>
+  </executables>
+  <bindings>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsCuscod" id="CimsCuscod"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsInvdat">
+      <AttrNames>
+        <Item Value="CimsInvdat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsLdp" id="CimsLdp" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsCndsalcod" id="CimsCndsalcod"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsCndsaldes">
+      <AttrNames>
+        <Item Value="CimsCndsaldes"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsCurcod" id="CimsCurcod"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="MpcuNam">
+      <AttrNames>
+        <Item Value="MpcuNam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsShpdat">
+      <AttrNames>
+        <Item Value="CimsShpdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsNeeddat">
+      <AttrNames>
+        <Item Value="CimsNeeddat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsBildat">
+      <AttrNames>
+        <Item Value="CimsBildat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDuedat">
+      <AttrNames>
+        <Item Value="CimsDuedat"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptDst" id="CiptDst"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="MpcyNam">
+      <AttrNames>
+        <Item Value="MpcyNam"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptPortL" id="CiptPortL"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPoldes">
+      <AttrNames>
+        <Item Value="CiptPoldes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptViaDes">
+      <AttrNames>
+        <Item Value="CiptViaDes"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptVia" id="CiptVia"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPoddes">
+      <AttrNames>
+        <Item Value="CiptPoddes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptFnddes">
+      <AttrNames>
+        <Item Value="CiptFnddes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsShippedDat">
+      <AttrNames>
+        <Item Value="CimsShippedDat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsPstdat">
+      <AttrNames>
+        <Item Value="CimsPstdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="Period">
+      <AttrNames>
+        <Item Value="Period"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsTotamt">
+      <AttrNames>
+        <Item Value="CimsTotamt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsTotsecamt">
+      <AttrNames>
+        <Item Value="CimsTotsecamt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsTotaddamt">
+      <AttrNames>
+        <Item Value="CimsTotaddamt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="Totamt">
+      <AttrNames>
+        <Item Value="Totamt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsEcicAmt">
+      <AttrNames>
+        <Item Value="CimsEcicAmt"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsEcicComdat">
+      <AttrNames>
+        <Item Value="CimsEcicComdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="AmdbyUsername">
+      <AttrNames>
+        <Item Value="AmdbyUsername"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsAmddat">
+      <AttrNames>
+        <Item Value="CimsAmddat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CrtbyUsername">
+      <AttrNames>
+        <Item Value="CrtbyUsername"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="Crtdat">
+      <AttrNames>
+        <Item Value="Crtdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CpalNam">
+      <AttrNames>
+        <Item Value="CpalNam"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsPaytrmdes" id="CimsPaytrmdes"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsPaytrmday">
+      <AttrNames>
+        <Item Value="CimsPaytrmday"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsBildatRef" id="CimsBildatRef"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsBildatRefDes">
+      <AttrNames>
+        <Item Value="CimsBildatRefDes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CpcpConpernam">
+      <AttrNames>
+        <Item Value="CpcpConpernam"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsConpercod" id="CimsConpercod"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAccadr2">
+      <AttrNames>
+        <Item Value="CiptAccadr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAccadr3">
+      <AttrNames>
+        <Item Value="CiptAccadr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAccadr4">
+      <AttrNames>
+        <Item Value="CiptAccadr4"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAdr1">
+      <AttrNames>
+        <Item Value="CiptAdr1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsEdiComdat">
+      <AttrNames>
+        <Item Value="CimsEdiComdat"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_CimsEdiSnd" id="CimsEdiSnd" DTSupportsMRU="false" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsEdiSndver">
+      <AttrNames>
+        <Item Value="CimsEdiSndver"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="ediComdatClr" RequiresUpdateModel="true" Action="invokeMethod" MethodName="ediComdatClr" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAccnam">
+      <AttrNames>
+        <Item Value="CiptAccnam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptVatNo">
+      <AttrNames>
+        <Item Value="CiptVatNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAdr2">
+      <AttrNames>
+        <Item Value="CiptAdr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAdr3">
+      <AttrNames>
+        <Item Value="CiptAdr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptAdr4">
+      <AttrNames>
+        <Item Value="CiptAdr4"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptNam" id="CiptNam"/>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptCusfindst" id="CiptCusfindst"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptCusfindes">
+      <AttrNames>
+        <Item Value="CiptCusfindes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptSchindcdat">
+      <AttrNames>
+        <Item Value="CiptSchindcdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptSchindcdatRmk">
+      <AttrNames>
+        <Item Value="CiptSchindcdatRmk"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptActindcdat">
+      <AttrNames>
+        <Item Value="CiptActindcdat"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptVesnam" id="CiptVesnam"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsEtadat">
+      <AttrNames>
+        <Item Value="CimsEtadat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptFwdcodDes">
+      <AttrNames>
+        <Item Value="CiptFwdcodDes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsTotGw">
+      <AttrNames>
+        <Item Value="CimsTotGw"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsTotNw">
+      <AttrNames>
+        <Item Value="CimsTotNw"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsWgUom">
+      <AttrNames>
+        <Item Value="CimsWgUom"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptVoynum" id="CiptVoynum"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptBillad">
+      <AttrNames>
+        <Item Value="CiptBillad"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptHawBl">
+      <AttrNames>
+        <Item Value="CiptHawBl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptMawBl">
+      <AttrNames>
+        <Item Value="CiptMawBl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsMsrvol">
+      <AttrNames>
+        <Item Value="CimsMsrvol"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsMsruom">
+      <AttrNames>
+        <Item Value="CimsMsruom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDlrnum">
+      <AttrNames>
+        <Item Value="CiptDlrnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptCusdnNum">
+      <AttrNames>
+        <Item Value="CiptCusdnNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptCusesnNum">
+      <AttrNames>
+        <Item Value="CiptCusesnNum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptTlxblDat">
+      <AttrNames>
+        <Item Value="CiptTlxblDat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptContNo">
+      <AttrNames>
+        <Item Value="CiptContNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDrfnum">
+      <AttrNames>
+        <Item Value="CiptDrfnum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDocOrgrecdat">
+      <AttrNames>
+        <Item Value="CiptDocOrgrecdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDocFstrecdat">
+      <AttrNames>
+        <Item Value="CiptDocFstrecdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptCstmdocSnddat">
+      <AttrNames>
+        <Item Value="CiptCstmdocSnddat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPaydocSnddat">
+      <AttrNames>
+        <Item Value="CiptPaydocSnddat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDocpty">
+      <AttrNames>
+        <Item Value="CiptDocpty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptSndstmdat">
+      <AttrNames>
+        <Item Value="CiptSndstmdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDocCmprecdat">
+      <AttrNames>
+        <Item Value="CiptDocCmprecdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptFwddocOrgrecdat">
+      <AttrNames>
+        <Item Value="CiptFwddocOrgrecdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptCstmdocCounum">
+      <AttrNames>
+        <Item Value="CiptCstmdocCounum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPaydocCounum">
+      <AttrNames>
+        <Item Value="CiptPaydocCounum"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptDocptySrc">
+      <AttrNames>
+        <Item Value="CiptDocptySrc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptLteshpRea">
+      <AttrNames>
+        <Item Value="CiptLteshpRea"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptIntdlyReason">
+      <AttrNames>
+        <Item Value="CiptIntdlyReason"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptRmk">
+      <AttrNames>
+        <Item Value="CiptRmk"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptAccadr1" id="CiptAccadr1"/>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptPortD" id="CiptPortD"/>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptFindst" id="CiptFindst"/>
+    <listOfValues IterBinding="TciMstVOIterator" StaticList="false" Uses="LOV_WithoutCtl" id="CimsPaytrmcod"/>
+    <listOfValues IterBinding="TciPrtVOIterator" StaticList="false" Uses="LOV_CiptFwdcod" id="CiptFwdcod"/>
+    <methodAction id="plAddamtTpldefChkAll" RequiresUpdateModel="true" Action="invokeMethod" MethodName="plAddamtTpldefChkAll" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.plAddamtTpldefChkAll_plAddamtTpldefChkAll_dataControl_TciMstVO_plAddamtTpldefChkAll_result">
+      <NamedData NDName="viewInstance" NDType="java.lang.String"/>
+      <NamedData NDName="cimsRunnum" NDType="java.lang.Long"/>
+    </methodAction>
+    <methodAction id="plGetMsgmst" RequiresUpdateModel="true" Action="invokeMethod" MethodName="plGetMsgmst" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.plGetMsgmst.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.plGetMsgmst_plGetMsgmst_dataControl_dataProvider_plGetMsgmst_result">
+      <NamedData NDName="param" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="setCiptAdr" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setCiptAdr" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciPrtVO"/>
+    <methodAction id="applyDefault" RequiresUpdateModel="true" Action="invokeMethod" MethodName="applyDefault" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.applyDefault_applyDefault_dataControl_TciMstVO_applyDefault_result">
+      <NamedData NDName="cimsRunnum" NDType="java.lang.Long"/>
+    </methodAction>
+    <methodAction id="cuscodChgActions" RequiresUpdateModel="true" Action="invokeMethod" MethodName="cuscodChgActions" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="cusfldHdrExeQry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="cusfldHdrExeQry" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldHeaderVO"/>
+  </bindings>
+</pageDefinition>

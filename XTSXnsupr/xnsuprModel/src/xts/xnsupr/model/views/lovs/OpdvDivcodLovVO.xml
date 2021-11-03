@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="OpdvDivcodLovVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+  RowClass="xts.xnsupr.model.views.lovs.OpdvDivcodLovVORowImpl"
+  ComponentClass="xts.xnsupr.model.views.lovs.OpdvDivcodLovVOImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="BV_G_USERID"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT opdv_divcod, opdv_nam
+FROM top_divmst
+WHERE upper(check_div(opdv_divcod, :BV_G_USERID)) = 'TRUE'
+ORDER BY 2, 1
+]]></SQLQuery>
+  <ViewAttribute
+    Name="OpdvDivcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="OpdvNam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    SQLType="VARCHAR"/>
+</ViewObject>

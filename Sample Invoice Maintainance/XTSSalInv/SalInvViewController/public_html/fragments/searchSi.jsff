@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:xts-rc="/xtsComponentLib">
+    <af:pageTemplate viewId="/templates/xtsUISearchTemplate.jsf" id="pt1">
+        <f:facet name="reusableSearchToolbar">
+            <xts-rc:SearchToolbar id="reusableSearchToolbarId" searchBean="#{backingBeanScope.SearchBean}" masterIterator="#{bindings.TciMstVOIterator}"
+                                  masterIteratorName="TciMstVOIterator" actionBtnRendered="true" actionBtnDisabled="false" copyBtnRendered="false"
+                                  changeStatusBtnRendered="true" changeStatusBtnDisabled="#{!UserProfileBean.userPermission['CI###EDIT']}"
+                                  editBtnRendered="true" editBtnDisabled="#{!UserProfileBean.userPermission['CI###VIEW']}" createBtnRendered="true"
+                                  createBtnDisabled="#{!UserProfileBean.userPermission['CI###CREATE']}" deleteBtnRendered="false"
+                                  deleteBtnDisabled="#{!UserProfileBean.userPermission['CI###DELETE']}">
+                <f:facet name="customButtons">
+                    <af:button text="Print" id="printFmBtnId" icon="#{resource['images:print_24_V1.png']}" styleClass="Material" rendered="true"
+                               disabled="#{!UserProfileBean.userPermission['CI###PRINT']}" actionListener="#{backingBeanScope.SearchBean.callPrint}"
+                               destination="#{backingBeanScope.SearchBean.loadSiFromSoPopup}"/>
+                </f:facet>
+                <f:facet name="changeStatusMenuItems">
+                    <af:commandMenuItem text="Active" id="cmi1" actionListener="#{backingBeanScope.SearchBean.changeStatusFromMenu}"
+                                        icon="#{resource['images:change_history_18_V1.png']}" styleClass="Material">
+                        <f:attribute name="STSCOD" value="AT"/>
+                    </af:commandMenuItem>
+                    <af:commandMenuItem text="Shipped" id="cmi2" actionListener="#{backingBeanScope.SearchBean.changeStatusFromMenu}"
+                                        icon="#{resource['images:change_history_18_V1.png']}" styleClass="Material">
+                        <f:attribute name="STSCOD" value="SH"/>
+                    </af:commandMenuItem>
+                    <af:commandMenuItem text="Posted" id="cmi3" actionListener="#{backingBeanScope.SearchBean.changeStatusFromMenu}"
+                                        icon="#{resource['images:change_history_18_V1.png']}" styleClass="Material">
+                        <f:attribute name="STSCOD" value="AC"/>
+                    </af:commandMenuItem>
+                    <af:commandMenuItem text="Deleted" id="cmi4" binding="#{backingBeanScope.SearchBean.deleteStatusMenuItem}"
+                                        icon="#{resource['images:change_history_red_18_V1.png']}" styleClass="Material">
+                        <af:showPopupBehavior popupId="deleteReasonId"/>
+                        <f:attribute name="STSCOD" value="DE"/>
+                    </af:commandMenuItem>
+                </f:facet>
+                <f:facet name="customPopups">
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="deleteReasonId" contentDelivery="lazyUncached" animate="false"
+                              binding="#{backingBeanScope.SearchBean.changeStatusToDeletePopup}">
+                        <af:dialog id="d3" title="Delete Reason" closeIconVisible="false" type="cancel">
+                            <f:facet name="buttonBar">
+                                <af:button text="OK" id="b2" actionListener="#{backingBeanScope.SearchBean.changeStatusToDeleteBtn}"/>
+                            </f:facet>
+                            <af:inputText label="Delete Reason: " id="it1" binding="#{backingBeanScope.SearchBean.deleteReasonForChangeStatus}"/>
+                        </af:dialog>
+                    </af:popup>
+                    <af:popup childCreation="deferred" autoCancel="disabled" id="p2" binding="#{backingBeanScope.SearchBean.insertPopup}"
+                              popupCanceledListener="#{backingBeanScope.SearchBean.insertPopupCloseListener}">
+                        <af:dialog id="d2" title="Create Sales Invoice" closeIconVisible="false" type="cancel">
+                            <f:facet name="buttonBar">
+                                <af:button text="OK" id="b1" action="#{backingBeanScope.SearchBean.insertTciMst}"/>
+                            </f:facet>
+                            <af:panelGroupLayout id="pgl2" layout="vertical">
+                                <af:panelFormLayout id="pfl2" maxColumns="1" labelWidth="100px">
+                                    <f:facet name="footer"/>
+                                    <af:inputListOfValues id="cimsDivcodId" popupTitle="Search and Select: #{bindings.CimsDivcod.hints.label}"
+                                                          value="#{bindings.CimsDivcod.inputValue}" label="#{bindings.CimsDivcod.hints.label}"
+                                                          model="#{bindings.CimsDivcod.listOfValuesModel}" required="#{bindings.CimsDivcod.hints.mandatory}"
+                                                          columns="#{bindings.CimsDivcod.hints.displayWidth}" shortDesc="#{bindings.CimsDivcod.hints.tooltip}"
+                                                          autoSubmit="true" contentStyle="text-transform:uppercase;">
+                                        <f:validator binding="#{bindings.CimsDivcod.validator}"/>
+                                    </af:inputListOfValues>
+                                    <af:inputListOfValues id="cimsDptcodId" popupTitle="Search and Select: #{bindings.CimsDptcod.hints.label}"
+                                                          value="#{bindings.CimsDptcod.inputValue}" label="#{bindings.CimsDptcod.hints.label}"
+                                                          model="#{bindings.CimsDptcod.listOfValuesModel}" required="#{bindings.CimsDptcod.hints.mandatory}"
+                                                          columns="#{bindings.CimsDptcod.hints.displayWidth}" shortDesc="#{bindings.CimsDptcod.hints.tooltip}"
+                                                          autoSubmit="true" contentStyle="text-transform:uppercase;">
+                                        <f:validator binding="#{bindings.CimsDptcod.validator}"/>
+                                    </af:inputListOfValues>
+                                    <af:inputText value="#{bindings.CimsYear.inputValue}" label="#{bindings.CimsYear.hints.label}"
+                                                  required="#{bindings.CimsYear.hints.mandatory}" columns="#{bindings.CimsYear.hints.displayWidth}"
+                                                  maximumLength="#{bindings.CimsYear.hints.precision}" shortDesc="#{bindings.CimsYear.hints.tooltip}" id="it8">
+                                        <f:validator binding="#{bindings.CimsYear.validator}"/>
+                                    </af:inputText>
+                                    <af:inputListOfValues id="cimsCuscodId" popupTitle="Search and Select: #{bindings.CimsCuscod.hints.label}"
+                                                          value="#{bindings.CimsCuscod.inputValue}" label="#{bindings.CimsCuscod.hints.label}"
+                                                          model="#{bindings.CimsCuscod.listOfValuesModel}" required="#{bindings.CimsCuscod.hints.mandatory}"
+                                                          columns="#{bindings.CimsCuscod.hints.displayWidth}" shortDesc="#{bindings.CimsCuscod.hints.tooltip}"
+                                                          autoSubmit="true">
+                                        <f:validator binding="#{bindings.CimsCuscod.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:panelFormLayout>
+                                <af:spacer width="3" height="20" id="s1"/>
+                                <af:outputLabel value="Copy header information of below SO# to SI:" id="ol3"/>
+                                <af:panelFormLayout id="pfl3" maxColumns="1" labelWidth="100px">
+                                    <f:facet name="footer"/>
+                                    <af:inputListOfValues id="soNumInsertId" popupTitle="Search and Select: #{bindings.SoNumInsert.hints.label}"
+                                                          value="#{bindings.SoNumInsert.inputValue}" label="#{bindings.SoNumInsert.hints.label}"
+                                                          model="#{bindings.SoNumInsert.listOfValuesModel}" required="#{bindings.SoNumInsert.hints.mandatory}"
+                                                          columns="#{bindings.SoNumInsert.hints.displayWidth}" shortDesc="#{bindings.SoNumInsert.hints.tooltip}"
+                                                          contentStyle="text-transform:uppercase;">
+                                        <f:validator binding="#{bindings.SoNumInsert.validator}"/>
+                                    </af:inputListOfValues>
+                                </af:panelFormLayout>
+                            </af:panelGroupLayout>
+                        </af:dialog>
+                    </af:popup>
+                    <af:panelGroupLayout id="pgl4">
+                        <!-- <af:resource type="javascript">
+                          function resetPollInterval(e) {
+                              var src = e.getSource();
+                              var poll = src.findComponent("p1");
+                              if (poll != null) {
+                                  poll.setInterval( - 1);
+                              }
+                          }
+                        </af:resource>
+                        <af:poll id="p1" interval="10" pollListener="#{backingBeanScope.SearchBean.loadSiFromSoPopup}">
+                            <af:clientListener method="resetPollInterval" type="poll"/>
+                        </af:poll>-->
+                        <af:popup childCreation="deferred" animate="false" id="siFromSoPopup" binding="#{backingBeanScope.SearchBean.siFromSoPopup}">
+                            <af:dialog id="d1" type="cancel" title="Select SO to create SI">
+                                <f:facet name="buttonBar">
+                                    <af:button text="OK" id="b3" action="#{backingBeanScope.SearchBean.siFromSoDialogButton}"/>
+                                </f:facet>
+                                <af:panelHeader text="1. Search for SO Shipment Items" id="ph1" partialTriggers="qryId1">
+                                    <f:facet name="context"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:query id="qryId1" headerText="Search" value="#{bindings.SiFromSoVOCriteriaQuery.queryDescriptor}"
+                                              model="#{bindings.SiFromSoVOCriteriaQuery.queryModel}"
+                                              queryListener="#{bindings.SiFromSoVOCriteriaQuery.processQuery}"
+                                              queryOperationListener="#{bindings.SiFromSoVOCriteriaQuery.processQueryOperation}" maxColumns="3" rows="3"
+                                              modeChangeVisible="false" disclosed="true" saveQueryMode="hidden"/>
+                                </af:panelHeader>
+                                <af:panelHeader text="2. Review search results and Select Shipment Items to be included in new SI" id="ph2">
+                                    <f:facet name="context"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelGroupLayout id="pgl5" layout="vertical">
+                                        <af:table value="#{bindings.SiFromSoVO.collectionModel}" var="row" rows="#{bindings.SiFromSoVO.rangeSize}"
+                                                  emptyText="#{bindings.SiFromSoVO.viewable ? 'No data to display.' : 'Access Denied.'}" rowBandingInterval="0"
+                                                  selectedRowKeys="#{bindings.SiFromSoVO.collectionModel.selectedRow}"
+                                                  selectionListener="#{bindings.SiFromSoVO.collectionModel.makeCurrent}" rowSelection="single"
+                                                  fetchSize="#{bindings.SiFromSoVO.rangeSize}" id="t1" scrollPolicy="page" contentDelivery="immediate"
+                                                  width="1200">
+                                            <af:column headerText=" " id="c42" width="15" frozen="true">
+                                                <af:selectBooleanCheckbox value="#{row.bindings.isSelected.inputValue}" label="#{row.bindings.isSelected.label}"
+                                                                          shortDesc="#{bindings.SiFromSoVO.hints.isSelected.tooltip}" id="sbc2"/>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SoNo.label}" id="c21" frozen="true" width="120">
+                                                <af:inputText value="#{row.bindings.SoNo.inputValue}" label="#{bindings.SiFromSoVO.hints.SoNo.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SoNo.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SoNo.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SoNo.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SoNo.tooltip}" id="it9">
+                                                    <f:validator binding="#{row.bindings.SoNo.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SosiShiseq.label}" id="c22" width="70" frozen="true">
+                                                <af:inputText value="#{row.bindings.SosiShiseq.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SosiShiseq.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SosiShiseq.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SosiShiseq.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SosiShiseq.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SosiShiseq.tooltip}" id="it10">
+                                                    <f:validator binding="#{row.bindings.SosiShiseq.validator}"/>
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.SosiShiseq.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SosiItmseq.label}" id="c23" width="65" frozen="true">
+                                                <af:inputText value="#{row.bindings.SosiItmseq.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SosiItmseq.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SosiItmseq.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SosiItmseq.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SosiItmseq.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SosiItmseq.tooltip}" id="it11">
+                                                    <f:validator binding="#{row.bindings.SosiItmseq.validator}"/>
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.SosiItmseq.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.IpmsItmnum.label}" id="c24" width="120">
+                                                <af:inputText value="#{row.bindings.IpmsItmnum.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.IpmsItmnum.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.IpmsItmnum.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.IpmsItmnum.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.IpmsItmnum.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.IpmsItmnum.tooltip}" id="it12">
+                                                    <f:validator binding="#{row.bindings.IpmsItmnum.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SoitCusitm.label}" id="c25">
+                                                <af:inputText value="#{row.bindings.SoitCusitm.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SoitCusitm.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SoitCusitm.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SoitCusitm.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SoitCusitm.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SoitCusitm.tooltip}" id="it13">
+                                                    <f:validator binding="#{row.bindings.SoitCusitm.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.Balqty.label}" id="c26" inlineStyle="text-align:right;">
+                                                <af:outputText value="#{row.Balqty}" shortDesc="#{bindings.SiFromSoVO.hints.Balqty.tooltip}" id="ot19">
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.Balqty.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.Actqty.label}" id="c27">
+                                                <af:inputText value="#{row.bindings.Actqty.inputValue}" label="#{bindings.SiFromSoVO.hints.Actqty.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.Actqty.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.Actqty.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.Actqty.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.Actqty.tooltip}" id="it15"
+                                                              contentStyle="text-align:right;">
+                                                    <f:validator binding="#{row.bindings.Actqty.validator}"/>
+                                                    <!--<af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.Actqty.format}"/>-->
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SoitItmprc.label}" id="c28" inlineStyle="text-align:right;">
+                                                <af:outputText value="#{row.SoitItmprc}" shortDesc="#{bindings.SiFromSoVO.hints.SoitItmprc.tooltip}" id="ot20">
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.SoitItmprc.format}"/>
+                                                </af:outputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsCurcod.label}" id="c29" width="65">
+                                                <af:inputText value="#{row.bindings.SomsCurcod.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsCurcod.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsCurcod.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsCurcod.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsCurcod.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsCurcod.tooltip}" id="it17">
+                                                    <f:validator binding="#{row.bindings.SomsCurcod.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SoitPoNum.label}" id="c30" width="120">
+                                                <af:inputText value="#{row.bindings.SoitPoNum.inputValue}" label="#{bindings.SiFromSoVO.hints.SoitPoNum.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SoitPoNum.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SoitPoNum.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SoitPoNum.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SoitPoNum.tooltip}" id="it18">
+                                                    <f:validator binding="#{row.bindings.SoitPoNum.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.label}" id="c31" width="80">
+                                                <af:inputText value="#{row.bindings.SoitPbmsRunnum.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.tooltip}" id="it19">
+                                                    <f:validator binding="#{row.bindings.SoitPbmsRunnum.validator}"/>
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.SoitPbmsRunnum.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SosiSchdat.label}" id="c32" width="80">
+                                                <af:inputDate value="#{row.bindings.SosiSchdat.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SosiSchdat.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SosiSchdat.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SosiSchdat.displayWidth}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SosiSchdat.tooltip}" id="id3">
+                                                    <f:validator binding="#{row.bindings.SosiSchdat.validator}"/>
+                                                    <af:convertDateTime pattern="#{bindings.SiFromSoVO.hints.SosiSchdat.format}"/>
+                                                </af:inputDate>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SosiShpRef.label}" id="c33">
+                                                <af:inputText value="#{row.bindings.SosiShpRef.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SosiShpRef.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SosiShpRef.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SosiShpRef.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SosiShpRef.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SosiShpRef.tooltip}" id="it20">
+                                                    <f:validator binding="#{row.bindings.SosiShpRef.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.ShpnmNo.label}" id="c34">
+                                                <af:inputText value="#{row.bindings.ShpnmNo.inputValue}" label="#{bindings.SiFromSoVO.hints.ShpnmNo.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.ShpnmNo.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.ShpnmNo.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.ShpnmNo.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.ShpnmNo.tooltip}" id="it21">
+                                                    <f:validator binding="#{row.bindings.ShpnmNo.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.WhCod.label}" id="c35" width="80">
+                                                <af:inputText value="#{row.bindings.WhCod.inputValue}" label="#{bindings.SiFromSoVO.hints.WhCod.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.WhCod.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.WhCod.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.WhCod.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.WhCod.tooltip}" id="it22">
+                                                    <f:validator binding="#{row.bindings.WhCod.validator}"/>
+                                                    <af:convertNumber groupingUsed="false" pattern="#{bindings.SiFromSoVO.hints.WhCod.format}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="" id="c36" width="130">
+                                                <af:inputText value="#{row.bindings.WhCodDes.inputValue}" label="#{bindings.SiFromSoVO.hints.WhCodDes.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.WhCodDes.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.WhCodDes.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.WhCodDes.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.WhCodDes.tooltip}" id="it23">
+                                                    <f:validator binding="#{row.bindings.WhCodDes.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsBrdcod.label}" id="c37">
+                                                <af:inputText value="#{row.bindings.SomsBrdcod.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsBrdcod.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsBrdcod.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsBrdcod.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsBrdcod.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsBrdcod.tooltip}" id="it24">
+                                                    <f:validator binding="#{row.bindings.SomsBrdcod.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsSpncod.label}" id="c38">
+                                                <af:inputText value="#{row.bindings.SomsSpncod.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsSpncod.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsSpncod.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsSpncod.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsSpncod.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsSpncod.tooltip}" id="it25">
+                                                    <f:validator binding="#{row.bindings.SomsSpncod.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.label}" id="c39" width="70">
+                                                <af:inputText value="#{row.bindings.SomsPaytrmcod.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsPaytrmcod.tooltip}" id="it26">
+                                                    <f:validator binding="#{row.bindings.SomsPaytrmcod.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.label}" id="c40" width="175">
+                                                <af:inputText value="#{row.bindings.SomsPaytrmdes.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsPaytrmdes.tooltip}" id="it27">
+                                                    <f:validator binding="#{row.bindings.SomsPaytrmdes.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                            <af:column headerText="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.label}" id="c41" width="150">
+                                                <af:inputText value="#{row.bindings.SomsBildatRefDes.inputValue}"
+                                                              label="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.label}"
+                                                              required="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.mandatory}"
+                                                              columns="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.displayWidth}"
+                                                              maximumLength="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.precision}"
+                                                              shortDesc="#{bindings.SiFromSoVO.hints.SomsBildatRefDes.tooltip}" id="it28">
+                                                    <f:validator binding="#{row.bindings.SomsBildatRefDes.validator}"/>
+                                                </af:inputText>
+                                            </af:column>
+                                        </af:table>
+                                        <af:toolbar id="t2">
+                                            <af:button text="Select All" id="b6" actionListener="#{backingBeanScope.SearchBean.siFromSoSelectAll}"/>
+                                            <af:button text="Deselect All" id="b7" actionListener="#{backingBeanScope.SearchBean.siFromSoDeselectAll}"/>
+                                        </af:toolbar>
+                                    </af:panelGroupLayout>
+                                </af:panelHeader>
+                                <af:panelHeader text="3. Create new invoice using Shipment Items selected abouve and details captured below" id="ph3">
+                                    <f:facet name="context"/>
+                                    <f:facet name="toolbar"/>
+                                    <f:facet name="menuBar"/>
+                                    <f:facet name="legend"/>
+                                    <f:facet name="info"/>
+                                    <af:panelGroupLayout id="pgl6" layout="vertical">
+                                        <af:panelFormLayout id="pfl5" rows="1" maxColumns="4" labelWidth="120px">
+                                            <f:facet name="footer"/>
+                                            <af:inputDate value="#{bindings.CimsInvdat.inputValue}" label="#{bindings.CimsInvdat.hints.label}"
+                                                          required="#{bindings.CimsInvdat.hints.mandatory}" columns="#{bindings.CimsInvdat.hints.displayWidth}"
+                                                          shortDesc="#{bindings.CimsInvdat.hints.tooltip}" id="id4" showRequired="true">
+                                                <f:validator binding="#{bindings.CimsInvdat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.CimsInvdat.format}"/>
+                                            </af:inputDate>
+                                            <af:inputDate value="#{bindings.CimsShpdat.inputValue}" label="#{bindings.CimsShpdat.hints.label}"
+                                                          required="#{bindings.CimsShpdat.hints.mandatory}" columns="#{bindings.CimsShpdat.hints.displayWidth}"
+                                                          shortDesc="#{bindings.CimsShpdat.hints.tooltip}" id="id5" showRequired="true">
+                                                <f:validator binding="#{bindings.CimsShpdat.validator}"/>
+                                                <af:convertDateTime pattern="#{bindings.CimsShpdat.format}"/>
+                                            </af:inputDate>
+                                            <af:inputText value="#{bindings.CimsYear1.inputValue}" label="#{bindings.CimsYear1.hints.label}"
+                                                          required="#{bindings.CimsYear1.hints.mandatory}" columns="#{bindings.CimsYear1.hints.displayWidth}"
+                                                          maximumLength="#{bindings.CimsYear1.hints.precision}" shortDesc="#{bindings.CimsYear1.hints.tooltip}"
+                                                          id="it29" showRequired="true">
+                                                <f:validator binding="#{bindings.CimsYear1.validator}"/>
+                                            </af:inputText>
+                                            <af:inputListOfValues id="refSoId" popupTitle="Search and Select: #{bindings.RefSo.hints.label}"
+                                                                  value="#{bindings.RefSo.inputValue}" label="#{bindings.RefSo.hints.label}"
+                                                                  model="#{bindings.RefSo.listOfValuesModel}" required="#{bindings.RefSo.hints.mandatory}"
+                                                                  columns="#{bindings.RefSo.hints.displayWidth}" shortDesc="#{bindings.RefSo.hints.tooltip}"
+                                                                  showRequired="true">
+                                                <f:validator binding="#{bindings.RefSo.validator}"/>
+                                            </af:inputListOfValues>
+                                        </af:panelFormLayout>
+                                        <af:panelFormLayout id="pfl4" rows="1" maxColumns="2">
+                                            <af:selectBooleanCheckbox value="#{bindings.DefAddamtTpl.inputValue}" label="#{bindings.DefAddamtTpl.label}"
+                                                                      shortDesc="#{bindings.DefAddamtTpl.hints.tooltip}" id="sbc3"/>
+                                            <af:selectBooleanCheckbox value="#{bindings.ShortlistUniqPaytrm.inputValue}"
+                                                                      label="#{bindings.ShortlistUniqPaytrm.label}"
+                                                                      shortDesc="#{bindings.ShortlistUniqPaytrm.hints.tooltip}" id="sbc4"/>
+                                        </af:panelFormLayout>
+                                    </af:panelGroupLayout>
+                                </af:panelHeader>
+                            </af:dialog>
+                        </af:popup>
+                        <af:popup childCreation="deferred" animate="false" id="p3" binding="#{backingBeanScope.SearchBean.applyDefaultAddamtPopup}">
+                            <af:dialog id="d4" title="Apply Default?" type="none">
+                                <f:facet name="buttonBar">
+                                    <af:button text="OK" id="b4" action="#{backingBeanScope.SearchBean.applyDefaultListener}"/>
+                                    <af:button text="Cancel" id="b5" action="#{backingBeanScope.SearchBean.cancelDefaultAddamt}"/>
+                                </f:facet>
+                                <af:outputLabel value="#{pageFlowScope.applyDefaultMsg}" id="ol1" clientComponent="true"/>
+                            </af:dialog>
+                        </af:popup>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </xts-rc:SearchToolbar>
+        </f:facet>
+        <f:facet name="customCommandMenuItems"/>
+        <f:facet name="coreSearchQuery">
+            <af:query id="coreSearchQueryId" headerText="Search" value="#{bindings.CoreTciMstVOCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.CoreTciMstVOCriteriaQuery.queryModel}" queryListener="#{bindings.CoreTciMstVOCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.CoreTciMstVOCriteriaQuery.processQueryOperation}" saveQueryMode="hidden" modeChangeVisible="false"
+                      disclosed="true" styleClass="queryHideRequiredAndOneIsRequiredLabel" rows="3" maxColumns="3"
+                      binding="#{backingBeanScope.SearchBean.queryCore}" displayMode="simple"/>
+        </f:facet>
+        <f:facet name="advSearchQuery">
+            <af:query id="advSearchQueryId" headerText="Search" disclosed="true" value="#{bindings.AdvTciMstVOCriteriaQuery.queryDescriptor}"
+                      model="#{bindings.AdvTciMstVOCriteriaQuery.queryModel}" queryListener="#{bindings.AdvTciMstVOCriteriaQuery.processQuery}"
+                      queryOperationListener="#{bindings.AdvTciMstVOCriteriaQuery.processQueryOperation}" maxColumns="1" displayMode="default"
+                      modeButtonPosition="footer" saveQueryMode="hidden" modeChangeVisible="false" styleClass="advancedQuery"/>
+        </f:facet>
+        <f:facet name="masterTable">
+            <af:table value="#{bindings.TciMstVO.collectionModel}" var="row" rows="#{bindings.TciMstVO.rangeSize}"
+                      emptyText="#{bindings.TciMstVO.viewable ? 'No data to display.' : 'Access Denied.'}" rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.TciMstVO.collectionModel.selectedRow}" selectionListener="#{bindings.TciMstVO.collectionModel.makeCurrent}"
+                      rowSelection="single" fetchSize="#{bindings.TciMstVO.rangeSize}" filterModel="#{bindings.TciMstVOQuery.queryDescriptor}"
+                      filterVisible="true" queryListener="#{bindings.TciMstVOQuery.processQuery}" varStatus="vs" id="masterTableId"
+                      binding="#{backingBeanScope.SearchBean.masterTable}" scrollPolicy="page" selectionEventDelay="enabled" contentDelivery="immediate"
+                      first="#{pageFlowScope.TciMstVOIteratorRangeStart eq null ? 0 : pageFlowScope.TciMstVOIteratorRangeStart}" columnStretching="column:c3">
+                <af:column headerText=" " id="c19" width="15" rowHeader="true" displayIndex="-2" visible="#{pageFlowScope.hideSomeColumns ne true}">
+                    <f:facet name="header">
+                        <af:selectBooleanCheckbox text="" id="sbc5" simple="true" autoSubmit="true"
+                                                  valueChangeListener="#{backingBeanScope.SearchBean.selectAllValueChangeListener}"/>
+                    </f:facet>
+                    <af:selectBooleanCheckbox value="#{row.bindings.Selection.inputValue}" label="#{row.bindings.Selection.label}"
+                                              shortDesc="#{bindings.TciMstVO.hints.Selection.tooltip}" id="sbc1" autoSubmit="true"/>
+                </af:column>
+                <af:column id="c20" width="15" displayIndex="-1">
+                    <af:link id="editLink" shortDesc="Enquire / Edit" action="edit" actionListener="#{backingBeanScope.SearchBean.genericSearchEdit}"
+                             disabled="#{bindings.TciMstVOIterator.currentRow==null || !UserProfileBean.userPermission['CI###VIEW']}">
+                        <af:outputText id="ot28" value="#{'border_color'}" styleClass="material-icons mi_tiny_gray"/>
+                        <f:attribute name="iterator" value="TciMstVOIterator"/>
+                    </af:link>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsDivcod.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsDivcod.label}" id="c1" width="75">
+                    <af:outputText value="#{row.CimsDivcod}" shortDesc="#{bindings.TciMstVO.hints.CimsDivcod.tooltip}" id="ot1"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsDocnbr.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsDocnbr.label}" id="c2" width="80">
+                    <af:outputText value="#{row.CimsDocnbr}" shortDesc="#{bindings.TciMstVO.hints.CimsDocnbr.tooltip}" id="ot3"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CpalFulnam.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CpalFulnam.label}" id="c3">
+                    <af:outputText value="#{row.CpalFulnam}" shortDesc="#{bindings.TciMstVO.hints.CpalFulnam.tooltip}" id="ot2"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsInvdat.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsInvdat.label}" id="c4">
+                    <f:facet name="filter">
+                        <af:inputDate value="#{bindings.TciMstVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CimsInvdat.value}" id="id1">
+                            <af:convertDateTime pattern="#{bindings.TciMstVO.hints.CimsInvdat.format}"/>
+                        </af:inputDate>
+                    </f:facet>
+                    <af:outputText value="#{row.CimsInvdat}" shortDesc="#{bindings.TciMstVO.hints.CimsInvdat.tooltip}" id="ot4">
+                        <af:convertDateTime pattern="#{bindings.TciMstVO.hints.CimsInvdat.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsShpdat.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsShpdat.label}" id="c5">
+                    <f:facet name="filter">
+                        <af:inputDate value="#{bindings.TciMstVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.CimsShpdat.value}" id="id2">
+                            <af:convertDateTime pattern="#{bindings.TciMstVO.hints.CimsShpdat.format}"/>
+                        </af:inputDate>
+                    </f:facet>
+                    <af:outputText value="#{row.CimsShpdat}" shortDesc="#{bindings.TciMstVO.hints.CimsShpdat.tooltip}" id="ot5">
+                        <af:convertDateTime pattern="#{bindings.TciMstVO.hints.CimsShpdat.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsCurcod.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsCurcod.label}" id="c6" width="60">
+                    <af:outputText value="#{row.CimsCurcod}" shortDesc="#{bindings.TciMstVO.hints.CimsCurcod.tooltip}" id="ot6"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsTotamt.name}" sortable="true" headerText="#{bindings.TciMstVO.hints.CimsTotamt.label}"
+                           id="c7" inlineStyle="text-align:right;" width="90">
+                    <af:outputText value="#{row.CimsTotamt}" shortDesc="#{bindings.TciMstVO.hints.CimsTotamt.tooltip}" id="ot7"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.CimsTotaddamt.name}" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.CimsTotaddamt.label}" id="c8" inlineStyle="text-align:right;" width="85" minimumWidth="12">
+                    <af:outputText value="#{row.CimsTotaddamt}" shortDesc="#{bindings.TciMstVO.hints.CimsTotaddamt.tooltip}" id="ot8"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.StscodDesc.name}" filterable="true" sortable="true"
+                           headerText="#{bindings.TciMstVO.hints.StscodDesc.label}" id="c9" width="80">
+                    <af:outputText value="#{row.StscodDesc}" shortDesc="#{bindings.TciMstVO.hints.StscodDesc.tooltip}" id="ot9"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.SoNo.name}" headerText="#{bindings.TciMstVO.hints.SoNo.label}" id="c10" width="160">
+                    <af:outputText value="#{row.SoNo}" shortDesc="#{bindings.TciMstVO.hints.SoNo.tooltip}" id="ot10"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciMstVO.hints.SopoPoNum.name}" headerText="#{bindings.TciMstVO.hints.SopoPoNum.label}" id="c11"
+                           width="165">
+                    <af:outputText value="#{row.SopoPoNum}" shortDesc="#{bindings.TciMstVO.hints.SopoPoNum.tooltip}" id="ot11"/>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="detailTable">
+            <af:table value="#{bindings.TciActshpitmVO.collectionModel}" var="row" rows="#{bindings.TciActshpitmVO.rangeSize}"
+                      emptyText="#{bindings.TciActshpitmVO.viewable ? 'No data to display.' : 'Access Denied.'}" rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.TciActshpitmVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.TciActshpitmVO.collectionModel.makeCurrent}" rowSelection="single"
+                      fetchSize="#{bindings.TciActshpitmVO.rangeSize}" id="detailTableId" scrollPolicy="page"
+                      binding="#{backingBeanScope.SearchBean.detailTable}" columnStretching="column:c15" contentDelivery="immediate">
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.SoNum.name}" sortable="true" headerText="#{bindings.TciActshpitmVO.hints.SoNum.label}"
+                           id="c12" width="120">
+                    <af:outputText value="#{row.SoNum}" shortDesc="#{bindings.TciActshpitmVO.hints.SoNum.tooltip}" id="ot12"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.CiaiShiseq.name}" sortable="true"
+                           headerText="#{bindings.TciActshpitmVO.hints.CiaiShiseq.label}" id="c13">
+                    <af:outputText value="#{row.CiaiShiseq}" shortDesc="#{bindings.TciActshpitmVO.hints.CiaiShiseq.tooltip}" id="ot13">
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TciActshpitmVO.hints.CiaiShiseq.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.CiaiItmseq.name}" sortable="true"
+                           headerText="#{bindings.TciActshpitmVO.hints.CiaiItmseq.label}" id="c14">
+                    <af:outputText value="#{row.CiaiItmseq}" shortDesc="#{bindings.TciActshpitmVO.hints.CiaiItmseq.tooltip}" id="ot14">
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TciActshpitmVO.hints.CiaiItmseq.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.IpmsItmnum.name}" sortable="true"
+                           headerText="#{bindings.TciActshpitmVO.hints.IpmsItmnum.label}" id="c15">
+                    <af:outputText value="#{row.IpmsItmnum}" shortDesc="#{bindings.TciActshpitmVO.hints.IpmsItmnum.tooltip}" id="ot15"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.CiaiActqty.name}" sortable="true" inlineStyle="text-align:right;"
+                           headerText="#{bindings.TciActshpitmVO.hints.CiaiActqty.label}" id="c16">
+                    <af:outputText value="#{row.CiaiActqty}" shortDesc="#{bindings.TciActshpitmVO.hints.CiaiActqty.tooltip}" id="ot16">
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TciActshpitmVO.hints.CiaiActqty.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.CiaiItmprc.name}" sortable="true" inlineStyle="text-align:right;"
+                           headerText="#{bindings.TciActshpitmVO.hints.CiaiItmprc.label}" id="c17">
+                    <af:outputText value="#{row.CiaiItmprc}" shortDesc="#{bindings.TciActshpitmVO.hints.CiaiItmprc.tooltip}" id="ot17">
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TciActshpitmVO.hints.CiaiItmprc.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.TciActshpitmVO.hints.TotAmt.name}" sortable="true" inlineStyle="text-align:right;"
+                           headerText="#{bindings.TciActshpitmVO.hints.TotAmt.label}" id="c18">
+                    <af:outputText value="#{row.TotAmt}" shortDesc="#{bindings.TciActshpitmVO.hints.TotAmt.tooltip}" id="ot18">
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.TciActshpitmVO.hints.TotAmt.format}"/>
+                    </af:outputText>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="detailPanelFormLayout">
+            <af:panelFormLayout id="pfl1" maxColumns="1">
+                <f:facet name="footer"/>
+                <af:panelLabelAndMessage label="#{bindings.CimsCndsalcod.hints.label}" id="plam1">
+                    <af:inputText value="#{bindings.CimsCndsalcod.inputValue}" simple="true" required="#{bindings.CimsCndsalcod.hints.mandatory}"
+                                  columns="#{bindings.CimsCndsalcod.hints.displayWidth}" maximumLength="#{bindings.CimsCndsalcod.hints.precision}"
+                                  shortDesc="#{bindings.CimsCndsalcod.hints.tooltip}" id="it2" disabled="true">
+                        <f:validator binding="#{bindings.CimsCndsalcod.validator}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsCndsaldes.inputValue}" simple="true" required="#{bindings.CimsCndsaldes.hints.mandatory}"
+                                      columns="#{bindings.CimsCndsaldes.hints.displayWidth}" maximumLength="#{bindings.CimsCndsaldes.hints.precision}"
+                                      shortDesc="#{bindings.CimsCndsaldes.hints.tooltip}" id="it3" disabled="true">
+                            <f:validator binding="#{bindings.CimsCndsaldes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CimsPaytrmcod.hints.label}" id="plam2">
+                    <af:inputText value="#{bindings.CimsPaytrmcod.inputValue}" simple="true" required="#{bindings.CimsPaytrmcod.hints.mandatory}"
+                                  columns="#{bindings.CimsPaytrmcod.hints.displayWidth}" maximumLength="#{bindings.CimsPaytrmcod.hints.precision}"
+                                  shortDesc="#{bindings.CimsPaytrmcod.hints.tooltip}" id="it4" disabled="true">
+                        <f:validator binding="#{bindings.CimsPaytrmcod.validator}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsPaytrmdes.inputValue}" simple="true" required="#{bindings.CimsPaytrmdes.hints.mandatory}"
+                                      columns="#{bindings.CimsPaytrmdes.hints.displayWidth}" maximumLength="#{bindings.CimsPaytrmdes.hints.precision}"
+                                      shortDesc="#{bindings.CimsPaytrmdes.hints.tooltip}" id="it5" disabled="true">
+                            <f:validator binding="#{bindings.CimsPaytrmdes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CimsAmdby.hints.label}" id="plam3">
+                    <af:inputText value="#{bindings.CimsAmdby.inputValue}" simple="true" required="#{bindings.CimsAmdby.hints.mandatory}"
+                                  columns="#{bindings.CimsAmdby.hints.displayWidth}" maximumLength="#{bindings.CimsAmdby.hints.precision}"
+                                  shortDesc="#{bindings.CimsAmdby.hints.tooltip}" id="it6" disabled="true">
+                        <f:validator binding="#{bindings.CimsAmdby.validator}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsAmddat.inputValue}" simple="true" required="#{bindings.CimsAmddat.hints.mandatory}"
+                                      columns="#{bindings.CimsAmddat.hints.displayWidth}" maximumLength="#{bindings.CimsAmddat.hints.precision}"
+                                      shortDesc="#{bindings.CimsAmddat.hints.tooltip}" id="it7" disabled="true">
+                            <f:validator binding="#{bindings.CimsAmddat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CimsAmddat.format}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+        </f:facet>
+        <f:attribute name="formName" value="Sales Invoice Maintenance (for Order with Inventory) - #{pageFlowScope.customParams}"/>
+        <f:attribute name="searchBean" value="#{backingBeanScope.SearchBean}"/>
+        <f:attribute name="masterIterator" value="#{bindings.TciMstVOIterator}"/>
+        <f:attribute name="exportTitle" value="Sales Invoice Export"/>
+        <f:attribute name="panelButtonsStretchId" value="#{'b6'}"/>
+        <f:attribute name="masterIteratorName" value="TciMstVOIterator"/>
+        <f:attribute name="createBtnRendered" value="true"/>
+        <f:attribute name="createBtnDisabled" value="#{!UserProfileBean.userPermission['CI###CREATE']}"/>
+        <f:attribute name="exportBtnDisabled" value="false"/>
+        <f:attribute name="editBtnRendered" value="true"/>
+        <f:attribute name="editBtnDisabled" value="#{!UserProfileBean.userPermission['CI###VIEW']}"/>
+        <f:attribute name="splitterPosition" value="400"/>
+        <f:attribute name="detailTableRendered" value="true"/>
+        <f:attribute name="detailPanelFormLayoutRendered" value="true"/>
+        <f:attribute name="exportRowLimit" value="500"/>
+    </af:pageTemplate>
+</ui:composition>

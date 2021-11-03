@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+          <af:resource type="javascript">
+ function candidateRuleSelectRowCheckBox(event)
+    {
+        var nativeKeyPressEvent = event.getNativeEvent();
+        var key = nativeKeyPressEvent.keyCode;
+        var char = nativeKeyPressEvent.charCode;
+        var control = nativeKeyPressEvent.ctrlKey;
+        //  CTRL+ENTER Key press check condition 
+        if(control &amp;&amp; key === 10)
+        {
+            console.log(" CTRL+ENTER Pressed ");
+            var table=AdfPage.PAGE.findComponentByAbsoluteId('r2:0:pc1:t1');
+            var rowKeySet = table.getSelectedRowKeys();
+                   for(rowKey in rowKeySet){
+                        var selection = table.findComponent("sbc1", rowKey);
+                        if (selection.getValue().toString() == 'true')
+                              selection.setValue(false);
+                        else
+                              selection.setValue(true);
+                        }
+                }
+    }
+</af:resource>
+    
+  <af:panelBox text="Candidate Rule" id="pb1" showDisclosure="false">
+    <af:panelGroupLayout id="pgl8" layout="horizontal">
+            <af:messages id="candidateListError" inline="true"/>
+          </af:panelGroupLayout>
+    <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                        inlineStyle="height:504px;" featuresOff="statusBar">
+      <f:facet name="menus"/>
+      <f:facet name="toolbar">
+        <af:toolbar id="t2">
+          <af:commandToolbarButton text="Create" id="ctb1"
+                                   actionListener="#{pageFlowScope.CandidateRuleMB.createNewRule}"
+                                   action="RuleCreation">
+            <af:setActionListener from="Create" to="#{requestScope.action}"/>
+            <af:setActionListener from="true"
+                                  to="#{pageFlowScope.CandidateRuleMB.createButton}"/>
+            <af:setActionListener from="false"
+                                  to="#{pageFlowScope.CandidateRuleMB.updateButton}"/>
+          </af:commandToolbarButton>
+          <af:commandToolbarButton text="Delete" id="ctb2"
+                                   actionListener="#{pageFlowScope.CandidateRuleMB.deleteRule}"
+                                   disabled="#{pageFlowScope.CandidateRuleMB.deleteupdateCount le 0} "
+                                   partialTriggers="t1:sbc1"/>         
+        </af:toolbar>
+      </f:facet>
+      <f:facet name="statusbar"/>
+      <af:table value="#{bindings.Candidate_Rule_View1.collectionModel}"
+                var="row" rows="#{bindings.Candidate_Rule_View1.rangeSize}"
+                emptyText="#{bindings.Candidate_Rule_View1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                fetchSize="#{bindings.Candidate_Rule_View1.rangeSize}"
+                rowBandingInterval="0"
+                filterModel="#{bindings.Candidate_Rule_View1Query.queryDescriptor}"
+                queryListener="#{bindings.Candidate_Rule_View1Query.processQuery}"
+                filterVisible="true" varStatus="vs" disableColumnReordering="true"
+                selectionListener="#{bindings.Candidate_Rule_View1.collectionModel.makeCurrent}"
+                rowSelection="multiple" id="t1" columnStretching="last"
+                autoHeightRows="0" summary="Candidate Listing"
+                binding="#{pageFlowScope.CandidateRuleMB.bind_candidateRule}">
+        <af:clientListener method="candidateRuleSelectRowCheckBox" type="keyPress"/>
+        <af:column id="c10" width="60" filterFeatures="caseInsensitive"
+                   headerText=" ">
+          <af:selectBooleanCheckbox value="#{row.bindings.Mark.inputValue}"
+                                    label="#{row.bindings.Mark.label}"
+                                    shortDesc="#{bindings.Candidate_Rule_View1.hints.Mark.tooltip}"
+                                    id="sbc1" autoSubmit="true"
+                                    valueChangeListener="#{pageFlowScope.CandidateRuleMB.MarkCheckBoxVCL}"
+                                    binding="#{pageFlowScope.CandidateRuleMB.bind_selectRules}"
+                                    selected="#{pageFlowScope.selectedRules}">
+            <af:setPropertyListener from="#{row.RuleId}"
+                                    to="#{pageFlowScope.CandidateRuleMB.listingruleid}"
+                                    type="valueChange"/>
+          </af:selectBooleanCheckbox>          
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.RuleId.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{bindings.Candidate_Rule_View1.hints.RuleId.label}"
+                   id="c9" visible="false" filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.RuleId}" id="ot1">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Candidate_Rule_View1.hints.RuleId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.Name.name}"
+                   filterable="true" sortable="true" headerText="Rule Name"
+                   id="c8" filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.Name}" id="ot8" visible="false"/>
+          <af:commandLink text="#{row.Name}" id="cl1" action="RuleCreation"
+                          actionListener="#{pageFlowScope.CandidateRuleMB.UpdateRule}">
+            <af:setPropertyListener from="#{row.bindings.RuleType.attributeValue}"
+                                    to="#{pageFlowScope.RuleType}"
+                                    type="action"/>
+            <af:setActionListener from="Update" to="#{pageFlowScope.action}"/>
+            <af:setActionListener from="false"
+                                  to="#{pageFlowScope.activateDeleteCriteria}"/>
+            <af:setActionListener from="true"
+                                  to="#{pageFlowScope.CandidateRuleMB.updateButton}"/>
+            <af:setActionListener from="false"
+                                  to="#{pageFlowScope.CandidateRuleMB.createButton}"/>
+          </af:commandLink>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.Description.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{bindings.Candidate_Rule_View1.hints.Description.label}"
+                   id="c4"
+                   rendered="#{(sessionScope.roleId eq '90') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.Description}" id="ot3"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.ZoneId.name}"
+                   filterable="true" sortable="true" headerText="Zone" id="c3"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.ZoneId}" id="ot4">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Candidate_Rule_View1.hints.ZoneId.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.Priority.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{bindings.Candidate_Rule_View1.hints.Priority.label}"
+                   id="c6"
+                   rendered="#{(sessionScope.roleId eq '90') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.Priority}" id="ot5">
+            <af:convertNumber groupingUsed="false"
+                              pattern="#{bindings.Candidate_Rule_View1.hints.Priority.format}"/>
+          </af:outputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.RuleType.name}"
+                   filterable="true" sortable="true"
+                   headerText="#{bindings.Candidate_Rule_View1.hints.RuleType.label}"
+                   id="c1"
+                   rendered="#{(sessionScope.roleId eq '90') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.RuleType}" id="ot9"/>
+        </af:column>
+        <af:column sortProperty="EffectiveDate"
+                   filterable="true" sortable="true" headerText="Effective Date"
+                   id="c5"
+                   rendered="#{(sessionScope.roleId eq '80') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.EffectiveDate}" id="ot7">
+            <af:convertDateTime pattern="#{bindings.Candidate_Rule_View1.hints.EffectiveDate.format}"/>
+          </af:outputText>
+          <f:facet name="filter">
+            <af:inputDate value="#{vs.filterCriteria.EffectiveDate}" 
+                          rendered="#{(sessionScope.roleId eq '80') and (sessionScope.userViewPermission eq '1')}"
+                          id="id1" label=" " autoSubmit="true">
+              <af:convertDateTime pattern="MM/dd/yyyy"/>
+            </af:inputDate>
+          </f:facet>
+          
+          
+         
+        </af:column>
+        <af:column sortProperty="EndDate"
+                   filterable="true" sortable="true" headerText="End Date"
+                   id="c2"
+                   rendered="#{(sessionScope.roleId eq '80') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.EndDate}" id="ot2">
+            <af:convertDateTime pattern="#{bindings.Candidate_Rule_View1.hints.EndDate.format}"/>
+          </af:outputText>
+          <f:facet name="filter">
+            <af:inputDate value="#{vs.filterCriteria.EndDate}" 
+                          rendered="#{(sessionScope.roleId eq '80') and (sessionScope.userViewPermission eq '1')}"
+                          id="id2" label=" " autoSubmit="true">
+               <af:convertDateTime pattern="MM/dd/yyyy"/>
+            </af:inputDate>
+          </f:facet>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.Dept.name}"
+                   filterable="true" sortable="false" headerText="Department"
+                   id="c11"
+                   rendered="#{(sessionScope.roleId eq '80') and (sessionScope.userViewPermission eq '1')}"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.Dept}" id="ot10"/>
+        </af:column>
+        <af:column sortProperty="#{bindings.Candidate_Rule_View1.hints.RuleDefinition.name}"
+                   filterable="true" sortable="true"
+                   headerText="Rule Definition" id="c7"
+                   filterFeatures="caseInsensitive">
+          <af:outputText value="#{row.RuleDefinition}" id="ot6"/>
+        </af:column>
+      </af:table>
+    </af:panelCollection>
+  </af:panelBox>
+  <af:popup id="p1" binding="#{pageFlowScope.CandidateRuleMB.bind_deletepopup}"
+            contentDelivery="immediate" partialTriggers="pc1:ctb2"
+            childCreation="deferred" autoCancel="disabled">
+    <af:dialog id="d1"
+               title="Are you sure want to delete the Rules."
+               type="none">
+      <af:panelGroupLayout id="pgl1" halign="end">
+        <af:spacer width="90" height="10" id="s2"/>
+        <af:panelGroupLayout id="pgl2" valign="baseline">
+          <af:commandButton text="Yes" id="cb1"
+                            actionListener="#{pageFlowScope.CandidateRuleMB.yesAction}"/>
+          <af:spacer width="10" height="10" id="s1"/>
+          <af:commandButton text="No" id="cb2"
+                            actionListener="#{pageFlowScope.CandidateRuleMB.NoAction}"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:dialog>
+  </af:popup>
+</jsp:root>

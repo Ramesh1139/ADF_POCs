@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="approve4ViewPageDef"
+                Package="xts.xnsupr.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Blk3Approve4VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve4VOIterator"/>
+    <iterator Binds="BlkConsubrolVO" RangeSize="10" DataControl="xnsuprAMDataControl" id="BlkConsubrolVOIterator"/>
+    <iterator id="Blk1TmpPrfNewcodVOIterator" Binds="Blk1TmpPrfNewcodVO" DataControl="xnsuprAMDataControl"
+              RangeSize="10"/>
+    <iterator Binds="Blk3Approve5VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve5VOIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="Blk3Approve4VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve4VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve4VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve4VOFieldEvents_ButPrev_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve4VOFieldEvents_ButPrev_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve4VOFieldEvents_ButPrev_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve4VOFieldEvents_ButReject_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve4VOFieldEvents_ButReject_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve4VOFieldEvents_ButReject_bp.dataControl.dataProvider"/>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcGrp">
+      <AttrNames>
+        <Item Value="MppfcGrp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcFulnam">
+      <AttrNames>
+        <Item Value="MppfcFulnama4"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcFulnamLocal">
+      <AttrNames>
+        <Item Value="MppfcFulnamLocala4"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="ShortName">
+      <AttrNames>
+        <Item Value="ShortName"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcPrfcod">
+      <AttrNames>
+        <Item Value="MppfcPrfcod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcSup">
+      <AttrNames>
+        <Item Value="MppfcSup"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="MppfcSup1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MppfcSup"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcShp">
+      <AttrNames>
+        <Item Value="MppfcShp"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="MppfcShp1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MppfcShp"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcMan">
+      <AttrNames>
+        <Item Value="MppfcMan"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="MppfcMan1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MppfcMan"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcMat">
+      <AttrNames>
+        <Item Value="MppfcMat"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="MppfcMat1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MppfcMat"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcConsubrolDesc">
+      <AttrNames>
+        <Item Value="MppfcConsubrolDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr1">
+      <AttrNames>
+        <Item Value="MppfcAdr1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr2">
+      <AttrNames>
+        <Item Value="MppfcAdr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr3">
+      <AttrNames>
+        <Item Value="MppfcAdr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr4">
+      <AttrNames>
+        <Item Value="MppfcAdr4"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr1Local">
+      <AttrNames>
+        <Item Value="MppfcAdr1Local"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr2Local">
+      <AttrNames>
+        <Item Value="MppfcAdr2Local"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr3Local">
+      <AttrNames>
+        <Item Value="MppfcAdr3Local"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcAdr4Local">
+      <AttrNames>
+        <Item Value="MppfcAdr4Local"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="Blk3Approve4VOIterator" StaticList="false" Uses="LOV_MppfcCtycod" id="MppfcCtycod"/>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="CtycodDes">
+      <AttrNames>
+        <Item Value="CtycodDes"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="Blk3Approve4VOIterator" StaticList="false" Uses="LOV_MppfcLoccod" id="MppfcLoccod"/>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="LocDes">
+      <AttrNames>
+        <Item Value="LocDes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcRmk">
+      <AttrNames>
+        <Item Value="MppfcRmk"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcSbmby">
+      <AttrNames>
+        <Item Value="MppfcSbmby"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcSbmbyDivision">
+      <AttrNames>
+        <Item Value="MppfcSbmbyDivision"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcSbmbyFulnam">
+      <AttrNames>
+        <Item Value="MppfcSbmbyFulnam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcSbmdat">
+      <AttrNames>
+        <Item Value="MppfcSbmdata4"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="BlkConsubrolVOIterator" id="BlkConsubrolVO">
+      <nodeDefinition DefName="xts.xnsupr.model.views.BlkConsubrolVO" Name="BlkConsubrolVO0">
+        <AttrNames>
+          <Item Value="ConsubCheckBox"/>
+          <Item Value="MptmDes"/>
+          <Item Value="MptmVal1"/>
+          <Item Value="MptmColumn"/>
+          <Item Value="MptmTypcod"/>
+          <Item Value="isConSuballowed"/>
+          <Item Value="MptmChkbox" Binds="MptmChkbox"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <button IterBinding="BlkConsubrolVOIterator" id="MptmChkbox" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MptmChkbox"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="Blk3Approve4VOFieldEvents_ButApprove_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve4VOFieldEvents_ButApprove_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve4VOFieldEvents_ButApprove_bp.dataControl.dataProvider">
+      <NamedData NDName="status" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="Blk3Approve5VOIterator" id="DeclineReason">
+      <AttrNames>
+        <Item Value="DeclineReason"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="consub" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="consub"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve4VOIterator" id="MppfcCon">
+      <AttrNames>
+        <Item Value="MppfcCon"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve4VOIterator" id="MppfcCon1" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="MppfcCon"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="BlkConsubrolVOIterator" id="ConsubCheckBox" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="ConsubCheckBox"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="BlkConsubrolVOFieldEvents_MptmChkbox_cc" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="BlkConsubrolVOFieldEvents_MptmChkbox_cc" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.BlkConsubrolVOFieldEvents_MptmChkbox_cc.dataControl.dataProvider">
+      <NamedData NDName="checkNewValue" NDType="java.lang.Boolean"/>
+    </methodAction>
+    <methodAction id="Blk3Approve1VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve1VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve1VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

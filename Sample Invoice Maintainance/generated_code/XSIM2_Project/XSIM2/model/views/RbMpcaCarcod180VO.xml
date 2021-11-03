@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RbMpcaCarcod180VO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+>
+  <Variable
+    Name="BV_SIMS_CUSCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BV_G_DIVCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+  <SQLQuery><![CDATA[select mpca_carnam, mpca_adr1||' '||mpca_adr2||' '||mpca_adr3||' '||mpca_adr4 mpca_adr, dp_dr.f_ctynam(mpca_ctycod) mpcy_nam, 
+DP_COLVAL.GET('TMP_CARMST','MPCA_CARNAM', 'MPCA_CARCOD', MPCA_PARCARCOD) parent_carnam, 
+decode(mpca_role,'C','Carrier','F','Forwarder','B','Forwarder/Carrier','') mpca_role,  mpca_carcod, 1 ord
+from   tmp_carmst 
+where  (mpca_clsdat is null or mpca_clsdat > sysdate)
+and    exists (select 1 
+               from   tsi_mst
+               where  sims_carcod = mpca_carcod
+               and    sims_divcod = :BV_G_DIVCOD  
+               and    sims_cuscod = nvl(:BV_SIMS_CUSCOD,sims_cuscod)
+               and    crtdat >= (sysdate -180))  
+UNION ALL
+SELECT   '<More>', null, null, null, null, null, 2 ord
+FROM DUAL
+ORDER BY 7, mpca_carnam]]></SQLQuery>
+  <ViewAttribute
+    Name="MpcaCarnam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpcaAdr"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpcyNam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="ParentCarnam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpcaRole"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpcaCarcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="Ord"
+    Type="java.math.BigDecimal"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+</ViewObject>

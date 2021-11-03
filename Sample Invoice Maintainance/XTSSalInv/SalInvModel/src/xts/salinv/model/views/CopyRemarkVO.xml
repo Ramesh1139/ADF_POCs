@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CopyRemarkVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.salinv.model.views.CopyRemarkVORowImpl"
+  ComponentClass="xts.salinv.model.views.CopyRemarkVOImpl"
+  PageIterMode="Full"
+  ComponentInterface="xts.salinv.model.views.common.CopyRemarkVO"
+  FetchMode="FETCH_AS_NEEDED">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="TciMstLovVO1"
+    ViewObjectName="xts.common.model.views.lovs.TciMstLovVO"
+    RowLevelBinds="true">
+    <ParameterMap>
+      <PIMap Variable="divcodVar">
+        <TransientExpression
+          Name="ExpressionScript"><![CDATA[Divcod]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="TciActshpitmLovVO1"
+    ViewObjectName="xts.common.model.views.lovs.TciActshpitmLovVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="TmpRmkmstLovVO1"
+    ViewObjectName="xts.common.model.views.lovs.TmpRmkmstLovVO"
+    RowLevelBinds="true">
+    <ParameterMap>
+      <PIMap Variable="divcodVar">
+        <TransientExpression
+          Name="ExpressionScript"><![CDATA[Divcod]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_SiHdr"
+    ListVOName="TciMstLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0"
+    ListRangeSize="25">
+    <AttrArray Name="AttrNames">
+      <Item Value="SiNo"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="CimsRunnum"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CimsDocnbr"/>
+      <Item Value="CimsRunnum"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CimsDocnbr"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="TciMstLovVOCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_SiItm"
+    ListVOName="TciActshpitmLovVO1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0"
+    ListRangeSize="25">
+    <AttrArray Name="AttrNames">
+      <Item Value="SiNo"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Shiseq"/>
+      <Item Value="Itmseq"/>
+      <Item Value="ItemNo"/>
+      <Item Value="SoNo"/>
+      <Item Value="CimsRunnum"/>
+      <Item Value="SomsRunnum"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="CiNo"/>
+      <Item Value="CiaiShiseq"/>
+      <Item Value="CiaiItmseq"/>
+      <Item Value="IpmsItmnum"/>
+      <Item Value="SoNo"/>
+      <Item Value="CimsRunnum"/>
+      <Item Value="SomsRunnum"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="CiNo"/>
+      <Item Value="SoNo"/>
+      <Item Value="CiaiShiseq"/>
+      <Item Value="CiaiItmseq"/>
+      <Item Value="IpmsItmnum"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="TciActshpitmLovVCForCiCopyRmk"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MprmRmkcod"
+    ListVOName="TmpRmkmstLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0"
+    ListRangeSize="25">
+    <AttrArray Name="AttrNames">
+      <Item Value="MprmRmkcod"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MprmRmkcod"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MprmRmkcod"/>
+      <Item Value="MprmDes"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="TmpRmkmstLovVOCriteria"/>
+  </ListBinding>
+  <SQLQuery><![CDATA[select  
+'' si_no,    
+null shiseq,    
+null itmseq,    
+'' item_no,    
+'' so_no,    
+'' mprm_rmkcod,    
+'' loc,    
+'' fldnam    
+from dual]]></SQLQuery>
+  <ViewAttribute
+    Name="SiNo"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SI_NO"
+    Expression="SI_NO"
+    SQLType="VARCHAR"
+    LOVName="LOV_SiHdr"
+    LOVFinder="SiNoLovSwitcher">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.SiNo_LABEL"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Shiseq"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SHISEQ"
+    Expression="SHISEQ"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.Shiseq_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Itmseq"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ITMSEQ"
+    Expression="ITMSEQ"
+    SQLType="NUMERIC">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.Itmseq_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="ItemNo"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="ITEM_NO"
+    Expression="ITEM_NO"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.ItemNo_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SoNo"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SO_NO"
+    Expression="SO_NO"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.SoNo_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MprmRmkcod"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="20"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPRM_RMKCOD"
+    Expression="MPRM_RMKCOD"
+    SQLType="VARCHAR"
+    LOVName="LOV_MprmRmkcod">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.CopyRemarkVO.MprmRmkcod_LABEL"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Loc"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LOC"
+    Expression="LOC"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Fldnam"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FLDNAM"
+    Expression="FLDNAM"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="CimsRunnum"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Long"
+    ColumnType="LONGINT"
+    AliasName="CIMS_RUNNUM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SomsRunnum"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Long"
+    ColumnType="LONGINT"
+    AliasName="SOMS_RUNNUM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SiNoLovSwitcher"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="$none$"
+    SQLType="VARCHAR"
+    IsUpdateable="false">
+    <TransientExpression
+      Name="ExpressionScript"><![CDATA[if (Loc == 'HDR') {
+   return 'LOV_SiHdr'
+} else {
+   return 'LOV_SiItm'
+}]]></TransientExpression>
+    <RecalcCondition
+      Name="RecalcExpressionScript"><![CDATA[true]]></RecalcCondition>
+    <Dependencies>
+      <Item
+        Value="Loc"
+        Type="notify"/>
+    </Dependencies>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Divcod"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVCOD"
+    SQLType="VARCHAR"/>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="setCopyAttr"
+      MethodName="setCopyAttr">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="loc"
+        Type="java.lang.String"/>
+      <Parameter
+        Name="rmkFld"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="resetRow"
+      MethodName="resetRow">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+    <Method
+      Name="removeCopiedRemark"
+      MethodName="removeCopiedRemark">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+    <Method
+      Name="processCopy"
+      MethodName="processCopy">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="loc"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.salinv.model.SalInvModelBundle"/>
+  </ResourceBundle>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Loc"/>
+    <Item Value="Fldnam"/>
+  </AttrArray>
+</ViewObject>

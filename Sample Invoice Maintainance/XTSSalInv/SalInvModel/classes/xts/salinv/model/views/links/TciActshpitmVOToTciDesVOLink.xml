@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TciActshpitmVOToTciDesVOLink"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  EntityAssociation="xts.common.model.entities.assocs.CidsCiaiAssoc">
+  <ViewLinkDefEnd
+    Name="TciActshpitmVO"
+    Cardinality="1"
+    Source="true"
+    Owner="xts.salinv.model.views.TciActshpitmVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="TciActshpitmVO"/>
+      <Attr Name="_minCardinality" Value="1"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.TciActshpitmVO.CiaiDivcod"/>
+      <Item Value="xts.salinv.model.views.TciActshpitmVO.CiaiRunnum"/>
+      <Item Value="xts.salinv.model.views.TciActshpitmVO.CiaiSoRunnum"/>
+      <Item Value="xts.salinv.model.views.TciActshpitmVO.CiaiShiseq"/>
+      <Item Value="xts.salinv.model.views.TciActshpitmVO.CiaiItmseq"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="TciDesShpitmVO"
+    Cardinality="-1"
+    Owner="xts.salinv.model.views.TciDesShpitmVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="TciDesShpitmVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.TciDesShpitmVO.CidsDivcod"/>
+      <Item Value="xts.salinv.model.views.TciDesShpitmVO.CidsRunnum"/>
+      <Item Value="xts.salinv.model.views.TciDesShpitmVO.CidsSoRunnum"/>
+      <Item Value="xts.salinv.model.views.TciDesShpitmVO.CidsShiseq"/>
+      <Item Value="xts.salinv.model.views.TciDesShpitmVO.CidsItmseq"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

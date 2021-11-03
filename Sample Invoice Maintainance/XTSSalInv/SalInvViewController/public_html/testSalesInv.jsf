@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="testSalesInv.jsf" id="d1">
+        <af:form id="f1">
+            <af:region value="#{bindings.salinvtf1.regionModel}" id="r1"/>
+        </af:form>
+        <af:resource type="javascript">
+          function adfFormExitting(evt) {
+              var tabKey = evt.getSource().getProperty('tfName');
+
+              // Close Tab at last
+              var params = {
+                  tabKeyParam : tabKey
+              };
+              var element = AdfPage.PAGE.findComponentByAbsoluteId('pt1:bBarFDC:b8');
+              AdfCustomEvent.queue(element, "jsFormCloseConfirmListener", params, true);
+          }
+
+          ignoreWarningOnOnload = false;
+          ignoreNextWarning = function (evt) {
+              ignoreWarningOnOnload = true;
+          }
+
+          function callFormsFromAdf(evt) {
+              var data = evt.getSource().getProperty('params');
+
+              var params = {
+                  formParams : data
+              };
+              var element = AdfPage.PAGE.findComponentByAbsoluteId('pt1:bBarFDC:b13');
+              AdfCustomEvent.queue(element, "jsOpenFormInAdf", params, true);
+          }
+          manageSplitter = function (evt) {
+              comp = evt.getSource().findComponent('srchSplitter');
+              if (comp) {
+                  comp.setProperty("collapsed", !comp.getProperty("collapsed"));
+              }
+              else {
+                  console.log('splitter is not found');
+              }
+          }
+        </af:resource>
+    </af:document>
+</f:view>

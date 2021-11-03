@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="xnsuprModel"
+  Version="12.2.1.20.47"
+  SeparateXMLFiles="true"
+  PackageName="model">
+  <DesignTime>
+    <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
+    <Attr Name="_jprName" Value="../../xnsuprModel.jpr"/>
+    <Attr Name="_NamedConnection" Value="XTS"/>
+    <Attr Name="_appModuleNames0" Value="xts.xnsupr.model.services.xnsuprAM"/>
+  </DesignTime>
+  <Containee
+    Name="entities"
+    PackageName="xts.xnsupr.model.entities"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="services"
+    PackageName="xts.xnsupr.model.services"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="cursors"
+    PackageName="xts.xnsupr.model.views.cursors"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="links"
+    PackageName="xts.xnsupr.model.views.links"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="lovs"
+    PackageName="xts.xnsupr.model.views.lovs"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="views"
+    PackageName="xts.xnsupr.model.views"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <AppContainee
+    Name="XTSCommonModel"
+    FullName="xts.common.model.XTSCommonModel"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="xtsCommonModel.jar"/>
+    </DesignTime>
+  </AppContainee>
+  <AppContainee
+    Name="XTSFormADFCommonModel"
+    FullName="xts.formadf.model.XTSFormADFCommonModel"
+    ObjectType="JboProject">
+    <DesignTime>
+      <Attr Name="_SourceName" Value="xtsFormADFCommonLib.jar"/>
+    </DesignTime>
+  </AppContainee>
+</JboProject>

@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:xts-rc="/xtsComponentLib">
+    <af:pageTemplate viewId="/templates/xtsUIEditTemplate.jsf" id="pt1">
+      <f:facet name="reusableEditToolbar">
+            <xts-rc:EditToolbar id="et1" editBean="#{backingBeanScope.EditBean}" 
+                                 actionBtnRendered="false"
+                                actionBtnDisabled="false" masterIteratorName="" 
+                                attributeHitsDisabled="false" 
+                                saveButtonRendered="false"
+                                editButtonRendered="false"
+                                saveCloseButtonRendered="false"
+                                
+                                >
+                <f:facet name="customButtons">
+                    <af:toolbar id="t123" styleClass="ToolbarHeight"
+                                inlineStyle="margin-top: -10px; margin-bottom: -3px">
+                        <af:group id="g2">
+                            <af:button text="Previous" id="b1" action="approve4"
+                                       actionListener="#{backingBeanScope.EditBean.previousApprove5}"
+                                       icon="#{resource['images:previouspage_active_14_V2.png']}"/>
+                            <af:button text="Reject" id="b7"
+                                       actionListener="#{backingBeanScope.EditBean.rejectApprove5}"
+                                       icon="#{resource['images:actionicon_edit_status_red_18_V2.png']}"/>
+                            <!--<af:button text="First" id="b2" action="#{backingBeanScope.EditBean.firstButton}"/>-->
+                        </af:group>
+                        <!--<af:group id="g1">
+                            <af:button text="Cancel and Close" id="dc_b_close" immediate="true"
+                                       icon="#{resource['images:actionicon_cancel_24_V2.png']}" action="supplierView"
+                                       actionListener="#{backingBeanScope.EditBean.cancelApprove5}"/>
+                        </af:group>-->
+                    </af:toolbar>
+                </f:facet>
+                <f:facet name="actionCustomButtons"></f:facet>
+            </xts-rc:EditToolbar>
+        </f:facet>
+          <f:facet name="infoDecorativeBoxArea"/>
+         
+           <f:facet name="decorativeBoxArea">
+            <af:panelGroupLayout id="pgl1" layout="vertical">
+                <af:panelBox text="Confirm New Supplier / Factory Code - Step 5 (Reject Reason)" id="pb1"
+                             showDisclosure="false">
+                    <f:facet name="toolbar"/>
+                    <af:panelFormLayout id="pfl1">
+                        <f:facet name="footer"/>
+                        <af:panelLabelAndMessage label="#{bindings.MppfcSbmid.hints.label}" id="plam1">
+                            <af:inputText value="#{bindings.MppfcSbmid.inputValue}" simple="true" disabled="true"
+                                          required="#{bindings.MppfcSbmid.hints.mandatory}"
+                                          columns="#{bindings.MppfcSbmid.hints.displayWidth}"
+                                          maximumLength="#{bindings.MppfcSbmid.hints.precision}"
+                                          shortDesc="#{bindings.MppfcSbmid.hints.tooltip}" id="it1"
+                                          contentStyle="width:150px;">
+                                <f:validator binding="#{bindings.MppfcSbmid.validator}"/>
+                            </af:inputText>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{bindings.MppfcFulnam.hints.label}" id="plam2">
+                            <af:inputText value="#{bindings.MppfcFulnam.inputValue}" simple="true" disabled="true"
+                                          required="#{bindings.MppfcFulnam.hints.mandatory}"
+                                          columns="#{bindings.MppfcFulnam.hints.displayWidth}"
+                                          maximumLength="#{bindings.MppfcFulnam.hints.precision}"
+                                          shortDesc="#{bindings.MppfcFulnam.hints.tooltip}" id="it2"
+                                          contentStyle="width:350px;">
+                                <f:validator binding="#{bindings.MppfcFulnam.validator}"/>
+                            </af:inputText>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="Reject Reason:" id="plam4" showRequired="true">
+                            <f:facet name="end">
+                                <af:spacer width="599" height="10" id="s1"/>
+                                <af:button text="Get Message" id="b5"
+                                           actionListener="#{backingBeanScope.EditBean.getMessageAction}"/>
+                            </f:facet>
+                        </af:panelLabelAndMessage>
+                        <!--<af:inputText value="#{bindings.DeclineReason.inputValue}" simple="true" rows="30"
+                                      required="#{bindings.DeclineReason.hints.mandatory}" contentStyle="width:700px;"
+                                      columns="#{bindings.DeclineReason.hints.displayWidth}"
+                                      maximumLength="#{bindings.DeclineReason.hints.precision}"
+                                      shortDesc="#{bindings.DeclineReason.hints.tooltip}" id="it3"
+                                      binding="#{backingBeanScope.EditBean.bind_declareMessage}"
+                                      >
+                            <f:validator binding="#{bindings.DeclineReason.validator}"/>
+                        </af:inputText>-->
+                        <af:inputText value="#{bindings.DeclineReason.inputValue}" simple="true" rows="30"
+                                      required="#{bindings.DeclineReason.hints.mandatory}"
+                                      columns="#{bindings.DeclineReason.hints.displayWidth}"
+                                      maximumLength="#{bindings.DeclineReason.hints.precision}"
+                                      shortDesc="#{bindings.DeclineReason.hints.tooltip}" id="it3"
+                                      contentStyle="width:700px;">
+                            <f:validator binding="#{bindings.DeclineReason.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </af:panelBox>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1" contentDelivery="immediate"
+                          binding="#{backingBeanScope.EditBean.bind_popup}" partialTriggers="b5">
+                    <af:panelWindow id="pw1" title="Message">
+                        <af:table value="#{bindings.MpmxTxtLovVO.collectionModel}" var="row"
+                                  rows="#{bindings.MpmxTxtLovVO.rangeSize}"
+                                  emptyText="#{bindings.MpmxTxtLovVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.MpmxTxtLovVO.collectionModel.selectedRow}"
+                                  selectionListener="#{bindings.MpmxTxtLovVO.collectionModel.makeCurrent}"
+                                  rowSelection="single" fetchSize="#{bindings.MpmxTxtLovVO.rangeSize}"
+                                  filterModel="#{bindings.MpmxTxtLovVOQuery.queryDescriptor}" filterVisible="true"
+                                  queryListener="#{bindings.MpmxTxtLovVOQuery.processQuery}" varStatus="vs" id="t1"
+                                  styleClass="AFStretchWidth" columnStretching="column:c1" width="350px"
+                                  binding="#{backingBeanScope.EditBean.bind_rejectReasontable}"
+                                  partialTriggers="::b5" contentDelivery="immediate">
+                            <af:column sortProperty="#{bindings.MpmxTxtLovVO.hints.MpmxDes.name}" filterable="false"
+                                       sortable="true" headerText="" id="c1">
+                                <!-- #{bindings.MpmxTxtLovVO.hints.MpmxDes.label} -->
+                                <af:outputText value="#{row.MpmxDes}"
+                                               shortDesc="#{bindings.MpmxTxtLovVO.hints.MpmxDes.tooltip}" id="ot1"/>
+                            </af:column>
+                        </af:table>
+                        <af:panelGroupLayout id="pgl5" layout="horizontal">
+                            <af:spacer width="10" height="50" id="s3"/>
+                            <af:button text="Ok" id="b4"
+                                       actionListener="#{backingBeanScope.EditBean.popupOkActionListener}"/>
+                            <af:spacer width="10" height="10" id="s2"/>
+                            <af:button text="Cancel" id="b6"
+                                       actionListener="#{backingBeanScope.EditBean.popupCancelActionListener}"/>
+                        </af:panelGroupLayout>
+                    </af:panelWindow>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p2"
+                          binding="#{backingBeanScope.EditBean.bind_rejectpop}" contentDelivery="immediate">
+                    <af:dialog id="d1" title="Confirm Reject"
+                               dialogListener="#{backingBeanScope.EditBean.rejectpopDialog}">
+                        <f:facet name="buttonBar"/>
+                        <af:panelGroupLayout id="pgl6">
+                            <af:panelLabelAndMessage id="plam3" label="Are you confirm ?"/>
+                        </af:panelGroupLayout>
+                    </af:dialog>
+                </af:popup>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p3"
+                          binding="#{backingBeanScope.EditBean.bind_declateMessagepopup}"
+                          contentDelivery="immediate">
+                    <af:dialog id="d2" type="ok" title="Information">
+                        <f:facet name="buttonBar"/>
+                        <af:panelGroupLayout id="pgl7">
+                            <af:panelLabelAndMessage label="Reject reason must not be blank" id="plam5"/>
+                        </af:panelGroupLayout>
+                    </af:dialog>
+                </af:popup>
+            </af:panelGroupLayout>
+        </f:facet>
+              <f:facet name="panelBoxToolbar"/>
+        <f:facet name="panelBoxArea"/>
+        <f:attribute name="formName" value="Supplier Code Confirmation Module"/>
+        <f:attribute name="editBean" value="#{backingBeanScope.EditBean}"/>
+        <f:attribute name="infoDecorativeBoxAreaRendered" value="false"/>
+        <f:attribute name="panelBoxAreaRendered" value="false"/>
+    </af:pageTemplate>
+</ui:composition>

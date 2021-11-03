@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="Rule_Parameter_BTF">
+    <default-activity id="__1">fetchParameterDetails</default-activity>
+    <managed-bean id="__3">
+      <managed-bean-name id="__5">RuleParameterBean</managed-bean-name>
+      <managed-bean-class id="__4">com.nordstrom.rpm.Backing.RuleParameterBean</managed-bean-class>
+      <managed-bean-scope id="__2">view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__9">
+      <managed-bean-name id="__8">RuleParameterImpl</managed-bean-name>
+      <managed-bean-class id="__6">com.nordstrom.rpm.Impl.RuleParameterImpl</managed-bean-class>
+      <managed-bean-scope id="__7">view</managed-bean-scope>
+    </managed-bean>
+    <view id="Rule_parameter">
+      <page>/Rule_Parameter.jsff</page>
+    </view>
+    <method-call id="fetchParameterDetails">
+      <method>#{viewScope.RuleParameterImpl.fetchRuleParameter}</method>
+      <outcome id="__19">
+        <fixed-outcome>go</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__14">
+      <from-activity-id id="__15">fetchParameterDetails</from-activity-id>
+      <control-flow-case id="__17">
+        <from-outcome id="__18">go</from-outcome>
+        <to-activity-id id="__16">Rule_parameter</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

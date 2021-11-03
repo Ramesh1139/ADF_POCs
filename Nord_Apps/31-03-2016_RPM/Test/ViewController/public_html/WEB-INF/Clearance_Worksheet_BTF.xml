@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="Clearance_Worksheet_BTF">
+    <default-activity id="__1">Clearance_Worksheet.jsff</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__8">ClearanceWorksheetImpl</managed-bean-name>
+      <managed-bean-class id="__6">com.nordstrom.rpm.Impl.ClearanceWorksheetImpl</managed-bean-class>
+      <managed-bean-scope id="__7">view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__13">
+      <managed-bean-name id="__11">ClearanceWorksheetMB</managed-bean-name>
+      <managed-bean-class id="__10">com.nordstrom.rpm.Backing.ClearanceWorksheetMB</managed-bean-class>
+      <managed-bean-scope id="__12">view</managed-bean-scope>
+    </managed-bean>
+    <view id="Clearance_Worksheet.jsff">
+      <page>/Clearance_Worksheet.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

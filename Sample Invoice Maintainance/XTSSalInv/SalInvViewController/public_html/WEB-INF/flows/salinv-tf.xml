@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="salinv-tf">
+    <template-reference>
+      <document>/WEB-INF/templates/xts-tf-template.xml</document>
+      <id>xts-tf-template</id>
+    </template-reference>
+    <default-activity>handleParams</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__1">
+      <managed-bean-name>EditBean</managed-bean-name>
+      <managed-bean-class>xts.salinv.view.beans.EditSalInv</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__2">
+      <managed-bean-name>SearchBean</managed-bean-name>
+      <managed-bean-class>xts.salinv.view.beans.SearchSalInv</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__13">
+      <managed-bean-name>EditShipmentBean</managed-bean-name>
+      <managed-bean-class>xts.salinv.view.beans.EditShipment</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="searchSiView">
+      <page>/fragments/searchSi.jsff</page>
+    </view>
+    <view id="editSiView">
+      <page>/fragments/editSi.jsff</page>
+    </view>
+    <method-call id="setSearchDivcodVar">
+      <method>#{bindings.setSearchDivcodVar.execute}</method>
+      <outcome>
+        <fixed-outcome>next</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="editSiShpitmView">
+      <page>/fragments/editSiShpitm.jsff</page>
+    </view>
+    <method-call id="handleParams">
+      <method>#{backingBeanScope.SearchBean.handleParams}</method>
+      <outcome>
+        <fixed-outcome>afterParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__3">
+      <from-activity-id>searchSiView</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>edit</from-outcome>
+        <to-activity-id>editSiView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>editSiView</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>searchSiView</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>shpitm</from-outcome>
+        <to-activity-id>editSiShpitmView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__10">
+      <from-activity-id>editSiShpitmView</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome>header</from-outcome>
+        <to-activity-id>editSiView</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__12">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>searchSiView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id>setSearchDivcodVar</from-activity-id>
+      <control-flow-case id="__20">
+        <from-outcome>next</from-outcome>
+        <to-activity-id>searchSiView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id>handleParams</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>afterParams</from-outcome>
+        <to-activity-id>setSearchDivcodVar</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

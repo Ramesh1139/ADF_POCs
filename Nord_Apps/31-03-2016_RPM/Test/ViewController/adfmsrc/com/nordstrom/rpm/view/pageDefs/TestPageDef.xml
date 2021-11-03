@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="TestPageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="dummy1" RangeSize="25"
+              DataControl="RPM_AppModuleDataControl" id="dummy1Iterator"/>
+  </executables>
+  <bindings>
+    <list IterBinding="dummy1Iterator" ListOperMode="navigation"
+          ListIter="dummy1Iterator" id="dummy1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="ZoneGroupId"/>
+        <Item Value="Hifen"/>
+        <Item Value="ZoneGroupName"/>
+      </AttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

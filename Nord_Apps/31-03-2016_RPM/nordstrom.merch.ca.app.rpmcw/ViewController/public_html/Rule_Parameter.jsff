@@ -1,0 +1,443 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">  
+  <af:resource type="javascript">
+    function tableRowcellsHighlight(event){
+    /*var key = nativeKeyPressEvent.keyCode;
+        var char = nativeKeyPressEvent.charCode;
+        var control = nativeKeyPressEvent.ctrlKey;
+    alert("nativeKeyPressEvent =="+nativeKeyPressEvent)    
+    alert("char =="+char)
+    alert("key =="+key)*/
+        var _theTable = AdfPage.PAGE.findComponentByAbsoluteId('r3:0:pc1:t1');
+        //var _theTable = event.getSource();
+        //alert("_theTable =="+_theTable);       
+        var nbRows = parseInt(_theTable.getRows());
+        //alert("nbRows ==="+nbRows)
+        var rwKeySet = _theTable.getSelectedRowKeys();        
+        var buttonValue = AdfPage.PAGE.findComponentByAbsoluteId('r3:0:cb2');
+        //alert("buttonValue =="+buttonValue)
+        //alert("_theTable rwKeySet=="+rwKeySet);
+        for(rowKey in rwKeySet){
+            var cellhandler = _theTable.findComponent("it15",rowKey );            
+            //alert("cellhandler =="+cellhandler)
+             var colId = cellhandler.getProperty('colId');
+             //alert("colId =="+colId)
+            //alert("cellhandler ==="+cellhandler.getnewValue())
+            if (cellhandler != null){
+            //alert (cellhandler.getValue());
+            if(parseInt(cellhandler.getValue())!= parseInt(colId)){
+            /*alert("entered")
+            alert("cellhandler property =="+cellhandler.getProperty('contentStyle'))
+            alert("buttonValue property =="+buttonValue.getProperty('disabled'))*/
+                //cellhandler.setProperty('contentStyle', 'background-color:lightblue');
+                buttonValue.setProperty('disabled', false);
+                //buttonValue.setDisabled(false);
+                /*alert("cellhandler property 2=="+cellhandler.getProperty('contentStyle'))                
+                alert("buttonValue property 2=="+buttonValue.getProperty('disabled'))
+                alert("buttonValue property disabled=="+buttonValue.getProperty('disabled'))*/
+               ActionEvent.queue(buttonValue,true);
+               //AdfCustomEvent.queue(buttonValue, " MyCustomServerEvent ", {fvalue:component.getSubmittedValue()} ,false);
+            }
+        }
+        break;
+    }
+    }
+    function getSelectedRow(event){
+     var source = event.getSource();
+     alert('Selected row' +source.getRowSelection()); 
+     var custEvent = new AdfCustomEvent(source,"onBlurNotifyServer",
+                       {submittedValue : source.getSubmittedValue(),
+                        localValue : source.getValue()}
+                         ,true);
+          custEvent.queue(); 
+    }
+    function blockCharacters(event){            
+        var _keyCode = event.getKeyCode(); 
+        var _filterField = event.getCurrentTarget();       
+        if (!((_keyCode &lt; 58) || (_keyCode > 95 &amp;&amp; _keyCode &lt; 106))) { 
+            _filterField.setValue(null); 
+            event.cancel(); 
+        }
+        if(_keyCode == 16){
+            _filterField.setValue(null); 
+            event.cancel();
+        }
+    }
+  </af:resource>
+  <af:panelBox text="Rule Parameter" id="pb1" showDisclosure="false">
+    <f:facet name="toolbar"/>
+    <af:breadCrumbs id="bc1">
+      <!--af:commandNavigationItem text="Home" id="cni1"
+                                action="#{pageFlowScope.HomeMB.defaultHomePage}"/-->
+      <!--af:commandNavigationItem text="Rule Parameters" id="cni2"/-->
+    </af:breadCrumbs>
+     <af:panelGroupLayout id="pgl12" layout="horizontal">
+        <af:messages id="m1" inline="true" inlineStyle="color:Aqua;"/>
+      </af:panelGroupLayout>
+    <af:spacer width="10" height="10" id="s1"/>
+    <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                        featuresOff="wrap formatMenu wrapMenuItem showAsTopMenuItem statusBar viewMenu">
+      <f:facet name="menus"/>
+      <f:facet name="toolbar"/>
+      <f:facet name="statusbar"/>
+      <af:table value="#{bindings.ParameterDepartment1.collectionModel}" disableColumnReordering="true"
+                var="row" rows="#{bindings.ParameterDepartment1.rangeSize}" 
+                emptyText="#{bindings.ParameterDepartment1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                binding="#{viewScope.RuleParameterBean.parameterTable}"
+                autoHeightRows="0" styleClass="AFStretchWidth"
+                partialTriggers="it13 :::ctb1 it6 it1 it16 it2 it15 it17 it10 it12 it11 it8 it3 it4 it5 it14 it7 it9"                
+                fetchSize="#{bindings.ParameterDepartment1.rangeSize}"
+                rowBandingInterval="0" summary="Rule Parameters"
+                filterModel="#{bindings.ParameterDepartment1Query.queryDescriptor}"
+                queryListener="#{viewScope.RuleParameterBean.onParameterTableQuery}"
+                filterVisible="true" varStatus="vs" id="t1"
+                sortListener="#{viewScope.RuleParameterBean.ParameterTableSort}"                                
+                selectionListener="#{bindings.ParameterDepartment1.collectionModel.makeCurrent}"
+                rowSelection="single" clientComponent="true">
+        <af:column sortProperty="Department"
+                   filterable="true" headerText="Department" id="c10"
+                   frozen="true" width="140" sortable="true">
+          <af:inputText value="#{row.bindings.Department.inputValue} - #{row.bindings.DepartmentName.inputValue}"
+                        label="#{bindings.ParameterDepartment1.hints.DepartmentName.label}"
+                        required="#{bindings.ParameterDepartment1.hints.DepartmentName.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.DepartmentName.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.DepartmentName.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.DepartmentName.tooltip}"
+                        id="it18" readOnly="true">
+            <f:validator binding="#{row.bindings.DepartmentName.validator}"/>
+          </af:inputText>
+          <f:facet name="filter">
+            <af:selectManyChoice value="#{vs.filterCriteria.Department}"
+                                 label="#{bindings.Department_View1.label}"
+                                 id="smc1" simple="true" autoSubmit="true"
+                                 contentStyle="width: 110px">
+              <f:selectItems value="#{bindings.Department_View1.items}"
+                             id="si1"/>
+            </af:selectManyChoice>            
+          </f:facet>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.WarehouseSOH.name}"
+                   headerText="$WarehouseSOH" id="c1" width="104"
+                   inlineStyle="#{row.bindings.WareHouseColor.inputValue == 'WarehouseSOHY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.WarehouseSOH.inputValue}"
+                        label=" " id="it6" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.WarehouseSOH.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.WarehouseSOH.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.WarehouseSOH.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.WarehouseSOH.tooltip}"                                                                    
+                        valueChangeListener="#{viewScope.RuleParameterBean.wareHousecolorChange}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}"><!--valueChangeListener="#{viewScope.RuleParameterBean.wareHousecolorChange}"-->
+            <f:validator binding="#{row.bindings.WarehouseSOH.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.StoreSOH.name}"
+                   headerText="$StoreSOH" id="c8" width="91"
+                   inlineStyle="#{row.bindings.StoreSOHColor.inputValue == 'StoreSOHY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.StoreSOH.inputValue}"
+                        label=" " id="it1" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.StoreSOH.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.StoreSOH.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.StoreSOH.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.StoreSOH.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.StoreSOHAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.StoreSOH.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.TltSellThruDOGs.name}"
+                   headerText="$TltSellThruDOGs" id="c14" width="105"
+                   inlineStyle="#{row.bindings.TltSellThruDogsColor.inputValue == 'TltSellThruDOGsY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.TltSellThruDOGs.inputValue}"
+                        label=" " id="it16" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.TltSellThruDOGs.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.TltSellThruDOGs.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.TltSellThruDOGs.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.TltSellThruDOGs.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.TltSellThruDOGsAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.TltSellThruDOGs.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.ATSWSAge.name}"
+                   headerText="$ATSWSAge" id="c16" width="85"
+                   inlineStyle="#{row.bindings.ATSWSAgeColor.inputValue == 'ATSWSAgeY'? 'background-color: #ffaaaa;' : ''}">          
+          <af:inputText value="#{row.bindings.ATSWSAge.inputValue}"
+                        label=" " id="it2" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.ATSWSAge.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.ATSWSAge.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.ATSWSAge.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.ATSWSAge.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.ATSWSAgeAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.ATSWSAge.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>        
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.ATSWGreaterDOGs.name}"
+                   headerText="$ATSWGreaterDOGs" id="c5" width="105"
+                   binding="#{viewScope.RuleParameterBean.bind_ATSWGreaterDogs}"
+                   inlineStyle="#{row.bindings.ATSWGr8DogsColor.inputValue == 'ATSWGreaterDOGsY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.ATSWGreaterDOGs.inputValue}"
+                        label=" " id="it15" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.ATSWGreaterDOGs.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.ATSWGreaterDOGs.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.ATSWGreaterDOGs.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.ATSWGreaterDOGs.tooltip}"                                        
+                        binding="#{viewScope.RuleParameterBean.bind_ATWLGR8Dogs}"
+                        valueChangeListener="#{viewScope.RuleParameterBean.ATWLGr8DogsColor}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.ATSWGreaterDOGs.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.ATSWLessDOGs.name}"
+                   headerText="$ATSWLessDOGs" id="c3" width="105"
+                   inlineStyle="#{row.bindings.ATSWLessDogsColor.inputValue == 'ATSWLessDOGsY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.ATSWLessDOGs.inputValue}"
+                        label=" " id="it17" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.ATSWLessDOGs.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.ATSWLessDOGs.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.ATSWLessDOGs.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.ATSWLessDOGs.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.ATSWLessDOGs}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.ATSWLessDOGs.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.ATSWPerformance.name}"
+                   headerText="$ATSWPerformance" id="c11" width="105"
+                   inlineStyle="#{row.bindings.ATSWPerformanceColor.inputValue == 'ATSWPerformanceY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.ATSWPerformance.inputValue}"
+                        label=" " id="it10" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.ATSWPerformance.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.ATSWPerformance.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.ATSWPerformance.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.ATSWPerformance.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.ATSWPerformance}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.ATSWPerformance.validator}"/>\
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.TltSellThruPerformance.name}"
+                   headerText="$TltSellThruPerformance" id="c2" width="115"
+                   inlineStyle="#{row.bindings.TltSellThruPerformanceColor.inputValue == 'TltSellThruPerformanceY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.TltSellThruPerformance.inputValue}"
+                        label=" " id="it12" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.TltSellThruPerformance.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.TltSellThruPerformance.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.TltSellThruPerformance.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.TltSellThruPerformance.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.TltSellThruPerformanceAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.TltSellThruPerformance.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.OnOrderAge.name}"
+                   headerText="$OnOrderAge" id="c12" width="95"
+                   inlineStyle="#{row.bindings.OnOrderAgeColor.inputValue == 'OnOrderAgeY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.OnOrderAge.inputValue}"
+                        label=" " id="it11" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.OnOrderAge.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.OnOrderAge.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.OnOrderAge.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.OnOrderAge.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.OnOrderAgeAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.OnOrderAge.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.WarehouseOnOrder.name}"
+                   headerText="$WarehouseOnOrder" id="c17" width="105"
+                   inlineStyle="#{row.bindings.WareHouseOnOrderColor.inputValue == 'WarehouseOnOrderY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.WarehouseOnOrder.inputValue}"
+                        label=" " id="it8" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.WarehouseOnOrder.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.WarehouseOnOrder.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.WarehouseOnOrder.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.WarehouseOnOrder.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.WarehouseOnOrderAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.WarehouseOnOrder.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.StoreOnOrder.name}"
+                   headerText="$StoreOnOrder" id="c15" width="105"
+                   inlineStyle="#{row.bindings.StoreOnOrderColor.inputValue == 'StoreOnOrderY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.StoreOnOrder.inputValue}"
+                        label=" " id="it3" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.StoreOnOrder.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.StoreOnOrder.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.StoreOnOrder.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.StoreOnOrder.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.StoreOnOrderAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.StoreOnOrder.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.SOHGreaterBroken.name}"
+                   headerText="$SOHGreaterBroken" id="c7" width="105"
+                   inlineStyle="#{row.bindings.SOHGr8BrokenColor.inputValue == 'SOHGreaterBrokenY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.SOHGreaterBroken.inputValue}"
+                        label=" " id="it4" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.SOHGreaterBroken.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.SOHGreaterBroken.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.SOHGreaterBroken.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.SOHGreaterBroken.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.SOHGreaterBrokenAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.SOHGreaterBroken.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.SOHLessBroken.name}"
+                   headerText="$SOHLessBroken" id="c6" width="105"
+                   inlineStyle="#{row.bindings.SOHLessBrokenColor.inputValue == 'SOHLessBrokenY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.SOHLessBroken.inputValue}"
+                        label=" " id="it5" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.SOHLessBroken.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.SOHLessBroken.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.SOHLessBroken.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.SOHLessBroken.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.SOHLessBrokenAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.SOHLessBroken.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.OnOrderBroken.name}"
+                   headerText="$OnOrderBroken" id="c18" width="105"
+                   inlineStyle="#{row.bindings.OnOrderBrokenColor.inputValue == 'OnOrderBrokenY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.OnOrderBroken.inputValue}"
+                        label=" " id="it14" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.OnOrderBroken.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.OnOrderBroken.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.OnOrderBroken.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.OnOrderBroken.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.OnOrderBrokenAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.OnOrderBroken.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.BaseRetail.name}"
+                   headerText="$BaseRetail" id="c4" width="85"
+                   inlineStyle="#{row.bindings.BaseRetailColor.inputValue == 'BaseRetailY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.BaseRetail.inputValue}"
+                        label=" " id="it7" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.BaseRetail.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.BaseRetail.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.BaseRetail.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.BaseRetail.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.BaseRetailAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.BaseRetail.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.CurrentRetail.name}"
+                   headerText="$CurrentRetail" id="c13" width="95"
+                   inlineStyle="#{row.bindings.CurrentRetailColor.inputValue == 'CurrentRetailY'? 'background-color: #ffaaaa;' : ''}">
+          <af:inputText value="#{row.bindings.CurrentRetail.inputValue}"
+                        label=" " id="it9" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.CurrentRetail.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.CurrentRetail.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.CurrentRetail.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.CurrentRetail.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.CurrentRetailAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.CurrentRetail.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>
+        <af:column sortProperty="#{bindings.ParameterDepartment1.hints.ATSWLAge.name}"
+                   headerText="$ATSWLAge" id="c9" width="85"                                      
+                   inlineStyle="#{row.bindings.ParamValueChange.inputValue == 'ATSWLAgeY'? 'background-color: #ffaaaa;' : ''}"><!---->
+          <af:inputText value="#{row.bindings.ATSWLAge.inputValue}"
+                        label=" " id="it13" autoSubmit="true" clientComponent="true"
+                        required="#{bindings.ParameterDepartment1.hints.ATSWLAge.mandatory}"
+                        columns="#{bindings.ParameterDepartment1.hints.ATSWLAge.displayWidth}"
+                        maximumLength="#{bindings.ParameterDepartment1.hints.ATSWLAge.precision}"
+                        shortDesc="#{bindings.ParameterDepartment1.hints.ATSWLAge.tooltip}"                        
+                        valueChangeListener="#{viewScope.RuleParameterBean.ATSWLAgeAttributes}"
+                        validator="#{viewScope.RuleParameterImpl.ParameterValuesvalidate}">
+            <f:validator binding="#{row.bindings.ATSWLAge.validator}"/>
+            <f:attribute name="rowKey" value="#{row.bindings.Department.inputValue}"/>
+            <af:clientListener method="blockCharacters" type="keyDown"/>
+          </af:inputText>
+        </af:column>                  
+      </af:table>      
+      <f:facet name="secondaryToolbar"/>
+    </af:panelCollection>
+    
+    <af:spacer width="10" height="10" id="s2"/>
+    <af:panelGroupLayout id="pgl1" layout="horizontal">   
+      <af:commandButton text="Save" id="ctb1" inlineStyle="font-weight:bold;"
+                        actionListener="#{viewScope.RuleParameterBean.saveRuleParameter}"/>
+      <af:spacer width="10" height="10" id="s3"/>
+      <af:commandButton text="Cancel" id="cb2" inlineStyle="font-weight:bold;"                        
+                        immediate="true" clientComponent="true"
+                        binding="#{viewScope.RuleParameterBean.bind_Cancel}"
+                        unsecure="disabled" disabled="true"><!--disabled="#{requestScope.cancelEvent eq 'Rule_Parameter' ? 'true' : 'false'}" -->
+        <af:showPopupBehavior popupId="p1" triggerType="action"/>
+      </af:commandButton>      
+        <af:popup id="p1"
+                  binding="#{viewScope.RuleParameterBean.bind_cancelPopUp}">
+          <af:dialog id="d1" type="okCancel" title=" "
+                     binding="#{viewScope.RuleParameterBean.bind_dialogBox}"                     
+                     dialogListener="#{viewScope.RuleParameterBean.cancelChangesDialogListener}">
+           <af:panelGroupLayout id="pgl2" layout="vertical"> 
+            
+                 <af:outputText value="Changes would be lost."
+                                 id="ot1" inlineStyle="text-align:center;"/>
+                  <af:spacer width="10" height="10" id="s4"/>
+            <af:outputText value="Are you sure you want to continue?" id="ot2"
+                           inlineStyle="text-align:center;"/>
+            <af:spacer width="10" height="10" id="s5"/>
+            <af:panelGridLayout id="pgl3">
+              <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                          id="gr1">
+                <af:gridCell marginStart="5px" width="34%" id="gc1"/>
+                <af:gridCell marginStart="5px" width="33%" id="gc3">
+                  <!--<af:commandButton text="Yes" id="cb1"
+                                    inlineStyle="text-align:center;">
+                    <af:resetActionListener/>
+                  </af:commandButton>-->
+                  
+                </af:gridCell>
+                <af:gridCell marginStart="5px" marginEnd="5px" width="33%"
+                             id="gc2"/>
+              </af:gridRow>
+            </af:panelGridLayout>
+          </af:panelGroupLayout>        
+                      
+        </af:dialog>
+        </af:popup>
+    </af:panelGroupLayout>
+  </af:panelBox>
+</jsp:root>

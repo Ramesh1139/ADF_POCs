@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RbCpadAdrcodVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+>
+  <Variable
+    Name="BV_SIMS_CUSCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BV_G_DIVCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+  <SQLQuery><![CDATA[select distinct cpad_adrcod, cpad_adr1, cpad_adr2, cpad_adr3, cpad_adr4 from tcp_mst, tcp_adr where cpms_divcod = :BV_G_DIVCOD and cpms_cuscod = cpad_cuscod and upper(cpad_cuscod) = upper(:BV_SIMS_CUSCOD) and (cpms_clsdat is null or cpms_clsdat > sysdate) and (cpad_clsdat is null or cpad_clsdat > sysdate) and upper(cpms_stscod) = 'AT']]></SQLQuery>
+  <ViewAttribute
+    Name="CpadAdrcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpadAdr1"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpadAdr2"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpadAdr3"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpadAdr4"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+</ViewObject>

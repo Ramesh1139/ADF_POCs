@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RgShpmodmstVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+>
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+  <SQLQuery><![CDATA[select MPSM_SHPMODCOD, MPSM_DES from tmp_shpmodmst where 
+mpsm_clsdat is null or mpsm_clsdat > sysdate]]></SQLQuery>
+  <ViewAttribute
+    Name="MpsmShpmodcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpsmDes"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+</ViewObject>

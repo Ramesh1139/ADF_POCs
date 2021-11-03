@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editSiShpitmPageDef" Package="xts.salinv.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TciActshpitmVO" RangeSize="7" DataControl="XTSSalInvAMDataControl" id="TciActshpitmVOIterator" ChangeEventPolicy="none"/>
+    <iterator id="TciMstVOIterator" Binds="TciMstVO" DataControl="XTSSalInvAMDataControl" RangeSize="10" ChangeEventPolicy="none"/>
+    <taskFlow id="dynamicRegion1" taskFlowId="${pageFlowScope.EditShipmentBean.dynamicTaskFlowId}" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="XTSDisabledLogicContainerBean" value="#{pageFlowScope.XTSDisabledLogicContainerBean}"/>
+      </parameters>
+    </taskFlow>
+    <iterator id="TciPrtVOIterator" DataControl="XTSSalInvAMDataControl" RangeSize="25" Binds="TciPrtVO" ChangeEventPolicy="none"/>
+    <iterator id="TciDesShpitmVOIterator" Binds="TciDesShpitmVO" DataControl="XTSSalInvAMDataControl" RangeSize="25" ChangeEventPolicy="none"/>
+    <iterator Binds="SiSearchAddSosiVO" RangeSize="8" DataControl="XTSSalInvAMDataControl" id="SiSearchAddSosiVOIterator"/>
+    <searchRegion Criteria="SiSearchAddSosiVOCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" Binds="SiSearchAddSosiVOIterator"
+                  id="SiSearchAddSosiVOCriteriaQuery"/>
+    <iterator id="DummyVOIterator" Binds="DummyVO" DataControl="XTSSalInvAMDataControl" RangeSize="25"/>
+    <iterator Binds="SiSearchAddSosiExtraVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="SiSearchAddSosiExtraVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TciActshpitmVOIterator" id="TciActshpitmVO">
+      <nodeDefinition DefName="xts.salinv.model.views.TciActshpitmVO" Name="TciActshpitmVO0">
+        <AttrNames>
+          <Item Value="CiaiShiseq"/>
+          <Item Value="CiaiItmseq"/>
+          <Item Value="CiaiActqty"/>
+          <Item Value="CiaiItmprc"/>
+          <Item Value="CiaiSecprc"/>
+          <Item Value="CiaiVatprc"/>
+          <Item Value="CiaiPrvatrat"/>
+          <Item Value="CiaiActqtyTotal"/>
+          <Item Value="SomsDocnbr"/>
+          <Item Value="ItmPrcCurcod"/>
+          <Item Value="SecPrcCurcod"/>
+          <Item Value="SoitCusitm"/>
+          <Item Value="IpmsUombas"/>
+          <Item Value="IpmsItmnum1"/>
+          <Item Value="SosiShpRef"/>
+          <Item Value="CiaiWhCod"/>
+          <Item Value="WarehouseDesc"/>
+          <Item Value="SoBalqty"/>
+          <Item Value="InventBalqty"/>
+          <Item Value="PoNo"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CiaiActqtyTotal">
+      <AttrNames>
+        <Item Value="CiaiActqtyTotal"/>
+      </AttrNames>
+    </attributeValues>
+    <action id="Commit" DataControl="XTSSalInvAMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="XTSSalInvAMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDocnbr">
+      <AttrNames>
+        <Item Value="CimsDocnbr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CpalFulnam">
+      <AttrNames>
+        <Item Value="CpalFulnam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="StscodDesc">
+      <AttrNames>
+        <Item Value="StscodDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SomsDocnbr">
+      <AttrNames>
+        <Item Value="SomsDocnbr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CiaiShiseq">
+      <AttrNames>
+        <Item Value="CiaiShiseq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="IpmsItmnum1">
+      <AttrNames>
+        <Item Value="IpmsItmnum1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="IpmsDes">
+      <AttrNames>
+        <Item Value="IpmsDes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPortD">
+      <AttrNames>
+        <Item Value="CiptPortD"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="checkApSetting" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkApSetting" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkApSetting.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkApSetting_checkApSetting_dataControl_dataProvider_checkApSetting_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="dptcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkDptSetcod" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkDptSetcod" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkDptSetcod.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkDptSetcod_checkDptSetcod_dataControl_dataProvider_checkDptSetcod_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="dptcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkSetcod" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkSetcod" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkSetcod.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkSetcod_checkSetcod_dataControl_dataProvider_checkSetcod_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="TciDesShpitmVOIterator" id="CidsItmDesdes">
+      <AttrNames>
+        <Item Value="CidsItmDesdes"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="SiSearchAddSosiVOIterator" id="SiSearchAddSosiVO">
+      <nodeDefinition DefName="xts.salinv.model.views.SiSearchAddSosiVO" Name="SiSearchAddSosiVO0">
+        <AttrNames>
+          <Item Value="SoNo"/>
+          <Item Value="SosiShiseq"/>
+          <Item Value="SosiItmseq"/>
+          <Item Value="SoitCusitm"/>
+          <Item Value="ShpnmNo"/>
+          <Item Value="SosiShpRef"/>
+          <Item Value="SoitPoNum"/>
+          <Item Value="Balqty"/>
+          <Item Value="IpmsItmnum"/>
+          <Item Value="Actqty"/>
+          <Item Value="isSelected"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="addShipmentItems" RequiresUpdateModel="true" Action="invokeMethod" MethodName="addShipmentItems" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciActshpitmVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.addShipmentItems_addShipmentItems_dataControl_TciActshpitmVO_addShipmentItems_result"/>
+    <methodAction id="unselectAllRows" RequiresUpdateModel="true" Action="invokeMethod" MethodName="unselectAllRows" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SiSearchAddSosiVO"/>
+    <methodAction id="processDelShpitm" RequiresUpdateModel="true" Action="invokeMethod" MethodName="processDelShpitm" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciActshpitmVO"/>
+    <methodAction id="commitSi" RequiresUpdateModel="true" Action="invokeMethod" MethodName="commitSi" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <button IterBinding="SiSearchAddSosiVOIterator" id="isSelected" DTSupportsMRU="false">
+      <AttrNames>
+        <Item Value="isSelected"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsStscod">
+      <AttrNames>
+        <Item Value="CimsStscod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CiaiRunnum">
+      <AttrNames>
+        <Item Value="CiaiRunnum"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="delRecentUseLogAutonomous" RequiresUpdateModel="true" Action="invokeMethod" MethodName="delRecentUseLogAutonomous"
+                  IsViewObjectMethod="true" DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsInvdat">
+      <AttrNames>
+        <Item Value="CimsInvdat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDptcod">
+      <AttrNames>
+        <Item Value="CimsDptcod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsCurcod">
+      <AttrNames>
+        <Item Value="CimsCurcod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="DummyVOIterator" id="DisableCiaiActqty">
+      <AttrNames>
+        <Item Value="DisableCiaiActqty"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="SiSearchAddSosiExtraVOIterator" id="DefAddamtTpl" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="DefAddamtTpl"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <methodAction id="prepareDisable" RequiresUpdateModel="true" Action="invokeMethod" MethodName="prepareDisable" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="setDisableCiaiActqty" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setDisableCiaiActqty" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.DummyVO">
+      <NamedData NDName="value" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="postChanges" RequiresUpdateModel="true" Action="invokeMethod" MethodName="postChanges" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.postChanges.dataControl.dataProvider"/>
+    <methodAction id="initAddShi" RequiresUpdateModel="true" Action="invokeMethod" MethodName="initAddShi" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SiSearchAddSosiVO"/>
+    <methodAction id="reExeCusfld" RequiresUpdateModel="true" Action="invokeMethod" MethodName="reExeCusfld" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="shiValidateUpdate" RequiresUpdateModel="true" Action="invokeMethod" MethodName="shiValidateUpdate" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldShpitmVO"/>
+    <methodAction id="reexeQuery" RequiresUpdateModel="true" Action="invokeMethod" MethodName="reexeQuery" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="selectAllRows" RequiresUpdateModel="true" Action="invokeMethod" MethodName="selectAllRows" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SiSearchAddSosiVO"/>
+    <methodAction id="shiSelectionChkCusfld" RequiresUpdateModel="true" Action="invokeMethod" MethodName="shiSelectionChkCusfld" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldShpitmVO"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsCuscod">
+      <AttrNames>
+        <Item Value="CimsCuscod"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="cusfldShiExeQry" RequiresUpdateModel="true" Action="invokeMethod" MethodName="cusfldShiExeQry" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldShpitmVO"/>
+  </bindings>
+</pageDefinition>

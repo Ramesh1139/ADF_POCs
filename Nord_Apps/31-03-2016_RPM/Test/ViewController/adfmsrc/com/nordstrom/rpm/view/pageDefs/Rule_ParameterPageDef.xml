@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Rule_ParameterPageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="ParameterDepartment1"
+              DataControl="RPM_AppModuleDataControl"
+              id="ParameterDepartment1Iterator"/>
+    <iterator id="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+              Binds="Clr_Wksht_Rule_Param_Detail_View1"
+              DataControl="RPM_AppModuleDataControl"/>
+    <iterator id="Clr_Wksht_Rule_Param_Head_View1Iterator"
+              Binds="Clr_Wksht_Rule_Param_Head_View1"
+              DataControl="RPM_AppModuleDataControl"/>
+    <searchRegion Binds="ParameterDepartment1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="ParameterDepartment1Query"/>
+    <iterator Binds="Department_View1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Department_View1Iterator" RangeSize="-1"/>
+  </executables>
+  <bindings>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="RPM_AppModuleDataControl"/>
+    <methodAction id="insertNewParameterValue"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="insertNewParameterValue"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="paramID" NDType="int"/>
+      <NamedData NDName="deptID" NDType="int"/>
+      <NamedData NDName="param_value" NDType="int"/>
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="updateExistingParameter"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="updateExistingParameter"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="param_id" NDValue="" NDType="int" NDOption="3"/>
+      <NamedData NDName="dept_id" NDType="int" NDOption="3"/>
+      <NamedData NDName="param_value" NDType="int" NDOption="3"/>
+      <NamedData NDName="userName" NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="Department_View1Iterator" ListOperMode="multiSelect"
+          ListIter="Department_View1Iterator" id="Department_View1">
+      <AttrNames>
+        <Item Value="Department"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Department"/>
+        <Item Value="Hifen"/>
+        <Item Value="DepartmentName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction id="filteredList"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="filteredList" IsViewObjectMethod="false"
+                  ReturnName="data.RPM_AppModuleDataControl.methodResults.filteredList_RPM_AppModuleDataControl_dataProvider_filteredList_result">
+      <NamedData NDName="departmentNames" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="ParameterDepartment1Iterator" id="ParameterDepartment1">
+      <nodeDefinition DefName="com.nordstrom.rpm.QVO.ParameterDepartment"
+                      Name="ParameterDepartment10">
+        <AttrNames>
+          <Item Value="DepartmentName"/>
+          <Item Value="WarehouseSOH"/>
+          <Item Value="StoreSOH"/>
+          <Item Value="TltSellThruDOGs"/>
+          <Item Value="ATSWSAge"/>
+          <Item Value="ATSWGreaterDOGs"/>
+          <Item Value="ATSWLessDOGs"/>
+          <Item Value="ATSWPerformance"/>
+          <Item Value="TltSellThruPerformance"/>
+          <Item Value="OnOrderAge"/>
+          <Item Value="WarehouseOnOrder"/>
+          <Item Value="StoreOnOrder"/>
+          <Item Value="SOHGreaterBroken"/>
+          <Item Value="SOHLessBroken"/>
+          <Item Value="OnOrderBroken"/>
+          <Item Value="BaseRetail"/>
+          <Item Value="CurrentRetail"/>
+          <Item Value="ATSWLAge"/>
+          <Item Value="Department"/>
+          <Item Value="ParamValueChange"/>
+          <Item Value="ATSWGr8DogsColor"/>
+          <Item Value="ATSWLessDogsColor"/>
+          <Item Value="ATSWPerformanceColor"/>
+          <Item Value="ATSWSAgeColor"/>
+          <Item Value="BaseRetailColor"/>
+          <Item Value="CurrentRetailColor"/>
+          <Item Value="OnOrderAgeColor"/>
+          <Item Value="OnOrderBrokenColor"/>
+          <Item Value="SOHGr8BrokenColor"/>
+          <Item Value="SOHLessBrokenColor"/>
+          <Item Value="StoreOnOrderColor"/>
+          <Item Value="StoreSOHColor"/>
+          <Item Value="TltSellThruDogsColor"/>
+          <Item Value="TltSellThruPerformanceColor"/>
+          <Item Value="WareHouseColor"/>
+          <Item Value="WareHouseOnOrderColor"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="getParameterValues"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getParameterValues" IsViewObjectMethod="false"
+                  ReturnName="data.RPM_AppModuleDataControl.methodResults.getParameterValues_RPM_AppModuleDataControl_dataProvider_getParameterValues_result">
+      <NamedData NDName="paramID" NDType="int"/>
+      <NamedData NDName="deptID" NDType="int"/>
+    </methodAction>
+    <methodAction id="deleteParamValues"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="deleteParamValues" IsViewObjectMethod="false">
+      <NamedData NDName="param_id" NDType="int"/>
+      <NamedData NDName="dept_id" NDType="int"/>
+    </methodAction>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="ParamId">
+      <AttrNames>
+        <Item Value="ParamId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="Dept">
+      <AttrNames>
+        <Item Value="Dept"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="ParamValue">
+      <AttrNames>
+        <Item Value="ParamValue"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="CreateId">
+      <AttrNames>
+        <Item Value="CreateId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="CreateDatetime">
+      <AttrNames>
+        <Item Value="CreateDatetime"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="LastUpdateId">
+      <AttrNames>
+        <Item Value="LastUpdateId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Param_Detail_View1Iterator"
+                     id="LastUpdateDatetime">
+      <AttrNames>
+        <Item Value="LastUpdateDatetime"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

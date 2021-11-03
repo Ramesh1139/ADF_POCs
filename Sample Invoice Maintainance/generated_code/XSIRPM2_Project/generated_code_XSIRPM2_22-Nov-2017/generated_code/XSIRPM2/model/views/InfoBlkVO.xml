@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="InfoBlkVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.xsirpm2.model.views.InfoBlkVORowImpl"
+  ComponentClass="xts.xsirpm2.model.views.InfoBlkVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_objectSuperClassName" Value="xts.formadf.model.framework.GenericProgrammaticViewObjectImpl"/>
+    <Attr Name="_rowSuperClassName" Value="xts.formadf.model.framework.GenericProgrammaticViewRowImpl"/>
+    <Attr Name="_isProgrammatic" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAttribute
+    Name="Key1"
+    IsUpdateable="while_insert"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="$none$"
+    Passivate="true"
+    SQLType="NUMERIC"
+    DefaultValue="1"/>
+  <ViewAttribute
+    Name="InfoDiv"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="InfoFormId"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="InfoUser"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="InfoDate"
+    Type="java.sql.Date"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="InfoFormName"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Key1"/>
+  </AttrArray>
+</ViewObject>

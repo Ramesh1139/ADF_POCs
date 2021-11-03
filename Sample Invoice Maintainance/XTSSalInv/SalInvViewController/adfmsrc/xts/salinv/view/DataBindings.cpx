@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.20.47" id="DataBindings" SeparateXMLFiles="false" Package="xts.salinv.view"
+             ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding" className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/testSalesInv.jsf" usageId="xts_salinv_view_testSalesInvPageDef"/>
+    <page path="/fragments/editSi.jsff" usageId="xts_salinv_view_editSiViewPageDef"/>
+    <page path="/fragments/searchSi.jsff" usageId="xts_salinv_view_searchSiPageDef"/>
+    <page path="/WEB-INF/flows/salinv-tf.xml#salinv-tf@setSearchDivcodVar" usageId="xts_salinv_view_salinv_tf_salinv_tf_setSearchDivcodVarPageDef"/>
+    <page path="/fragments/header/editInvSum.jsff" usageId="xts_salinv_view_editInvSumPageDef"/>
+    <page path="/fragments/header/editHdrDesc.jsff" usageId="xts_salinv_view_editHdrDescPageDef"/>
+    <page path="/fragments/editSiShpitm.jsff" usageId="xts_salinv_view_editSiShpitmPageDef"/>
+    <page path="/fragments/shpitm/editShpitm.jsff" usageId="xts_salinv_view_editShpitmPageDef"/>
+    <page path="/fragments/shpitm/editShpitmDes.jsff" usageId="xts_salinv_view_editShpitmDesPageDef"/>
+    <page path="/fragments/shpitm/editShpitmCusfld.jsff" usageId="xts_salinv_view_editShpitmCusfldPageDef"/>
+    <page path="/fragments/shpitm/editShpitmAddamt.jsff" usageId="xts_salinv_view_editShpitmAddamtPageDef"/>
+    <page path="/WEB-INF/flows/shpitm/editShpitmDes-tf.xml#editShpitmDes-tf@createInsertWhenNoRecord"
+          usageId="xts_salinv_view_editShpitmDes_tf_editShpitmDes_tf_createInsertWhenNoRecordPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="xts_salinv_view_testSalesInvPageDef" path="xts.salinv.view.pageDefs.testSalesInvPageDef"/>
+    <page id="xts_salinv_view_editSiViewPageDef" path="xts.salinv.view.pageDefs.fragments.editSiPageDef"/>
+    <page id="xts_salinv_view_searchSiPageDef" path="xts.salinv.view.pageDefs.fragments.searchSiPageDef"/>
+    <page id="xts_salinv_view_salinv_tf_salinv_tf_setSearchDivcodVarPageDef"
+          path="xts.salinv.view.pageDefs.fragments.salinv_tf_salinv_tf_setSearchDivcodVarPageDef"/>
+    <page id="xts_salinv_view_editInvSumPageDef" path="xts.salinv.view.pageDefs.fragments.header.editInvSumPageDef"/>
+    <page id="xts_salinv_view_editHdrDescPageDef" path="xts.salinv.view.pageDefs.fragments.header.editHdrDescPageDef"/>
+    <page id="xts_salinv_view_editSiShpitmPageDef" path="xts.salinv.view.pageDefs.fragments.editSiShpitmPageDef"/>
+    <page id="xts_salinv_view_editShpitmPageDef" path="xts.salinv.view.pageDefs.fragments.shpitm.editShpitmPageDef"/>
+    <page id="xts_salinv_view_editShpitmDesPageDef" path="xts.salinv.view.pageDefs.fragments.shpitm.editShpitmDesPageDef"/>
+    <page id="xts_salinv_view_editShpitmCusfldPageDef" path="xts.salinv.view.pageDefs.fragments.shpitm.editShpitmCusfldPageDef"/>
+    <page id="xts_salinv_view_editShpitmAddamtPageDef" path="xts.salinv.view.pageDefs.fragments.shpitm.editShpitmAddamtPageDef"/>
+    <page id="xts_salinv_view_editShpitmDes_tf_editShpitmDes_tf_createInsertWhenNoRecordPageDef"
+          path="xts.salinv.view.pageDefs.fragments.editShpitmDes_tf_editShpitmDes_tf_createInsertWhenNoRecordPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="XTSSalInvAMDataControl" Package="xts.salinv.model.services" FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true" SupportsSortCollection="true"
+                     Configuration="XTSSalInvAMLocal" syncMode="Immediate" xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

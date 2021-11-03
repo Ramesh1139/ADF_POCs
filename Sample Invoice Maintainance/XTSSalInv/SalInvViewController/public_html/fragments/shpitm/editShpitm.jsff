@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="More details of selected Shipment Item" id="pb1">
+        <f:facet name="toolbar"/>
+        <af:panelFormLayout id="pfl1" maxColumns="2" rows="5" labelWidth="30%">
+            <af:matchMediaBehavior matchedPropertyValue="10" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+            <f:facet name="footer"/>
+            <af:panelLabelAndMessage label="#{bindings.SomsPaytrm.hints.label}" id="plam1">
+                <af:outputText value="#{bindings.SomsPaytrm.inputValue}" shortDesc="#{bindings.SomsPaytrm.hints.tooltip}" id="ot3"/>
+                <f:facet name="end">
+                    <af:panelGroupLayout id="pgl1" layout="horizontal">
+                        <af:spacer width="30" id="s1"/>
+                        <af:outputText value="#{bindings.SomsPaytrmday.hints.label}" shortDesc="#{bindings.SomsPaytrmday.hints.tooltip}" id="ot1"
+                                       inlineStyle="font-weight:bold; color:#4f4f4f;"/>
+                        <af:spacer width="10" id="s2"/>
+                        <af:outputText value="#{bindings.SomsPaytrmday.inputValue} days" shortDesc="#{bindings.SomsPaytrmday.hints.tooltip}" id="ot8"/>
+                    </af:panelGroupLayout>
+                </f:facet>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.SomsSrcoffcod.hints.label}" id="plam3">
+                <af:outputText value="#{bindings.SomsSrcoffcod.inputValue}" shortDesc="#{bindings.SomsSrcoffcod.hints.tooltip}" id="ot2"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.SosiNeeddat.hints.label}" id="plam4">
+                <af:outputText value="#{bindings.SosiNeeddat.inputValue}" shortDesc="#{bindings.SosiNeeddat.hints.tooltip}" id="ot4">
+                    <af:convertDateTime pattern="#{bindings.SosiNeeddat.format}"/>
+                </af:outputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MpcyNamCoo.hints.label}" id="plam5">
+                <af:outputText value="#{bindings.MpcyNamCoo.inputValue}" shortDesc="#{bindings.MpcyNamCoo.hints.tooltip}" id="ot5"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MpcyNamPrdcty.hints.label}" id="plam6">
+                <af:outputText value="#{bindings.MpcyNamPrdcty.inputValue}" shortDesc="#{bindings.MpcyNamPrdcty.hints.tooltip}" id="ot6"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.SosiDlyadrcod.hints.label} - #{bindings.SosiDlyadrcod.inputValue}" id="plam8">
+                <af:outputText value="#{bindings.CpadAdr1.inputValue}" shortDesc="#{bindings.CpadAdr1.hints.tooltip}" id="ot9"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="" id="plam10">
+                <af:outputText value="#{bindings.CpadAdr2.inputValue}" shortDesc="#{bindings.CpadAdr2.hints.tooltip}" id="ot10"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="" id="plam11">
+                <af:outputText value="#{bindings.CpadAdr3.inputValue}" shortDesc="#{bindings.CpadAdr3.hints.tooltip}" id="ot11"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="" id="plam12">
+                <af:outputText value="#{bindings.CpadAdr4.inputValue}" shortDesc="#{bindings.CpadAdr4.hints.tooltip}" id="ot12"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MpcyNamLoc.hints.label}" id="plam7">
+                <af:outputText value="#{bindings.MpcyNamLoc.inputValue}" shortDesc="#{bindings.MpcyNamLoc.hints.tooltip}" id="ot7"/>
+            </af:panelLabelAndMessage>
+        </af:panelFormLayout>
+    </af:panelBox>
+</ui:composition>

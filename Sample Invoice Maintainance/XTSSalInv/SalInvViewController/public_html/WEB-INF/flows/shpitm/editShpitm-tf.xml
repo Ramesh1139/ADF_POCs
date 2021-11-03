@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="editShpitm-tf">
+    <template-reference>
+      <document>/WEB-INF/templates/xts-tf-template.xml</document>
+      <id>xts-tf-template</id>
+    </template-reference>
+    <default-activity>editShpitmView</default-activity>
+    <view id="editShpitmView">
+      <page>/fragments/shpitm/editShpitm.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

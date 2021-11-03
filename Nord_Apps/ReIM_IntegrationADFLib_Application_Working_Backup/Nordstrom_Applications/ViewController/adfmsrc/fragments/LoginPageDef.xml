@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="LoginPageDef" Package="fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="ReIM_IM_BUSSINESS_ROLE_MEMBER1Iterator"
+              Binds="ReIM_IM_BUSSINESS_ROLE_MEMBER1"
+              DataControl="ReIM_AppModuleDataControl" RangeSize="-1"/>
+    <iterator id="RPM_USER_ROLE1Iterator" Binds="RPM_USER_ROLE1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="-1"/>
+    <iterator id="RPM_V_ROLE_APP_PERM1Iterator" Binds="RPM_V_ROLE_APP_PERM1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="-1"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

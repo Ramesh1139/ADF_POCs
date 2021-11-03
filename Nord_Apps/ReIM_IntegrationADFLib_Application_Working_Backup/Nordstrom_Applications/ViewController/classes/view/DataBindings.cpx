@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Pages/Login.jspx" usageId="view_LoginPageDef"/>
+    <page path="/Pages/ReIM_Home.jspx" usageId="view_ReIM_HomePageDef"/>
+    <page path="/Pages/RPM_Home.jspx" usageId="view_RPM_HomePageDef"/>
+    <page path="/fragments/Login.jsff" usageId="view_LoginPageDef1"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_LoginPageDef" path="Pages.LoginPageDef"/>
+    <page id="view_ReIM_HomePageDef" path="Pages.ReIM_HomePageDef"/>
+    <page id="view_RPM_HomePageDef" path="Pages.RPM_HomePageDef"/>
+    <page id="view_LoginPageDef1" path="fragments.LoginPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="ReIM_AppModuleDataControl"
+                     Package="com.nordstrom.reim.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="ReIM_AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="RPM_AppModuleDataControl"
+                     Package="com.nordstrom.rpm.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="RPM_AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

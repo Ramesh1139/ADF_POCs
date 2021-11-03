@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Clr_Wksht_Role_Named_PermissionView"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="Clr_Wksht_Role_Named_Permiss1.IS_APPROVE, 
+       Clr_Wksht_Role_Named_Permiss1.IS_EDIT, 
+       Clr_Wksht_Role_Named_Permiss1.IS_SUBMIT, 
+       Clr_Wksht_Role_Named_Permiss1.IS_VIEW, 
+       Clr_Wksht_Role_Named_Permiss1.PERMISSION_ID, 
+       Clr_Wksht_Role_Named_Permiss1.ROLE_ID, 
+       Clr_Wksht_Role_Named_Permiss1.ROWID"
+  FromList="V_ROLE_APP_PERM Clr_Wksht_Role_Named_Permiss1"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="VarAccess"/>
+  </DesignTime>
+  <EntityUsage
+    Name="Clr_Wksht_Role_Named_Permiss1"
+    Entity="com.nordstrom.rpm.EO.Clr_Wksht_Role_Named_Permission"/>
+  <ViewAttribute
+    Name="IsApprove"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsApprove"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="IS_APPROVE"/>
+  <ViewAttribute
+    Name="IsEdit"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsEdit"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="IS_EDIT"/>
+  <ViewAttribute
+    Name="IsSubmit"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsSubmit"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="IS_SUBMIT"/>
+  <ViewAttribute
+    Name="IsView"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="IsView"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="IS_VIEW"/>
+  <ViewAttribute
+    Name="PermissionId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="PermissionId"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="PERMISSION_ID"/>
+  <ViewAttribute
+    Name="RoleId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="RoleId"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="ROLE_ID"/>
+  <ViewAttribute
+    Name="RowID"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="RowID"
+    EntityUsage="Clr_Wksht_Role_Named_Permiss1"
+    AliasName="ROWID"/>
+</ViewObject>

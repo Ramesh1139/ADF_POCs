@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="InvPrrepVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+>
+  <Variable
+    Name="BV_G_DIVCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+  <SQLQuery><![CDATA[select distinct tmp_rptmst.mpre_nam ,tmp_rptmst.mpre_rptcod from tmp_rptmst ,tmp_rptdiv where tmp_rptmst.mpre_rptcod = tmp_rptdiv.mprd_rptcod and tmp_rptmst.mpre_typ = 'IV' and ((tmp_rptdiv.mprd_divcod = '*') or (tmp_rptdiv.mprd_divcod = :BV_G_DIVCOD) or (:BV_G_DIVCOD = 'EDP')) order by tmp_rptmst.mpre_nam]]></SQLQuery>
+  <ViewAttribute
+    Name="MpreNam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpreRptcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+</ViewObject>

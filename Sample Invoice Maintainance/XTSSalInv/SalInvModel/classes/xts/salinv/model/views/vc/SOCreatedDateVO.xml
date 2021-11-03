@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="SOCreatedDateVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.common.model.framework.GenericViewRowImpl"
+  ComponentClass="xts.common.model.framework.GenericViewObjectImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT CIAI_DIVCOD, CIAI_RUNNUM, b.CRTDAT SO_CRTDAT 
+FROM TCI_ACTSHPITM a, TSO_MST b 
+WHERE  CIAI_DIVCOD    = SOMS_DIVCOD 
+AND    CIAI_SO_RUNNUM = SOMS_RUNNUM]]></SQLQuery>
+  <ViewAttribute
+    Name="CiaiDivcod"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CIAI_DIVCOD"
+    Expression="CIAI_DIVCOD"
+    SQLType="VARCHAR"
+    IsQueriable="false">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CiaiRunnum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="15"
+    Scale="0"
+    Type="java.lang.Long"
+    ColumnType="NUMBER"
+    AliasName="CIAI_RUNNUM"
+    Expression="CIAI_RUNNUM"
+    SQLType="NUMERIC"
+    IsQueriable="false"/>
+  <ViewAttribute
+    Name="SoCrtdat"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    AliasName="SO_CRTDAT"
+    Expression="SO_CRTDAT"
+    SQLType="DATE">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.salinv.model.views.vc.SOCreatedDateVO.SoCrtdat_LABEL"/>
+        <FMT_FORMAT
+          ResId="xts.salinv.model.views.vc.SOCreatedDateVO.SoCrtdat_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="xts.salinv.model.views.vc.SOCreatedDateVO.SoCrtdat_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="CiaiDivcod"/>
+    <Item Value="CiaiRunnum"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.salinv.model.SalInvModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

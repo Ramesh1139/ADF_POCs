@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!---->
+<BC4JConfig xmlns="http://xmlns.oracle.com/bc4j/configuration" version="11.1">
+  <AppModuleConfigBag ApplicationName="xts.salinv.model.services.XTSSalInvAM">
+    <AppModuleConfig name="XTSSalInvAMLocal" jbo.project="xts.salinv.model.SalInvModel" ApplicationName="xts.salinv.model.services.XTSSalInvAM"
+                     DeployPlatform="LOCAL" JDBCName="XTS" jbo.txn.disconnect_level="1">
+      <AM-Pooling jbo.ampool.initpoolsize="100" jbo.recyclethreshold="500" jbo.ampool.minavailablesize="0" jbo.ampool.maxavailablesize="750"
+                  jbo.ampool.maxinactiveage="18000000" jbo.ampool.monitorsleepinterval="1800000" jbo.doconnectionpooling="true"
+                  jbo.ampool.timetolive="-1"/>
+      <Database jbo.TypeMapEntries="OracleApps"/>
+      <Security AppModuleJndiName="xts.salinv.model.services.XTSSalInvAM"/>
+      <Custom ns0:JDBCDataSource="jdbc/XTS" ns0:ns0="http://xmlns.oracle.com/bc4j/configuration" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+    </AppModuleConfig>
+    <AppModuleConfig name="XTSSalInvAMShared" jbo.project="xts.salinv.model.SalInvModel" ApplicationName="xts.salinv.model.services.XTSSalInvAM"
+                     DeployPlatform="LOCAL">
+      <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <Database jbo.TypeMapEntries="OracleApps" JDBCDataSource="java:comp/env/jdbc/XTSDS"/>
+      <Security AppModuleJndiName="xts.salinv.model.services.XTSSalInvAM"/>
+      <Custom ns0:JDBCDataSource="java:comp/env/jdbc/XTSDS" xmlns:ns0="http://xmlns.oracle.com/bc4j/configuration"/>
+    </AppModuleConfig>
+  </AppModuleConfigBag>
+</BC4JConfig>

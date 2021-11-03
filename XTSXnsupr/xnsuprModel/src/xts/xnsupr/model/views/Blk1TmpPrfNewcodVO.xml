@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk1TmpPrfNewcodVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"   
+RowClass="xts.xnsupr.model.views.Blk1TmpPrfNewcodVORowImpl"
+  ComponentClass="xts.xnsupr.model.views.Blk1TmpPrfNewcodVOImpl"
+  OrderBy="CRTDAT desc"
+  FetchMode="FETCH_AS_NEEDED">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="ApusUseridLovVO1"
+    ViewObjectName="xts.xnsupr.model.views.lovs.ApusUseridLovVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="ApusUseridLovVOCriteria"
+      FullName="xts.xnsupr.model.views.lovs.ApusUseridLovVO.ApusUseridLovVOCriteria"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="SearchcheckboxValuesLovVO1"
+    ViewObjectName="xts.xnsupr.model.views.lovs.SearchcheckboxValuesLovVO"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_MppfcSbmby"
+    ListVOName="ApusUseridLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcSbmby"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ApusUserid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ApusUserid"/>
+      <Item Value="Fulnam"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="ApusUseridLovVOCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcApvby"
+    ListVOName="ApusUseridLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcApvby"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ApusUserid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ApusUserid"/>
+      <Item Value="Fulnam"/>
+    </AttrArray>
+    <DisplayCriteria
+      Hint="showAndExecute"
+      Name="ApusUseridLovVOCriteria"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Updby"
+    ListVOName="ApusUseridLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Updby"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="ApusUserid"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ApusUserid"/>
+      <Item Value="Fulnam"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="ApusUseridLovVOCriteria"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcSup"
+    ListVOName="SearchcheckboxValuesLovVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcSup"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcShp"
+    ListVOName="SearchcheckboxValuesLovVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcShp"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcMan"
+    ListVOName="SearchcheckboxValuesLovVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcMan"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcMat"
+    ListVOName="SearchcheckboxValuesLovVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcMat"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MppfcCon"
+    ListVOName="SearchcheckboxValuesLovVO1"
+    NullValueFlag="none"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="MppfcCon"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="code"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT  
+    Blk1TmpPrfNewcod.MPPFC_RUNNUM,  
+    Blk1TmpPrfNewcod.MPPFC_FULNAM,  
+    Blk1TmpPrfNewcod.MPPFC_FULNAM_LOCAL,  
+    Blk1TmpPrfNewcod.MPPFC_STSCOD,  
+    DECODE(Blk1TmpPrfNewcod.MPPFC_STSCOD, 'PA', 'Pending', 'DE', 'Deleted', 'RJ', 'Rejected', 'CF', 'Confirmed') MPPFC_STSCODSDESC,  
+    NVL(Blk1TmpPrfNewcod.MPPFC_SUP, 'N') AS MPPFC_SUP,  
+    NVL(Blk1TmpPrfNewcod.MPPFC_SHP, 'N') AS MPPFC_SHP,  
+    NVL(Blk1TmpPrfNewcod.MPPFC_MAN, 'N') AS MPPFC_MAN,  
+    NVL(Blk1TmpPrfNewcod.MPPFC_MAT, 'N') AS MPPFC_MAT,  
+    NVL(Blk1TmpPrfNewcod.MPPFC_CON, 'N') AS MPPFC_CON,  
+    Blk1TmpPrfNewcod.MPPFC_CONSUBROL,  
+    Blk1TmpPrfNewcod.MPPFC_GRP,  
+    Blk1TmpPrfNewcod.MPPFC_SBMBY,  
+    Blk1TmpPrfNewcod.MPPFC_SBMDAT,  
+    Blk1TmpPrfNewcod.MPPFC_APVBY,  
+    Blk1TmpPrfNewcod.MPPFC_APVDAT,  
+    Blk1TmpPrfNewcod.MPPFC_ADR1,  
+    Blk1TmpPrfNewcod.MPPFC_ADR2,  
+    Blk1TmpPrfNewcod.MPPFC_ADR3,  
+    Blk1TmpPrfNewcod.MPPFC_ADR4,  
+    Blk1TmpPrfNewcod.MPPFC_ADR1_LOCAL,  
+    Blk1TmpPrfNewcod.MPPFC_ADR2_LOCAL,  
+    Blk1TmpPrfNewcod.MPPFC_ADR3_LOCAL,  
+    Blk1TmpPrfNewcod.MPPFC_ADR4_LOCAL,  
+    Blk1TmpPrfNewcod.UPDBY,  
+    Blk1TmpPrfNewcod.UPDDAT,  
+    Blk1TmpPrfNewcod.MPPFC_RMK,  
+    Blk1TmpPrfNewcod.MPPFC_ADR1 || ' ' || MPPFC_ADR2 || ' ' || MPPFC_ADR3 || ' ' || MPPFC_ADR4 AS MPPFC_ADR,  
+    Blk1TmpPrfNewcod.MPPFC_CTYCOD,  
+    Blk1TmpPrfNewcod.MPPFC_LOCCOD,  
+    MPPFC_IDPFX || LPAD(MPPFC_RUNNUM, 8, '0') AS MPPFC_ID,  
+    Blk1TmpPrfNewcod.CRTDAT,  
+    Blk1TmpPrfNewcod.MPPFC_TYP  
+FROM  
+    TMP_PRF_NEWCOD Blk1TmpPrfNewcod]]></SQLQuery>
+  <EntityUsage
+    Name="Blk1TmpPrfNewcod"
+    Entity="xts.xnsupr.model.entities.Blk1TmpPrfNewcod"/>
+  <ViewAttribute
+    Name="MppfcRunnum"
+    PrecisionRule="true"
+    EntityAttrName="MppfcRunnum"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_RUNNUM"/>
+  <ViewAttribute
+    Name="MppfcFulnam"
+    PrecisionRule="true"
+    EntityAttrName="MppfcFulnam"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_FULNAM"/>
+  <ViewAttribute
+    Name="MppfcFulnamLocal"
+    PrecisionRule="true"
+    EntityAttrName="MppfcFulnamLocal"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_FULNAM_LOCAL"/>
+  <ViewAttribute
+    Name="MppfcStscod"
+    PrecisionRule="true"
+    EntityAttrName="MppfcStscod"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_STSCOD"/>
+  <ViewAttribute
+    Name="MppfcStscodsdesc"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="9"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_STSCODSDESC"
+    Expression="MPPFC_STSCODSDESC"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcStscodsdesc_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcSup"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_SUP"
+    Expression="MPPFC_SUP"
+    SQLType="VARCHAR"
+    LOVName="LOV_MppfcSup">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcShp"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_SHP"
+    Expression="MPPFCSHP"
+    SQLType="VARCHAR"
+    LOVName="LOV_MppfcShp">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcMan"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_MAN"
+    Expression="MPPFC_MAN"
+    SQLType="VARCHAR"
+    LOVName="LOV_MppfcMan">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcMat"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_MAT"
+    Expression="MPPFC_MAT"
+    SQLType="VARCHAR"
+    LOVName="LOV_MppfcMat">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcCon"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPPFC_CON"
+    Expression="MPPFC_CON"
+    SQLType="VARCHAR"
+    LOVName="LOV_MppfcCon">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcConsubrol"
+    PrecisionRule="true"
+    EntityAttrName="MppfcConsubrol"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_CONSUBROL"
+    IsUpdateable="false"/>
+  <ViewAttribute
+    Name="MppfcGrp"
+    PrecisionRule="true"
+    EntityAttrName="MppfcGrp"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_GRP"/>
+  <ViewAttribute
+    Name="MppfcSbmby"
+    PrecisionRule="true"
+    EntityAttrName="MppfcSbmby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_SBMBY"
+    LOVName="LOV_MppfcSbmby">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcSbmby_LABEL"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcSbmdat"
+    PrecisionRule="true"
+    EntityAttrName="MppfcSbmdat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_SBMDAT">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="MppfcSbmdat_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="MppfcSbmdat_FMT_FORMATTER"/>
+        <LABEL
+          ResId="xts.xnsupr.model.views.Blk1TmpPrfNewcodVO.MppfcSbmdat_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcApvby"
+    PrecisionRule="true"
+    EntityAttrName="MppfcApvby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_APVBY"
+    LOVName="LOV_MppfcApvby">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcApvby_LABEL"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcApvdat"
+    PrecisionRule="true"
+    EntityAttrName="MppfcApvdat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_APVDAT">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMATTER
+          ResId="MppfcApvdat_FMT_FORMATTER"/>
+        <FMT_FORMAT
+          ResId="MppfcApvdat_FMT_FORMAT"/>
+        <LABEL
+          ResId="MppfcApvdat_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcAdr1"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr1"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR1"/>
+  <ViewAttribute
+    Name="MppfcAdr2"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr2"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR2"/>
+  <ViewAttribute
+    Name="MppfcAdr3"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr3"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR3"/>
+  <ViewAttribute
+    Name="MppfcAdr4"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr4"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR4"/>
+  <ViewAttribute
+    Name="MppfcAdr1Local"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr1Local"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR1_LOCAL"/>
+  <ViewAttribute
+    Name="MppfcAdr2Local"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr2Local"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR2_LOCAL"/>
+  <ViewAttribute
+    Name="MppfcAdr3Local"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr3Local"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR3_LOCAL"/>
+  <ViewAttribute
+    Name="MppfcAdr4Local"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr4Local"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR4_LOCAL"/>
+  <ViewAttribute
+    Name="Updby"
+    PrecisionRule="true"
+    EntityAttrName="Updby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="UPDBY"
+    LOVName="LOV_Updby">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <AUTOSUBMIT
+          Value="true"/>
+        <LABEL
+          ResId="Updby_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Upddat"
+    PrecisionRule="true"
+    EntityAttrName="Upddat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="UPDDAT">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="Upddat_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="Upddat_FMT_FORMATTER"/>
+        <LABEL
+          ResId="Upddat_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcRmk"
+    PrecisionRule="true"
+    EntityAttrName="MppfcRmk"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_RMK">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcRmk_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcAdr"
+    PrecisionRule="true"
+    EntityAttrName="MppfcAdr"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ADR">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcAdr_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MppfcCtycod"
+    PrecisionRule="true"
+    EntityAttrName="MppfcCtycod"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_CTYCOD"/>
+  <ViewAttribute
+    Name="MppfcLoccod"
+    PrecisionRule="true"
+    EntityAttrName="MppfcLoccod"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_LOCCOD"/>
+  <ViewAttribute
+    Name="MppfcId"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="MppfcId"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_ID"
+    Expression="MPPFC_IDPFX || LPAD(MPPFC_RUNNUM, 8, '0')">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MppfcId_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Crtdat"
+    PrecisionRule="true"
+    EntityAttrName="Crtdat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="CRTDAT"/>
+  <ViewAttribute
+    Name="MppfcTyp"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MppfcTyp"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_TYP"/>
+  <ViewAttribute
+    Name="PbId"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbId"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_ID"/>
+  <ViewAttribute
+    Name="PbFulnam"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbFulnam"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_FULNAM"/>
+  <ViewAttribute
+    Name="PbStscod"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbStscod"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_STSCOD"/>
+  <ViewAttribute
+    Name="PbSup"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbSup"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_SUP"/>
+  <ViewAttribute
+    Name="PbShp"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbShp"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_SHP"/>
+  <ViewAttribute
+    Name="PbMan"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbMan"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_MAN"/>
+  <ViewAttribute
+    Name="PbMat"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbMat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_MAT"/>
+  <ViewAttribute
+    Name="PbCon"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbCon"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_CON"/>
+  <ViewAttribute
+    Name="PbGrp"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbGrp"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_GRP"/>
+  <ViewAttribute
+    Name="PbSbmby"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbSbmby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_SBMBY"/>
+  <ViewAttribute
+    Name="PbSbmdat"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbSbmdat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_SBMDAT"/>
+  <ViewAttribute
+    Name="PbCfmby"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbCfmby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_CFMBY"/>
+  <ViewAttribute
+    Name="PbCfmdat"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbCfmdat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_CFMDAT"/>
+  <ViewAttribute
+    Name="PbUpdby"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbUpdby"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_UPDBY"/>
+  <ViewAttribute
+    Name="PbUpddat"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbUpddat"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_UPDDAT"/>
+  <ViewAttribute
+    Name="PbRmk"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbRmk"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_RMK">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="PbRmk_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="PbAdr"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="PbAdr"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="PB_ADR"/>
+  <ViewAttribute
+    Name="MppfcGrpDesc"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="MppfcGrpDesc"
+    EntityUsage="Blk1TmpPrfNewcod"
+    AliasName="MPPFC_GRP_DESC"/>
+  <Properties>
+    <CustomProperties>
+      <Property
+        Name="module"
+        Value="SP"/>
+      <Property
+        Name="readonly"
+        Value="true"/>
+    </CustomProperties>
+  </Properties>
+  <ViewAttribute
+    Name="disableResubmit"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    Passivate="true"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

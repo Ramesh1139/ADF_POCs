@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk6UpdlstVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"   
+RowClass="xts.xsim2.model.views.Blk6UpdlstVORowImpl"
+  ComponentClass="xts.xsim2.model.views.Blk6UpdlstVOImpl"
+  SelectList="Blk6Updlst.SIMS_PRT, 
+       Blk6Updlst.SIMS_INVNO, 
+       Blk6Updlst.SIMS_DIVCOD, 
+       Blk6Updlst.SIMS_SAMINVRUN, 
+       Blk6Updlst.SIMS_AWBREF, 
+       Blk6Updlst.SIMS_SNDDAT, 
+       Blk6Updlst.ROWID"
+  FromList="V_TSI_MST Blk6Updlst">
+
+  <EntityUsage
+    Name="Blk6Updlst"
+    Entity="xts.xsim2.model.entities.Blk6Updlst"/>
+  <ViewAttribute
+    Name="SimsPrt"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SimsPrt"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_PRT"/>
+  <ViewAttribute
+    Name="SimsInvno"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SimsInvno"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_INVNO"/>
+  <ViewAttribute
+    Name="SimsDivcod"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SimsDivcod"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_DIVCOD"/>
+  <ViewAttribute
+    Name="SimsSaminvrun"
+    Type="java.math.BigDecimal"
+    PrecisionRule="true"
+    EntityAttrName="SimsSaminvrun"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_SAMINVRUN"/>
+  <ViewAttribute
+    Name="SimsAwbref"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SimsAwbref"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_AWBREF"/>
+  <ViewAttribute
+    Name="SimsSnddat"
+    Type="java.sql.Date"
+    PrecisionRule="true"
+    EntityAttrName="SimsSnddat"
+    EntityUsage="Blk6Updlst"
+    AliasName="SIMS_SNDDAT"/>
+  <ViewAttribute
+    Name="Rowid"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="Rowid"
+    EntityUsage="Blk6Updlst"
+    AliasName="ROWID"/>
+</ViewObject>

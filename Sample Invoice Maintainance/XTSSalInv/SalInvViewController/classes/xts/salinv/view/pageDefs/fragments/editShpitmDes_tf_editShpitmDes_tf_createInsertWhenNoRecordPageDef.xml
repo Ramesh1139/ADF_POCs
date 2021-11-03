@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editShpitmDes_tf_editShpitmDes_tf_createInsertWhenNoRecordPageDef"
+                Package="xts.salinv.view.pageDefs.fragments" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+  </executables>
+  <bindings>
+    <methodAction id="createInsertWhenNoRecord" RequiresUpdateModel="true" Action="invokeMethod" MethodName="createInsertWhenNoRecord" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciDesShpitmVO"/>
+  </bindings>
+</pageDefinition>

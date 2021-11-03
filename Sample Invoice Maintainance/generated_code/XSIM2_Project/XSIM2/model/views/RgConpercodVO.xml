@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="RgConpercodVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"
+>
+  <Variable
+    Name="BV_SIMS_CUSCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="BV_G_DIVCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isCodegen" Value="true"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+    </DesignTime>
+  <SQLQuery><![CDATA[select cpcp_surnam||' '||cpcp_fstnam conpernam, cpcp_dptcod, mpcd_des, cpcp_conpercod, cpcp_cusid, cpcp_buyid  
+from tcp_conper, tmp_cusdpt
+where cpcp_divcod = :BV_G_DIVCOD
+and cpcp_cuscod = :BV_SIMS_CUSCOD
+and cpcp_divcod = mpcd_divcod
+and cpcp_dptcod = mpcd_dptcod
+and (cpcp_clsdat is null or cpcp_clsdat > sysdate)
+]]></SQLQuery>
+  <ViewAttribute
+    Name="Conpernam"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpcpDptcod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="MpcdDes"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpcpConpercod"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpcpCusid"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+  <ViewAttribute
+    Name="CpcpBuyid"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"/>
+</ViewObject>

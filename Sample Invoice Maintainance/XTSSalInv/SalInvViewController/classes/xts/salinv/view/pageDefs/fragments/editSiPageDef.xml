@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editSiPageDef" Package="xts.salinv.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="invsumtf1" taskFlowId="/WEB-INF/flows/header/invsum-tf.xml#invsum-tf" activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="XTSDisabledLogicContainerBean" value="#{pageFlowScope.XTSDisabledLogicContainerBean}"/>
+      </parameters>
+    </taskFlow>
+    <iterator id="TciMstVOIterator" Binds="TciMstVO" DataControl="XTSSalInvAMDataControl" RangeSize="10"/>
+    <iterator id="TciPrtVOIterator" Binds="TciPrtVO" DataControl="XTSSalInvAMDataControl" RangeSize="25" ChangeEventPolicy="none"/>
+    <iterator id="TciActshpitmVOIterator" Binds="TciActshpitmVO" DataControl="XTSSalInvAMDataControl" RangeSize="7" ChangeEventPolicy="none"/>
+    <taskFlow id="descAddamtCusfldtf1" taskFlowId="/WEB-INF/flows/header/descAddamtCusfld-tf.xml#descAddamtCusfld-tf" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="XTSDisabledLogicContainerBean" value="#{pageFlowScope.XTSDisabledLogicContainerBean}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings>
+    <action id="Commit" DataControl="XTSSalInvAMDataControl" RequiresUpdateModel="true" Action="commitTransaction"/>
+    <action id="Rollback" DataControl="XTSSalInvAMDataControl" RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <methodAction id="commitSi" RequiresUpdateModel="true" Action="invokeMethod" MethodName="commitSi" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptPortD">
+      <AttrNames>
+        <Item Value="CiptPortD"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="checkDptSetcod" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkDptSetcod" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkDptSetcod.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkDptSetcod_checkDptSetcod_dataControl_dataProvider_checkDptSetcod_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="dptcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkSetcod" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkSetcod" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkSetcod.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkSetcod_checkSetcod_dataControl_dataProvider_checkSetcod_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="checkApSetting" RequiresUpdateModel="true" Action="invokeMethod" MethodName="checkApSetting" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.checkApSetting.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.checkApSetting_checkApSetting_dataControl_dataProvider_checkApSetting_result">
+      <NamedData NDName="divcod" NDType="java.lang.String"/>
+      <NamedData NDName="dptcod" NDType="java.lang.String"/>
+      <NamedData NDName="cuscod" NDType="java.lang.String"/>
+      <NamedData NDName="setcod" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDocnbr">
+      <AttrNames>
+        <Item Value="CimsDocnbr"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="CpalFulnam">
+      <AttrNames>
+        <Item Value="CpalFulnam"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciMstVOIterator" id="StscodDesc">
+      <AttrNames>
+        <Item Value="StscodDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="plGetSyspara" RequiresUpdateModel="true" Action="invokeMethod" MethodName="plGetSyspara" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.plGetSyspara.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.plGetSyspara_plGetSyspara_dataControl_dataProvider_plGetSyspara_result">
+      <NamedData NDName="param" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDivcod">
+      <AttrNames>
+        <Item Value="CimsDivcod"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getAttachmentAccessRight" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getAttachmentAccessRight" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.getAttachmentAccessRight_getAttachmentAccessRight_dataControl_TciMstVO_getAttachmentAccessRight_result"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsRunnum">
+      <AttrNames>
+        <Item Value="CimsRunnum"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getCtycod" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getCtycod" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.getCtycod.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.getCtycod_getCtycod_dataControl_dataProvider_getCtycod_result">
+      <NamedData NDName="userId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getCtySysPara" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getCtySysPara" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.getCtySysPara.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.getCtySysPara_getCtySysPara_dataControl_dataProvider_getCtySysPara_result">
+      <NamedData NDName="param" NDType="java.lang.String"/>
+      <NamedData NDName="ctycod" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="chkAttachmentAccess" RequiresUpdateModel="true" Action="invokeMethod" MethodName="chkAttachmentAccess" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO">
+      <NamedData NDName="accessRight" NDType="java.lang.String"/>
+      <NamedData NDName="callModule" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getCallAttachParam" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getCallAttachParam" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.getCallAttachParam.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.getCallAttachParam_getCallAttachParam_dataControl_dataProvider_getCallAttachParam_result">
+      <NamedData NDName="username" NDType="java.lang.String"/>
+      <NamedData NDName="pwd" NDType="java.lang.String"/>
+      <NamedData NDName="div" NDType="java.lang.String"/>
+      <NamedData NDName="runnum" NDType="java.lang.Long"/>
+      <NamedData NDName="access" NDType="java.lang.String"/>
+      <NamedData NDName="db" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsStscod">
+      <AttrNames>
+        <Item Value="CimsStscod"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="delRecentUseLogAutonomous" RequiresUpdateModel="true" Action="invokeMethod" MethodName="delRecentUseLogAutonomous"
+                  IsViewObjectMethod="true" DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="prepareDisable" RequiresUpdateModel="true" Action="invokeMethod" MethodName="prepareDisable" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="postChanges" RequiresUpdateModel="true" Action="invokeMethod" MethodName="postChanges" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.postChanges.dataControl.dataProvider"/>
+    <methodAction id="setDisableCiaiActqty" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setDisableCiaiActqty" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.DummyVO">
+      <NamedData NDName="value" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="reExeCusfld" RequiresUpdateModel="true" Action="invokeMethod" MethodName="reExeCusfld" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="hdrValidateUpdate" RequiresUpdateModel="true" Action="invokeMethod" MethodName="hdrValidateUpdate" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldHeaderVO"/>
+    <methodAction id="reexeQuery" RequiresUpdateModel="true" Action="invokeMethod" MethodName="reexeQuery" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+    <methodAction id="validateAllBlocks" RequiresUpdateModel="true" Action="invokeMethod" MethodName="validateAllBlocks" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO"/>
+  </bindings>
+</pageDefinition>

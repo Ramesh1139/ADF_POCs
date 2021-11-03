@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="com.nordstrom.rpm.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Home_Page.jspx"
+          usageId="com_nordstrom_rpm_view_Home_PagePageDef"/>
+    <page path="/Clearance_Worksheet.jsff"
+          usageId="com_nordstrom_rpm_view_Clearance_WorksheetPageDef"/>
+    <page path="/Candidate_Rule.jsff"
+          usageId="com_nordstrom_rpm_view_Candidate_RulePageDef"/>
+    <page path="/Rule_Creation.jsff"
+          usageId="com_nordstrom_rpm_view_Rule_CreationPageDef"/>
+    <page path="/Test.jspx" usageId="com_nordstrom_rpm_view_TestPageDef"/>
+    <page path="/Rule_Parameter.jsff"
+          usageId="com_nordstrom_rpm_view_Rule_ParameterPageDef"/>
+    <page path="/Login.jspx" usageId="com_nordstrom_rpm_view_LoginPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_nordstrom_rpm_view_Home_PagePageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Home_PagePageDef"/>
+    <page id="com_nordstrom_rpm_view_Clearance_WorksheetPageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Clearance_WorksheetPageDef"/>
+    <page id="com_nordstrom_rpm_view_Candidate_RulePageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Candidate_RulePageDef"/>
+    <page id="com_nordstrom_rpm_view_Rule_CreationPageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Rule_CreationPageDef"/>
+    <page id="com_nordstrom_rpm_view_Rule_UpdatePageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Rule_UpdatePageDef"/>
+    <page id="com_nordstrom_rpm_view_TestPageDef"
+          path="com.nordstrom.rpm.view.pageDefs.TestPageDef"/>
+    <page id="com_nordstrom_rpm_view_Rule_ParameterPageDef"
+          path="com.nordstrom.rpm.view.pageDefs.Rule_ParameterPageDef"/>
+    <page id="com_nordstrom_rpm_view_LoginPageDef"
+          path="com.nordstrom.rpm.view.pageDefs.LoginPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="RPM_AppModuleDataControl"
+                     Package="com.nordstrom.rpm.AM"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="RPM_AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

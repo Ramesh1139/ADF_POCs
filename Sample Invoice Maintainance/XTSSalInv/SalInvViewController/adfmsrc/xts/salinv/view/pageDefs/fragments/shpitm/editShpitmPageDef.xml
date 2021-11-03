@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editShpitmPageDef" Package="xts.salinv.view.pageDefs.fragments.shpitm">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TciActshpitmVO" RangeSize="7" DataControl="XTSSalInvAMDataControl" id="TciActshpitmVOIterator"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SomsPaytrm">
+      <AttrNames>
+        <Item Value="SomsPaytrm"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SomsPaytrmday">
+      <AttrNames>
+        <Item Value="SomsPaytrmday"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SomsSrcoffcod">
+      <AttrNames>
+        <Item Value="SomsSrcoffcod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SosiNeeddat">
+      <AttrNames>
+        <Item Value="SosiNeeddat"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="MpcyNamCoo">
+      <AttrNames>
+        <Item Value="MpcyNamCoo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="MpcyNamPrdcty">
+      <AttrNames>
+        <Item Value="MpcyNamPrdcty"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="MpcyNamLoc">
+      <AttrNames>
+        <Item Value="MpcyNamLoc"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="SosiDlyadrcod">
+      <AttrNames>
+        <Item Value="SosiDlyadrcod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CpadAdr1">
+      <AttrNames>
+        <Item Value="CpadAdr1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CpadAdr2">
+      <AttrNames>
+        <Item Value="CpadAdr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CpadAdr3">
+      <AttrNames>
+        <Item Value="CpadAdr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciActshpitmVOIterator" id="CpadAdr4">
+      <AttrNames>
+        <Item Value="CpadAdr4"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

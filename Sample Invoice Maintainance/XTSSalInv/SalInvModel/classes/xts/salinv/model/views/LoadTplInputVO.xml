@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="LoadTplInputVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.salinv.model.views.LoadTplInputVORowImpl"
+  ComponentClass="xts.salinv.model.views.LoadTplInputVOImpl"
+  PageIterMode="Full"
+  ComponentInterface="xts.salinv.model.views.common.LoadTplInputVO">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="TmpAddamtTplLovVO1"
+    ViewObjectName="xts.common.model.views.lovs.TmpAddamtTplLovVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="TmpAddamtTplLovVOCriteriaForSI"
+      FullName="xts.common.model.views.lovs.TmpAddamtTplLovVO.TmpAddamtTplLovVOCriteriaForSI"/>
+    <ParameterMap>
+      <PIMap Variable="divcodVar">
+        <TransientExpression
+          Name="ExpressionScript"><![CDATA[Divcod]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_Tplcod"
+    ListVOName="TmpAddamtTplLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0"
+    ListRangeSize="25">
+    <AttrArray Name="AttrNames">
+      <Item Value="Tplcod"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="Tpldes"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MpadtTplcod"/>
+      <Item Value="MpadtDes"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MpadtTplcod"/>
+      <Item Value="MpadtDes"/>
+      <Item Value="MpadtTypdes"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="TmpAddamtTplLovVOCriteriaForSI"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT '' tplcod, '' tpldes, '' loc, '' divcod from dual]]></SQLQuery>
+  <ViewAttribute
+    Name="Tplcod"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TPLCOD"
+    Expression="TPLCOD"
+    SQLType="VARCHAR"
+    LOVName="LOV_Tplcod">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="xts.salinv.model.views.LoadTplInputVO.Tplcod_LABEL"/>
+        <DISPLAYWIDTH
+          Value="5"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Tpldes"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TPLDES"
+    Expression="TPLDES"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="30"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Loc"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="10"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="LOC"
+    Expression="LOC"
+    SQLType="VARCHAR">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYWIDTH
+          Value="5"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Divcod"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DIVCOD"
+    Expression="DIVCOD"
+    SQLType="VARCHAR"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Tplcod"/>
+  </AttrArray>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="setDefaultVar"
+      MethodName="setDefaultVar">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.salinv.model.SalInvModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

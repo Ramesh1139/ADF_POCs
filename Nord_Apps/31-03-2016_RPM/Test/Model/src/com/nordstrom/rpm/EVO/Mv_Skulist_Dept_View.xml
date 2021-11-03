@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Mv_Skulist_Dept_View"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  SelectList="Mv_Skulist_Dept.SKULIST, 
+       Mv_Skulist_Dept.SKULIST_DESC, 
+       Mv_Skulist_Dept.DEPT, 
+       Mv_Skulist_Dept.ROWID"
+  FromList="MV_SKULIST_DEPT Mv_Skulist_Dept"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  UseGlueCode="false">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|VarAccess"/>
+  </DesignTime>
+  <ViewAccessor
+    Name="Mv_Skulist_Dept_View1"
+    ViewObjectName="com.nordstrom.rpm.EVO.Mv_Skulist_Dept_View"
+    RowLevelBinds="true"/>
+  <ListBinding
+    Name="LOV_Skulist"
+    ListVOName="Mv_Skulist_Dept_View1"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="Skulist"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Skulist"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Skulist"/>
+      <Item Value="SkulistDesc"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <EntityUsage
+    Name="Mv_Skulist_Dept"
+    Entity="com.nordstrom.rpm.EO.Mv_Skulist_Dept"/>
+  <ViewAttribute
+    Name="Skulist"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Skulist"
+    EntityUsage="Mv_Skulist_Dept"
+    AliasName="SKULIST"
+    LOVName="LOV_Skulist">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SkulistDesc"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="SkulistDesc"
+    EntityUsage="Mv_Skulist_Dept"
+    AliasName="SKULIST_DESC"/>
+  <ViewAttribute
+    Name="Dept"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Dept"
+    EntityUsage="Mv_Skulist_Dept"
+    AliasName="DEPT"/>
+  <ViewAttribute
+    Name="RowID"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="RowID"
+    EntityUsage="Mv_Skulist_Dept"
+    AliasName="ROWID"/>
+</ViewObject>

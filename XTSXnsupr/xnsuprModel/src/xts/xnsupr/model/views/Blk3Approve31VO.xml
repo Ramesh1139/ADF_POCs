@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk3Approve31VO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  PageIterMode="Full"   
+RowClass="xts.xnsupr.model.views.Blk3Approve31VORowImpl"
+  ComponentClass="xts.xnsupr.model.views.Blk3Approve31VOImpl"
+  OrderBy="OLD_FULNAM">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT Blk3Approve31.spal_supcod AS OLD_PRFCOD,   
+       Blk3Approve31.spal_fulnam AS OLD_FULNAM,   
+       Blk3Approve31.spal_sup AS OLD_FLAG_SUP,   
+       Blk3Approve31.spal_shp AS OLD_FLAG_SHP,   
+       Blk3Approve31.spal_man AS OLD_FLAG_FTY,   
+       Blk3Approve31.SPAL_CLSDAT,   
+       Blk3Approve31.SPAL_CON,   
+       Blk3Approve31.SPAL_MAT  
+FROM  TSP_ALL Blk3Approve31]]></SQLQuery>
+  <EntityUsage
+    Name="Blk3Approve31"
+    Entity="xts.xnsupr.model.entities.Blk3Approve31"/>
+  <ViewAttribute
+    Name="OldPrfcod"
+    PrecisionRule="true"
+    EntityAttrName="OldPrfcod"
+    EntityUsage="Blk3Approve31"
+    AliasName="OLD_PRFCOD"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.xnsupr.model.views.Blk3Approve31VO.OldPrfcod_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldFulnam"
+    PrecisionRule="true"
+    EntityAttrName="OldFulnam"
+    EntityUsage="Blk3Approve31"
+    AliasName="OLD_FULNAM"
+    IsUpdateable="false">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="OldFulnam_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldFlagSup"
+    PrecisionRule="true"
+    EntityAttrName="OldFlagSup"
+    EntityUsage="Blk3Approve31"
+    AliasName="OLD_FLAG_SUP">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="OldFlagSup_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldFlagShp"
+    PrecisionRule="true"
+    EntityAttrName="OldFlagShp"
+    EntityUsage="Blk3Approve31"
+    AliasName="OLD_FLAG_SHP">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="OldFlagShp_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldFlagFty"
+    PrecisionRule="true"
+    EntityAttrName="OldFlagFty"
+    EntityUsage="Blk3Approve31"
+    AliasName="OLD_FLAG_FTY">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="OldFlagFty_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpalClsdat"
+    PrecisionRule="true"
+    EntityAttrName="SpalClsdat"
+    EntityUsage="Blk3Approve31"
+    AliasName="SPAL_CLSDAT">
+    <Properties>
+      <SchemaBasedProperties>
+        <FMT_FORMAT
+          ResId="xts.xnsupr.model.views.Blk3Approve31VO.SpalClsdat_FMT_FORMAT"/>
+        <FMT_FORMATTER
+          ResId="xts.xnsupr.model.views.Blk3Approve31VO.SpalClsdat_FMT_FORMATTER"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <Properties>
+    <CustomProperties>
+      <Property
+        Name="module"
+        Value="SP"/>
+      <Property
+        Name="readonly"
+        Value="true"/>
+    </CustomProperties>
+  </Properties>
+  <ViewAttribute
+    Name="OldFlagCon"
+    PrecisionRule="true"
+    EntityAttrName="OldFlagCon"
+    EntityUsage="Blk3Approve31"
+    AliasName="SPAL_CON">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.xnsupr.model.views.Blk3Approve31VO.OldFlagCon_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="OldFlagMat"
+    PrecisionRule="true"
+    EntityAttrName="OldFlagMat"
+    EntityUsage="Blk3Approve31"
+    AliasName="SPAL_MAT">
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="xts.xnsupr.model.views.Blk3Approve31VO.OldFlagMat_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CountTotal"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="$none$"
+    AliasName="VIEW_ATTR"
+    SQLType="NUMERIC"
+    Passivate="true"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="OldPrfcod"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="Blk3Approve32VO"
+    ViewLink="xts.xnsupr.model.views.links.BLK3_APPROVE_3__BLK3_APPROVE_3"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

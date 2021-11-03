@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="suppliercodeconfirmation-tf">
+    <template-reference>
+      <document>/WEB-INF/templates/xts-tf-template.xml</document>
+      <id>xts-tf-template</id>
+    </template-reference>
+    <default-activity>XnsuprAmImplEvents_nfi</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__7">
+      <managed-bean-name>SupplierViewBean</managed-bean-name>
+      <managed-bean-class>xts.xnsupr.view.bean.SupplierViewBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__27">
+      <managed-bean-name>EditBean</managed-bean-name>
+      <managed-bean-class>xts.xnsupr.view.bean.EditBean</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="supplierccView">
+      <page>/fragments/supplierccView.jsff</page>
+    </view>
+    <method-call id="XnsuprAmImplEvents_nfi">
+      <method>#{bindings.XnsuprAmImplEvents_nfi.execute}</method>
+      <outcome>
+        <fixed-outcome>XnsuprAmImplEvents_nfi</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="approve1View">
+      <page>/fragments/approve1View.jsff</page>
+    </view>
+    <view id="approve5View">
+      <page>/fragments/approve5View.jsff</page>
+    </view>
+    <view id="approve2View">
+      <page>/fragments/approve2View.jsff</page>
+    </view>
+    <view id="approve3View">
+      <page>/fragments/approve3View.jsff</page>
+    </view>
+    <view id="approve4View">
+      <page>/fragments/approve4View.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>XnsuprAmImplEvents_nfi</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>XnsuprAmImplEvents_nfi</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>supplierccView</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>approve1</from-outcome>
+        <to-activity-id>approve1View</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>approve1View</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__8">
+        <from-outcome>approve5</from-outcome>
+        <to-activity-id>approve5View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__11">
+        <from-outcome>approve2</from-outcome>
+        <to-activity-id>approve2View</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__12">
+      <from-activity-id>approve2View</from-activity-id>
+      <control-flow-case id="__13">
+        <from-outcome>approve1</from-outcome>
+        <to-activity-id>approve1View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__14">
+        <from-outcome>approve3</from-outcome>
+        <to-activity-id>approve3View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__20">
+        <from-outcome>approve5</from-outcome>
+        <to-activity-id>approve5View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__23">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__15">
+      <from-activity-id>approve3View</from-activity-id>
+      <control-flow-case id="__16">
+        <from-outcome>approve2</from-outcome>
+        <to-activity-id>approve2View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__17">
+        <from-outcome>approve4</from-outcome>
+        <to-activity-id>approve4View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>approve5</from-outcome>
+        <to-activity-id>approve5View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__24">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__18">
+      <from-activity-id>approve4View</from-activity-id>
+      <control-flow-case id="__19">
+        <from-outcome>approve3</from-outcome>
+        <to-activity-id>approve3View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__22">
+        <from-outcome>approve5</from-outcome>
+        <to-activity-id>approve5View</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__26">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>approve5View</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>close</from-outcome>
+        <to-activity-id>supplierccView</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__25">
+        <from-outcome>approve4</from-outcome>
+        <to-activity-id>approve4View</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

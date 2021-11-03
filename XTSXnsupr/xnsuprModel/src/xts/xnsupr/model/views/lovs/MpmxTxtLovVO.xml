@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+    xmlns="http://xmlns.oracle.com/bc4j"
+    Name="MpmxTxtLovVO"
+    Version="12.2.1.20.47"
+    InheritPersonalization="merge"
+    BindingStyle="OracleName"
+    CustomQuery="true"
+    PageIterMode="Full"
+    RowClass="xts.xnsupr.model.views.lovs.MpmxTxtLovVORowImpl"
+    ComponentClass="xts.xnsupr.model.views.lovs.MpmxTxtLovVOImpl">
+    <DesignTime>
+        <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+        <Attr Name="_isExpertMode" Value="true"/>
+        <Attr Name="_isCodegen" Value="true"/>
+    </DesignTime>
+    <SQLQuery><![CDATA[SELECT mpmx_des, substr(mpmx_txt,1,2000) mpmx_txt     
+FROM tmp_msgtxt     
+WHERE mpmx_cod BETWEEN 'SPNCODRJT0' AND 'SPNCODRJT9'     
+AND (mpmx_des IS NOT NULL OR mpmx_txt IS NOT NULL)     
+ORDER BY mpmx_des]]></SQLQuery>
+    <ViewAttribute
+        Name="MpmxDes"
+        IsPersistent="false"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="MPMX_DES"
+        Expression="MPMX_DES"
+        SQLType="VARCHAR"
+        Passivate="true">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="xts.xnsupr.model.views.lovs.MpmxTxtLovVO.MpmxDes1_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ViewAttribute
+        Name="MpmxTxt"
+        IsPersistent="false"
+        Type="java.lang.String"
+        ColumnType="VARCHAR2"
+        AliasName="MPMX_TXT"
+        Expression="MPMX_TXT"
+        SQLType="VARCHAR"
+        Passivate="true">
+        <Properties>
+            <SchemaBasedProperties>
+                <LABEL
+                    ResId="MpmxTxt_LABEL"/>
+            </SchemaBasedProperties>
+        </Properties>
+    </ViewAttribute>
+    <ResourceBundle>
+        <PropertiesBundle
+            PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+    </ResourceBundle>
+</ViewObject>

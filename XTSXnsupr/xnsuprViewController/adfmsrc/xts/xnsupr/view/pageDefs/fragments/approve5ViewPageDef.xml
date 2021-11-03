@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="approve5ViewPageDef"
+                Package="xts.xnsupr.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Blk3Approve5VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve5VOIterator"/>
+    <iterator Binds="MpmxTxtLovVO" RangeSize="10" DataControl="xnsuprAMDataControl" id="MpmxTxtLovVOIterator"/>
+    <searchRegion Binds="MpmxTxtLovVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="MpmxTxtLovVOQuery"/>
+    <iterator id="Blk1TmpPrfNewcodVOIterator" Binds="Blk1TmpPrfNewcodVO" DataControl="xnsuprAMDataControl"
+              RangeSize="10"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Blk3Approve5VOIterator" id="MppfcSbmid">
+      <AttrNames>
+        <Item Value="MppfcSbmid"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve5VOIterator" id="MppfcFulnam">
+      <AttrNames>
+        <Item Value="MppfcFulnam"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="Blk3Approve5VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve5VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve5VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+    <tree IterBinding="MpmxTxtLovVOIterator" id="MpmxTxtLovVO">
+      <nodeDefinition DefName="xts.xnsupr.model.views.lovs.MpmxTxtLovVO" Name="MpmxTxtLovVO0">
+        <AttrNames>
+          <Item Value="MpmxDes"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="Blk3Approve5VOFieldEvents_ButConfirm_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve5VOFieldEvents_ButConfirm_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve5VOFieldEvents_ButConfirm_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve5VOFieldEvents_ButPrev_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve5VOFieldEvents_ButPrev_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve5VOFieldEvents_ButPrev_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve5VOFieldEvents_GetMessage_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve5VOFieldEvents_GetMessage_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve5VOFieldEvents_GetMessage_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve5VOFieldEvents_ButExit_bp1" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve5VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve5VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+    <attributeValues IterBinding="Blk3Approve5VOIterator" id="DeclineReason">
+      <AttrNames>
+        <Item Value="DeclineReason"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="XnsuprAmImplEvents_nfi" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="XnsuprAmImplEvents_nfi" IsViewObjectMethod="false" DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.XnsuprAmImplEvents_nfi.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve1VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve1VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve1VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

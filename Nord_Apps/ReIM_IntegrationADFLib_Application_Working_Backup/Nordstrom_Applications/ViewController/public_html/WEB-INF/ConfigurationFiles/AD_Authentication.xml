@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+
+    <!--jdbc>        
+        <url>jdbc:oracle:thin:@y0319t1136:1522:DD569</url>
+        <driver>jdbc:oracle:thin:@//y0319t1136:1522/DD569</driver>
+        <username>SCH_MST</username>
+        <password>mst_plant49_dev</password>
+    </jdbc-->
+    <application name="app">
+        <applicationType name="RPM">
+            <ldap name="Ldap">
+                 <java.naming.factory.initial>com.sun.jndi.ldap.LdapCtxFactory</java.naming.factory.initial>
+                 <java.naming.provider.url>ldap://nordstrom.net:389/OU=Users,OU=Accounts,DC=nordstrom,DC=net</java.naming.provider.url>
+                 <java.naming.security.authentication>simple</java.naming.security.authentication>                
+                 <java.naming.security.principal>CN=N2REIM,OU=Service,OU=Accounts,DC=nordstrom,DC=net</java.naming.security.principal>               
+                 <java.naming.security.principal2>CN=REIM,OU=Groups,OU=Accounts,DC=nordstrom,DC=net</java.naming.security.principal2>               
+                <java.naming.security.credentials>stuchU76supu</java.naming.security.credentials>                
+            </ldap>
+        </applicationType>
+        <applicationType name="ReIM">
+            <ldap name="Ldap">
+                 <java.naming.factory.initial>com.sun.jndi.ldap.LdapCtxFactory</java.naming.factory.initial>
+                 <java.naming.provider.url>ldap://nordstrom.net:389/OU=Users,OU=Accounts,DC=nordstrom,DC=net</java.naming.provider.url>
+                 <java.naming.security.authentication>simple</java.naming.security.authentication>                
+                 <java.naming.security.principal>CN=N2REIM,OU=Service,OU=Accounts,DC=nordstrom,DC=net</java.naming.security.principal>  
+                 <java.naming.security.principal2>CN=REIM,OU=Groups,OU=Accounts,DC=nordstrom,DC=net</java.naming.security.principal2>  
+                <java.naming.security.credentials>stuchU76supu</java.naming.security.credentials>                
+            </ldap>
+        </applicationType>
+    </application>
+

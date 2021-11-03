@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+   <Reference name="RPM_DBConn" className="oracle.jdeveloper.db.adapter.DatabaseProvider" credentialStoreKey="RPM_DBConn" xmlns="">
+      <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
+   </Reference>
+   <Reference name="ReIM_DBConn" className="oracle.jdeveloper.db.adapter.DatabaseProvider" partial="false" manageInOracleEnterpriseManager="true" deployable="true" xmlns="">
+      <Factory className="oracle.jdeveloper.db.adapter.DatabaseProviderFactory"/>
+   </Reference>
+</References>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editHdrDescPageDef" Package="xts.salinv.view.pageDefs.fragments.header">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TciCusfldHeaderVO" RangeSize="10" DataControl="XTSSalInvAMDataControl" id="TciCusfldHeaderVOIterator"/>
+    <iterator Binds="TciAddAmtVO" RangeSize="10" DataControl="XTSSalInvAMDataControl" id="TciAddAmtVOIterator"/>
+    <iterator Binds="TciDesVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciDesVOIterator"/>
+    <iterator Binds="SaveRemarkVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="SaveRemarkVOIterator"/>
+    <iterator Binds="CopyRemarkVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="CopyRemarkVOIterator"/>
+    <iterator Binds="LoadTplInputVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="LoadTplInputVOIterator"/>
+    <iterator Binds="TciPrtVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciPrtVOIterator"/>
+    <iterator id="TciMstVOIterator" Binds="TciMstVO" DataControl="XTSSalInvAMDataControl" RangeSize="10" ChangeEventPolicy="none"/>
+    <iterator Binds="TacChrtypmstVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TacChrtypmstVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TciCusfldHeaderVOIterator" id="TciCusfldHeaderVO">
+      <nodeDefinition DefName="xts.salinv.model.views.TciCusfldHeaderVO" Name="TciCusfldHeaderVO0">
+        <AttrNames>
+          <Item Value="DisplayLabel"/>
+          <Item Value="FldEditVal"/>
+          <Item Value="MstlstDesc"/>
+          <Item Value="IsMsttab"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="TciAddAmtVOIterator" id="TciAddAmtVO">
+      <nodeDefinition DefName="xts.salinv.model.views.TciAddAmtVO" Name="TciAddAmtVO0">
+        <AttrNames>
+          <Item Value="CiaaDes"/>
+          <Item Value="CiaaRat"/>
+          <Item Value="CiaaAmt"/>
+          <Item Value="CiaaAmtTotal"/>
+          <Item Value="CiaaChrtyp"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <action IterBinding="TciAddAmtVOIterator" id="CreateInsert" InstanceName="XTSSalInvAMDataControl.TciAddAmtVO" DataControl="XTSSalInvAMDataControl"
+            RequiresUpdateModel="true" Action="createInsertRow"/>
+    <attributeValues IterBinding="TciAddAmtVOIterator" id="CiaaAmtTotal">
+      <AttrNames>
+        <Item Value="CiaaAmtTotal"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciDesVOIterator" id="CidsShpdes">
+      <AttrNames>
+        <Item Value="CidsShpdes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SaveRemarkVOIterator" id="RemarkCode">
+      <AttrNames>
+        <Item Value="RemarkCode"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="SaveRemarkVOIterator" id="RemarkDesc">
+      <AttrNames>
+        <Item Value="RemarkDesc"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="setRemarkDesc" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setRemarkDesc" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SaveRemarkVO">
+      <NamedData NDName="loc" NDType="java.lang.String"/>
+      <NamedData NDName="rmkFld" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="saveRemark" RequiresUpdateModel="true" Action="invokeMethod" MethodName="saveRemark" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SaveRemarkVO"/>
+    <methodAction id="setCopyAttr" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setCopyAttr" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO">
+      <NamedData NDName="loc" NDType="java.lang.String"/>
+      <NamedData NDName="rmkFld" NDType="java.lang.String"/>
+    </methodAction>
+    <listOfValues IterBinding="CopyRemarkVOIterator" StaticList="false" Uses="LOV_SiHdr" id="SiNo"/>
+    <attributeValues IterBinding="CopyRemarkVOIterator" id="Shiseq">
+      <AttrNames>
+        <Item Value="Shiseq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CopyRemarkVOIterator" id="Itmseq">
+      <AttrNames>
+        <Item Value="Itmseq"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CopyRemarkVOIterator" id="ItemNo">
+      <AttrNames>
+        <Item Value="ItemNo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="CopyRemarkVOIterator" id="SoNo">
+      <AttrNames>
+        <Item Value="SoNo"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="CopyRemarkVOIterator" StaticList="false" Uses="LOV_MprmRmkcod" id="MprmRmkcod"/>
+    <methodAction id="resetRow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="resetRow" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO"/>
+    <methodAction id="removeCopiedRemark" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeCopiedRemark" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO"/>
+    <attributeValues IterBinding="LoadTplInputVOIterator" id="Tpldes">
+      <AttrNames>
+        <Item Value="Tpldes"/>
+      </AttrNames>
+    </attributeValues>
+    <listOfValues IterBinding="LoadTplInputVOIterator" StaticList="false" Uses="LOV_Tplcod" id="Tplcod"/>
+    <methodAction id="setDefaultVar" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setDefaultVar" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.LoadTplInputVO"/>
+    <methodAction id="proecssLoadTemplate" RequiresUpdateModel="true" Action="invokeMethod" MethodName="proecssLoadTemplate" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.LoadTemplateVO">
+      <NamedData NDName="loc" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="removeRow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeRow" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciAddAmtVO"/>
+    <attributeValues IterBinding="TciDesVOIterator" id="CidsTopdes">
+      <AttrNames>
+        <Item Value="CidsTopdes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciPrtVOIterator" id="CiptTotqtyctn">
+      <AttrNames>
+        <Item Value="CiptTotqtyctn"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="autoQtyctn" RequiresUpdateModel="true" Action="invokeMethod" MethodName="autoQtyctn" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciPrtVO"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsStscod">
+      <AttrNames>
+        <Item Value="CimsStscod"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciDesVOIterator" id="CidsBotdes">
+      <AttrNames>
+        <Item Value="CidsBotdes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciDesVOIterator" id="CidsRm1des">
+      <AttrNames>
+        <Item Value="CidsRm1des"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciDesVOIterator" id="CidsRm2des">
+      <AttrNames>
+        <Item Value="CidsRm2des"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TciDesVOIterator" id="Rm2desLbl">
+      <AttrNames>
+        <Item Value="Rm2desLbl"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyChrtyp1">
+      <AttrNames>
+        <Item Value="ActyChrtyp"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyDes1">
+      <AttrNames>
+        <Item Value="ActyDes"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="TacChrtypmstVOIterator" id="ActyRmk1">
+      <AttrNames>
+        <Item Value="ActyRmk"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="setVarExe" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setVarExe" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TacChrtypmstVO">
+      <NamedData NDName="chrTyp" NDType="java.lang.String"/>
+    </methodAction>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsRunnum">
+      <AttrNames>
+        <Item Value="CimsRunnum"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="getEditMode" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getEditMode" IsViewObjectMethod="false"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="bindings.getEditMode.dataControl.dataProvider"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.getEditMode_getEditMode_dataControl_dataProvider_getEditMode_result"/>
+    <methodAction id="processCopy" RequiresUpdateModel="true" Action="invokeMethod" MethodName="processCopy" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO">
+      <NamedData NDName="loc" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="hdrChkForMstLst" RequiresUpdateModel="true" Action="invokeMethod" MethodName="hdrChkForMstLst" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldHeaderVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.hdrChkForMstLst_hdrChkForMstLst_dataControl_TciCusfldHeaderVO_hdrChkForMstLst_result"/>
+    <attributeValues IterBinding="TciMstVOIterator" id="CimsDivcod">
+      <AttrNames>
+        <Item Value="CimsDivcod"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

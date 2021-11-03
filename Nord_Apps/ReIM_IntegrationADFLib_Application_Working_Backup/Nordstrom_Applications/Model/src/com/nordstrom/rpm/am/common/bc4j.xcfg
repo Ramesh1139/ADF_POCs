@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.nordstrom.rpm.am.RPM_AppModule">
+      <AppModuleConfig name="RPM_AppModuleLocal" ApplicationName="com.nordstrom.rpm.am.RPM_AppModule" DeployPlatform="LOCAL" jbo.project="model.Model" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <Security AppModuleJndiName="com.nordstrom.rpm.am.RPM_AppModule"/>
+         <Custom JDBCDataSource="jdbc/RPM_DS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="RPM_AppModuleShared" ApplicationName="com.nordstrom.rpm.am.RPM_AppModule" DeployPlatform="LOCAL" jbo.project="model.Model" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Security AppModuleJndiName="com.nordstrom.rpm.am.RPM_AppModule"/>
+         <Custom JDBCDataSource="jdbc/RPM_DS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>
+
+<!-- Local DS = jdbc/RPM_DS -->
+<!-- Dev03 DS = jdbc/RetailWebServiceDs -->

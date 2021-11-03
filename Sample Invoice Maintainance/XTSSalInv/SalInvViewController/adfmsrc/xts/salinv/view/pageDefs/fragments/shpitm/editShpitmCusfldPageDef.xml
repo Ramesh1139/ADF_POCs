@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editShpitmCusfldPageDef"
+                Package="xts.salinv.view.pageDefs.fragments.shpitm">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="TciCusfldShpitmVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciCusfldShpitmVOIterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="TciCusfldShpitmVOIterator" id="TciCusfldShpitmVO">
+      <nodeDefinition DefName="xts.salinv.model.views.TciCusfldShpitmVO" Name="TciCusfldShpitmVO0">
+        <AttrNames>
+          <Item Value="DisplayLabel"/>
+          <Item Value="FldEditVal"/>
+          <Item Value="MstlstDesc"/>
+          <Item Value="IsMsttab"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="shiChkForMstLst" RequiresUpdateModel="true" Action="invokeMethod" MethodName="shiChkForMstLst" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciCusfldShpitmVO"
+                  ReturnName="data.XTSSalInvAMDataControl.methodResults.shiChkForMstLst_shiChkForMstLst_dataControl_TciCusfldShpitmVO_shiChkForMstLst_result"/>
+  </bindings>
+</pageDefinition>

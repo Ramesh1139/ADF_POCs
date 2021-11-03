@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="TciCusfldHeaderVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.salinv.model.views.TciCusfldHeaderVORowImpl"
+  ComponentClass="xts.salinv.model.views.TciCusfldHeaderVOImpl"
+  PageIterMode="Full"
+  ComponentInterface="xts.salinv.model.views.common.TciCusfldHeaderVO"
+  OrderBy="SEQ, FIELD_LABEL">
+  <DesignTime>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Variable
+    Name="divcodCicfVar"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="cuscodCicfVar"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="runnumCiCfVar"
+    Kind="where"
+    Type="java.lang.Long"/>
+  <ViewAccessor
+    Name="TmpCusfldCodLovVO1"
+    ViewObjectName="xts.common.model.views.lovs.TmpCusfldCodLovVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="TmpCusfldCodLovVOCriteria"
+      FullName="xts.common.model.views.lovs.TmpCusfldCodLovVO.TmpCusfldCodLovVOCriteria"/>
+    <ParameterMap>
+      <PIMap Variable="fldIdVar">
+        <TransientExpression
+          Name="ExpressionScript"><![CDATA[FieldId]]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="moduleVar">
+        <TransientExpression
+          Name="ExpressionScript"><![CDATA[return 'C01H';]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_FldEditVal"
+    ListVOName="TmpCusfldCodLovVO1"
+    ComboRowCountHint="10"
+    NullValueFlag="none"
+    MRUCount="0"
+    ListRangeSize="25">
+    <AttrArray Name="AttrNames">
+      <Item Value="FldEditVal"/>
+    </AttrArray>
+    <AttrArray Name="AttrExpressions"/>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="MstlstDesc"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="MpfdcCod"/>
+      <Item Value="MpfdcDes"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="MpfdcDes"/>
+      <Item Value="MpfdcCod"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="TmpCusfldCodLovVOCriteria"
+      Hint="showAndExecute"/>
+  </ListBinding>
+  <SQLQuery><![CDATA[SELECT '' DEF_IND, CICF_FLD_ID FIELD_ID, MPFDM_LABEL FIELD_LABEL,      
+       MPFDM_DATATYPE DATA_TYPE, MPFDM_MSTTAB IS_MSTTAB, MPFTD_SEQ SEQ,      
+       CICF_DIVCOD CF_DIVCOD, MPFTD_DIVCOD TD_DIVCOD, MPFDM_MODULE DM_MODULE,      
+       MPFTD_MODULE TD_MODULE, MPFTD_FLD_ID TD_FLD_ID, MPFDM_FLD_ID DM_FLD_ID,      
+       CICF_RUNNUM RUNNUM, CICF_ITMSEQ ITMSEQ, CICF_SO_RUNNUM SO_RUNNUM,      
+       CICF_SHISEQ SHISEQ, CICF_VAL FLD_DB_VAL, CICF_VAL FLD_EDIT_VAL, MPFDM_LABEL || ' ' DISPLAY_LABEL  
+	   , (CASE WHEN MPFDM_MSTTAB = 'Y' AND CICF_VAL IS NOT NULL THEN DP_CUSFLD.FL_GET_CODE_DESC('C01H',CICF_FLD_ID,CICF_VAL) ELSE NULL END) MSTLST_DESC  
+FROM TMP_CUSFLD_TPLDTL, TMP_CUSFLD_MST, TCI_CUSFLD      
+WHERE MPFDM_MODULE = MPFTD_MODULE      
+AND   MPFDM_FLD_ID = MPFTD_FLD_ID      
+AND   CICF_FLD_ID  = MPFTD_FLD_ID      
+AND   CICF_DIVCOD  = MPFTD_DIVCOD      
+AND   MPFDM_MODULE = 'C01H'     
+AND   MPFTD_CUSCOD = :cuscodCicfVar     
+AND   CICF_DIVCOD = :divcodCicfVar     
+AND   CICF_RUNNUM = :runnumCiCfVar     
+AND   CICF_ITMSEQ = 0      
+AND   CICF_SO_RUNNUM = 0       
+AND   CICF_SHISEQ = 0      
+UNION      
+SELECT '' DEF_IND, MPFTD_FLD_ID FIELD_ID, MPFDM_LABEL FIELD_LABEL,      
+       MPFDM_DATATYPE DATA_TYPE, MPFDM_MSTTAB IS_MSTTAB, MPFTD_SEQ SEQ,      
+       NULL CF_DIVCOD, MPFTD_DIVCOD TD_DIVCOD, MPFDM_MODULE DM_MODULE,      
+       MPFTD_MODULE TD_MODULE, MPFTD_FLD_ID TD_FLD_ID, MPFDM_FLD_ID DM_FLD_ID,      
+       NULL RUNNUM, NULL ITMSEQ, NULL SO_RUNNUM, NULL SHISEQ, NULL FLD_DB_VAL, NULL FLD_EDIT_VAL, MPFDM_LABEL || ' ' DISPLAY_LABEL    
+	   , NULL MSTLST_DESC  
+FROM TMP_CUSFLD_TPLDTL, TMP_CUSFLD_MST      
+WHERE MPFDM_MODULE = MPFTD_MODULE      
+AND   MPFDM_FLD_ID = MPFTD_FLD_ID      
+AND   MPFTD_CUSCOD = :cuscodCicfVar     
+AND   MPFDM_MODULE = 'C01H'     
+AND   MPFTD_DIVCOD = :divcodCicfVar     
+AND MPFTD_FLD_ID NOT IN (SELECT CICF_FLD_ID FROM TCI_CUSFLD      
+                        WHERE MPFDM_MODULE = 'C01H'     
+                        AND   MPFTD_CUSCOD = :cuscodCicfVar     
+                        AND   CICF_DIVCOD = :divcodCicfVar     
+                        AND   CICF_RUNNUM = :runnumCiCfVar     
+                        AND   CICF_SO_RUNNUM = 0      
+                        AND   CICF_SHISEQ = 0      
+                        AND   CICF_ITMSEQ = 0)      
+UNION      
+SELECT '*' DEF_IND, CICF_FLD_ID FIELD_ID, MPFDM_LABEL FIELD_LABEL,      
+       MPFDM_DATATYPE DATA_TYPE, MPFDM_MSTTAB IS_MSTTAB, 99999 SEQ,      
+       CICF_DIVCOD CF_DIVCOD, NULL TD_DIVCOD, MPFDM_MODULE DM_MODULE,      
+       NULL TD_MODULE, NULL TD_FLD_ID, MPFDM_FLD_ID DM_FLD_ID, CICF_RUNNUM RUNNUM,      
+       CICF_ITMSEQ ITMSEQ, CICF_SO_RUNNUM SO_RUNNUM, CICF_SHISEQ SHISEQ, CICF_VAL FLD_DB_VAL, CICF_VAL FLD_EDIT_VAL, MPFDM_LABEL || ' *' DISPLAY_LABEL    
+	   , (CASE WHEN MPFDM_MSTTAB = 'Y' AND CICF_VAL IS NOT NULL THEN DP_CUSFLD.FL_GET_CODE_DESC('C01H',CICF_FLD_ID,CICF_VAL) ELSE NULL END) MSTLST_DESC  
+FROM TMP_CUSFLD_MST, TCI_CUSFLD      
+WHERE CICF_FLD_ID  = MPFDM_FLD_ID      
+AND   MPFDM_MODULE  = 'C01H'     
+AND   CICF_DIVCOD = :divcodCicfVar     
+AND   CICF_RUNNUM = :runnumCiCfVar     
+AND   CICF_SO_RUNNUM = 0      
+AND   CICF_SHISEQ = 0      
+AND   CICF_ITMSEQ = 0      
+AND   NOT EXISTS (SELECT 1 FROM TMP_CUSFLD_TPLDTL      
+                           WHERE MPFTD_DIVCOD = :divcodCicfVar     
+                           AND  MPFTD_MODULE  = 'C01H'     
+                           AND  MPFTD_CUSCOD = :cuscodCicfVar     
+                           AND CICF_FLD_ID = MPFTD_FLD_ID)]]></SQLQuery>
+  <ViewAttribute
+    Name="DefInd"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DEF_IND"
+    Expression="DEF_IND"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FieldId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="FIELD_ID"
+    Expression="FIELD_ID"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="FieldLabel"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FIELD_LABEL"
+    Expression="FIELD_LABEL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DataType"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DATA_TYPE"
+    Expression="DATA_TYPE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="IsMsttab"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="IS_MSTTAB"
+    Expression="IS_MSTTAB"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="Seq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SEQ"
+    Expression="SEQ"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="CfDivcod"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="CF_DIVCOD"
+    Expression="CF_DIVCOD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TdDivcod"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="3"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TD_DIVCOD"
+    Expression="TD_DIVCOD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DmModule"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DM_MODULE"
+    Expression="DM_MODULE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TdModule"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="TD_MODULE"
+    Expression="TD_MODULE"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="TdFldId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="TD_FLD_ID"
+    Expression="TD_FLD_ID"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="DmFldId"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="5"
+    Scale="0"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="DM_FLD_ID"
+    Expression="DM_FLD_ID"
+    SQLType="INTEGER"/>
+  <ViewAttribute
+    Name="Runnum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="RUNNUM"
+    Expression="RUNNUM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Itmseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ITMSEQ"
+    Expression="ITMSEQ"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="SoRunnum"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SO_RUNNUM"
+    Expression="SO_RUNNUM"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="Shiseq"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="SHISEQ"
+    Expression="SHISEQ"
+    SQLType="NUMERIC"/>
+  <ViewAttribute
+    Name="FldDbVal"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FLD_DB_VAL"
+    Expression="FLD_DB_VAL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="FldEditVal"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="100"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="FLD_EDIT_VAL"
+    Expression="FLD_EDIT_VAL"
+    SQLType="VARCHAR"
+    LOVName="LOV_FldEditVal">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+    <Properties>
+      <CustomProperties>
+        <Property
+          Name="disabled"
+          Value="true"/>
+      </CustomProperties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+        <LABEL
+          ResId="xts.salinv.model.views.TciCusfldHeaderVO.FldEditVal_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DisplayLabel"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="102"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISPLAY_LABEL"
+    Expression="DISPLAY_LABEL"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="102"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MstlstDesc"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MSTLST_DESC"
+    Expression="MSTLST_DESC"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="DefInd"/>
+    <Item Value="FieldId"/>
+  </AttrArray>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="plValidateCusfldHeader"
+      MethodName="plValidateCusfldHeader">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="validateOption"
+        Type="java.lang.String"/>
+    </Method>
+    <Method
+      Name="plUpdateCusfldHeader"
+      MethodName="plUpdateCusfldHeader">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+    <Method
+      Name="cusfldHdrExeQry"
+      MethodName="cusfldHdrExeQry">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+    <Method
+      Name="hdrValidateUpdate"
+      MethodName="hdrValidateUpdate">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+    </Method>
+    <Method
+      Name="hdrChkForMstLst"
+      MethodName="hdrChkForMstLst">
+      <Return
+        Name="_return_type_"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+  <Properties>
+    <CustomProperties>
+      <Property
+        Name="module"
+        Value="CI"/>
+      <Property
+        Name="readonly"
+        Value="true"/>
+    </CustomProperties>
+  </Properties>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.salinv.model.SalInvModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:xts-rc="/xtsComponentLib">
+    <af:pageTemplate viewId="/templates/xtsUISearchTemplate.jsf" id="pt1" partialTriggers="masterPanelCollectionId:t1">
+        <f:facet name="reusableSearchToolbar">
+            <xts-rc:SearchToolbar id="reusableSearchToolbarId" searchBean="#{backingBeanScope.SupplierViewBean}"
+                                  masterIterator="#{bindings.Blk1TmpPrfNewcodVOIterator}"
+                                  masterIteratorName="Blk1TmpPrfNewcodVOIterator" 
+                                  actionBtnRendered="false"
+                                  actionBtnDisabled="false" copyBtnRendered="false"
+                                  copyBtnDisabled="#{!UserProfileBean.userPermission['SP###CREATE']}"
+                                  changeStatusBtnRendered="false" changeStatusBtnDisabled="true" 
+                                  editBtnRendered="false"
+                                  editBtnDisabled="#{!UserProfileBean.userPermission['SP###VIEW']}"
+                                  createBtnRendered="false"
+                                  createBtnDisabled="#{!UserProfileBean.userPermission['SP###CREATE']}"
+                                  deleteBtnRendered="false"
+                                  deleteBtnDisabled="#{!UserProfileBean.userPermission['SP###DELETE']}"
+                                  advancedSearchBtnRendered="false">
+                <f:facet name="customButtons">
+                    <af:toolbar id="t2" partialTriggers="::masterPanelCollectionId:t1" styleClass="ToolbarHeight"
+                                inlineStyle="margin-top: -10px; margin-bottom: -3px">
+                        <af:button text="Action" id="dc_b_action" rendered="true" styleClass="Material"
+                                   actionDelivery="none" icon="#{resource['images:settings_24_V1.png']}">
+                            <f:facet name="popup">
+                                <af:menu text="" id="m1">
+                                    <af:commandMenuItem text="Confirm" id="cmi1"
+                                                        icon="#{resource['images:actionicon_edit_status_18_V2.png']}"
+                                                        styleClass="Material"
+                                                        actionListener="#{backingBeanScope.SupplierViewBean.confirmActionListerner}"
+                                                        partialTriggers="m1 ::masterPanelCollectionId:t1"
+                                                        disabled="#{bindings.Blk1TmpPrfNewcodVOIterator.currentRow == null ||  bindings.disableResubmit.inputValue}" />
+                                </af:menu>
+                            </f:facet>
+                        </af:button>
+                        <!--<af:group id="g2">
+                            <af:spacer width="10" id="s3"/>
+                            <af:button text="Exit" id="b3" icon="#{resource['images:actionicon_cancel_24_V2.png']}"
+                                       styleClass="Material" immediate="true">
+                                <af:clientListener method="adfFormExitting" type="action"/>
+                                <af:clientAttribute value="#{backingBeanScope.tfName}" name="tfName"/>
+                                <af:clientAttribute value="DOM_VK_F4" name="Accelerator"/>
+                            </af:button>
+                        </af:group>-->
+                    </af:toolbar>
+                </f:facet>
+            </xts-rc:SearchToolbar>
+        </f:facet>
+        <f:facet name="customCommandMenuItems"/>
+        <f:facet name="coreSearchQuery">
+          <af:panelGroupLayout id="pgl4" layout="horizontal" halign="start" valign="top">
+      <af:resource type="javascript">
+                  function invokeSearchOnEnterPress(inputEvent) {
+                      if (inputEvent.getKeyCode() == AdfKeyStroke.ENTER_KEY) {
+                          var inputTextField = inputEvent.getSource();
+                          //Hardcoded name of reusable search button is passed because bindings for search button is not present in reusable toolbar.
+                          var element = inputTextField.findComponent('reusableSearchToolbarId:searchBtnId');
+                          //true value is passed for partial submission
+                          AdfActionEvent.queue(element, true);
+                          inputEvent.cancel();
+                      }
+                  }
+                  </af:resource>
+            
+            <af:panelFormLayout id="pfl1">
+                <f:facet name="footer"/>
+                <af:panelLabelAndMessage label="#{bindings.MppfcStscod.label}" id="plam4">
+                    <af:selectOneChoice value="#{bindings.MppfcStscod.inputValue}" label="#{bindings.MppfcStscod.label}"
+                                        required="#{bindings.MppfcStscod.hints.mandatory}" autoSubmit="true"
+                                        shortDesc="#{bindings.MppfcStscod.hints.tooltip}" id="soc1"
+                                        valueChangeListener="#{backingBeanScope.SupplierViewBean.statusCheckbox}"
+                                        simple="true" clientComponent="true">
+                        <!--  valueChangeListener="#{backingBeanScope.SupplierViewBean.statusCheckbox}" -->
+                        <f:selectItems value="#{bindings.MppfcStscod.items}" id="si1"/>
+                        <f:validator binding="#{bindings.MppfcStscod.validator}"/>
+                            <af:clientListener method="invokeSearchOnEnterPress" type="keyUp"/>
+                           
+                        </af:selectOneChoice>
+                </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </f:facet>
+        <f:facet name="advSearchQuery"></f:facet>
+        <f:facet name="masterTable">
+            <af:table value="#{bindings.Blk1TmpPrfNewcodVO.collectionModel}" var="row"
+                      rows="#{bindings.Blk1TmpPrfNewcodVO.rangeSize}"
+                      emptyText="#{bindings.Blk1TmpPrfNewcodVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.Blk1TmpPrfNewcodVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.Blk1TmpPrfNewcodVO.collectionModel.makeCurrent}"
+                      rowSelection="single" fetchSize="#{bindings.Blk1TmpPrfNewcodVO.rangeSize}"
+                      filterModel="#{bindings.Blk1TmpPrfNewcodVOQuery.queryDescriptor}"
+                      queryListener="#{bindings.Blk1TmpPrfNewcodVOQuery.processQuery}" varStatus="vs" id="t1"
+                      styleClass="AFStretchWidth" autoHeightRows="10" scrollPolicy="page" filterVisible="true"
+                      binding="#{backingBeanScope.SupplierViewBean.table1}"
+                      first="#{pageFlowScope.rangeStart eq null ? 0 : pageFlowScope.rangeStart}" 
+                      summary="Supplier Code Confirmation">
+                <!-- first="#{backingBeanScope.Blk1TmpPrfNewcodVOIteratorRangeStart eq null ? 0 : backingBeanScope.Blk1TmpPrfNewcodVOIteratorRangeStart}" -->
+                <af:column id="c1" rowHeader="true" width="14" filterable="true"/>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcId.name}" sortable="true"
+                           headerText="Submit ID" filterable="true" id="c47" rowHeader="unstyled">
+                    <af:outputText value="#{row.MppfcId}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcId.tooltip}" id="ot47"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcFulnam.name}" filterable="true"
+                           sortable="true" headerText="Supplier / Factory Full Name" id="c2" width="250">
+                    <af:outputText value="#{row.MppfcFulnam}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcFulnam.tooltip}" id="ot2"/>
+                </af:column>
+                <af:column headerText="Status" id="c3" width="70" sortable="true" filterable="false"
+                           sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcStscodsdesc.name}">
+                    <af:outputText value="#{row.MppfcStscodsdesc}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcStscodsdesc.tooltip}" id="ot12"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSup.name}" filterable="false"
+                           sortable="true" headerText="Supplier " id="c5" width="55">
+                    <af:outputText value="#{row.MppfcSup}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSup.tooltip}" id="ot7"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcShp.name}" filterable="false"
+                           sortable="true" headerText="Shipper" id="c6" width="55">
+                    <af:outputText value="#{row.MppfcShp}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcShp.tooltip}" id="ot9"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcMan.name}" filterable="false"
+                           sortable="true" headerText="Manu / Fty" id="c7" width="55">
+                    <af:outputText value="#{row.MppfcMan}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcMan.tooltip}" id="ot8"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcMat.name}" filterable="false"
+                           sortable="true" headerText="Material" id="c8" width="55">
+                    <af:outputText value="#{row.MppfcMat}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcMat.tooltip}" id="ot6"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcCon.name}" filterable="false"
+                           sortable="true" headerText="Consumables" id="c9" width="90">
+                    <af:outputText value="#{row.MppfcCon}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcCon.tooltip}" id="ot5"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmby.name}" filterable="true"
+                           sortable="true" headerText="Submit By" id="c12">
+                    <af:outputText value="#{row.MppfcSbmby}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmby.tooltip}" id="ot3"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmdat.name}" filterable="false"
+                           sortable="true" headerText="Submit Date" id="c13">
+                    <f:facet name="filter">
+                        <af:inputDate value="#{bindings.Blk1TmpPrfNewcodVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.MppfcSbmdat.value}"
+                                      id="id1" label="">
+                            <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmdat.format}"/>
+                        </af:inputDate>
+                    </f:facet>
+                    <af:outputText value="#{row.MppfcSbmdat}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmdat.tooltip}" id="ot13">
+                        <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcSbmdat.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvby.name}" filterable="true"
+                           sortable="true" headerText="Confirm By" id="c14">
+                    <af:outputText value="#{row.MppfcApvby}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvby.tooltip}" id="ot4"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvdat.name}" filterable="false"
+                           sortable="true" headerText="Confirm Date" id="c15">
+                    <f:facet name="filter">
+                        <af:inputDate value="#{bindings.Blk1TmpPrfNewcodVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.MppfcApvdat.value}"
+                                      id="id2">
+                            <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvdat.format}"/>
+                        </af:inputDate>
+                    </f:facet>
+                    <af:outputText value="#{row.MppfcApvdat}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvdat.tooltip}" id="ot15">
+                        <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcApvdat.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.Updby.name}" filterable="false"
+                           sortable="true" headerText="Update By" id="c24">
+                    <af:outputText value="#{row.Updby}" shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.Updby.tooltip}"
+                                   id="ot24"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.Upddat.name}" filterable="false"
+                           sortable="true" headerText="Update Date" id="c25">
+                    <f:facet name="filter">
+                        <af:inputDate value="#{bindings.Blk1TmpPrfNewcodVOQuery.queryDescriptor.filterConjunctionCriterion.criterionMap.Upddat.value}"
+                                      id="id3">
+                            <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.Upddat.format}"/>
+                        </af:inputDate>
+                    </f:facet>
+                    <af:outputText value="#{row.Upddat}" shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.Upddat.tooltip}"
+                                   id="ot25">
+                        <af:convertDateTime pattern="#{bindings.Blk1TmpPrfNewcodVO.hints.Upddat.format}"/>
+                    </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcRmk.name}" filterable="false"
+                           sortable="true" headerText="Remark" id="c26">
+                    <af:outputText value="#{row.MppfcRmk}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcRmk.tooltip}" id="ot26"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcAdr.name}" filterable="false"
+                           sortable="true" headerText="Address" id="c27">
+                    <af:outputText value="#{row.MppfcAdr}"
+                                   shortDesc="#{bindings.Blk1TmpPrfNewcodVO.hints.MppfcAdr.tooltip}" id="ot27"/>
+                </af:column>
+            </af:table>
+        </f:facet>
+        <f:facet name="detailTable"></f:facet>
+        <f:facet name="detailPanelFormLayout"/>
+        <f:attribute name="formName" value="Supplier Code Confirmation Module"/>
+        <f:attribute name="searchBean" value="#{backingBeanScope.SupplierViewBean}"/>
+        <f:attribute name="masterIterator" value="#{bindings.Blk1TmpPrfNewcodVOIterator}"/>
+        <f:attribute name="exportTitle" value="Supplier Code Confirmation Export"/>
+        <f:attribute name="panelButtonsStretchId" value="#{'b6'}"/>
+        <f:attribute name="masterIteratorName" value="Blk1TmpPrfNewcodVOIterator"/>
+        <f:attribute name="createBtnRendered" value="false"/>
+        <f:attribute name="createBtnDisabled" value="#{!UserProfileBean.userPermission['SP###CREATE']}"/>
+        <f:attribute name="exportBtnDisabled" value="true"/>
+        <f:attribute name="exportBtnRendered" value="false"/>
+        <f:attribute name="editBtnRendered" value="false"/>
+        <f:attribute name="editBtnDisabled" value="#{!UserProfileBean.userPermission['SP###VIEW']}"/>
+        <f:attribute name="splitterPosition" value="370"/>
+        <f:attribute name="detailTableRendered" value="true"/>
+    </af:pageTemplate>
+</ui:composition>

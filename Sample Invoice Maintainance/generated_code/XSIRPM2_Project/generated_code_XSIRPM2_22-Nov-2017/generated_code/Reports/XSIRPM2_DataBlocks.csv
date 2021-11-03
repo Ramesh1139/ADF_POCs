@@ -1,0 +1,7 @@
+FormName,FormTitle,BlockName,DatabaseBlock,QueryDataSourceType,QueryDataSourceName
+XSIRPM2,Li & Fung Print Sample Invoice,MAIN_BLOCK,false,None,None
+XSIRPM2,Li & Fung Print Sample Invoice,BLK1_CONTROL,false,None,None
+XSIRPM2,Li & Fung Print Sample Invoice,CRITERIA_BLOCK,false,None,
+XSIRPM2,Li & Fung Print Sample Invoice,CONTROL_MAIN_BLOCK,false,None,None
+XSIRPM2,Li & Fung Print Sample Invoice,WORK_ITEM,false,None,None
+XSIRPM2,Li & Fung Print Sample Invoice,INFO_BLK,false,None,None

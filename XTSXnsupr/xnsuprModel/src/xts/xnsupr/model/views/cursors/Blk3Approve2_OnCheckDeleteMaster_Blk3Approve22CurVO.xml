@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk3Approve2_OnCheckDeleteMaster_Blk3Approve22CurVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.xnsupr.model.views.cursors.Blk3Approve2_OnCheckDeleteMaster_Blk3Approve22CurVORowImpl"
+  ComponentClass="xts.xnsupr.model.views.cursors.Blk3Approve2_OnCheckDeleteMaster_Blk3Approve22CurVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="xts.xnsupr.model.views.cursors.Blk3Approve2_OnCheckDeleteMaster_Blk3Approve22CurVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="I_SPCR_SUPCOD"
+    Kind="where"
+    Type="java.lang.String"/>
+  <Variable
+    Name="I_MPPFS_COD"
+    Kind="where"
+    Type="java.lang.String"/>
+  <SQLQuery><![CDATA[SELECT 1 FROM (select * from ( (select 'Supp Core Address' profile, spcr_supcod, spcr_adr1, spcr_adr2, spcr_adr3, spcr_adr4, spcr_tel, spcr_fax, spcr_email1, null spcr_prov, null spcr_city, null spcr_zip from tsp_core ) union (select 'Factory Address', fpcr_ftycod, fpcr_adr1, fpcr_adr2, fpcr_adr3, fpcr_adr4, dp_ftyrep.fmt_tel_num(fpcr_iddcty, fpcr_iddarea, fpcr_tel), dp_ftyrep.fmt_tel_num(fpcr_iddcty, fpcr_iddarea, fpcr_fax), fpcr_email, fpcr_prov, fpcr_city, fpcr_zip from tfp_core ) ) where spcr_adr1 is not null or spcr_adr2 is not null or spcr_adr3 is not null or spcr_adr4 is not null or spcr_tel is not null or spcr_fax is not null or spcr_email1 is not null or spcr_prov is not null or spcr_city is not null or spcr_zip is not null)        
+    WHERE :I_SPCR_SUPCOD = :I_MPPFS_COD]]></SQLQuery>
+  <ViewAttribute
+    Name="J1"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName='"1"'
+    Expression='"1"'
+    SQLType="NUMERIC"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="J1"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Rule_CreationPageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Clr_Wksht_Rule_View1" RangeSize="25"
+              DataControl="RPM_AppModuleDataControl"
+              id="Clr_Wksht_Rule_View1Iterator"/>
+    <iterator Binds="Column_Name_View1" RangeSize="25"
+              DataControl="RPM_AppModuleDataControl"
+              id="Column_Name_View1Iterator"/>
+    <iterator Binds="Operator_View1" RangeSize="25"
+              DataControl="RPM_AppModuleDataControl"
+              id="Operator_View1Iterator"/>
+    <iterator Binds="Paramater_Id_View1" RangeSize="25"
+              DataControl="RPM_AppModuleDataControl"
+              id="Paramater_Id_View1Iterator"/>
+    <iterator id="Candidate_Rule_View1Iterator" Binds="Candidate_Rule_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+    <iterator id="Clr_Wksht_Rule_Criteria_View1Iterator"
+              Binds="Clr_Wksht_Rule_Criteria_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <attributeValues IterBinding="Clr_Wksht_Rule_View1Iterator" id="Name">
+      <AttrNames>
+        <Item Value="Name"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_View1Iterator"
+                     id="Description">
+      <AttrNames>
+        <Item Value="Description"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Clr_Wksht_Rule_View1Iterator" StaticList="false"
+          Uses="LOV_ZoneId" id="ZoneId" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="Clr_Wksht_Rule_View1Iterator" id="Priority">
+      <AttrNames>
+        <Item Value="Priority"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Clr_Wksht_Rule_View1Iterator" StaticList="false"
+          Uses="LOV_RuleType" id="RuleType" DTSupportsMRU="false"/>
+    <attributeValues IterBinding="Clr_Wksht_Rule_View1Iterator"
+                     id="EffectiveDate">
+      <AttrNames>
+        <Item Value="EffectiveDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_View1Iterator" id="EndDate">
+      <AttrNames>
+        <Item Value="EndDate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Column_Name_View1Iterator" ListOperMode="navigation"
+          ListIter="Column_Name_View1Iterator" id="Column_Name_View1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="ColumnName"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="Operator_View1Iterator" ListOperMode="navigation"
+          ListIter="Operator_View1Iterator" id="Operator_View1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="OperatorName"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="Paramater_Id_View1Iterator" ListOperMode="navigation"
+          ListIter="Paramater_Id_View1Iterator" id="Paramater_Id_View1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="ParamName"/>
+      </AttrNames>
+    </list>
+    <action id="Rollback" RequiresUpdateModel="false"
+            Action="rollbackTransaction"
+            DataControl="RPM_AppModuleDataControl"/>
+    <action id="Commit" DataControl="RPM_AppModuleDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <methodAction id="queryExecution"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="queryExecution" IsViewObjectMethod="false"/>
+    <methodAction id="getRoleDefs"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getRoleDefs" IsViewObjectMethod="false"
+                  ReturnName="data.RPM_AppModuleDataControl.methodResults.getRoleDefs_RPM_AppModuleDataControl_dataProvider_getRoleDefs_result">
+      <NamedData NDName="ruleId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="addRoleDefs"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="addRoleDefs" IsViewObjectMethod="false">
+      <NamedData NDName="list" NDType="java.util.ArrayList"/>
+      <NamedData NDName="listDept" NDType="java.util.ArrayList"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

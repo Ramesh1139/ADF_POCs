@@ -1,0 +1,122 @@
+package com.infosys.nordstrom.reim;
+
+
+
+import java.io.FileInputStream;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+import javax.faces.event.ActionEvent;
+
+import javax.faces.event.ValueChangeEvent;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+
+import oracle.adf.model.BindingContext;
+import oracle.adf.model.binding.DCBindingContainer;
+import oracle.adf.model.binding.DCIteratorBinding;
+
+import oracle.binding.OperationBinding;
+
+import oracle.jbo.Row;
+import oracle.jbo.ViewObject;
+
+import org.apache.myfaces.trinidad.model.UploadedFile;
+
+public class invoiceUploadBean {
+    public invoiceUploadBean() {
+        super();
+    }
+    private HSSFWorkbook wb;
+
+    public void uploadActionListener(ActionEvent actionEvent) {
+        // Add event code here...
+        int j = 0;
+        if (null != actionEvent && wb != null) {
+            DCBindingContainer bc =
+                (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
+            DCIteratorBinding dci =
+                bc.findIteratorBinding("Xxinvoice_vo1Iterator");
+            ViewObject vo = dci.getViewObject();
+            System.out.println("in Action Method..");
+            boolean falg=true;
+            try {
+       
+                    HSSFSheet sheet = wb.getSheetAt(0);
+                    HSSFRow row;
+                    HSSFCell cell;
+                    Iterator rows = sheet.rowIterator();
+
+                   
+                    
+                    while (rows.hasNext())
+                    {
+                        if (j == 0)
+                        {
+                            j = 1;
+                            continue;
+                        }
+                        row = (HSSFRow)rows.next();
+                    
+                        Iterator<Cell> cellIterator = row.cellIterator();
+
+
+                        Row r = vo.createRow();
+                        falg=true;
+
+                        while (cellIterator.hasNext())
+                        {
+                            cell = (HSSFCell)cellIterator.next();
+                            System.out.println(cell.getColumnIndex() + "\t" +
+                                               cell.toString());
+                            if (cell.toString().equalsIgnoreCase("Id")) 
+                            {
+                                falg=false;
+                              //  vo.removeCurrentRow();
+                                break;
+                            }
+                            r.setAttribute(cell.getColumnIndex(),
+                                           cell.toString());
+
+                        }
+                        if(falg){
+                        vo.insertRow(r);
+                        OperationBinding oBinding =
+                            BindingContext.getCurrent().getCurrentBindingsEntry().getOperationBinding("Commit");
+                        oBinding.execute();
+                        }
+                        System.out.println();
+                    }
+
+              //  }
+               
+                OperationBinding oBinding =
+                    BindingContext.getCurrent().getCurrentBindingsEntry().getOperationBinding("Commit");
+                oBinding.execute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public void browseVCL(ValueChangeEvent valueChangeEvent) throws IOException {
+        // Add event code here...
+        if(valueChangeEvent != null){
+        UploadedFile file = (UploadedFile)valueChangeEvent.getNewValue();
+            wb=new HSSFWorkbook(file.getInputStream());
+        }
+    }
+}
+

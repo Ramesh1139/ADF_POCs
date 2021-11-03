@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="salinv_tf_salinv_tf_setSearchDivcodVarPageDef"
+                Package="xts.salinv.view.pageDefs.fragments"
+                SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="setSearchDivcodVar" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setSearchDivcodVar" IsViewObjectMethod="true"
+                  DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.TciMstVO">
+      <NamedData NDName="divcod" NDValue="#{pageFlowScope.divisionParam}" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

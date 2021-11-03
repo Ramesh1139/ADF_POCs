@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="editShpitmDes-tf">
+    <template-reference>
+      <document>/WEB-INF/templates/xts-tf-template.xml</document>
+      <id>xts-tf-template</id>
+    </template-reference>
+    <default-activity>createInsertWhenNoRecord</default-activity>
+    <managed-bean id="__1">
+      <managed-bean-name>EditBean</managed-bean-name>
+      <managed-bean-class>xts.salinv.view.beans.EditSalInv</managed-bean-class>
+      <managed-bean-scope>backingBean</managed-bean-scope>
+    </managed-bean>
+    <view id="editShpitmDesView">
+      <page>/fragments/shpitm/editShpitmDes.jsff</page>
+    </view>
+    <method-call id="createInsertWhenNoRecord">
+      <method>#{bindings.createInsertWhenNoRecord.execute}</method>
+      <outcome>
+        <fixed-outcome>next</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__4">
+      <from-activity-id>createInsertWhenNoRecord</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>next</from-outcome>
+        <to-activity-id>editShpitmDesView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

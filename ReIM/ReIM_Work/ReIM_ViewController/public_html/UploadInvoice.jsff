@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelStretchLayout id="psl1" topHeight="33%" bottomHeight="22%"
+                         startWidth="5%" endWidth="5%">
+    <f:facet name="bottom"/>
+    <f:facet name="center">
+      <af:panelGroupLayout id="pgl1" halign="center" valign="middle"
+                           layout="vertical">
+        <af:inputFile label="invoice" id="if1"
+                      valueChangeListener="#{pageFlowScope.invoiceUploadMB.browseVCL}"
+                      autoSubmit="true"/>
+        <af:commandButton text="upload" id="cb1"
+                          actionListener="#{pageFlowScope.invoiceUploadMB.uploadActionListener}"/>
+      </af:panelGroupLayout>
+    </f:facet>
+    <f:facet name="start"/>
+    <f:facet name="end"/>
+    <f:facet name="top">
+      <af:panelGroupLayout id="pgl2"/>
+    </f:facet>
+  </af:panelStretchLayout>
+</jsp:root>

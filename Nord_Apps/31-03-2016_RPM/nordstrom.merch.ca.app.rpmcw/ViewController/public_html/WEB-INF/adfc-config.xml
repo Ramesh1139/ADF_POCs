@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <managed-bean id="__2">
+    <managed-bean-name id="__1">HomeMB</managed-bean-name>
+    <managed-bean-class id="__3">com.nordstrom.rpm.Backing.HomeMB</managed-bean-class>
+    <managed-bean-scope id="__4">pageFlow</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__6">
+    <managed-bean-name id="__7">UserBean</managed-bean-name>
+    <managed-bean-class id="__8">com.nordstrom.auth.UserBean</managed-bean-class>
+    <managed-bean-scope id="__5">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name id="__9">loginBeanMB</managed-bean-name>
+    <managed-bean-class id="__12">com.nordstrom.rpm.loginBeanMB</managed-bean-class>
+    <managed-bean-scope id="__10">request</managed-bean-scope>
+  </managed-bean>
+  <managed-bean>
+  <managed-bean-name>sysdate</managed-bean-name>
+  <managed-bean-class>java.util.Date</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

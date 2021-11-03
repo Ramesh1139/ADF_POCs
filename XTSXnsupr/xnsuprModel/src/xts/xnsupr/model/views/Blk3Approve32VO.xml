@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk3Approve32VO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.xnsupr.model.views.Blk3Approve32VORowImpl"
+  ComponentClass="xts.xnsupr.model.views.Blk3Approve32VOImpl"
+  PageIterMode="Full"
+  OrderBy="profile desc">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <CustomProperties>
+      <Property
+        Name="module"
+        Value="SP"/>
+      <Property
+        Name="readonly"
+        Value="true"/>
+    </CustomProperties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="xts.xnsupr.model.views.Blk3Approve32VO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <SQLQuery><![CDATA[(SELECT * FROM ( (SELECT '(SUPP CORE)' PROFILE, SPCR_SUPCOD, SPCR_ADR1, SPCR_ADR2, SPCR_ADR3, SPCR_ADR4, SPCR_TEL, SPCR_FAX, SPCR_EMAIL1, NULL SPCR_PROV, NULL SPCR_CITY, NULL SPCR_ZIP FROM TSP_CORE ) UNION (SELECT '(FACTORY)'|| CHR(10) || ' ' || FPCR_ORGKEY || '-' || FPCR_GRPKEY, FPCR_FTYCOD, FPCR_ADR1, FPCR_ADR2, FPCR_ADR3, FPCR_ADR4, DP_FTYREP.FMT_TEL_NUM(FPCR_IDDCTY, FPCR_IDDAREA, FPCR_TEL), DP_FTYREP.FMT_TEL_NUM(FPCR_IDDCTY, FPCR_IDDAREA, FPCR_FAX), FPCR_EMAIL, FPCR_PROV, FPCR_CITY, FPCR_ZIP FROM TFP_CORE ) ) WHERE SPCR_ADR1 IS NOT NULL OR SPCR_ADR2 IS NOT NULL OR SPCR_ADR3 IS NOT NULL OR SPCR_ADR4 IS NOT NULL OR SPCR_TEL IS NOT NULL OR SPCR_FAX IS NOT NULL OR SPCR_EMAIL1 IS NOT NULL OR SPCR_PROV IS NOT NULL OR SPCR_CITY IS NOT NULL OR SPCR_ZIP IS NOT NULL)]]></SQLQuery>
+  <ViewAttribute
+    Name="Profile"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="PROFILE"
+    Expression="PROFILE"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="18"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrSupcod"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="6"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_SUPCOD"
+    Expression="SPCR_SUPCOD"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="6"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrAdr1"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_ADR1"
+    Expression="SPCR_ADR1"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrAdr2"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_ADR2"
+    Expression="SPCR_ADR2"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrAdr3"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_ADR3"
+    Expression="SPCR_ADR3"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrAdr4"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="50"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_ADR4"
+    Expression="SPCR_ADR4"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrTel"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_TEL"
+    Expression="SPCR_TEL"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrFax"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="4000"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_FAX"
+    Expression="SPCR_FAX"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4000"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrEmail1"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="60"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_EMAIL1"
+    Expression="SPCR_EMAIL1"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="60"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrProv"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_PROV"
+    Expression="SPCR_PROV"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrCity"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_CITY"
+    Expression="SPCR_CITY"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SpcrZip"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="40"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="SPCR_ZIP"
+    Expression="SPCR_ZIP"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="40"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="SpcrSupcod"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

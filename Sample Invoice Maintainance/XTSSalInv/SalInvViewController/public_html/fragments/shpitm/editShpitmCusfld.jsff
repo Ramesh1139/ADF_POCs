@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Customized Fields (of selected Shipment Item)" id="pb1">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl1" layout="vertical">
+            <af:outputLabel value="Note: Field label marked with * is not currently defined in Customized Field Template" id="ol1"/>
+            <af:table value="#{bindings.TciCusfldShpitmVO.collectionModel}" var="row" rows="#{bindings.TciCusfldShpitmVO.rangeSize}"
+                      emptyText="#{bindings.TciCusfldShpitmVO.viewable ? 'No data to display.' : 'Access Denied.'}" rowBandingInterval="0"
+                      selectedRowKeys="#{bindings.TciCusfldShpitmVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.TciCusfldShpitmVO.collectionModel.makeCurrent}" rowSelection="single"
+                      fetchSize="#{bindings.TciCusfldShpitmVO.rangeSize}" id="t1" contentDelivery="immediate">
+                <af:column headerText="" id="c1" width="220" rowHeader="true">
+                    <af:outputFormatted value="#{row.bindings.DisplayLabel.inputValue}" id="of1" inlineStyle="font-weight:bold;"/>
+                </af:column>
+                <af:column headerText="" id="c2" width="150">
+                    <af:inputListOfValues id="fldEditValId" popupTitle="Search and Select: Customized Field Code" value="#{row.bindings.FldEditVal.inputValue}"
+                                          model="#{row.bindings.FldEditVal.listOfValuesModel}"
+                                          required="#{bindings.TciCusfldShpitmVO.hints.FldEditVal.mandatory}"
+                                          columns="#{bindings.TciCusfldShpitmVO.hints.FldEditVal.displayWidth}"
+                                          rendered="#{row.bindings.IsMsttab.inputValue eq 'Y'}"
+                                          shortDesc="#{bindings.TciCusfldShpitmVO.hints.FldEditVal.tooltip}" autoSubmit="true"
+                                          disabled="#{row.bindings.FldEditVal.hints.disabled}">
+                        <f:validator binding="#{row.bindings.FldEditVal.validator}"/>
+                    </af:inputListOfValues>
+                    <af:inputText value="#{row.bindings.FldEditVal.inputValue}" label="#{bindings.TciCusfldHeaderVO.hints.FldEditVal.label}"
+                                  required="#{bindings.TciCusfldHeaderVO.hints.FldEditVal.mandatory}"
+                                  columns="#{bindings.TciCusfldHeaderVO.hints.FldEditVal.displayWidth}" rendered="#{row.bindings.IsMsttab.inputValue eq 'N'}"
+                                  maximumLength="#{bindings.TciCusfldHeaderVO.hints.FldEditVal.precision}" disabled="#{row.bindings.FldEditVal.hints.disabled}"
+                                  shortDesc="#{bindings.TciCusfldHeaderVO.hints.FldEditVal.tooltip}" id="it4"/>
+                    <!--launchPopupListener="#{backingBeanScope.EditBean.cusfldShiLovListener}" rendered="#{row.bindings.IsMsttab.inputValue eq 'Y'}"-->
+                </af:column>
+                <af:column headerText="" id="c3" width="250">
+                    <af:inputText value="#{row.bindings.MstlstDesc.inputValue}" label="#{bindings.TciCusfldShpitmVO.hints.MstlstDesc.label}"
+                                  required="#{bindings.TciCusfldShpitmVO.hints.MstlstDesc.mandatory}"
+                                  columns="#{bindings.TciCusfldShpitmVO.hints.MstlstDesc.displayWidth}"
+                                  maximumLength="#{bindings.TciCusfldShpitmVO.hints.MstlstDesc.precision}"
+                                  shortDesc="#{bindings.TciCusfldShpitmVO.hints.MstlstDesc.tooltip}" id="it1" partialTriggers="fldEditValId" disabled="true">
+                        <f:validator binding="#{row.bindings.MstlstDesc.validator}"/>
+                    </af:inputText>
+                </af:column>
+            </af:table>
+        </af:panelGroupLayout>
+    </af:panelBox>
+</ui:composition>

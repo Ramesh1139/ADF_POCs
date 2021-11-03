@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk4PopUpVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.xnsupr.model.views.Blk4PopUpVORowImpl"
+  ComponentClass="xts.xnsupr.model.views.Blk4PopUpVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_objectSuperClassName" Value="xts.formadf.model.framework.GenericProgrammaticViewObjectImpl"/>
+    <Attr Name="_rowSuperClassName" Value="xts.formadf.model.framework.GenericProgrammaticViewRowImpl"/>
+    <Attr Name="_isProgrammatic" Value="true"/>
+    <Attr Name="_codeGenFlag2" Value="Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewAttribute
+    Name="Key1"
+    IsUpdateable="while_insert"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="$none$"
+    Passivate="true"
+    SQLType="NUMERIC"
+    DefaultValue="1"/>
+  <ViewAttribute
+    Name="Msg"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="PrevBlock"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="ButClose"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    SQLType="VARCHAR"/>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Key1"/>
+  </AttrArray>
+   <Properties>
+    <CustomProperties>
+      <Property
+        Name="module"
+        Value="SP"/>
+      <Property
+        Name="readonly"
+        Value="true"/>
+    </CustomProperties>
+  </Properties>
+</ViewObject>

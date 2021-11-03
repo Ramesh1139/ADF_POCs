@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <managed-bean id="__2">
+    <managed-bean-name id="__1">TestBean</managed-bean-name>
+    <managed-bean-class id="__4">com.infosys.nordstrom.reim.TestMB</managed-bean-class>
+    <managed-bean-scope id="__3">view</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__8">
+    <managed-bean-name id="__6">HomeBean</managed-bean-name>
+    <managed-bean-class id="__7">com.infosys.nordstrom.reim.HomeBean</managed-bean-class>
+    <managed-bean-scope id="__5">backingBean</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

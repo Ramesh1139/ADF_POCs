@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+        
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title="Home.jspx">
+      <af:form id="f1">
+        <af:panelStretchLayout topHeight="50px" id="psl1">
+          <f:facet name="top"/>
+          <f:facet name="center">
+           
+            <af:decorativeBox theme="dark" id="db2">
+              <f:facet name="center">
+                <af:panelSplitter orientation="horizontal"
+                                  splitterPosition="100" id="ps1">
+                  <f:facet name="first">
+                    <af:panelGroupLayout layout="scroll"
+                                         xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                         id="pgl2">
+                      <af:commandLink text="UploadInvoice_BTF"
+                                      action="#{backingBeanScope.HomeBean.uploadInvoice_BTF}"
+                                      id="cl1"/>
+                      
+                      <af:commandLink text="UploadStatus_BTF"
+                                      action="#{backingBeanScope.HomeBean.uploadStatus_BTF}"
+                                      id="cl2"/>
+                      
+                      <af:commandLink text="AuditHistory_BTF"
+                                      action="#{backingBeanScope.HomeBean.auditHistory_BTF}"
+                                      id="cl3"/>
+                    </af:panelGroupLayout>
+                  </f:facet>
+                  <f:facet name="second">
+                    <af:decorativeBox theme="medium" id="db1">
+                      <f:facet name="center">
+                        <af:region value="#{bindings.dynamicRegion1.regionModel}"
+                                   id="r1" partialTriggers="::cl1 ::cl2 ::cl3"/>
+                      </f:facet>
+                    </af:decorativeBox>
+                  </f:facet>
+                </af:panelSplitter>
+              </f:facet>
+            </af:decorativeBox>
+          </f:facet>
+        </af:panelStretchLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Clr_Wksht_Rule_Param_Detail"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="synonym"
+  DBObjectName="CLR_WKSHT_RULE_PARAM_DETAIL"
+  AliasName="Clr_Wksht_Rule_Param_Detail"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="ParamId"
+    IsNotNull="true"
+    Precision="10"
+    Scale="0"
+    ColumnName="PARAM_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Dept"
+    IsNotNull="true"
+    Precision="4"
+    Scale="0"
+    ColumnName="DEPT"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="ParamValue"
+    IsNotNull="true"
+    Precision="50"
+    ColumnName="PARAM_VALUE"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreateId"
+    IsUpdateable="while_insert"
+    Precision="25"
+    ColumnName="CREATE_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    HistoryColumn="UserHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="25"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="CreateDatetime"
+    IsUpdateable="while_insert"
+    ColumnName="CREATE_DATETIME"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    HistoryColumn="DateHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastUpdateId"
+    Precision="25"
+    ColumnName="LAST_UPDATE_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    HistoryColumn="UserHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="25"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="LastUpdateDatetime"
+    ColumnName="LAST_UPDATE_DATETIME"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Date"
+    ColumnType="DATE"
+    TableName="CLR_WKSHT_RULE_PARAM_DETAIL"
+    HistoryColumn="DateHistory">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <AccessorAttribute
+    Name="Clr_Wksht_Rule_Param_Head"
+    Association="com.nordstrom.rpm.EO.FkClrWkshtParamDtlParamidAssoc"
+    AssociationEnd="com.nordstrom.rpm.EO.FkClrWkshtParamDtlParamidAssoc.Clr_Wksht_Rule_Param_Head"
+    AssociationOtherEnd="com.nordstrom.rpm.EO.FkClrWkshtParamDtlParamidAssoc.Clr_Wksht_Rule_Param_Detail"
+    Type="oracle.jbo.server.EntityImpl"
+    IsUpdateable="true"/>
+  <Key
+    Name="PkClrWkshtRuleParamDetail"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="PK_CLR_WKSHT_RULE_PARAM_DETAIL"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.ParamId"/>
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.Dept"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0044153">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0044153"/>
+      <Attr Name="_checkCondition" Value='"PARAM_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.ParamId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0044154">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0044154"/>
+      <Attr Name="_checkCondition" Value='"DEPT" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.Dept"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0044155">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0044155"/>
+      <Attr Name="_checkCondition" Value='"PARAM_VALUE" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item
+        Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.ParamValue"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="FkClrWkshtParamDtlParamid">
+    <DesignTime>
+      <Attr Name="_referencedKey" Value="PK_CLR_WKSHT_RULE_PARAM_HEAD"/>
+      <Attr Name="_isForeign" Value="true"/>
+      <Attr Name="_DBObjectName" Value="FK_CLR_WKSHT_PARAM_DTL_PARAMID"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_Rule_Param_Detail.ParamId"/>
+    </AttrArray>
+  </Key>
+</Entity>

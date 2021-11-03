@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="LoginPageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="Clr_Wksht_User_RoleView1Iterator"
+              Binds="Clr_Wksht_User_RoleView1"
+              DataControl="RPM_AppModuleDataControl"/>
+    <iterator id="Clr_Wksht_Role_Named_PermissionIterator"
+              Binds="Clr_Wksht_Role_Named_PermissionView1"
+              DataControl="RPM_AppModuleDataControl"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

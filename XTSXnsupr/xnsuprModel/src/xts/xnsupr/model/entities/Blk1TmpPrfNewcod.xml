@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk1TmpPrfNewcod"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="TMP_PRF_NEWCOD"
+  AliasName="Blk1TmpPrfNewcod"
+  BindingStyle="OracleName"
+  RowClass="xts.xnsupr.model.entities.Blk1TmpPrfNewcodImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="MppfcRunnum"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    Precision="9"
+    ColumnName="MPPFC_RUNNUM"
+    ColumnType="NUMBER"
+    IsNotNull="true"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="MppfcFulnam"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="100"
+    ColumnName="MPPFC_FULNAM"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcFulnamLocal"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="240"
+    ColumnName="MPPFC_FULNAM_LOCAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="240"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcStscod"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="2"
+    ColumnName="MPPFC_STSCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcSup"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_SUP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcShp"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_SHP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcMan"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_MAN"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcMat"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_MAT"
+    ColumnType="VARCHAR2"
+    Expression="nvl(MPPFC_MAT, 'N')">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcCon"
+    TableName="TMP_PRF_NEWCOD"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_CON"
+    ColumnType="VARCHAR2"
+    Expression="nvl(MPPFC_CON, 'N')">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcConsubrol"
+    TableName="TMP_PRF_NEWCOD"
+    IsUpdateable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="200"
+    ColumnName="MPPFC_CONSUBROL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="200"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcGrp"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_GRP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcSbmby"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="8"
+    ColumnName="MPPFC_SBMBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcSbmdat"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="MPPFC_SBMDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="MppfcApvby"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="8"
+    ColumnName="MPPFC_APVBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcApvdat"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="MPPFC_APVDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="MppfcAdr1"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="35"
+    ColumnName="MPPFC_ADR1"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="35"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr2"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="35"
+    ColumnName="MPPFC_ADR2"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="35"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr3"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="35"
+    ColumnName="MPPFC_ADR3"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="35"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr4"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="35"
+    ColumnName="MPPFC_ADR4"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="35"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr1Local"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="105"
+    ColumnName="MPPFC_ADR1_LOCAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="105"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr2Local"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="105"
+    ColumnName="MPPFC_ADR2_LOCAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="105"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr3Local"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="105"
+    ColumnName="MPPFC_ADR3_LOCAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="105"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr4Local"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="105"
+    ColumnName="MPPFC_ADR4_LOCAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="105"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Updby"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="8"
+    ColumnName="UPDBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Upddat"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="UPDDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="MppfcRmk"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="2000"
+    ColumnName="MPPFC_RMK"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcAdr"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    Precision="2000"
+    ColumnName="MPPFC_ADR1 || ' ' || MPPFC_ADR2 || ' ' || MPPFC_ADR3 || ' ' || MPPFC_ADR4"
+    ColumnType="Char">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="2000"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcCtycod"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="3"
+    ColumnName="MPPFC_CTYCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcLoccod"
+    TableName="TMP_PRF_NEWCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="3"
+    ColumnName="MPPFC_LOCCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Rowid"
+    IsUpdateable="false"
+    ColumnName="ROWID"
+    SQLType="ROWID"
+    Type="oracle.jbo.domain.RowID"
+    ColumnType="ROWID"
+    TableName="TMP_PRF_NEWCOD"/>
+  <Attribute
+    Name="PbId"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_ID"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbFulnam"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_FULNAM"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbStscod"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_STSCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbSup"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_SUP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbShp"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_SHP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbMan"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_MAN"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbMat"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_MAT"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbCon"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_CON"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbGrp"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_GRP"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbSbmby"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_SBMBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbSbmdat"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_SBMDAT"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbCfmby"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_CFMBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbCfmdat"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_CFMDAT"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbUpdby"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_UPDBY"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbUpddat"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_UPDDAT"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbRmk"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_RMK"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="PbAdr"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="PB_ADR"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcId"
+    IsPersistent="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="9"
+    ColumnName="MPPFC_ID"
+    ColumnType="VARCHAR2"
+    Expression="MPPFC_IDPFX || LPAD(MPPFC_RUNNUM, 8, '0')">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="9"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcStscodDesc"
+    IsPersistent="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_STSCOD_DESC"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MppfcGrpDesc"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="30"
+    ColumnName="MPPFC_GRP_DESC"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Crtdat"
+    ColumnName="CRTDAT"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="TMP_PRF_NEWCOD"/>
+  <Attribute
+    Name="MppfcTyp"
+    IsNotNull="true"
+    Precision="1"
+    ColumnName="MPPFC_TYP"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TMP_PRF_NEWCOD">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="Blk1TmpPrfNewcodPk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="BLK1_TMP_PRF_NEWCOD_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.entities.Blk1TmpPrfNewcod.MppfcRunnum"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="TmpPrfNewcodMppfcRunnumCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_checkCondition" Value='"MPPFC_RUNNUM" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+      <Attr Name="_DBObjectName" Value="TMP_PRF_NEWCOD_MPPFC_RUNNUM_CH"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.entities.Blk1TmpPrfNewcod.MppfcRunnum"/>
+    </AttrArray>
+  </Key>
+</Entity>

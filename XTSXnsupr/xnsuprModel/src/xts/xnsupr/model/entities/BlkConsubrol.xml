@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BlkConsubrol"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="XTSDBA.TMP_TYPMST"
+  AliasName="BlkConsubrol"
+  BindingStyle="OracleName"
+  RowClass="xts.xnsupr.model.entities.BlkConsubrolImpl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+    <Attr Name="_superClass" Value="xts.common.model.framework.GenericEntityImpl"/>
+  </DesignTime>
+  <Attribute
+    Name="MptmColumn"
+    IsNotNull="true"
+    Precision="20"
+    ColumnName="MPTM_COLUMN"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="20"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmTypcod"
+    IsUnique="true"
+    IsNotNull="true"
+    Precision="5"
+    ColumnName="MPTM_TYPCOD"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmDes"
+    TableName="XTSDBA.TMP_TYPMST"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="50"
+    ColumnName="MPTM_DES"
+    ColumnType="VARCHAR2"
+    IsNotNull="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmClsby"
+    Precision="10"
+    ColumnName="MPTM_CLSBY"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmClsdat"
+    ColumnName="MPTM_CLSDAT"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="XTSDBA.TMP_TYPMST"/>
+  <Attribute
+    Name="Crtby"
+    Precision="10"
+    ColumnName="CRTBY"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Crtdat"
+    ColumnName="CRTDAT"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="XTSDBA.TMP_TYPMST"/>
+  <Attribute
+    Name="Updby"
+    Precision="10"
+    ColumnName="UPDBY"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Upddat"
+    ColumnName="UPDDAT"
+    SQLType="DATE"
+    Type="java.sql.Timestamp"
+    ColumnType="DATE"
+    TableName="XTSDBA.TMP_TYPMST"/>
+  <Attribute
+    Name="MptmVal1Des"
+    Precision="100"
+    ColumnName="MPTM_VAL1_DES"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal1"
+    TableName="XTSDBA.TMP_TYPMST"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="50"
+    ColumnName="MPTM_VAL1"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal2Des"
+    Precision="100"
+    ColumnName="MPTM_VAL2_DES"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal2"
+    Precision="50"
+    ColumnName="MPTM_VAL2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal3Des"
+    Precision="100"
+    ColumnName="MPTM_VAL3_DES"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal3"
+    Precision="50"
+    ColumnName="MPTM_VAL3"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal4Des"
+    Precision="100"
+    ColumnName="MPTM_VAL4_DES"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal4"
+    Precision="50"
+    ColumnName="MPTM_VAL4"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal5Des"
+    Precision="100"
+    ColumnName="MPTM_VAL5_DES"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmVal5"
+    Precision="50"
+    ColumnName="MPTM_VAL5"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="50"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmRmk"
+    Precision="500"
+    ColumnName="MPTM_RMK"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="XTSDBA.TMP_TYPMST">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="500"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MptmChkbox"
+    ColumnName="MPTM_CHKBOX"
+    SQLType="BIT"
+    Type="java.lang.String"
+    ColumnType="NUMBER"
+    TableName="XTSDBA.TMP_TYPMST"
+    IsPersistent="false"
+    IsQueriable="false"/>
+  <Key
+    Name="Mptm"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="MPTM"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.entities.BlkConsubrol.MptmColumn"/>
+      <Item Value="xts.xnsupr.model.entities.BlkConsubrol.MptmTypcod"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="MptmUk">
+    <DesignTime>
+      <Attr Name="_isUnique" Value="true"/>
+      <Attr Name="_DBObjectName" Value="MPTM_UK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.entities.BlkConsubrol.MptmTypcod"/>
+    </AttrArray>
+  </Key>
+</Entity>

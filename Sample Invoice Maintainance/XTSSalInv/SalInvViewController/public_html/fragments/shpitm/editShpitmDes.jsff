@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Descriptions (of selected Shipment Item)" id="pb1">
+        <f:facet name="toolbar"/>
+        <af:panelGroupLayout id="pgl5" layout="vertical">
+            <af:panelGroupLayout id="pgl1" layout="horizontal">
+                <af:panelGroupLayout id="pgl2" layout="vertical">
+                    <af:outputLabel value="#{bindings.CidsItmShpdes.hints.label}" id="ol1"/>
+                    <af:button text="Copy From..." id="itmShpdesCopy" disabled="#{bindings.CidsItmShpdes.hints.disabled}"
+                               actionListener="#{backingBeanScope.EditBean.openCopyRemarkPopup}" inlineStyle="width:100px;text-align:center;">
+                        <f:attribute name="loc" value="SHPITM"/>
+                        <f:attribute name="remarkFld" value="CidsItmShpdes"/>
+                    </af:button>
+                    <af:button text="Save As..." id="itmShpdesSave" disabled="#{bindings.CidsItmShpdes.hints.disabled}"
+                               actionListener="#{backingBeanScope.EditBean.openSaveRemark}" inlineStyle="width:100px;text-align:center;">
+                        <f:attribute name="loc" value="SHPITM"/>
+                        <f:attribute name="remarkFld" value="CidsItmShpdes"/>
+                    </af:button>
+                </af:panelGroupLayout>
+                <af:spacer width="20" height="10" id="s1"/>
+                <af:inputText value="#{bindings.CidsItmShpdes.inputValue}" label="#{bindings.CidsItmShpdes.hints.label}" simple="true"
+                              required="#{bindings.CidsItmShpdes.hints.mandatory}" columns="#{bindings.CidsItmShpdes.hints.displayWidth}"
+                              maximumLength="#{bindings.CidsItmShpdes.hints.precision}" shortDesc="#{bindings.CidsItmShpdes.hints.tooltip}" id="it1" rows="6"
+                              disabled="#{bindings.CidsItmShpdes.hints.disabled}">
+                    <f:validator binding="#{bindings.CidsItmShpdes.validator}"/>
+                </af:inputText>
+            </af:panelGroupLayout>
+            <af:panelGroupLayout id="pgl3" layout="horizontal">
+                <af:panelGroupLayout id="pgl4" layout="vertical">
+                    <af:outputLabel value="#{bindings.CidsItmDesdes.hints.label}" id="ol2"/>
+                    <af:button text="Copy From..." id="itmDesdesCopy" disabled="#{bindings.CidsItmDesdes.hints.disabled}"
+                               actionListener="#{backingBeanScope.EditBean.openCopyRemarkPopup}" inlineStyle="width:100px;text-align:center;">
+                        <f:attribute name="loc" value="SHPITM"/>
+                        <f:attribute name="remarkFld" value="CidsItmDesdes"/>
+                    </af:button>
+                    <af:button text="Save As..." id="itmDesdesSave" disabled="#{bindings.CidsItmDesdes.hints.disabled}"
+                               actionListener="#{backingBeanScope.EditBean.openSaveRemark}" inlineStyle="width:100px;text-align:center;">
+                        <f:attribute name="loc" value="SHPITM"/>
+                        <f:attribute name="remarkFld" value="CidsItmDesdes"/>
+                    </af:button>
+                </af:panelGroupLayout>
+                <af:spacer width="20" height="10" id="s2"/>
+                <af:inputText value="#{bindings.CidsItmDesdes.inputValue}" label="#{bindings.CidsItmDesdes.hints.label}" simple="true"
+                              required="#{bindings.CidsItmDesdes.hints.mandatory}" columns="#{bindings.CidsItmDesdes.hints.displayWidth}"
+                              maximumLength="#{bindings.CidsItmDesdes.hints.precision}" shortDesc="#{bindings.CidsItmDesdes.hints.tooltip}" id="it2" rows="6"
+                              disabled="#{bindings.CidsItmDesdes.hints.disabled}">
+                    <f:validator binding="#{bindings.CidsItmDesdes.validator}"/>
+                </af:inputText>
+            </af:panelGroupLayout>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p2" animate="false" binding="#{backingBeanScope.EditBean.saveRemarkPopup}">
+                <af:dialog id="d2" closeIconVisible="false" title="Add Remark" type="cancel">
+                    <f:facet name="buttonBar">
+                        <af:button text="OK" id="b3" actionListener="#{backingBeanScope.EditBean.saveRemark}"/>
+                    </f:facet>
+                    <af:panelFormLayout id="pfl3" labelAlignment="top">
+                        <af:inputText value="#{bindings.RemarkCode.inputValue}" label="#{bindings.RemarkCode.hints.label}"
+                                      required="#{bindings.RemarkCode.hints.mandatory}" columns="#{bindings.RemarkCode.hints.displayWidth}"
+                                      maximumLength="#{bindings.RemarkCode.hints.precision}" shortDesc="#{bindings.RemarkCode.hints.tooltip}" id="it11">
+                            <f:validator binding="#{bindings.RemarkCode.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.RemarkDesc.inputValue}" label="#{bindings.RemarkDesc.hints.label}"
+                                      required="#{bindings.RemarkDesc.hints.mandatory}" columns="#{bindings.RemarkDesc.hints.displayWidth}"
+                                      maximumLength="#{bindings.RemarkDesc.hints.precision}" shortDesc="#{bindings.RemarkDesc.hints.tooltip}" id="it12"
+                                      binding="#{backingBeanScope.EditBean.remarkDesc}" rows="5">
+                            <f:validator binding="#{bindings.RemarkDesc.validator}"/>
+                        </af:inputText>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+            <af:popup childCreation="deferred" autoCancel="disabled" id="p3" animate="false" binding="#{backingBeanScope.EditBean.copyRemarkPopup}"
+                      popupCanceledListener="#{backingBeanScope.EditBean.copyRemarkCloseListener}">
+                <af:dialog id="d3" closeIconVisible="false" title="Remark" type="cancel">
+                    <f:facet name="buttonBar">
+                        <af:button text="OK" id="b1" actionListener="#{backingBeanScope.EditBean.processCopy}">
+                            <f:attribute name="loc" value="SHPITM"/>
+                        </af:button>
+                        <af:button text="Reset" id="b4" actionListener="#{backingBeanScope.EditBean.resetCopyRemark}"/>
+                    </f:facet>
+                    <af:panelFormLayout id="pfl4" maxColumns="1">
+                        <f:facet name="footer"/>
+                        <af:inputListOfValues id="siNoId" popupTitle="Search and Select: #{bindings.SiNo.hints.label}" value="#{bindings.SiNo.inputValue}"
+                                              label="#{bindings.SiNo.hints.label}" model="#{bindings.SiNo.listOfValuesModel}"
+                                              required="#{bindings.SiNo.hints.mandatory}" columns="#{bindings.SiNo.hints.displayWidth}"
+                                              shortDesc="#{bindings.SiNo.hints.tooltip}">
+                            <f:validator binding="#{bindings.SiNo.validator}"/>
+                        </af:inputListOfValues>
+                        <af:inputText value="#{bindings.Shiseq.inputValue}" label="#{bindings.Shiseq.hints.label}" required="#{bindings.Shiseq.hints.mandatory}"
+                                      columns="#{bindings.Shiseq.hints.displayWidth}" maximumLength="#{bindings.Shiseq.hints.precision}"
+                                      shortDesc="#{bindings.Shiseq.hints.tooltip}" id="it13">
+                            <f:validator binding="#{bindings.Shiseq.validator}"/>
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.Shiseq.format}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.Itmseq.inputValue}" label="#{bindings.Itmseq.hints.label}" required="#{bindings.Itmseq.hints.mandatory}"
+                                      columns="#{bindings.Itmseq.hints.displayWidth}" maximumLength="#{bindings.Itmseq.hints.precision}"
+                                      shortDesc="#{bindings.Itmseq.hints.tooltip}" id="it14">
+                            <f:validator binding="#{bindings.Itmseq.validator}"/>
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.Itmseq.format}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.ItemNo.inputValue}" label="#{bindings.ItemNo.hints.label}" required="#{bindings.ItemNo.hints.mandatory}"
+                                      columns="#{bindings.ItemNo.hints.displayWidth}" maximumLength="#{bindings.ItemNo.hints.precision}"
+                                      shortDesc="#{bindings.ItemNo.hints.tooltip}" id="it15">
+                            <f:validator binding="#{bindings.ItemNo.validator}"/>
+                        </af:inputText>
+                        <af:inputText value="#{bindings.SoNo.inputValue}" label="#{bindings.SoNo.hints.label}" required="#{bindings.SoNo.hints.mandatory}"
+                                      columns="#{bindings.SoNo.hints.displayWidth}" maximumLength="#{bindings.SoNo.hints.precision}"
+                                      shortDesc="#{bindings.SoNo.hints.tooltip}" id="it16">
+                            <f:validator binding="#{bindings.SoNo.validator}"/>
+                        </af:inputText>
+                        <af:inputListOfValues id="mprmRmkcodId" popupTitle="Search and Select: #{bindings.MprmRmkcod.hints.label}"
+                                              value="#{bindings.MprmRmkcod.inputValue}" label="#{bindings.MprmRmkcod.hints.label}"
+                                              model="#{bindings.MprmRmkcod.listOfValuesModel}" required="#{bindings.MprmRmkcod.hints.mandatory}"
+                                              columns="#{bindings.MprmRmkcod.hints.displayWidth}" shortDesc="#{bindings.MprmRmkcod.hints.tooltip}">
+                            <f:validator binding="#{bindings.MprmRmkcod.validator}"/>
+                        </af:inputListOfValues>
+                    </af:panelFormLayout>
+                </af:dialog>
+            </af:popup>
+        </af:panelGroupLayout>
+    </af:panelBox>
+</ui:composition>

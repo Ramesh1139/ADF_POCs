@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="am.ReIM_ApplicationModule">
+      <AppModuleConfig name="ReIM_ApplicationModuleLocal" ApplicationName="am.ReIM_ApplicationModule" DeployPlatform="LOCAL" jbo.project="model.ReIM_Model">
+         <Security AppModuleJndiName="am.ReIM_ApplicationModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ReIMDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="ReIM_ApplicationModuleShared" ApplicationName="am.ReIM_ApplicationModule" DeployPlatform="LOCAL" jbo.project="model.ReIM_Model">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Security AppModuleJndiName="am.ReIM_ApplicationModule"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/ReIMDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

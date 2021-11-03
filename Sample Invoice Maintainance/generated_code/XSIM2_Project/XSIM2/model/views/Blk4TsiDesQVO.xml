@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk4TsiDesQVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"   
+RowClass="xts.xsim2.model.views.Blk4TsiDesQVORowImpl"
+  ComponentClass="xts.xsim2.model.views.Blk4TsiDesQVOImpl"
+  SelectList="Blk4TsiDesQ.SIDS_TYP, 
+       Blk4TsiDesQ.SIDS_DES, 
+       Blk4TsiDesQ.SIDS_DIVCOD, 
+       Blk4TsiDesQ.SIDS_SAMINVRUN, 
+       Blk4TsiDesQ.ROWID"
+  FromList="TSI_DES Blk4TsiDesQ"
+  Where="UPPER(SIDS_TYP) = &apos;QTY&apos;">
+
+  <EntityUsage
+    Name="Blk4TsiDesQ"
+    Entity="xts.xsim2.model.entities.Blk4TsiDesQ"/>
+  <ViewAttribute
+    Name="SidsTyp"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SidsTyp"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="SIDS_TYP"/>
+  <ViewAttribute
+    Name="SidsDes"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SidsDes"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="SIDS_DES"/>
+  <ViewAttribute
+    Name="SidsDivcod"
+    Type="java.lang.String"
+    PrecisionRule="true"
+    EntityAttrName="SidsDivcod"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="SIDS_DIVCOD"/>
+  <ViewAttribute
+    Name="SidsSaminvrun"
+    Type="java.math.BigDecimal"
+    PrecisionRule="true"
+    EntityAttrName="SidsSaminvrun"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="SIDS_SAMINVRUN"/>
+  <ViewAttribute
+    Name="Rowid"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="Rowid"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="ROWID"/>  <ViewAttribute
+    Name="Blk4Remark"
+    Type="java.lang.String"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    ColumnType="$none$"
+    Passivate="true"
+    PrecisionRule="true"
+    EntityAttrName="Blk4Remark"
+    EntityUsage="Blk4TsiDesQ"
+    AliasName="BLK4_REMARK"/>
+</ViewObject>

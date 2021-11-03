@@ -1,0 +1,2478 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:resource type="javascript">
+    function selectRowCheckBox(event) {
+        var nativeKeyPressEvent = event.getNativeEvent();
+        var key = nativeKeyPressEvent.keyCode;
+        var char = nativeKeyPressEvent.charCode;
+        var control = nativeKeyPressEvent.ctrlKey;
+        if (control &amp;&amp; key === 10) {            
+            var table = AdfPage.PAGE.findComponentByAbsoluteId('r1:0:pc1:t1');            
+            var rowKeySet = table.getSelectedRowKeys();
+            for (rowKey in rowKeySet) {
+                var selection = table.findComponent("sbc1", rowKey);
+                if (selection.getValue().toString() == 'true')
+                selection.setValue(false);
+                else 
+                selection.setValue(true);
+            }
+        }
+    }
+
+    function selectRowT2CheckBox(event) {
+        var nativeKeyPressEvent = event.getNativeEvent();
+        var key = nativeKeyPressEvent.keyCode;
+        var char = nativeKeyPressEvent.charCode;
+        var control = nativeKeyPressEvent.ctrlKey;
+        if (control &amp;&amp; key === 10) {            
+            var table = AdfPage.PAGE.findComponentByAbsoluteId('r1:0:pc2:t2');
+            var rowKeySet = table.getSelectedRowKeys();
+            for (rowKey in rowKeySet) {
+                var selection = table.findComponent("sbc2", rowKey);
+                if (selection.getValue().toString() == 'true')
+                selection.setValue(false);
+                else 
+                selection.setValue(true);
+            }
+        }
+    }
+    
+    function blockCharacters(event){            
+        var _keyCode = event.getKeyCode(); 
+        var _filterField = event.getCurrentTarget();       
+        if (!((_keyCode &lt; 58) || (_keyCode > 95 &amp;&amp; _keyCode &lt; 106))) { 
+            _filterField.setValue(null); 
+            event.cancel(); 
+        }
+        if(_keyCode == 16){
+            _filterField.setValue(null); 
+            event.cancel();
+        }
+    } 
+  </af:resource>
+  <af:group id="g1">
+    <af:panelGroupLayout id="pgl1" layout="scroll">
+      <af:spacer width="10" height="20" id="s17"/>
+      <af:breadCrumbs id="bc1">
+        <af:commandNavigationItem text="Clearance Worksheet" id="cni2"/>
+      </af:breadCrumbs>
+      <af:panelGroupLayout id="pgl12" layout="horizontal">
+        <af:messages id="m1" inline="true"/>
+      </af:panelGroupLayout>
+      <af:panelBox text="Select Criteria to filter worksheet records" id="pb1"
+                   showDisclosure="false"
+                   inlineStyle="width:1200.0px;height:56.0px;">
+        <f:facet name="toolbar"/>
+        <af:panelGridLayout id="pgl2">
+          <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr1">
+            <af:gridCell marginStart="5px" width="auto" id="gc1" marginEnd="5px"
+                         halign="end">
+              <af:outputLabel value="Division" id="ol1"/>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc2"
+                         marginEnd="5px">
+              <af:selectManyChoice label=" "
+                                   id="smc1" simple="true" autoSubmit="true"
+                                   selectAllVisible="false"
+                                   valueChangeListener="#{viewScope.ClearanceWorksheetMB.getDeptFrmDivisionVCL}">
+                <f:selectItems value="#{bindings.Division_View1.items}"
+                               id="si8"/>
+              </af:selectManyChoice>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc3" marginEnd="5px"
+                         halign="end">
+              <af:outputLabel value="Department" id="ol2" showRequired="true"/>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc4"
+                         marginEnd="5px">
+              <af:selectManyChoice label=" "
+                                   id="smc2" simple="true"
+                                   valueChangeListener="#{viewScope.ClearanceWorksheetMB.getDepartmentVCL}"
+                                   autoSubmit="true" required="true"
+                                   selectAllVisible="false"
+                                   partialTriggers="smc1"
+                                   binding="#{viewScope.ClearanceWorksheetMB.bind_Dept}"
+                                   requiredMessageDetail="Please select Department(s)">
+                <f:selectItems value="#{bindings.Department_View1.items}"
+                               id="si2"/>
+              </af:selectManyChoice>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc5" marginEnd="5px"
+                         halign="end">
+              <af:outputLabel value="Zone Group" id="ol3"/>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc6"
+                         marginEnd="5px">
+              <af:selectOneChoice label=" "
+                                  shortDesc="#{bindings.ZoneGroup_View1.hints.tooltip}"
+                                  id="soc1" simple="true"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.getZoneFromZoneGroupVCL}"
+                                  autoSubmit="true"
+                                  value="#{bindings.ZoneGroup_View1.inputValue}">
+                <f:selectItems value="#{bindings.ZoneGroup_View1.items}"
+                               id="si3"/>
+              </af:selectOneChoice>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc7" marginEnd="5px"
+                         halign="end">
+              <af:outputLabel value="Zone" id="ol4" showRequired="true"/>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" id="gc8"
+                         marginEnd="5px">
+              <af:selectOneChoice label=" "
+                                  shortDesc="#{bindings.Zone_View1.hints.tooltip}"
+                                  id="soc2" simple="true"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.getZoneVCL}"
+                                  autoSubmit="true" required="true"
+                                  value="#{bindings.Zone_View1.inputValue}"
+                                  requiredMessageDetail="Please enter Zone field">
+                <f:selectItems value="#{bindings.Zone_View1.items}" id="si4"/>
+              </af:selectOneChoice>
+            </af:gridCell>
+            <af:gridCell marginStart="5px" width="auto" marginEnd="5px" id="gc9"
+                         halign="end">
+              <af:commandButton text="Search" id="b1"
+                                actionListener="#{viewScope.ClearanceWorksheetMB.searchActionListener}"/>
+            </af:gridCell>
+          </af:gridRow>
+        </af:panelGridLayout>
+      </af:panelBox>
+      <af:spacer width="10" height="10" id="s1"/>
+      <af:panelGroupLayout id="pgl3">
+        <af:panelGroupLayout id="pgl4" layout="horizontal">
+          <af:panelGroupLayout id="pgl5" layout="horizontal"
+                               inlineStyle="width:550px;"
+                               partialTriggers="sdi1 sdi2"
+                               binding="#{viewScope.ClearanceWorksheetMB.bind_CandidateBox}"
+                               visible="false">
+            <af:panelBox text="Total if Taken" id="pb4" showDisclosure="false"
+                         inlineStyle="width:305.0px;height:56.0px;">
+              <f:facet name="toolbar">
+                <af:group id="g2">
+                  <af:image source="/Images/Information-icon.png" id="i2" shortDesc=" ">
+                    <af:showPopupBehavior triggerType="mouseOver"
+                                          align="afterStart" popupId="p2"/>
+                  </af:image>
+                  <af:popup id="p2">
+                    <af:noteWindow id="nw1">
+                      <af:outputLabel value="MDs already sent to RPM + all candidates in Saved Takes tab + currently selected Candidates in Candidates tab"
+                                      id="ol5"/>
+                    </af:noteWindow>
+                  </af:popup>
+                </af:group>
+              </f:facet>
+              <af:panelGridLayout id="pgl8">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr3">
+                  <af:gridCell marginStart="5px" width="auto" id="gc20"
+                               inlineStyle="width:auto;" marginEnd="0px">
+                    <af:outputLabel value="CC Count :" id="ol8"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc18"
+                               inlineStyle="width:auto;" marginEnd="0px">
+                    <af:outputText id="ot4"
+                                   value="#{viewScope.ClearanceWorksheetImpl.cccount_totalsiftaken}"
+                                   partialTriggers="pc1:b9 pc1:cb9 pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc2:cb4 pc2:ctb2 pc2:cb5 pc1:d3"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc17"
+                               inlineStyle="width:auto;" marginEnd="0px">
+                    <af:outputLabel value="PC  $ :" id="ol9"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc19"
+                               inlineStyle="width:auto;" marginEnd="0px">
+                    <af:outputText id="ot5"
+                                   value="#{viewScope.ClearanceWorksheetImpl.pcamount_totalsiftaken}"
+                                   partialTriggers="pc1:b9 pc1:cb9 pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc2:cb4 pc2:ctb2 pc2:cb5 pc1:d3">
+                      <af:convertNumber id="cn2" type="currency"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc21"
+                               inlineStyle="width:auto;" marginEnd="0px">
+                    <af:outputLabel value="PC U :" id="ol10"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" marginEnd="0px" width="auto"
+                               id="gc16" inlineStyle="width:auto;">
+                    <af:outputText id="ot6"
+                                   value="#{viewScope.ClearanceWorksheetImpl.pcU_totalsiftaken}"
+                                   partialTriggers="pc1:b9 pc1:cb9 pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc2:cb4 pc2:ctb2 pc2:cb5 pc1:d3">
+                      <af:convertNumber id="cn5" type="number"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+            <af:spacer width="10" height="10" id="s2"/>
+            <af:panelBox text="Current Selection" id="pb3"
+                         showDisclosure="false"
+                         inlineStyle="width:305.0px;height:56.0px;">
+              <f:facet name="toolbar">
+                <af:group id="g3">
+                  <af:image source="/Images/Information-icon.png" id="i3" shortDesc=" ">
+                    <af:showPopupBehavior triggerType="mouseOver"
+                                          align="afterStart" popupId="p5"/>
+                  </af:image>
+                  <af:popup id="p5">
+                    <af:noteWindow id="nw2">
+                      <af:outputLabel value="MD total of all selected takes in current tab"
+                                      id="ol6"/>
+                    </af:noteWindow>
+                  </af:popup>
+                </af:group>
+              </f:facet>
+              <af:panelGridLayout id="pgl7" inlineStyle="width:auto;">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr2">
+                  <af:gridCell marginStart="5px" width="auto" id="gc10"
+                               inlineStyle="width:auto;" valign="stretch"
+                               marginEnd="0px">
+                    <af:outputLabel value="CC Count :" id="ol17"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc12"
+                               marginEnd="0px">
+                    <af:outputText id="ot1"
+                                   value="#{viewScope.ClearanceWorksheetMB.totalRowsselectedcandidate}"
+                                   partialTriggers="pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc1:d3"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc11"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC $ :" id="ol18"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc13"
+                               marginEnd="0px">
+                    <af:outputText id="ot2"
+                                   value="#{viewScope.ClearanceWorksheetMB.summdamountcandidate}"
+                                   partialTriggers="pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc1:d3">
+                      <af:convertNumber id="cn1" type="currency"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc14"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC U :" id="ol7"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" marginEnd="0px" width="auto"
+                               id="gc15">
+                    <af:outputText id="ot3"
+                                   value="#{viewScope.ClearanceWorksheetMB.suminventorycandidate}"
+                                   partialTriggers="pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc1:d3">
+                      <af:convertNumber id="cn6" type="number"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+            <af:spacer width="10" height="10" id="s7"/>
+            <af:panelBox text="Bulk Update" id="pb2" showDisclosure="false"
+                         inlineStyle="width:565px; height:55px;">
+              <f:facet name="toolbar"/>
+              <af:panelGridLayout id="pgl11">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr6">
+                  <af:gridCell marginStart="5px" width="auto" id="gc36"
+                               marginEnd="5px">
+                    <af:inputDate label="Next Effective Date" id="id1"
+                                  value="#{viewScope.ClearanceWorksheetMB.nexteffectivedate}"
+                                  contentStyle="width:58.0px;" autoSubmit="true"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_nextEffectiveDate_canddiateTab_bulkUpdate}"
+                                  minValue="#{bindings.Vdate.attributeValue}"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="auto" id="gc34"
+                               marginEnd="5px">
+                    <af:inputText label="New Retail ($)" id="it2"
+                                  contentStyle="width:40.0px;"
+                                  value="#{viewScope.ClearanceWorksheetMB.racknewretail}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_newRetail_candidateTab_bulkUpdate}"
+                                  autoSubmit="true"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.newRetailCandidateTabBulkUpdateVCL}"
+                                  partialTriggers="it3"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="auto" id="gc35"
+                               marginEnd="15px">
+                    <af:inputText label="New MD %" id="it3"
+                                  contentStyle="width:40.0px;"
+                                  value="#{viewScope.ClearanceWorksheetMB.racknewpercentMD}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_newMdPercent_candidateTab_bulkUpdate}"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.newMdPercentCandidateTabBulkUpdateVCL}"
+                                  autoSubmit="true" partialTriggers="it2"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" marginEnd="5px" width="auto"
+                               id="gc37">
+                    <af:commandButton text="Update" id="cb1"
+                                      inlineStyle="width:auto;"
+                                      disabled="#{viewScope.ClearanceWorksheetMB.updateCount le 0}"
+                                      actionListener="#{viewScope.ClearanceWorksheetMB.candidateTabBulkUpdate}"
+                                      partialTriggers="pc1:t1:sbc1 pc1:t1:sbc3 pc1:d3"
+                                      partialSubmit="true"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+          </af:panelGroupLayout>
+          <af:panelGroupLayout id="pgl6" layout="horizontal" rendered="true"
+                               partialTriggers="sdi1 sdi2"
+                               binding="#{viewScope.ClearanceWorksheetMB.bind_ViewSavedBox}"
+                               visible="false">
+            <af:panelBox text="Total Taken" id="pb5" showDisclosure="false"
+                         inlineStyle="width:305.0px;height:56.0px;">
+              <f:facet name="toolbar">
+                <af:group id="g4">
+                  <af:image source="/Images/Information-icon.png" id="i4" shortDesc=" ">
+                    <af:showPopupBehavior popupId="p6" triggerType="mouseOver"
+                                          align="afterStart"/>
+                  </af:image>
+                  <af:popup id="p6">
+                    <af:noteWindow id="nw3">
+                      <af:outputLabel value="MDs already sent to RPM + all selected and not selected candidates in Saved Takes tab"
+                                      id="ol19"/>
+                    </af:noteWindow>
+                  </af:popup>
+                </af:group>
+              </f:facet>
+              <af:panelGridLayout id="pgl9">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr4">
+                  <af:gridCell marginStart="5px" width="auto" id="gc24"
+                               marginEnd="0px">
+                    <af:outputLabel value="CC Count :" id="ol11"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc26"
+                               marginEnd="0px">
+                    <af:outputText value="#{viewScope.ClearanceWorksheetImpl.cccount_totalsTaken}"
+                                   id="ot7"
+                                   partialTriggers="pc1:b9 pc2:cb4 pc2:ctb2 pc2:d4">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.CcCount.format}"/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc25"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC $ :" id="ol12"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc22"
+                               marginEnd="0px">
+                    <af:outputText value="#{viewScope.ClearanceWorksheetImpl.pcamount_totalsTaken}"
+                                   id="ot8"
+                                   partialTriggers="pc1:b9 pc2:cb4 pc2:ctb2 pc2:d4">
+                      <af:convertNumber id="cn3" type="currency"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc23"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC U :" id="ol13"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" marginEnd="0px" width="auto"
+                               id="gc27">
+                    <af:outputText id="ot9"
+                                   value="#{viewScope.ClearanceWorksheetImpl.pcunit__totalsTaken}"
+                                   partialTriggers="pc1:b9 pc2:cb4 pc2:ctb2 pc2:d4"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+            <af:spacer width="10" height="10" id="s3"/>
+            <af:panelBox text="Current Selection" id="pb6"
+                         showDisclosure="false"
+                         inlineStyle="width:305.0px;height:56.0px;">
+              <f:facet name="toolbar">
+                <af:group id="g5">
+                  <af:image source="/Images/Information-icon.png" id="i5" shortDesc=" ">
+                    <af:showPopupBehavior popupId="p7" triggerType="mouseOver"
+                                          align="afterStart"/>
+                  </af:image>
+                  <af:popup id="p7">
+                    <af:noteWindow id="nw4">
+                      <af:outputLabel value="MD total of all filtered or highlighted takes in Saved takes tab  "
+                                      id="ol20"/>
+                    </af:noteWindow>
+                  </af:popup>
+                </af:group>
+              </f:facet>
+              <af:panelGridLayout id="pgl10">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr5">
+                  <af:gridCell marginStart="5px" width="auto" id="gc31"
+                               marginEnd="0px">
+                    <af:outputLabel value="CC Count :" id="ol14"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc33"
+                               marginEnd="0px">
+                    <af:outputText id="ot10"
+                                   partialTriggers="pc2:ctb2 pc2:cb6 pc2:t2:sbc2 pc2:t2:sbc4 ctb3 cb16 pc2:d4"
+                                   value="#{viewScope.ClearanceWorksheetImpl.ccCount_currentSelection_savedTakes}">
+                      <af:convertNumber groupingUsed="false"
+                                        pattern="#{bindings.CcCount1.format}"/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc30"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC $ :" id="ol15"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" width="auto" id="gc28"
+                               marginEnd="0px">
+                    <af:outputText id="ot11"
+                                   partialTriggers="pc2:ctb2 pc2:cb6 ctb3 cb16 pc2:d4"
+                                   value="#{viewScope.ClearanceWorksheetImpl.pcAmount_currentSelection_savedTakes}">
+                      <af:convertNumber id="cn4" type="currency"
+                                        currencySymbol=""/>
+                    </af:outputText>
+                  </af:gridCell>
+                  <af:gridCell marginStart="15px" width="auto" id="gc32"
+                               marginEnd="0px">
+                    <af:outputLabel value="PC U :" id="ol16"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="7px" marginEnd="0px" width="auto"
+                               id="gc29">
+                    <af:outputText id="ot12"
+                                   value="#{viewScope.ClearanceWorksheetImpl.pcUnit_currentSelection_savedTakes}"
+                                   partialTriggers="pc2:ctb2 pc2:cb6 ctb3 cb16 pc2:d4"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+            <af:spacer width="10" height="10" id="s6"/>
+            <af:panelBox text="Bulk Update" id="pb7" showDisclosure="false"
+                         partialTriggers="b1"
+                         inlineStyle="width:565px; height:55px;">
+              <f:facet name="toolbar"/>
+              <af:panelGridLayout id="pgl13">
+                <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                            id="gr7">
+                  <af:gridCell marginStart="5px" width="auto" id="gc38"
+                               marginEnd="5px">
+                    <af:inputDate label="Next Effective Date" id="id2"
+                                  value="#{viewScope.ClearanceWorksheetMB.stnexteffectivedate}"
+                                  contentStyle="width:58.0px;"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_nextEffectiveDate_savedTakesTab_bulkUpdate}"
+                                  minValue="#{bindings.Vdate.attributeValue}"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="auto" id="gc39"
+                               marginEnd="5px">
+                    <af:inputText label="New Retail ($)" id="it85"
+                                  contentStyle="width:40.0px;"
+                                  value="#{viewScope.ClearanceWorksheetMB.stracknewretail}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_newRetail_savedTakesTab_bulkUpdate}"
+                                  autoSubmit="true"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.newRetailSavedTakesTabBulkUpdateVCL}"
+                                  partialTriggers="it86"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="auto" id="gc40"
+                               marginEnd="15px">
+                    <af:inputText label="New MD %" id="it86"
+                                  contentStyle="width:40.0px;"
+                                  value="#{viewScope.ClearanceWorksheetMB.stracknewpercentMD}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_newMdPercent_savedTakesTab_bulkUpdate}"
+                                  autoSubmit="true"
+                                  valueChangeListener="#{viewScope.ClearanceWorksheetMB.newMdPercentSavedTakesTabBulkUpdateVCL}"
+                                  partialTriggers="it85"/>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" marginEnd="5px" width="auto"
+                               id="gc41">
+                    <af:commandButton text="Update" id="cb2"
+                                      inlineStyle="width:auto;"
+                                      disabled="#{viewScope.ClearanceWorksheetMB.updateCount1 le 0}"
+                                      actionListener="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTabBulkUpdate}"
+                                      partialTriggers="pc2:t2:sbc2 pc2:t2:sbc4 pc2:d4 pc2:d1"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:panelBox>
+          </af:panelGroupLayout>
+          <af:spacer width="10" height="10" id="s4"/>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+      <af:spacer width="10" height="10" id="s5"/>
+      <af:panelTabbed id="pt1" styleClass="AFStretchWidth"
+                      binding="#{viewScope.ClearanceWorksheetMB.panelTab}"
+                      visible="false" partialTriggers="b1"
+                      dimensionsFrom="disclosedChild"
+                      inlineStyle="width:1200.0px;">
+        <af:showDetailItem text="Candidates" id="sdi1" partialTriggers="sdi2"
+                           binding="#{viewScope.ClearanceWorksheetMB.candidateTab}"
+                           immediate="true"
+                           disclosureListener="#{viewScope.ClearanceWorksheetMB.candidatesTabDisclosureListener}">
+          <af:panelCollection id="pc1" styleClass="AFStretchWidth"
+                              featuresOff="wrap formatMenu wrapMenuItem showAsTopMenuItem statusBar">
+            <f:facet name="afterToolbar">
+              <af:toolbar id="t6">
+                <af:commandButton text="Export" id="b8">
+                  <af:setPropertyListener from="true"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                  <af:exportCollectionActionListener exportedId="t1"
+                                                     type="excelHTML"
+                                                     filename="CandidatesTabData.xls"
+                                                     title="CandidatesTabData.xls"/>
+                  <af:setPropertyListener from="false"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                </af:commandButton>
+                <af:spacer width="3" height="3" id="s9"/>
+                <af:commandButton text="Take" id="b9"                                                                    
+                                  partialTriggers="b10 t1:sbc1 t1:sbc3 ::cb11 d3"
+                                  disabled="#{viewScope.ClearanceWorksheetMB.updateCount le 0}"><!--disabled="#{viewScope.ClearanceWorksheetMB.updateCount le 0}"-->
+                  <af:showPopupBehavior popupId="p8" triggerType="action"/>
+                </af:commandButton>                
+                <af:popup id="p8"
+                          popupFetchListener="#{viewScope.ClearanceWorksheetMB.validationBeforeSendToRPM}"
+                          contentDelivery="lazyUncached"
+                          binding="#{viewScope.ClearanceWorksheetMB.bind_popUp_Take}">
+                  <af:dialog id="d3" type="yesNo" title=" "
+                             affirmativeTextAndAccessKey="Yes"
+                             cancelTextAndAccessKey="No" modal="true"
+                             dialogListener="#{viewScope.ClearanceWorksheetMB.takeMDCandidatesDialogListener}"
+                             binding="#{viewScope.ClearanceWorksheetMB.bind_dialog_Take}">
+                    <af:panelGroupLayout id="pgl20" layout="vertical">                                                            
+                      <af:outputText id="ot18"
+                                     value="#{viewScope.ClearanceWorksheetMB.finalMessageOne}"/>
+                      <af:spacer width="10" height="5" id="s23"/>
+                      <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageTwo}"
+                                     id="ot19"/>
+                      <af:spacer width="10" height="5" id="s25"/>
+                      <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageThree}"
+                                     id="ot20"/>
+                      <af:spacer width="10" height="5" id="s28"/>
+                      <af:outputText value="The changes made on candidates are unsaved." id="ot23"
+                                     inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:spacer width="10" height="10" id="s31"/>
+                      <af:outputText value="Save your changes first by clicking on Save button." id="ot27"
+                                     inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:spacer width="10" height="10" id="s32"/>
+                      <af:outputText value="Then you can 'Take' the candidates." id="ot31"
+                                     inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:outputText value="You cannot 'Take' if there are any errors !!" id="ot22"
+                                     inlineStyle="color:rgb(252,0,0); font-weight:bold;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.restrictTakeAndSendToRPM}"/>
+                        <af:spacer width="10" height="5" id="s22"/>                      
+                     <af:outputText value="Are you sure you want to continue?" id="ot17" 
+                        visible="#{viewScope.ClearanceWorksheetImpl.allowTake}"/> 
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+                <af:spacer width="3" height="3" id="s10"/>
+                <af:commandButton text="Save" id="cb9"
+                                  partialTriggers="t1"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.saveChangesCandidateTab}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_SaveCandidates}">
+                  <!--<af:showPopupBehavior popupId="p8" triggerType="action"/>-->
+                </af:commandButton>
+                <af:spacer width="3" height="3" id="s8"/>
+                <af:commandButton text="Clear" id="b10"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.clearChangesCandidateTab}"
+                                  immediate="true" partialSubmit="true"
+                                  partialTriggers="t1"/>
+                <af:spacer width="10" height="10" id="s20"/>
+                <af:selectOneChoice value="#{bindings.CandidteTab_TableRangeSizeView1.inputValue}"
+                                    label="Page Size"
+                                    required="#{bindings.CandidteTab_TableRangeSizeView1.hints.mandatory}"
+                                    shortDesc="#{bindings.CandidteTab_TableRangeSizeView1.hints.tooltip}"
+                                    id="soc5" autoSubmit="true"
+                                    binding="#{viewScope.ClearanceWorksheetMB.bind_candtabRangesize}"
+                                    valueChangeListener="#{viewScope.ClearanceWorksheetMB.candTabrangesizeVCL}">
+                  <f:selectItems value="#{bindings.CandidteTab_TableRangeSizeView1.items}"
+                                 id="si7"/>
+                </af:selectOneChoice>
+                <!--<af:commandToolbarButton text="Change"
+                                         id="ctb5">
+                  <af:setPropertyListener to="#{bindings.Clr_Wksht_Rule_Item_View1Iterator.rangeSize}"
+                                          from="#{bindings.CandidateTab_PageSizeValue.inputValue}" type="action"/>
+                </af:commandToolbarButton>-->
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="secondaryToolbar">
+              <af:toolbar id="t4">
+                <af:popup id="p4">
+                  <af:dialog id="d2" title=" ">
+                    <af:panelGroupLayout id="pgl14">
+                      <af:inputText label="Name" id="it91"
+                                    value="#{viewScope.ClearanceWorksheetMB.taoname}"
+                                    autoSubmit="true"/>
+                      <af:commandButton text="submit" id="cb14"
+                                        actionListener="#{viewScope.ClearanceWorksheetMB.saveViewInCandidateTab}"/>
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+                <af:spacer width="250" height="10" id="s12"/>
+                <af:selectOneChoice label="Saved List"
+                                    valueChangeListener="#{viewScope.ClearanceWorksheetMB.chooseViewInCandidateTabVCL}"
+                                    id="soc3" autoSubmit="true"
+                                    partialTriggers="::b1"
+                                    binding="#{viewScope.ClearanceWorksheetMB.bind_savedlistCandidate}"
+                                    unselectedLabel="Default View">
+                  <f:selectItems value="#{viewScope.ClearanceWorksheetMB.savedList}"
+                                 id="si21"/>
+                </af:selectOneChoice>
+                <af:spacer width="50" height="10" id="s16"/>
+                <af:commandToolbarButton text="Save View" id="ctb1">
+                  <af:showPopupBehavior popupId="p4" triggerType="action"/>
+                </af:commandToolbarButton>
+              </af:toolbar>
+            </f:facet>
+            <af:table value="#{bindings.Clr_Wksht_Rule_Item_View1.collectionModel}"
+                      var="row" summary="Candidates tab"
+                      rows="#{bindings.Clr_Wksht_Rule_Item_View1.rangeSize}"
+                      emptyText="#{bindings.Clr_Wksht_Rule_Item_View1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      rowBandingInterval="0"
+                      filterModel="#{bindings.Clr_Wksht_Rule_Item_View1Query.queryDescriptor}"
+                      filterVisible="true" varStatus="vs" id="t1"
+                      binding="#{viewScope.ClearanceWorksheetMB.bt1}"
+                      autoHeightRows="0" columnSelection="multiple"
+                      fetchSize="#{viewScope.ClearanceWorksheetImpl.pageSizeCandidatesTab}"
+                      scrollPolicy="scroll" partialTriggers="::soc5 "
+                      selectionListener="#{bindings.Clr_Wksht_Rule_Item_View1.collectionModel.makeCurrent}"
+                      rowSelection="multiple"
+                      queryListener="#{viewScope.ClearanceWorksheetMB.candidateTabFilterQuery}">
+              <af:column headerText="Mark" id="c81" displayIndex="0" width="25"
+                         visible="#{pageFlowScope.hideSomeColumns ne true}"
+                         rowHeader="true">
+                <af:selectBooleanCheckbox value="#{row.bindings.Mark.inputValue}"
+                                          label="#{row.bindings.Mark.label}"
+                                          shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Mark.tooltip}"
+                                          id="sbc1"
+                                          valueChangeListener="#{viewScope.ClearanceWorksheetMB.candidateTabRowCheckBoxVCL}"
+                                          autoSubmit="true"
+                                          binding="#{viewScope.ClearanceWorksheetMB.bind_rowCheckbox_candidateTab}"
+                                          partialTriggers="::cb9 :::cb10">
+                  <af:setPropertyListener from="#{row.bindings.SeqNo.inputValue}"
+                                          to="#{viewScope.ClearanceWorksheetMB.ftseqid}"
+                                          type="valueChange"/>
+                  <af:setPropertyListener from="#{row.bindings.MkdnAmount.inputValue}"
+                                          type="valueChange"
+                                          to="#{viewScope.ClearanceWorksheetMB.mdamountcandidate}"/>
+                  <af:setPropertyListener from="#{row.bindings.TotalQty.inputValue}"
+                                          type="valueChange"
+                                          to="#{viewScope.ClearanceWorksheetMB.inventory}"/>
+                </af:selectBooleanCheckbox>
+                <f:facet name="header">
+                  <af:selectBooleanCheckbox label="Label 1" id="sbc3"
+                                            simple="true" autoSubmit="true"
+                                            value="#{viewScope.ClearanceWorksheetMB.ftheaderBstatus}"
+                                            valueChangeListener="#{viewScope.ClearanceWorksheetMB.candidateTabHeaderCheckBoxVCL}"
+                                            partialTriggers=":::sdi1 sbc1 :::cb11 ::b10"
+                                            binding="#{viewScope.ClearanceWorksheetMB.bind_headerCheckBox_candidateTab}"/>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.name}"
+                         sortable="true" headerText="Seq No" id="c28"
+                         visible="false" displayIndex="1" filterable="true"
+                         width="30" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SeqNo.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.tooltip}"
+                              id="it4" readOnly="true">
+                  <f:validator binding="#{row.bindings.SeqNo.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SeqNo.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="Division" sortable="true"
+                         headerText="Division" id="c5" displayIndex="2"
+                         filterable="true" width="40"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Division.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.tooltip}"
+                              id="it31" readOnly="true">
+                  <f:validator binding="#{row.bindings.Division.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Division.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.Division}"
+                                       label="#{bindings.Division_View1.label}"
+                                       id="smc3" simple="true"
+                                       autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_Division_filter}">
+                    <f:selectItems value="#{bindings.Filter_Division_View1.items}"
+                                   id="si1"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Dept" sortable="true" headerText="Dept"
+                         id="c11" displayIndex="3" filterable="true" width="180"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Dept.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.tooltip}"
+                              id="it33" readOnly="true">
+                  <f:validator binding="#{row.bindings.Dept.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Dept.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="Department Filter" id="smc13"
+                                       simple="true"
+                                       value="#{vs.filterCriteria.Dept}"
+                                       autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_Dept_filter}">
+                    <f:selectItems value="#{bindings.Filter_Department_View1.items}"
+                                   id="si18"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Class1" sortable="true"
+                         headerText="Class" id="c26" displayIndex="4"
+                         filterable="true" width="40"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Class1.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.tooltip}"
+                              id="it11" readOnly="true">
+                  <f:validator binding="#{row.bindings.Class1.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Class1.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="Class Filter" id="smc4"
+                                       value="#{vs.filterCriteria.Class1}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_Class_filter}">
+                    <f:selectItems value="#{bindings.Class_Filter_LOV_View11.items}"
+                                   id="si9"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Subclass" sortable="true"
+                         headerText="Subclass" id="c22" displayIndex="5"
+                         filterable="true" width="40"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Subclass.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.tooltip}"
+                              id="it29" readOnly="true">
+                  <f:validator binding="#{row.bindings.Subclass.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Subclass.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.Subclass}"
+                                       label="Subclass Filter" id="smc5"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SubClass_filter}">
+                    <f:selectItems value="#{bindings.Subclass_Filter_LOV_View1.items}"
+                                   id="si10"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="SuppName" sortable="true"
+                         headerText="Supplier Name" id="c16" displayIndex="6"
+                         filterable="true" width="150"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppName.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppName.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppName.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppName.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppName.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppName.tooltip}"
+                              id="it24" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppName.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.SupplierName_Filter_LOV_View1.label}"
+                                       id="smc11" binding="#{viewScope.ClearanceWorksheetMB.bind_SupplierName_filter}"
+                                       value="#{vs.filterCriteria.SuppName}"
+                                       simple="true" autoSubmit="true">
+                    <f:selectItems value="#{bindings.SupplierName_Filter_LOV_View1.items}"
+                                   id="si16"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="SuppLabel" sortable="true"
+                         headerText="Label" id="c30" displayIndex="7"
+                         filterable="true" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppLabel.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppLabel.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppLabel.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppLabel.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppLabel.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppLabel.tooltip}"
+                              id="it25" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppLabel.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.SuppLabel}"
+                                       label="Label Filter" id="smc6"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_Label_filter}">
+                    <f:selectItems value="#{bindings.SuppLabel_Filter_LOV_View1.items}"
+                                   id="si11"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Vpn" sortable="true" headerText="VPN"
+                         id="c21" displayIndex="8" filterable="true" width="50">
+                <af:inputText value="#{row.bindings.Vpn.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Vpn.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Vpn.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Vpn.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Vpn.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Vpn.tooltip}"
+                              id="it37" readOnly="true">
+                  <f:validator binding="#{row.bindings.Vpn.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.VPN_Filter_LOV_View1.label}"
+                                       id="smc15"
+                                       value="#{vs.filterCriteria.Vpn}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_VPN_filter}">
+                    <f:selectItems value="#{bindings.VPN_Filter_LOV_View1.items}"
+                                   id="si20"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Item" sortable="true" headerText="Item"
+                         id="c34" displayIndex="9" filterable="true" width="70"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Item.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Item.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Item.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Item.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Item.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Item.tooltip}"
+                              id="it7" readOnly="true">
+                  <f:validator binding="#{row.bindings.Item.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.Item_Filter_LOV_View1.label}"
+                                       id="smc7" simple="true"
+                                       value="#{vs.filterCriteria.Item}"
+                                       autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_Item_filter}">
+                    <f:selectItems value="#{bindings.Item_Filter_LOV_View1.items}"
+                                   id="si12"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.name}"
+                         sortable="true" headerText="Item Description" id="c18"
+                         displayIndex="10" filterable="true" width="200"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.ItemDesc.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemDesc.tooltip}"
+                              id="it28" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemDesc.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="SuppColor" sortable="true"
+                         headerText="Supplier Color" id="c9" displayIndex="11"
+                         filterable="true" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppColor.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppColor.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppColor.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppColor.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppColor.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuppColor.tooltip}"
+                              id="it12" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppColor.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.SuppColor_Filter_LOV_View1.label}"
+                                       id="smc20"
+                                       value="#{vs.filterCriteria.SuppColor}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SupplierColor_filter}">
+                    <f:selectItems value="#{bindings.SuppColor_Filter_LOV_View1.items}"
+                                   id="si26"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.name}"
+                         sortable="true" headerText="6 MO ST %" id="c14"
+                         displayIndex="12" filterable="true" width="70">
+                <af:inputText value="#{row.bindings.SixMnSellThruPct.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SixMnSellThruPct.tooltip}"
+                              id="it16" readOnly="true">
+                  <f:validator binding="#{row.bindings.SixMnSellThruPct.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.name}"
+                         sortable="true" headerText="Store On Order" id="c38"
+                         displayIndex="13" filterable="true" width="100">
+                <af:inputText value="#{row.bindings.StoreOnOrderQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.tooltip}"
+                              id="it18" readOnly="true">
+                  <f:validator binding="#{row.bindings.StoreOnOrderQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreOnOrderQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.name}"
+                         sortable="true" headerText="Store SOH" id="c19"
+                         displayIndex="14" filterable="true">
+                <af:inputText value="#{row.bindings.StoreQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.tooltip}"
+                              id="it5" readOnly="true">
+                  <f:validator binding="#{row.bindings.StoreQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.StoreQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.name}"
+                         sortable="true" headerText="Inventory" id="c4"
+                         displayIndex="15" filterable="true" width="60">
+                <af:inputText value="#{row.bindings.TotalQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.tooltip}"
+                              id="it36" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_inventory}">
+                  <f:validator binding="#{row.bindings.TotalQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.TotalQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.name}"
+                         sortable="true" headerText="ATS Weeks" id="c6"
+                         displayIndex="16" filterable="true">
+                <af:inputText value="#{row.bindings.AtsWeek.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.tooltip}"
+                              id="it6" readOnly="true">
+                  <f:validator binding="#{row.bindings.AtsWeek.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.AtsWeek.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.name}"
+                         sortable="true" headerText="Compare At Value" id="c7"
+                         displayIndex="17" filterable="true">
+                <af:inputText value="#{row.bindings.OriginalRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.OriginalRetail.tooltip}"
+                              id="it30" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_compareAtRtl}">
+                  <f:validator binding="#{row.bindings.OriginalRetail.validator}"/>
+                  <af:convertNumber id="cn7" type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.name}"
+                         sortable="true" headerText="Base Retail" id="c35"
+                         displayIndex="18" filterable="true">
+                <af:inputText value="#{row.bindings.BaseRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.tooltip}"
+                              id="it34" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_baseRetail}">
+                  <f:validator binding="#{row.bindings.BaseRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.BaseRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.name}"
+                         sortable="true" headerText="Current Retail" id="c1"
+                         displayIndex="19" filterable="true">
+                <af:inputText value="#{row.bindings.CurrentRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.tooltip}"
+                              id="it22" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_currentRetail}">
+                  <f:validator binding="#{row.bindings.CurrentRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.CurrentRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.name}"
+                         sortable="true" headerText="% Off Compare At"
+                         id="c31" displayIndex="20" filterable="true">
+                <af:inputText value="#{row.bindings.PctOffOrigRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.tooltip}"
+                              id="it26" readOnly="true">
+                  <f:validator binding="#{row.bindings.PctOffOrigRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.PctOffOrigRetail.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.name}"
+                         sortable="true" headerText="Sugg Retail" id="c13"
+                         displayIndex="21" filterable="true">
+                <af:inputText value="#{row.bindings.SuggestedRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.tooltip}"
+                              id="it20" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuggestedRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.name}"
+                         sortable="true" headerText="Sugg % Off" id="c10"
+                         displayIndex="22" filterable="true">
+                <af:inputText value="#{row.bindings.SuggestedPctOffOrigRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.tooltip}"
+                              id="it1" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuggestedPctOffOrigRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.SuggestedPctOffOrigRetail.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewRetail.name}"
+                         sortable="true" headerText="New Retail" id="c2"
+                         displayIndex="23" filterable="true"
+                         partialTriggers="it17 :::cb1">
+                <af:inputText value="#{row.bindings.NewRetail.inputValue}"
+                              label=" " id="it19" autoSubmit="true"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewRetail.displayWidth}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewRetail.tooltip}"                              
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newRetailCandidateTabVCL}"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_newRetail}"
+                              partialTriggers="it17"
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct}">
+                  <f:validator binding="#{row.bindings.NewRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewRetail.format}"
+                                    type="currency" minFractionDigits="2"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ChangePercent.name}"
+                         sortable="true" headerText="New MD %" id="c39"
+                         displayIndex="24" filterable="true"
+                         partialTriggers="it19 :::cb1">
+                <af:inputText value="#{row.bindings.ChangePercent.inputValue}"
+                              label=" " id="it17" autoSubmit="true"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ChangePercent.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ChangePercent.displayWidth}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ChangePercent.tooltip}"                              
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_mdPercent}"
+                              partialTriggers="it19" clientComponent="true"
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newMdPercentCandidateTabVCL}"                              
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct}">
+                  <f:validator binding="#{row.bindings.ChangePercent.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ChangePercent.format}"/>
+                  <af:clientListener method="blockCharacters"
+                                     type="keyDown"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="EffectiveDate"
+                         sortable="true" headerText="Effective Date" id="c36"
+                         displayIndex="25" filterable="true">
+                <af:inputDate value="#{row.bindings.EffectiveDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.EffectiveDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.EffectiveDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.EffectiveDate.tooltip}"
+                              id="id3" readOnly="true">
+                  <f:validator binding="#{row.bindings.EffectiveDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.EffectiveDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.EffectiveDate}"
+                                id="id7" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_EffectiveDate_filter}">
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>                     
+                 </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="NewEffectiveDate"
+                         sortable="true" headerText="New Effective Date"
+                         id="c29" displayIndex="26" filterable="true">
+                <af:inputDate value="#{row.bindings.NewEffectiveDate.inputValue}"
+                              label=" " id="id9" autoSubmit="true"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewEffectiveDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewEffectiveDate.tooltip}"                              
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newEffectiveDateCandidateTabVCL}"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_nextEffectiveDate_CandidateTab}"
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct}">
+                  <f:validator binding="#{row.bindings.NewEffectiveDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NewEffectiveDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.NewEffectiveDate}"
+                                id="id8" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_NewEffectiveDate_filter}">                    
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                  </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.name}"
+                         sortable="true" headerText="MD Amount" id="c8"
+                         displayIndex="27" filterable="true"
+                         partialTriggers=":::cb1 it19 it17">
+                <af:inputText value="#{row.bindings.MkdnAmount.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.tooltip}"
+                              id="it15" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_mdAmount}"
+                              partialTriggers="it19 it17">
+                  <f:validator binding="#{row.bindings.MkdnAmount.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.MkdnAmount.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="LastReceiptDate"
+                         sortable="true" headerText="Last Receipt Date" id="c25"
+                         displayIndex="28" filterable="true">
+                <af:inputDate value="#{row.bindings.LastReceiptDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastReceiptDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastReceiptDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastReceiptDate.tooltip}"
+                              id="id4" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastReceiptDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastReceiptDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.LastReceiptDate}"
+                                id="id10" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_LastReceiptDate_filter}">
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                  </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.name}"
+                         sortable="true" headerText="WH SOH" id="c23"
+                         displayIndex="29" filterable="true">
+                <af:inputText value="#{row.bindings.WhQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.tooltip}"
+                              id="it35" readOnly="true">
+                  <f:validator binding="#{row.bindings.WhQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.name}"
+                         sortable="true" headerText="WH On Order" id="c32"
+                         displayIndex="30" filterable="true">
+                <af:inputText value="#{row.bindings.WhOnOrderQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.tooltip}"
+                              id="it14" readOnly="true">
+                  <f:validator binding="#{row.bindings.WhOnOrderQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.WhOnOrderQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="LastMkdnDate"
+                         sortable="true" headerText="Last MD Date" id="c27"
+                         displayIndex="31" filterable="true">
+                <af:inputDate value="#{row.bindings.LastMkdnDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnDate.tooltip}"
+                              id="id6" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastMkdnDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.LastMkdnDate}"
+                                id="id5" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_LastMkdnDate_filter}">
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                  </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.name}"
+                         sortable="true" headerText="Last MD Version" id="c12"
+                         displayIndex="32" filterable="true">
+                <af:inputText value="#{row.bindings.LastMkdnNbr.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.tooltip}"
+                              id="it32" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastMkdnNbr.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.LastMkdnNbr.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="NrfColor"
+                         sortable="true" headerText="NRF Color" id="c40"
+                         displayIndex="33" filterable="true">
+                <af:inputText value="#{row.bindings.NrfColor.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.tooltip}"
+                              id="it21" readOnly="true">
+                  <f:validator binding="#{row.bindings.NrfColor.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.NrfColor.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                     <af:selectManyChoice label="#{bindings.NRFColor_Filter_LOV1.label}"
+                                       id="smc21" binding="#{viewScope.ClearanceWorksheetMB.bind_NRFColor_Filter}"
+                                       value="#{vs.filterCriteria.NrfColor}"
+                                       simple="true" autoSubmit="true">
+                    <f:selectItems value="#{bindings.NRFColor_Filter_LOV1.items}"
+                                   id="si27"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.name}"
+                         sortable="true" headerText="RP" id="c24"
+                         displayIndex="34" filterable="true" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.RpInd.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RpInd.tooltip}"
+                              id="it13" readOnly="true">
+                  <f:validator binding="#{row.bindings.RpInd.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.name}"
+                         sortable="true" headerText="Rule" id="c33"
+                         displayIndex="35" filterable="true" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.RuleName.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.RuleName.tooltip}"
+                              id="it10" readOnly="true">
+                  <f:validator binding="#{row.bindings.RuleName.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.name}"
+                         sortable="true" headerText="Item List" id="c37"
+                         displayIndex="36" filterable="true">
+                <af:inputText value="#{row.bindings.ItemListConcat.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemListConcat.tooltip}"
+                              id="it9" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemListConcat.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.name}"
+                         sortable="true" headerText="Style" id="c15"
+                         displayIndex="37" filterable="true">
+                <af:inputText value="#{row.bindings.ItemParent.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.tooltip}"
+                              id="it27" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemParent.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.ItemParent.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.name}"
+                         sortable="true" headerText="Supplier Number" id="c3"
+                         displayIndex="38" filterable="true">
+                <af:inputText value="#{row.bindings.Supplier.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.tooltip}"
+                              id="it38" readOnly="true">
+                  <f:validator binding="#{row.bindings.Supplier.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Supplier.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.name}"
+                         sortable="true" headerText="Zone" id="c17"
+                         displayIndex="39" filterable="true">
+                <af:inputText value="#{row.bindings.Zone.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.tooltip}"
+                              id="it8" readOnly="true">
+                  <f:validator binding="#{row.bindings.Zone.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Zone.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.name}"
+                         sortable="true" headerText="Status" id="c20"
+                         displayIndex="40" filterable="true" visible="false">
+                <af:inputText value="#{row.bindings.Status.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View1.hints.Status.tooltip}"
+                              id="it23" readOnly="true">
+                  <f:validator binding="#{row.bindings.Status.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:clientListener method="selectRowCheckBox" type="keyPress"/>
+            </af:table>
+          </af:panelCollection>
+          <af:panelGridLayout id="pgl16">
+            <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                        id="gr8">
+              <af:gridCell marginStart="5px" width="auto" id="gc43">
+                <af:commandButton text="Export" id="cb7">
+                  <af:setPropertyListener from="true"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                  <af:exportCollectionActionListener exportedId="pc1:t1"
+                                                     type="excelHTML"
+                                                     filename="Candidate Tab Data.xls"
+                                                     title="Candidate Tab Data.xls"/>
+                  <af:setPropertyListener from="false"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                </af:commandButton>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="auto" id="gc44">
+                <af:commandButton text="Take" id="cb8"                                  
+                                  disabled="#{viewScope.ClearanceWorksheetMB.updateCount le 0}"
+                                  partialTriggers="pc1:b10 pc1:t1:sbc1 pc1:t1:sbc3 cb11 pc1:d3">
+                 <af:showPopupBehavior popupId="pc1:p8" triggerType="action"/>
+                </af:commandButton>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="auto" id="gc45">
+                <af:commandButton text="Save" id="cb10"
+                                  partialTriggers="pc1:t1"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.saveChangesCandidateTab}"
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_SaveCandidates2}"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="auto"
+                           id="gc42">
+                <af:commandButton text="Clear" id="cb11"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.clearChangesCandidateTab}"
+                                  immediate="true" partialSubmit="true"
+                                  partialTriggers="pc1:t1"/>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+        </af:showDetailItem>
+        <af:showDetailItem text="View Saved Takes" id="sdi2"
+                           partialTriggers="sdi1"
+                           binding="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTab}"
+                           immediate="true"
+                           disclosureListener="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTabDisclosureListener}">
+          <af:panelCollection id="pc2" styleClass="AFStretchWidth"
+                              featuresOff="wrap formatMenu wrapMenuItem showAsTopMenuItem statusBar">
+            <f:facet name="afterToolbar">
+              <af:toolbar id="t3">
+                <af:commandButton text="Export" id="cb3">
+                  <af:setPropertyListener from="true"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                  <af:exportCollectionActionListener exportedId="t2"
+                                                     type="excelHTML"
+                                                     filename="ViewSavedTabData.xls"
+                                                     title="ViewSavedTabData.xls"/>
+                  <af:setPropertyListener from="false"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                </af:commandButton>
+                <af:spacer width="3" height="3" id="s11"/>
+                <af:commandButton text="UnTake" id="cb4"                                  
+                                  disabled="#{viewScope.ClearanceWorksheetMB.updateCount1 le 0}"
+                                  partialTriggers="d4 cb6 t2:sbc2 t2:sbc4 ::cb16 d1">
+                  <af:showPopupBehavior popupId="p9"/><!--actionListener="#{viewScope.ClearanceWorksheetMB.untakeActionListener}"-->
+                </af:commandButton>
+                <af:popup id="p9"
+                          popupFetchListener="#{viewScope.ClearanceWorksheetMB.validationBeforeSendToRPM}"
+                          contentDelivery="lazyUncached"
+                          binding="#{viewScope.ClearanceWorksheetMB.bind_PopUp_Untake}">
+                  <af:dialog id="d4" affirmativeTextAndAccessKey="Yes"
+                             cancelTextAndAccessKey="No" title=" " type="yesNo"
+                             dialogListener="#{viewScope.ClearanceWorksheetMB.untakeMDCandidatesDialogListener}"                             
+                             binding="#{viewScope.ClearanceWorksheetMB.bind_Untake}">
+                    <af:panelGroupLayout id="pgl21" layout="vertical">
+                      <af:outputText value="Are you sure you want to continue?" id="ot25"
+                                    visible="#{viewScope.ClearanceWorksheetImpl.allowUnTake}"/>
+                      <af:spacer width="10" height="5" id="s29"/>                      
+                      <af:outputText id="ot14"
+                                     value="#{viewScope.ClearanceWorksheetMB.finalMessageOne}"/>
+                      <af:spacer width="10" height="5" id="s27"/>
+                      <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageTwo}"
+                                     id="ot15"/>
+                      <af:spacer width="10" height="5" id="s24"/>
+                      <af:outputText value="The unsaved changes will be lost on clicking 'Yes'." id="ot26"
+                                     inlineStyle="color:rgb(252,0,0); font-weight:bold;"
+                                     visible="#{viewScope.NewDtRtlMDPct}"/>
+                      <af:spacer width="10" height="10" id="s35"/>
+                      <af:outputText value="You cannot 'Untake' if there are any errors !!"
+                                     id="ot24" inlineStyle="color:rgb(252,0,0); font-weight:bold;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.restrictTakeAndSendToRPM}"/>
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+                <af:spacer width="3" height="3" id="s15"/>
+                <af:commandToolbarButton text="Send To RPM" id="ctb2"                                         
+                                         partialTriggers="d1 cb6 t2:sbc2 t2:sbc4 ::cb16 d4"
+                                         disabled="#{viewScope.ClearanceWorksheetMB.updateCount1 le 0}"><!--actionListener="#{viewScope.ClearanceWorksheetMB.sendToRpmActionListener}"-->
+                  <af:showPopupBehavior popupId="p1" triggerType="action"/>
+                </af:commandToolbarButton>
+                <af:popup id="p1"
+                          popupFetchListener="#{viewScope.ClearanceWorksheetMB.validationBeforeSendToRPM}"
+                          contentDelivery="lazyUncached"
+                          binding="#{viewScope.ClearanceWorksheetMB.bind_popUp_sendToRPM}">
+                  <af:dialog id="d1" type="yesNo" title=" "
+                             dialogListener="#{viewScope.ClearanceWorksheetMB.sendToRPMDialogListener}"
+                             affirmativeTextAndAccessKey="Yes"
+                             cancelTextAndAccessKey="No" modal="true"
+                             binding="#{viewScope.ClearanceWorksheetMB.bind_dialog_sendToRPM}">
+                    <af:panelGroupLayout id="pgl19" layout="vertical">
+                      <af:outputText value="Are you sure you want to continue?"
+                                     id="ot13" visible="#{viewScope.ClearanceWorksheetImpl.allowTake}"/>
+    
+                      <af:spacer width="10" height="5" id="s26"/>
+                      <af:outputText id="ot34"
+                                     value="#{viewScope.ClearanceWorksheetMB.finalMessageOne}"/>
+                      <af:spacer width="10" height="5" id="s36"/>
+                      <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageTwo}"
+                                     id="ot35"/>
+                      <af:spacer width="10" height="5" id="s37"/>
+                      <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageThree}"
+                                     id="ot16"/>
+                       <af:outputText value="The changes made on candidates are unsaved."
+                                      id="ot21" inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:spacer width="10" height="10" id="s34"/>
+                      <af:outputText value="Save your changes first by clicking on Save button."
+                                       id="ot30" inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:spacer width="10" height="10" id="s33"/>
+                      <af:outputText value="Then only you can Send the candidates to 'RPM'." id="ot32"
+                                     inlineStyle="font-weight:bolder;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.newRtlMDPctEffectiveDateChange}"/>
+                      <af:outputText value="You cannot 'Send To RPM' if there are any errors !!"
+                                     id="ot33" inlineStyle="color:rgb(252,0,0); font-weight:bold;"
+                                     visible="#{viewScope.ClearanceWorksheetImpl.restrictTakeAndSendToRPM}"/>              
+                    </af:panelGroupLayout>
+                  </af:dialog>
+                </af:popup>
+                <af:spacer width="10" height="10" id="s14"/>
+                <af:commandButton text="Save" id="cb5"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.saveChangesViewSavedTakesTab}"
+                                  partialTriggers="t2"                                  
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_SaveTakesCandidates}"/>
+                <af:spacer width="3" height="3" id="s13"/>
+                <af:commandButton text="Clear" id="cb6"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.clearChangesViewSavedTakesTab}"
+                                  immediate="true" partialSubmit="true"
+                                  partialTriggers="t2"/>
+                <af:spacer width="10" height="10" id="s21"/>
+                <af:selectOneChoice value="#{bindings.CandidteTab_TableRangeSizeView1.inputValue}"
+                                    label="Page Size"
+                                    required="#{bindings.CandidteTab_TableRangeSizeView1.hints.mandatory}"
+                                    shortDesc="#{bindings.CandidteTab_TableRangeSizeView1.hints.tooltip}"
+                                    id="soc6"
+                                    binding="#{viewScope.ClearanceWorksheetMB.bind_viewSavedTakesTabRangeSize}"
+                                    valueChangeListener="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTabRangeSizeVCL}">
+                  <f:selectItems value="#{bindings.CandidteTab_TableRangeSizeView1.items}"
+                                 id="si5"/>
+                </af:selectOneChoice>
+              </af:toolbar>
+            </f:facet>
+            <f:facet name="secondaryToolbar">
+              <af:toolbar id="t5">
+                <af:popup id="p3">
+                  <af:panelWindow id="pw1" title=" ">
+                    <af:panelGroupLayout id="pgl18">
+                      <af:inputText label="Name" id="it75"
+                                    value="#{viewScope.ClearanceWorksheetMB.taonamest}"
+                                    autoSubmit="true"/>
+                      <af:commandButton text="submit" id="cb17"
+                                        actionListener="#{viewScope.ClearanceWorksheetMB.saveViewInViewSavedTakesTab}"/>
+                    </af:panelGroupLayout>
+                  </af:panelWindow>
+                </af:popup>
+                <af:spacer width="250" height="10" id="s18"/>
+                <af:selectOneChoice label="Saved List"
+                                    valueChangeListener="#{viewScope.ClearanceWorksheetMB.chooseViewInViewSavedTakesTabVCL}"
+                                    id="soc4" autoSubmit="true"
+                                    partialTriggers="::b1"
+                                    binding="#{viewScope.ClearanceWorksheetMB.bind_savedlistCandidatest}"
+                                    unselectedLabel="Default View">
+                  <f:selectItems value="#{viewScope.ClearanceWorksheetMB.savedListst}"
+                                 id="si6"/>
+                </af:selectOneChoice>
+                <af:spacer width="50" height="10" id="s19"/>
+                <af:commandToolbarButton text="Save View" id="ctb4">
+                  <af:showPopupBehavior popupId="p3" triggerType="action"/>
+                </af:commandToolbarButton>
+              </af:toolbar>
+            </f:facet>
+            <af:table value="#{bindings.Clr_Wksht_Rule_Item_View11.collectionModel}"
+                      var="row" summary="View Saved Takes Items"
+                      rows="#{bindings.Clr_Wksht_Rule_Item_View11.rangeSize}"
+                      emptyText="#{bindings.Clr_Wksht_Rule_Item_View11.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      fetchSize="#{viewScope.ClearanceWorksheetImpl.pageSizeViewSavedTakesTab}"
+                      rowBandingInterval="0"
+                      filterModel="#{bindings.Clr_Wksht_Rule_Item_View1Query.queryDescriptor}"
+                      queryListener="#{viewScope.ClearanceWorksheetMB.candidateTabFilterQuery}"
+                      filterVisible="true" varStatus="vs" id="t2"
+                      binding="#{viewScope.ClearanceWorksheetMB.bt2}"
+                      autoHeightRows="0" columnSelection="multiple"
+                      selectionListener="#{bindings.Clr_Wksht_Rule_Item_View11.collectionModel.makeCurrent}"
+                      rowSelection="multiple" partialTriggers="::soc6">
+              <af:column headerText="Mark" id="c82" displayIndex="0" width="25"
+                         visible="#{pageFlowScope.hideSomeColumns ne true}"
+                         rowHeader="true">
+                <af:panelGroupLayout id="pgl15">
+                  <af:selectBooleanCheckbox value="#{row.bindings.Mark.inputValue}"
+                                            autoSubmit="true"
+                                            label="#{row.bindings.Mark.label}"
+                                            shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Mark.tooltip}"
+                                            id="sbc2"
+                                            valueChangeListener="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTabRowCheckBoxVCL}"
+                                            rendered="#{row.bindings.Status.inputValue eq 'T'}"
+                                            partialTriggers="::ctb2 :::cb15 ::cb5"
+                                            binding="#{viewScope.ClearanceWorksheetMB.bind_rowCheckbox_ViewSavedTakesTab}">
+                    <af:setPropertyListener from="#{row.bindings.SeqNo.inputValue}"
+                                            to="#{viewScope.ClearanceWorksheetMB.stseqid}"
+                                            type="valueChange"/>
+                    <af:setPropertyListener from="#{row.bindings.MkdnAmount.inputValue}"
+                                            to="#{viewScope.ClearanceWorksheetMB.mdAmountSavedTakesTab}"
+                                            type="valueChange"/>
+                    <af:setPropertyListener from="#{row.bindings.TotalQty.inputValue}"
+                                            to="#{viewScope.ClearanceWorksheetMB.inventorySavedTakesTab}"
+                                            type="valueChange"/>
+                  </af:selectBooleanCheckbox>
+                  <af:image source="/Images/disabled_icon.png"
+                            shortDesc="disable icon" id="i1"
+                            rendered="#{row.bindings.Status.inputValue ne 'T'}"
+                            partialTriggers="::ctb2"/>
+                </af:panelGroupLayout>
+                <f:facet name="header">
+                  <af:selectBooleanCheckbox label="Label 2" id="sbc4"
+                                            simple="true" autoSubmit="true"
+                                            valueChangeListener="#{viewScope.ClearanceWorksheetMB.viewSavedTakesTabHeaderCheckBoxVCL}"
+                                            partialTriggers=":::sdi2 sbc2 ::cb6 :::cb16"
+                                            value="#{viewScope.ClearanceWorksheetMB.stheaderBstatus}"
+                                            binding="#{viewScope.ClearanceWorksheetMB.bind_headerCheckBox_SavedTakesTab}"/>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.name}"
+                         filterable="true" sortable="true" headerText="Seq No"
+                         id="c80" displayIndex="1" visible="false" width="30">
+                <af:inputText value="#{row.bindings.SeqNo.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.tooltip}"
+                              id="it59" readOnly="true">
+                  <f:validator binding="#{row.bindings.SeqNo.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SeqNo.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="Division" sortable="true"
+                         headerText="Division" id="c68" displayIndex="2"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="40">
+                <af:inputText value="#{row.bindings.Division.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.tooltip}"
+                              id="it41" readOnly="true">
+                  <f:validator binding="#{row.bindings.Division.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Division.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.Division_View1.label}"
+                                       id="smc16" value="#{vs.filterCriteria.Division}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedDivision_filter}">
+                    <f:selectItems value="#{bindings.Division_View1.items}"
+                                   id="si22"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Dept" sortable="true" headerText="Dept"
+                         id="c52" displayIndex="3" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="40" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Dept.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.tooltip}"
+                              id="it56" readOnly="true">
+                  <f:validator binding="#{row.bindings.Dept.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Dept.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.Dept}"
+                                       label="Department Filter" id="smc18"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedDept_filter}">
+                    <f:selectItems value="#{bindings.Filter_Department_View1.items}"
+                                   id="si24"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Class1" sortable="true"
+                         headerText="Class" id="c64" displayIndex="4"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="40" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Class1.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.tooltip}"
+                              id="it51" readOnly="true">
+                  <f:validator binding="#{row.bindings.Class1.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Class1.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.Class1}"
+                                       label="Class Filter" id="smc8"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedClass_filter}">
+                    <f:selectItems value="#{bindings.Class_Filter_LOV_View11.items}"
+                                   id="si13"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Subclass" sortable="true"
+                         headerText="Subclass" id="c72" displayIndex="5"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="45" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.Subclass.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.tooltip}"
+                              id="it45" readOnly="true">
+                  <f:validator binding="#{row.bindings.Subclass.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Subclass.format}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.Subclass}"
+                                       label="Subclass Filter" id="smc9"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedSubClass_filter}">
+                    <f:selectItems value="#{bindings.Subclass_Filter_LOV_View1.items}"
+                                   id="si14"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="SuppName" sortable="true"
+                         headerText="Supplier Name" id="c59" displayIndex="6"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="152" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppName.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppName.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppName.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppName.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppName.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppName.tooltip}"
+                              id="it58" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppName.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.SupplierName_Filter_LOV_View1.label}"
+                                       id="smc14" value="#{vs.filterCriteria.SuppName}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedSupName_filter}">
+                    <f:selectItems value="#{bindings.SupplierName_Filter_LOV_View1.items}"
+                                   id="si19"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="SuppLabel" sortable="true"
+                         headerText="Label" id="c74" displayIndex="7"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppLabel.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppLabel.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppLabel.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppLabel.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppLabel.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppLabel.tooltip}"
+                              id="it40" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppLabel.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice value="#{vs.filterCriteria.SuppLabel}"
+                                       label="SuppLabel Filter" id="smc10"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SupLabel_filter}">
+                    <f:selectItems value="#{bindings.SuppLabel_Filter_LOV_View1.items}"
+                                   id="si15"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Vpn" sortable="true" headerText="VPN"
+                         id="c54" displayIndex="8" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="50">
+                <af:inputText value="#{row.bindings.Vpn.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Vpn.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Vpn.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Vpn.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Vpn.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Vpn.tooltip}"
+                              id="it46" readOnly="true">
+                  <f:validator binding="#{row.bindings.Vpn.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.VPN_Filter_LOV_View1.label}"
+                                       id="smc17" value="#{vs.filterCriteria.Vpn}"
+                                       simple="true" autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedVPN_filter}">
+                    <f:selectItems value="#{bindings.VPN_Filter_LOV_View1.items}"
+                                   id="si23"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="Item" sortable="true" headerText="Item"
+                         id="c56" displayIndex="9" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="70">
+                <af:inputText value="#{row.bindings.Item.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Item.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Item.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Item.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Item.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Item.tooltip}"
+                              id="it73" readOnly="true">
+                  <f:validator binding="#{row.bindings.Item.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.Item_Filter_LOV_View1.label}"
+                                       id="smc12" simple="true"
+                                       value="#{vs.filterCriteria.Item}"
+                                       autoSubmit="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedItem_filter}">
+                    <f:selectItems value="#{bindings.Item_Filter_LOV_View1.items}"
+                                   id="si17"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.name}"
+                         sortable="true" headerText="Item Description" id="c67"
+                         displayIndex="10" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="223">
+                <af:inputText value="#{row.bindings.ItemDesc.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemDesc.tooltip}"
+                              id="it70" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemDesc.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="SuppColor" sortable="true"
+                         headerText="Supplier Color" id="c46" displayIndex="11"
+                         filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.SuppColor.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppColor.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppColor.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppColor.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppColor.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuppColor.tooltip}"
+                              id="it60" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuppColor.validator}"/>
+                </af:inputText>
+                <f:facet name="filter">
+                  <af:selectManyChoice label="#{bindings.SuppColor_Filter_LOV_View1.label}"
+                                       id="smc19" autoSubmit="true"
+                                       value="#{vs.filterCriteria.SuppColor}"
+                                       simple="true"
+                                       binding="#{viewScope.ClearanceWorksheetMB.bind_SavedSupColor_filter}">
+                    <f:selectItems value="#{bindings.SuppColor_Filter_LOV_View1.items}"
+                                   id="si25"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.name}"
+                         sortable="true" headerText="6 MO ST %" id="c76"
+                         displayIndex="12" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="70">
+                <af:inputText value="#{row.bindings.SixMnSellThruPct.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.tooltip}"
+                              id="it57" readOnly="true">
+                  <f:validator binding="#{row.bindings.SixMnSellThruPct.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SixMnSellThruPct.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.name}"
+                         sortable="true" headerText="Store On Order" id="c53"
+                         displayIndex="13" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="80">
+                <af:inputText value="#{row.bindings.StoreOnOrderQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.tooltip}"
+                              id="it63" readOnly="true">
+                  <f:validator binding="#{row.bindings.StoreOnOrderQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreOnOrderQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.name}"
+                         sortable="true" headerText="Store SOH" id="c57"
+                         displayIndex="14" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="83">
+                <af:inputText value="#{row.bindings.StoreQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.tooltip}"
+                              id="it72" readOnly="true">
+                  <f:validator binding="#{row.bindings.StoreQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.StoreQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.name}"
+                         sortable="true" headerText="Inventory" id="c71"
+                         displayIndex="15" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="77">
+                <af:inputText value="#{row.bindings.TotalQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.tooltip}"
+                              id="it65" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_inventory_savedTakes}">
+                  <f:validator binding="#{row.bindings.TotalQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.TotalQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.name}"
+                         sortable="true" headerText="ATS Weeks" id="c50"
+                         displayIndex="16" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="78">
+                <af:inputText value="#{row.bindings.AtsWeek.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.tooltip}"
+                              id="it66" readOnly="true">
+                  <f:validator binding="#{row.bindings.AtsWeek.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.AtsWeek.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.name}"
+                         sortable="true" headerText="Compare At Value" id="c62"
+                         displayIndex="17" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="83">
+                <af:inputText value="#{row.bindings.OriginalRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.tooltip}"
+                              id="it71" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_compareAtRtl_SavedTakes}">
+                  <f:validator binding="#{row.bindings.OriginalRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.OriginalRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.name}"
+                         sortable="true" headerText="Base Retail" id="c75"
+                         displayIndex="18" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="81">
+                <af:inputText value="#{row.bindings.BaseRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.tooltip}"
+                              id="it55" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_baseRetail_savedTakes}">
+                  <f:validator binding="#{row.bindings.BaseRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.BaseRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.name}"
+                         sortable="true" headerText="Current Retail" id="c78"
+                         displayIndex="19" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="82">
+                <af:inputText value="#{row.bindings.CurrentRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.tooltip}"
+                              id="it49" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_currentRetail_savedTakes}">
+                  <f:validator binding="#{row.bindings.CurrentRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.CurrentRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.name}"
+                         sortable="true" headerText="% Off Compare At"
+                         id="c58" displayIndex="20" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="122">
+                <af:inputText value="#{row.bindings.PctOffOrigRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.tooltip}"
+                              id="it50" readOnly="true">
+                  <f:validator binding="#{row.bindings.PctOffOrigRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.PctOffOrigRetail.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.name}"
+                         sortable="true" headerText="Sugg Retail" id="c47"
+                         displayIndex="21" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="84">
+                <af:inputText value="#{row.bindings.SuggestedRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.tooltip}"
+                              id="it74" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuggestedRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedRetail.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.name}"
+                         sortable="true" headerText="Sugg % Off" id="c79"
+                         displayIndex="22" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="80">
+                <af:inputText value="#{row.bindings.SuggestedPctOffOrigRetail.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.tooltip}"
+                              id="it48" readOnly="true">
+                  <f:validator binding="#{row.bindings.SuggestedPctOffOrigRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.SuggestedPctOffOrigRetail.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewRetail.name}"
+                         sortable="true" headerText="New Retail" id="c45"
+                         displayIndex="23" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="89" partialTriggers="it53">
+                <af:inputText value="#{row.bindings.NewRetail.inputValue}"
+                              label=" "
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewRetail.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewRetail.displayWidth}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewRetail.tooltip}"
+                              id="it47" readOnly="false" autoSubmit="true"
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct ? 'true' : (row.Status ne 'T' ? 'true' : 'false')}" 
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_newRetail_savedTakes}"
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newRetailSavedTakesTabVCL}">
+                  <f:validator binding="#{row.bindings.NewRetail.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewRetail.format}"
+                                    type="currency" minFractionDigits="2"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ChangePercent.name}"
+                         sortable="true" headerText="New MD %" id="c77"
+                         displayIndex="24" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="85" partialTriggers="it47">
+                <af:inputText value="#{row.bindings.ChangePercent.inputValue}"
+                              label=" "
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ChangePercent.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ChangePercent.displayWidth}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ChangePercent.tooltip}"
+                              id="it53" readOnly="false" autoSubmit="true"
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct ? 'true' : (row.Status ne 'T' ? 'true' : 'false')}" 
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_mdPercent_savedTakes}"
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newMdPercentSavedTakesTabVCL}"
+                              clientComponent="true">
+                  <f:validator binding="#{row.bindings.ChangePercent.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ChangePercent.format}"/>
+                  <af:clientListener method="blockCharacters" type="keyDown"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="EffectiveDate"
+                         sortable="true" headerText="Effective Date" id="c69"
+                         displayIndex="25" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="107">
+                <af:inputDate value="#{row.bindings.EffectiveDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.EffectiveDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.EffectiveDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.EffectiveDate.tooltip}"
+                              id="id12" readOnly="true">
+                  <f:validator binding="#{row.bindings.EffectiveDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.EffectiveDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.EffectiveDate}"
+                                id="id18" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_SavedEffDate_filter}">
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                  </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="NewEffectiveDate"
+                         sortable="true" headerText="New Effective Date"
+                         id="c55" displayIndex="26" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="108">
+                <af:inputDate value="#{row.bindings.NewEffectiveDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewEffectiveDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewEffectiveDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewEffectiveDate.tooltip}"
+                              id="id14" readOnly="false" autoSubmit="true"
+                              disabled="#{viewScope.disableNewEffDateRetailMdPct ? 'true' : (row.Status ne 'T' ? 'true' : 'false')}" 
+                              valueChangeListener="#{viewScope.ClearanceWorksheetMB.newEffectiveDateSavedTakesTabVCL}"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_nextEffectiveDate_SavedTakesTab}">
+                  <f:validator binding="#{row.bindings.NewEffectiveDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NewEffectiveDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.NewEffectiveDate}"
+                                id="id11" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_SavedNwEffDate_filter}">
+                    <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                 </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.name}"
+                         sortable="true" headerText="MD Amount" id="c43"
+                         displayIndex="27" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="79" partialTriggers="it53 it47">
+                <af:inputText value="#{row.bindings.MkdnAmount.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.tooltip}"
+                              id="it43" readOnly="true"
+                              binding="#{viewScope.ClearanceWorksheetMB.bind_mdAmount_savedTakes}">
+                  <f:validator binding="#{row.bindings.MkdnAmount.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.MkdnAmount.format}"
+                                    type="currency"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="LastReceiptDate"
+                         sortable="true" headerText="Last Receipt Date" id="c41"
+                         displayIndex="28" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}">
+                <af:inputDate value="#{row.bindings.LastReceiptDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastReceiptDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastReceiptDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastReceiptDate.tooltip}"
+                              id="id16" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastReceiptDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastReceiptDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.LastReceiptDate}"
+                                id="id17" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_SavedLastRctDt_filter}">
+                        <af:convertDateTime pattern="yyyy-MM-dd"
+                                        secondaryPattern="yyyy-MM-dd"/>
+                    </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.name}"
+                         sortable="true" headerText="WH SOH" id="c73"
+                         displayIndex="29" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="66">
+                <af:inputText value="#{row.bindings.WhQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.tooltip}"
+                              id="it42" readOnly="true">
+                  <f:validator binding="#{row.bindings.WhQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.name}"
+                         sortable="true" headerText="WH On Order" id="c44"
+                         displayIndex="30" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="68">
+                <af:inputText value="#{row.bindings.WhOnOrderQty.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.tooltip}"
+                              id="it44" readOnly="true">
+                  <f:validator binding="#{row.bindings.WhOnOrderQty.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.WhOnOrderQty.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="LastMkdnDate"
+                         sortable="true" headerText="Last MD Date" id="c66"
+                         displayIndex="31" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}">
+                <af:inputDate value="#{row.bindings.LastMkdnDate.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnDate.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnDate.mandatory}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnDate.tooltip}"
+                              id="id15" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastMkdnDate.validator}"/>
+                  <af:convertDateTime pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnDate.format}"/>
+                </af:inputDate>
+                <f:facet name="filter">
+                  <af:inputDate value="#{vs.filterCriteria.LastMkdnDate}"
+                                id="id13" label=" " autoSubmit="true"
+                                binding="#{viewScope.ClearanceWorksheetMB.bind_LastMDnDt_filter}">
+                    <af:convertDateTime pattern="MM/dd/yyyy"/>
+                  </af:inputDate>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.name}"
+                         sortable="true" headerText="Last MD Version" id="c48"
+                         displayIndex="32" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="94">
+                <af:inputText value="#{row.bindings.LastMkdnNbr.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.tooltip}"
+                              id="it68" readOnly="true">
+                  <f:validator binding="#{row.bindings.LastMkdnNbr.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.LastMkdnNbr.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="NrfColor"
+                         sortable="true" headerText="NRF Color" id="c65"
+                         displayIndex="33" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="66">
+                <af:inputText value="#{row.bindings.NrfColor.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.tooltip}"
+                              id="it62" readOnly="true">
+                  <f:validator binding="#{row.bindings.NrfColor.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.NrfColor.format}"/>
+                </af:inputText>
+                 <f:facet name="filter">
+                     <af:selectManyChoice label="#{bindings.NRFColor_Filter_LOV1.label}"
+                                       id="smc22" 
+                                       value="#{vs.filterCriteria.NrfColor}"
+                                       simple="true" autoSubmit="true"
+                                          binding="#{viewScope.ClearanceWorksheetMB.bind_SavedNrfColor_filter}">
+                    <f:selectItems value="#{bindings.NRFColor_Filter_LOV1.items}"
+                                   id="si28"/>
+                  </af:selectManyChoice>
+                </f:facet>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.name}"
+                         sortable="true" headerText="RP" id="c70"
+                         displayIndex="34" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="38" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.RpInd.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RpInd.tooltip}"
+                              id="it69" readOnly="true">
+                  <f:validator binding="#{row.bindings.RpInd.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.name}"
+                         sortable="true" headerText="Rule" id="c61"
+                         displayIndex="35" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="47" filterFeatures="caseInsensitive">
+                <af:inputText value="#{row.bindings.RuleName.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.RuleName.tooltip}"
+                              id="it54" readOnly="true">
+                  <f:validator binding="#{row.bindings.RuleName.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.name}"
+                         sortable="true" headerText="Item List" id="c60"
+                         displayIndex="36" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="61">
+                <af:inputText value="#{row.bindings.ItemListConcat.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemListConcat.tooltip}"
+                              id="it64" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemListConcat.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.name}"
+                         sortable="true" headerText="Style" id="c49"
+                         displayIndex="37" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="64">
+                <af:inputText value="#{row.bindings.ItemParent.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.ItemParent.tooltip}"
+                              id="it52" readOnly="true">
+                  <f:validator binding="#{row.bindings.ItemParent.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.name}"
+                         sortable="true" headerText="Supplier Number" id="c42"
+                         displayIndex="38" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="95">
+                <af:inputText value="#{row.bindings.Supplier.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.tooltip}"
+                              id="it61" readOnly="true">
+                  <f:validator binding="#{row.bindings.Supplier.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Supplier.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.name}"
+                         sortable="true" headerText="Zone" id="c51"
+                         displayIndex="39" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         width="42">
+                <af:inputText value="#{row.bindings.Zone.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.tooltip}"
+                              id="it39" readOnly="true">
+                  <f:validator binding="#{row.bindings.Zone.validator}"/>
+                  <af:convertNumber groupingUsed="false"
+                                    pattern="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Zone.format}"/>
+                </af:inputText>
+              </af:column>
+              <af:column sortProperty="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.name}"
+                         sortable="true" headerText="Status" id="c63"
+                         displayIndex="40" filterable="true"
+                         inlineStyle="#{(row.Status ne 'T')?'background-color:Silver;':''}"
+                         visible="false" width="42">
+                <af:inputText value="#{row.bindings.Status.inputValue}"
+                              label="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.label}"
+                              required="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.mandatory}"
+                              columns="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.displayWidth}"
+                              maximumLength="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.precision}"
+                              shortDesc="#{bindings.Clr_Wksht_Rule_Item_View11.hints.Status.tooltip}"
+                              id="it67" readOnly="true">
+                  <f:validator binding="#{row.bindings.Status.validator}"/>
+                </af:inputText>
+              </af:column>
+              <af:clientListener method="selectRowT2CheckBox" type="keyPress"/>
+            </af:table>
+          </af:panelCollection>
+          <af:panelGridLayout id="pgl17">
+            <af:gridRow marginTop="5px" marginBottom="5px" height="auto"
+                        id="gr9">
+              <af:gridCell marginStart="5px" width="auto" id="gc50">
+                <af:commandButton text="Export" id="cb12">
+                  <af:setPropertyListener from="true"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                  <af:exportCollectionActionListener exportedId="pc2:t2"
+                                                     type="excelHTML"
+                                                     filename="ViewSavedTabData.xls"
+                                                     title="ViewSavedTabData.xls"/>
+                  <af:setPropertyListener from="false"
+                                          to="#{pageFlowScope.hideSomeColumns}"
+                                          type="action"/>
+                </af:commandButton>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="auto" id="gc47">
+                <af:commandButton text="UnTake" id="cb13"                                  
+                                  disabled="#{viewScope.ClearanceWorksheetMB.updateCount1 le 0}"
+                                  partialTriggers="pc2:d4 pc2:cb6 pc2:t2:sbc2 pc2:t2:sbc4 cb16 pc2:d1">
+                    <af:showPopupBehavior popupId="pc2:p9"/>                  
+                </af:commandButton>               
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="auto" id="gc46">
+                <af:commandToolbarButton text="Send To RPM" id="ctb3"                                         
+                                         partialTriggers="pc2:d1 pc2:cb6 pc2:t2:sbc2 pc2:t2:sbc4 cb16 pc2:d4"
+                                         disabled="#{viewScope.ClearanceWorksheetMB.updateCount1 le 0}"><!--actionListener="#{viewScope.ClearanceWorksheetMB.sendToRpmActionListener}"-->
+                  <af:showPopupBehavior popupId="pc2:p1"/>
+                </af:commandToolbarButton>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" width="auto" id="gc48">
+                <af:commandButton text="Save" id="cb15"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.saveChangesViewSavedTakesTab}"
+                                  partialTriggers="pc2:t2"                                  
+                                  binding="#{viewScope.ClearanceWorksheetMB.bind_SaveTakesCandidates2}"/>
+              </af:gridCell>
+              <af:gridCell marginStart="5px" marginEnd="5px" width="auto"
+                           id="gc49">
+                <af:commandButton text="Clear" id="cb16"
+                                  actionListener="#{viewScope.ClearanceWorksheetMB.clearChangesViewSavedTakesTab}"
+                                  immediate="true" partialSubmit="true"
+                                  partialTriggers="pc2:t2"/>
+              </af:gridCell>
+            </af:gridRow>
+          </af:panelGridLayout>
+        </af:showDetailItem>
+      </af:panelTabbed>
+    </af:panelGroupLayout>
+    <af:popup id="p10" childCreation="deferred" autoCancel="disabled"
+              popupFetchListener="#{viewScope.ClearanceWorksheetImpl.commonDeptsAccess}"
+              binding="#{viewScope.ClearanceWorksheetMB.bind_DeptAccess_PopUp}">
+      <af:dialog id="d5" title=" " type="ok">
+        <af:panelGroupLayout id="pgl22">
+          <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageOne}" id="ot28"
+                         inlineStyle="font-weight:bold;"/>
+          <af:spacer height="5" id="s30"/>        
+          <af:outputText value="#{viewScope.ClearanceWorksheetMB.finalMessageTwo}" id="ot29"
+                         inlineStyle="font-weight:bold;"/>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+  </af:group>
+</jsp:root>

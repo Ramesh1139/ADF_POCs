@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="supplierccViewPageDef"
+                Package="xts.xnsupr.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Blk1TmpPrfNewcodVO" RangeSize="10" DataControl="xnsuprAMDataControl"
+              id="Blk1TmpPrfNewcodVOIterator"/>
+    <searchRegion Binds="Blk1TmpPrfNewcodVOIterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="Blk1TmpPrfNewcodVOQuery"/>
+    <iterator Binds="Blk2CriteriaVO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk2CriteriaVOIterator"/>
+    <iterator id="WorkItemVOIterator" Binds="WorkItemVO" DataControl="xnsuprAMDataControl" RangeSize="10"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="Blk1TmpPrfNewcodVOIterator" id="Blk1TmpPrfNewcodVO">
+      <nodeDefinition DefName="xts.xnsupr.model.views.Blk1TmpPrfNewcodVO" Name="Blk1TmpPrfNewcodVO0">
+        <AttrNames>
+          <Item Value="MppfcId"/>
+          <Item Value="MppfcFulnam"/>
+          <Item Value="MppfcSup"/>
+          <Item Value="MppfcStscod"/>
+          <Item Value="MppfcShp"/>
+          <Item Value="MppfcMan"/>
+          <Item Value="MppfcMat"/>
+          <Item Value="MppfcCon"/>
+          <Item Value="MppfcSbmby"/>
+          <Item Value="MppfcSbmdat"/>
+          <Item Value="MppfcApvby"/>
+          <Item Value="MppfcApvdat"/>
+          <Item Value="Updby"/>
+          <Item Value="Upddat"/>
+          <Item Value="MppfcRmk"/>
+          <Item Value="MppfcAdr"/>
+          <Item Value="disableResubmit"/>
+          <Item Value="MppfcStscodsdesc"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="Blk1ControlVOFieldEvents_Blk1Insert_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk1ControlVOFieldEvents_Blk1Insert_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk1ControlVOFieldEvents_Blk1Insert_bp.dataControl.dataProvider"/>
+    <list IterBinding="Blk2CriteriaVOIterator" id="MppfcStscod" DTSupportsMRU="true" SelectItemValueMode="ListObject"
+          StaticList="false" NullValueFlag="start" Uses="LOV_MppfcStscod">
+      <AttrNames>
+        <Item Value="MppfcStscod"/>
+      </AttrNames>
+    </list>
+    <methodAction id="Blk2CriteriaVOFieldEvents_Ok_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk2CriteriaVOFieldEvents_Ok_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk2CriteriaVOFieldEvents_Ok_bp.dataControl.dataProvider"/>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="MppfcId">
+      <AttrNames>
+        <Item Value="MppfcId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="SubmitedDateFrom">
+      <AttrNames>
+        <Item Value="SubmitedDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="SubmitedDateTo">
+      <AttrNames>
+        <Item Value="SubmitedDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="ConfirmDateFrom">
+      <AttrNames>
+        <Item Value="ConfirmDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="ConfirmDateTo">
+      <AttrNames>
+        <Item Value="ConfirmDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="UpdatedDateFrom">
+      <AttrNames>
+        <Item Value="UpdatedDateFrom"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk2CriteriaVOIterator" id="UpdatedDateTo">
+      <AttrNames>
+        <Item Value="UpdatedDateTo"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Blk2CriteriaVOIterator" StaticList="false" Uses="LOV_MppfcStscod" id="MppfcStscod1"
+          DTSupportsMRU="true" SelectItemValueMode="ListObject"/>
+    <attributeValues IterBinding="Blk1TmpPrfNewcodVOIterator" id="disableResubmit">
+      <AttrNames>
+        <Item Value="disableResubmit"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

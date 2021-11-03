@@ -1,0 +1,57 @@
+ Weblogic Console :
+ ====================
+ 
+ Url : http://y0319t971:7101/console/console
+ User Name : n5d03wls
+ Pass word : RMS$dev03
+ 
+ Data Source Name : jdbc/RetailWebServiceDs
+ 
+ Local Data Source Name : java:comp/env/jdbc/ReIM_DBConnDS
+ 
+ReIM : Dev03
+====================
+SCH_MST 
+y0319t730 
+1522 
+DD484 
+mst_plant49_dev 
+
+TST06:
+======
+y0319t823
+1522
+DD474 
+sch_mst
+mst_plant49_dev 
+
+RMS:
+====
+Password : rms_13_trees_dev
+Application : RMS/RTM	
+SID : DD481
+Host :y0319t726
+Port:1522
+
+User Role Access tables:
+========================
+ReIM : MV_IM_BUSINESS_ROLE_MEMBER
+RMS  : IM_BUSINESS_ROLE_MEMBER
+Upload Invoice  : NRD_UPLD_INPUT_STG 
+
+
+File Path lcoation:
+====================
+FacesContext context = FacesContext.getCurrentInstance();
+        System.err.println("External: "+context.getExternalContext());
+        try {
+            URL url=context.getExternalContext().getResource("/WEB-INF/Doc1.docx");
+            System.err.println(url.getPath());
+            File f=new File(url.getPath());
+            if(f.exists())
+                System.out.println("file existed");
+            else
+                System.out.println("File not found");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }

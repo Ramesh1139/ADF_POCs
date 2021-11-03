@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="MpclLoccodApvLovVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  OrderBy='"MPCL_CITY"'
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.xnsupr.model.views.lovs.MpclLoccodApvLovVORowImpl"
+  ComponentClass="xts.xnsupr.model.views.lovs.MpclLoccodApvLovVOImpl"
+  PageIterMode="Full">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="xts.xnsupr.model.views.lovs.MpclLoccodApvLovVO_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <Variable
+    Name="BV_MPPFC_CTYCOD"
+    Kind="where"
+    Type="java.lang.String">
+    <Properties>
+      <SchemaBasedProperties>
+        <DISPLAYHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </Variable>
+  <SQLQuery><![CDATA[select mpcl_ctycod,mpcl_loccod,mpcl_city    
+from tmp_ctylocmst   
+   
+where mpcl_ctycod = :BV_MPPFC_CTYCOD    
+   
+and (mpcl_clsdat is null or mpcl_clsdat > sysdate)]]></SQLQuery>
+  <ViewAttribute
+    Name="MpclCtycod"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPCL_CTYCOD"
+    Expression="MPCL_CTYCOD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MpclCtycod_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MpclLoccod"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPCL_LOCCOD"
+    Expression="MPCL_LOCCOD"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MpclLoccod_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="MpclCity"
+    IsUpdateable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="30"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="MPCL_CITY"
+    Expression="MPCL_CITY"
+    SQLType="VARCHAR">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="30"/>
+    </DesignTime>
+    <Properties>
+      <SchemaBasedProperties>
+        <LABEL
+          ResId="MpclCity_LABEL"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewCriteria
+    Name="MpclLoccodApvLovVOCriteria"
+    ViewObjectName="xts.xnsupr.model.views.lovs.MpclLoccodApvLovVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="false"/>
+        <Property
+          Name="showInList"
+          Value="false"/>
+        <Property
+          Name="displayOperators"
+          Value="Never"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="MpclLoccodApvLovVOCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="MpclLoccodApvLovVOCriteria_MpclLoccodApvLovVOCriteria_row_0_MpclCtycod"
+        ViewAttribute="MpclCtycod"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="MpclLoccodApvLovVOCriteria_MpclLoccodApvLovVOCriteria_row_0_MpclLoccod"
+        ViewAttribute="MpclLoccod"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Required="Optional"/>
+      <ViewCriteriaItem
+        Name="MpclCity"
+        ViewAttribute="MpclCity"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="MpclCtycod"/>
+    <Item Value="MpclLoccod"/>
+  </AttrArray>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewObject>

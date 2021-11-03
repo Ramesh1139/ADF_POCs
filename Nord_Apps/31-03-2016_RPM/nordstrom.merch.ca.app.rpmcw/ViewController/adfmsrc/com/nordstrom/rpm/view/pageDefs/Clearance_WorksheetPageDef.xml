@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Clearance_WorksheetPageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Clr_Wksht_Rule_Item_View1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Clr_Wksht_Rule_Item_View1Iterator"
+              RowCountThreshold="-1" RangeSize="25"/>
+    <searchRegion Binds="Clr_Wksht_Rule_Item_View1Iterator" Criteria=""
+                  Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  id="Clr_Wksht_Rule_Item_View1Query"/>
+    <iterator Binds="Division_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Division_View1Iterator"/>
+    <iterator Binds="Department_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Department_View1Iterator"/>
+    <iterator Binds="ZoneGroup_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="ZoneGroup_View1Iterator"/>
+    <iterator Binds="Zone_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl" id="Zone_View1Iterator"/>
+    <iterator Binds="Clr_Wrks_Savedhistory_Ft_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Clr_Wrks_Savedhistory_Ft_View1Iterator"/>
+    <iterator Binds="Totals_Taken_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Totals_Taken_View1Iterator"/>
+    <iterator Binds="Current_Selection_Saved_Takes_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Current_Selection_Saved_Takes_View1Iterator"/>
+    <iterator id="Clr_Wrks_Savedhistory_St_View1Iterator"
+              Binds="Clr_Wrks_Savedhistory_St_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="-1"/>
+    <iterator Binds="CandidteTab_TableRangeSizeView1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="CandidteTab_TableRangeSizeView1Iterator"/>
+    <iterator id="V_Date_View1Iterator" Binds="V_Date_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+    <iterator Binds="Class_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Class_Filter_LOV_View1Iterator"/>
+    <iterator Binds="Subclass_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Subclass_Filter_LOV_View1Iterator"/>
+    <iterator Binds="SuppLabel_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="SuppLabel_Filter_LOV_View1Iterator"/>
+    <iterator Binds="SuppColor_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="SuppColor_Filter_LOV_View1Iterator"/>
+    <iterator Binds="SupplierName_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="SupplierName_Filter_LOV_View1Iterator"/>
+    <iterator Binds="VPN_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="VPN_Filter_LOV_View1Iterator"/>
+    <iterator Binds="Item_Filter_LOV_View1" RangeSize="-1"
+              DataControl="RPM_AppModuleDataControl"
+              id="Item_Filter_LOV_View1Iterator"/>
+    <iterator id="Filter_Department_View1Iterator"
+              Binds="Filter_Department_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="-1"/>    
+    <iterator Binds="NRFColor_Filter_LOV1"
+              DataControl="RPM_AppModuleDataControl"
+              id="NRFColor_Filter_LOV1Iterator" RangeSize="-1"/>
+    <iterator id="Clr_Wksht_Dept_AccessView1Iterator"
+              Binds="Clr_Wksht_Dept_AccessView1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="-1"/>
+    <iterator id="Filter_Division_View1Iterator" Binds="Filter_Division_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <methodAction id="ftupdate"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="ftupdate" IsViewObjectMethod="false">
+      <NamedData NDName="Nexteffectivedate" NDType="java.lang.String"/>
+      <NamedData NDName="RackNewRetail" NDType="java.lang.String"/>
+      <NamedData NDName="RackNewMdPersontage" NDType="java.lang.String"/>
+      <NamedData NDName="SeqId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="stupdate"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="stupdate" IsViewObjectMethod="false">
+      <NamedData NDName="Nexteffectivedate" NDType="java.lang.String"/>
+      <NamedData NDName="RackNewRetail" NDType="java.lang.String"/>
+      <NamedData NDName="RackNewMdPersontage" NDType="java.lang.String"/>
+      <NamedData NDName="SeqId" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+          id="Clr_Wksht_Rule_Item_View1">
+      <nodeDefinition DefName="com.nordstrom.rpm.EVO.Clr_Wksht_Rule_Item_View"
+                      Name="Clr_Wksht_Rule_Item_View10">
+        <AttrNames>
+          <Item Value="Mark"/>
+          <Item Value="SeqNo"/>
+          <Item Value="Division"/>
+          <Item Value="Dept"/>
+          <Item Value="Class1"/>
+          <Item Value="Subclass"/>
+          <Item Value="SuppName"/>
+          <Item Value="SuppLabel"/>
+          <Item Value="Vpn"/>
+          <Item Value="Item"/>
+          <Item Value="ItemDesc"/>
+          <Item Value="SuppColor"/>
+          <Item Value="SixMnSellThruPct"/>
+          <Item Value="StoreOnOrderQty"/>
+          <Item Value="StoreQty"/>
+          <Item Value="TotalQty"/>
+          <Item Value="AtsWeek"/>
+          <Item Value="OriginalRetail"/>
+          <Item Value="BaseRetail"/>
+          <Item Value="CurrentRetail"/>
+          <Item Value="PctOffOrigRetail"/>
+          <Item Value="SuggestedRetail"/>
+          <Item Value="SuggestedPctOffOrigRetail"/>
+          <Item Value="NewRetail"/>
+          <Item Value="ChangePercent"/>
+          <Item Value="EffectiveDate"/>
+          <Item Value="NewEffectiveDate"/>
+          <Item Value="MkdnAmount"/>
+          <Item Value="LastReceiptDate"/>
+          <Item Value="WhQty"/>
+          <Item Value="WhOnOrderQty"/>
+          <Item Value="LastMkdnDate"/>
+          <Item Value="LastMkdnNbr"/>
+          <Item Value="NrfColor"/>
+          <Item Value="RpInd"/>
+          <Item Value="RuleName"/>
+          <Item Value="ItemListConcat"/>
+          <Item Value="ItemParent"/>
+          <Item Value="Supplier"/>
+          <Item Value="Zone"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <tree IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+          id="Clr_Wksht_Rule_Item_View11">
+      <nodeDefinition DefName="com.nordstrom.rpm.EVO.Clr_Wksht_Rule_Item_View"
+                      Name="Clr_Wksht_Rule_Item_View110">
+        <AttrNames>
+          <Item Value="Mark"/>
+          <Item Value="SeqNo"/>
+          <Item Value="Division"/>
+          <Item Value="Dept"/>
+          <Item Value="Class1"/>
+          <Item Value="Subclass"/>
+          <Item Value="SuppName"/>
+          <Item Value="SuppLabel"/>
+          <Item Value="Vpn"/>
+          <Item Value="Item"/>
+          <Item Value="ItemDesc"/>
+          <Item Value="SuppColor"/>
+          <Item Value="SixMnSellThruPct"/>
+          <Item Value="StoreOnOrderQty"/>
+          <Item Value="StoreQty"/>
+          <Item Value="TotalQty"/>
+          <Item Value="AtsWeek"/>
+          <Item Value="OriginalRetail"/>
+          <Item Value="BaseRetail"/>
+          <Item Value="CurrentRetail"/>
+          <Item Value="PctOffOrigRetail"/>
+          <Item Value="SuggestedRetail"/>
+          <Item Value="SuggestedPctOffOrigRetail"/>
+          <Item Value="NewRetail"/>
+          <Item Value="ChangePercent"/>
+          <Item Value="EffectiveDate"/>
+          <Item Value="NewEffectiveDate"/>
+          <Item Value="MkdnAmount"/>
+          <Item Value="LastReceiptDate"/>
+          <Item Value="WhQty"/>
+          <Item Value="WhOnOrderQty"/>
+          <Item Value="LastMkdnDate"/>
+          <Item Value="LastMkdnNbr"/>
+          <Item Value="NrfColor"/>
+          <Item Value="RpInd"/>
+          <Item Value="RuleName"/>
+          <Item Value="ItemListConcat"/>
+          <Item Value="ItemParent"/>
+          <Item Value="Supplier"/>
+          <Item Value="Zone"/>
+          <Item Value="Status"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="Division_View1Iterator" ListOperMode="multiSelect"
+          ListIter="Division_View1Iterator" id="Division_View1">
+      <AttrNames>
+        <Item Value="Division"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Division"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Department_View1Iterator" ListOperMode="multiSelect"
+          ListIter="Department_View1Iterator" id="Department_View1">
+      <AttrNames>
+        <Item Value="Department"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Department"/>
+        <Item Value="Hifen"/>
+        <Item Value="DepartmentName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="ZoneGroup_View1Iterator" ListOperMode="navigation"
+          ListIter="ZoneGroup_View1Iterator" id="ZoneGroup_View1"
+          DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="ZoneGroupId"/>
+        <Item Value="Hifen"/>
+        <Item Value="ZoneGroupName"/>
+      </AttrNames>
+    </list>
+    <list IterBinding="Zone_View1Iterator" ListOperMode="navigation"
+          ListIter="Zone_View1Iterator" id="Zone_View1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="ZoneId"/>
+        <Item Value="Hifen"/>
+        <Item Value="ZoneName"/>
+      </AttrNames>
+    </list>
+    <button IterBinding="Clr_Wksht_Rule_Item_View1Iterator" id="Mark"
+            DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="Mark"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="true"/>
+        <Item Value="false"/>
+      </ValueList>
+    </button>
+    <methodAction id="storeHistory"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="storeHistory" IsViewObjectMethod="false">
+      <NamedData NDName="username" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="name" NDType="java.lang.String"/>
+      <NamedData NDName="order" NDType="java.lang.String"/>
+    </methodAction>
+    <tree IterBinding="Clr_Wrks_Savedhistory_Ft_View1Iterator"
+          id="Clr_Wrks_Savedhistory_Ft_View1">
+      <nodeDefinition DefName="com.nordstrom.rpm.EVO.Clr_Wrks_Savedhistory_Ft_View"
+                      Name="Clr_Wrks_Savedhistory_Ft_View10">
+        <AttrNames>
+          <Item Value="Id"/>
+          <Item Value="Columnorder"/>
+          <Item Value="Customname"/>
+          <Item Value="Username"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <list IterBinding="Clr_Wrks_Savedhistory_Ft_View1Iterator"
+          ListOperMode="navigation"
+          ListIter="Clr_Wrks_Savedhistory_Ft_View1Iterator"
+          id="Clr_Wrks_Savedhistory_Ft_View11" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="Customname"/>
+      </AttrNames>
+    </list>
+    <action id="Rollback" DataControl="RPM_AppModuleDataControl"
+            RequiresUpdateModel="false" Action="rollbackTransaction"/>
+    <attributeValues IterBinding="Totals_Taken_View1Iterator" id="CcCount">
+      <AttrNames>
+        <Item Value="CcCount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Totals_Taken_View1Iterator" id="PcAmount">
+      <AttrNames>
+        <Item Value="PcAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Current_Selection_Saved_Takes_View1Iterator"
+                     id="CcCount1">
+      <AttrNames>
+        <Item Value="CcCount"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Current_Selection_Saved_Takes_View1Iterator"
+                     id="PcAmount1">
+      <AttrNames>
+        <Item Value="PcAmount"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="storeHistoryst"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="storeHistoryst" IsViewObjectMethod="false">
+      <NamedData NDName="username" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="name" NDType="java.lang.String"/>
+      <NamedData NDName="order" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getLoginUsercandidte"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getLoginUsercandidte" IsViewObjectMethod="false">
+      <NamedData NDName="loginUsername" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="getLoginUserSavedtab"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="getLoginUserSavedtab" IsViewObjectMethod="false">
+      <NamedData NDName="loginUsername" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+    </methodAction>
+    <list IterBinding="CandidteTab_TableRangeSizeView1Iterator"
+          ListOperMode="navigation"
+          ListIter="CandidteTab_TableRangeSizeView1Iterator"
+          id="CandidteTab_TableRangeSizeView1" DTSupportsMRU="true">
+      <AttrNames>
+        <Item Value="Value"/>
+      </AttrNames>
+    </list>
+    <tree IterBinding="Department_View1Iterator" id="Department_View11">
+      <nodeDefinition DefName="com.nordstrom.rpm.QVO.Department_View"
+                      Name="Department_View110">
+        <AttrNames>
+          <Item Value="Department"/>
+          <Item Value="DepartmentName"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+                     id="EffectiveDate">
+      <AttrNames>
+        <Item Value="EffectiveDate"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="V_Date_View1Iterator" id="Vdate">
+      <AttrNames>
+        <Item Value="Vdate"/>
+      </AttrNames>
+    </attributeValues>
+    <list IterBinding="Subclass_Filter_LOV_View1Iterator"
+          ListOperMode="multiSelect" ListIter="Subclass_Filter_LOV_View1Iterator"
+          id="Subclass_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="Subclass"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Subclass"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="SuppLabel_Filter_LOV_View1Iterator"
+          ListOperMode="multiSelect"
+          ListIter="SuppLabel_Filter_LOV_View1Iterator"
+          id="SuppLabel_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="SuppLabel"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="SuppLabel"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Class_Filter_LOV_View1Iterator"
+          ListOperMode="multiSelect"
+          ListIter="Class_Filter_LOV_View1Iterator"
+          id="Class_Filter_LOV_View11">
+      <AttrNames>
+        <Item Value="Class1"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Class1"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="SuppColor_Filter_LOV_View1Iterator"
+          ListOperMode="multiSelect"
+          ListIter="SuppColor_Filter_LOV_View1Iterator"
+          id="SuppColor_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="SuppColor"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="SuppColor"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="SupplierName_Filter_LOV_View1Iterator"
+          ListOperMode="multiSelect"
+          ListIter="SupplierName_Filter_LOV_View1Iterator"
+          id="SupplierName_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="SuppName"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="SuppName"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="VPN_Filter_LOV_View1Iterator" ListOperMode="multiSelect"
+          ListIter="VPN_Filter_LOV_View1Iterator" id="VPN_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="Vpn"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Vpn"/>
+      </ListDisplayAttrNames>
+    </list>
+    <list IterBinding="Item_Filter_LOV_View1Iterator" ListOperMode="multiSelect"
+          ListIter="Item_Filter_LOV_View1Iterator" id="Item_Filter_LOV_View1">
+      <AttrNames>
+        <Item Value="Item"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Item"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+                  id="rollbackorrevertRowChanges" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="rollbackorrevertRowChanges"
+                  IsViewObjectMethod="true"
+                  DataControl="RPM_AppModuleDataControl"
+                  InstanceName="RPM_AppModuleDataControl.Clr_Wksht_Rule_Item_View1"/>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+                     id="UpdateId">
+      <AttrNames>
+        <Item Value="UpdateId"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Clr_Wksht_Rule_Item_View1Iterator"
+                     id="UpdateDatetime">
+      <AttrNames>
+        <Item Value="UpdateDatetime"/>
+      </AttrNames>
+    </attributeValues>
+    <methodAction id="takeAction"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="takeAction" IsViewObjectMethod="false">
+      <NamedData NDName="SeqId" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="untakeAction"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="untakeAction" IsViewObjectMethod="false">
+      <NamedData NDName="SeqId" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="rpmAction"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="rpmAction" IsViewObjectMethod="false">
+      <NamedData NDName="SeqId" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="newEffectiveDateInputBulkUpdate"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="newEffectiveDateInputBulkUpdate"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="effectiveDate" NDType="java.lang.String"/>
+      <NamedData NDName="seqId" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="onNewMDPercentInputBulkUpdate"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="onNewMDPercentInputBulkUpdate"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="effectiveDate" NDType="java.lang.String"/>
+      <NamedData NDName="newRetail" NDType="java.lang.String"/>
+      <NamedData NDName="newMdPercent" NDType="java.lang.String"/>
+      <NamedData NDName="seqId" NDType="java.lang.String"/>
+      <NamedData NDName="mdAmount" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="onNewRetailInputBulkUpdate"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="onNewRetailInputBulkUpdate"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="effectiveDate" NDType="java.lang.String"/>
+      <NamedData NDName="newRetail" NDType="java.lang.String"/>
+      <NamedData NDName="newMdPercent" NDType="java.lang.String"/>
+      <NamedData NDName="seqId" NDType="java.lang.String"/>
+      <NamedData NDName="mdAmount" NDType="java.lang.String"/>
+      <NamedData NDName="updateId" NDType="java.lang.String"/>
+    </methodAction>
+    <action id="Commit" DataControl="RPM_AppModuleDataControl"
+            RequiresUpdateModel="true" Action="commitTransaction"/>
+    <list ListOperMode="multiSelect"
+          IterBinding="Filter_Department_View1Iterator" id="Filter_Department_View1">
+      <AttrNames>
+        <Item Value="Department"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Department"/>
+        <Item Value="Hifen"/>
+        <Item Value="DepartmentName"/>
+      </ListDisplayAttrNames>
+    </list>    
+    <list ListOperMode="multiSelect" IterBinding="NRFColor_Filter_LOV1Iterator"
+          id="NRFColor_Filter_LOV1">
+      <AttrNames>
+        <Item Value="NrfColor"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="NrfColor"/>
+      </ListDisplayAttrNames>
+    </list>
+    <methodAction id="userLevelDeptAccess"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="userLevelDeptAccess" IsViewObjectMethod="false"
+                  ReturnName="data.RPM_AppModuleDataControl.methodResults.userLevelDeptAccess_RPM_AppModuleDataControl_dataProvider_userLevelDeptAccess_result">
+      <NamedData NDName="deptList" NDType="java.util.List"/>
+      <NamedData NDName="deptRecord" NDType="java.lang.String"/>
+      <NamedData NDName="userName" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="deptAccessIterator" NDType="java.lang.String"/>
+    </methodAction>
+    <methodAction id="refreshDepartmentsSearch"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="refreshDepartmentsSearch"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="userID" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="deptAccessIterator" NDType="java.lang.String"/>
+    </methodAction>
+    <list ListOperMode="multiSelect"
+          IterBinding="Filter_Division_View1Iterator" id="Filter_Division_View1">
+      <AttrNames>
+        <Item Value="Division"/>
+      </AttrNames>
+      <ListDisplayAttrNames>
+        <Item Value="Division"/>
+      </ListDisplayAttrNames>
+    </list>
+  </bindings>
+</pageDefinition>

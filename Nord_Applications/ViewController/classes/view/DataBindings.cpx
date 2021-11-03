@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Pages/ReIM_Home.jspx" usageId="view_ReIM_HomePageDef"/>
+    <page path="/Pages/RPM_Home.jspx" usageId="view_RPM_HomePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_ReIM_HomePageDef" path="Pages.ReIM_HomePageDef"/>
+    <page id="view_RPM_HomePageDef" path="Pages.RPM_HomePageDef"/>
+  </pageDefinitionUsages>
+</Application>

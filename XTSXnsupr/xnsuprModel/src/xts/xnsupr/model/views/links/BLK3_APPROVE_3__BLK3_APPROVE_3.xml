@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="BLK3_APPROVE_3__BLK3_APPROVE_3"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge">
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="xts.xnsupr.model.views.links.BLK3_APPROVE_3__BLK3_APPROVE_3_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewLinkDefEnd
+    Name="Blk3Approve31VO"
+    Cardinality="1"
+    Source="true"
+    Owner="xts.xnsupr.model.views.Blk3Approve31VO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="Blk3Approve31VO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.views.Blk3Approve31VO.OldPrfcod"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="Blk3Approve32VO"
+    Cardinality="-1"
+    Owner="xts.xnsupr.model.views.Blk3Approve32VO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="Blk3Approve32VO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.views.Blk3Approve32VO.SpcrSupcod"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</ViewLink>

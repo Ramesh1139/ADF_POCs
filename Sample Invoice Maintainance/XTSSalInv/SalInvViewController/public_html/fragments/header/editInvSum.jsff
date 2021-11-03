@@ -1,0 +1,739 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich" xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGroupLayout id="pgl12" layout="vertical">
+        <af:panelBox text="Invoice Summary" id="pb1">
+            <f:facet name="toolbar"/>
+            <af:panelFormLayout id="pfl1" rows="14" maxColumns="2" labelWidth="30%" fieldWidth="70%">
+                <af:matchMediaBehavior matchedPropertyValue="25" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+                <f:facet name="footer"/>
+                <af:panelLabelAndMessage label="#{bindings.CimsCuscod.hints.label}" id="plam1">
+                    <af:inputListOfValues id="cimsCuscodId" popupTitle="Search and Select: #{bindings.CimsCuscod.hints.label}"
+                                          value="#{bindings.CimsCuscod.inputValue}" model="#{bindings.CimsCuscod.listOfValuesModel}"
+                                          required="#{bindings.CimsCuscod.hints.mandatory}" columns="#{bindings.CimsCuscod.hints.displayWidth}"
+                                          shortDesc="#{bindings.CimsCuscod.hints.tooltip}" simple="true" autoSubmit="true"
+                                          disabled="#{bindings.CimsCuscod.hints.disabled}"
+                                          valueChangeListener="#{pageFlowScope.RefreshAddamtBean.cimsCuscodChgListener}">
+                        <f:validator binding="#{bindings.CimsCuscod.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CpalNam.inputValue}" simple="true" required="#{bindings.CpalNam.hints.mandatory}"
+                                      columns="#{bindings.CpalNam.hints.displayWidth}" maximumLength="#{bindings.CpalNam.hints.precision}"
+                                      shortDesc="#{bindings.CpalNam.hints.tooltip}" id="it1" partialTriggers="cimsCuscodId" disabled="true">
+                            <f:validator binding="#{bindings.CpalNam.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputDate label="#{bindings.CimsInvdat.hints.label}" value="#{bindings.CimsInvdat.inputValue}"
+                              required="#{bindings.CimsInvdat.hints.mandatory}" columns="#{bindings.CimsInvdat.hints.displayWidth}"
+                              shortDesc="#{bindings.CimsInvdat.hints.tooltip}" id="id1" disabled="#{bindings.CimsInvdat.hints.disabled}">
+                    <f:validator binding="#{bindings.CimsInvdat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsInvdat.format}"/>
+                </af:inputDate>
+                <af:panelLabelAndMessage label="#{bindings.CimsCndsalcod.hints.label}" id="plam3">
+                    <af:inputListOfValues id="cimsCndsalcodId" popupTitle="Search and Select: #{bindings.CimsCndsalcod.hints.label}"
+                                          value="#{bindings.CimsCndsalcod.inputValue}" simple="true" model="#{bindings.CimsCndsalcod.listOfValuesModel}"
+                                          required="#{bindings.CimsCndsalcod.hints.mandatory}" columns="#{bindings.CimsCndsalcod.hints.displayWidth}"
+                                          shortDesc="#{bindings.CimsCndsalcod.hints.tooltip}" disabled="#{bindings.CimsCndsalcod.hints.disabled}"
+                                          autoSubmit="true">
+                        <f:validator binding="#{bindings.CimsCndsalcod.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsCndsaldes.inputValue}" simple="true" required="#{bindings.CimsCndsaldes.hints.mandatory}"
+                                      columns="#{bindings.CimsCndsaldes.hints.displayWidth}" maximumLength="#{bindings.CimsCndsaldes.hints.precision}"
+                                      shortDesc="#{bindings.CimsCndsaldes.hints.tooltip}" id="it2" disabled="#{bindings.CimsCndsaldes.hints.disabled}"
+                                      partialTriggers="cimsCndsalcodId">
+                            <f:validator binding="#{bindings.CimsCndsaldes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:selectOneRadio value="#{bindings.CimsLdp.inputValue}" label="#{bindings.CimsLdp.label}" required="#{bindings.CimsLdp.hints.mandatory}"
+                                   shortDesc="#{bindings.CimsLdp.hints.tooltip}" id="sor1" layout="horizontal" disabled="true"
+                                   partialTriggers="cimsCndsalcodId">
+                    <f:selectItems value="#{bindings.CimsLdp.items}" id="si1"/>
+                    <f:validator binding="#{bindings.CimsLdp.validator}"/>
+                </af:selectOneRadio>
+                <af:panelLabelAndMessage label="#{bindings.CimsCurcod.hints.label}" id="plam4">
+                    <af:inputListOfValues id="cimsCurcodId" popupTitle="Search and Select: #{bindings.CimsCurcod.hints.label}"
+                                          value="#{bindings.CimsCurcod.inputValue}" simple="true" model="#{bindings.CimsCurcod.listOfValuesModel}"
+                                          required="#{bindings.CimsCurcod.hints.mandatory}" columns="#{bindings.CimsCurcod.hints.displayWidth}"
+                                          shortDesc="#{bindings.CimsCurcod.hints.tooltip}" disabled="#{bindings.CimsCurcod.hints.disabled}" autoSubmit="true">
+                        <f:validator binding="#{bindings.CimsCurcod.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.MpcuNam.inputValue}" simple="true" required="#{bindings.MpcuNam.hints.mandatory}"
+                                      columns="#{bindings.MpcuNam.hints.displayWidth}" maximumLength="#{bindings.MpcuNam.hints.precision}"
+                                      shortDesc="#{bindings.MpcuNam.hints.tooltip}" id="it3" partialTriggers="cimsCurcodId">
+                            <f:validator binding="#{bindings.MpcuNam.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputDate value="#{bindings.CimsShpdat.inputValue}" label="#{bindings.CimsShpdat.hints.label}"
+                              required="#{bindings.CimsShpdat.hints.mandatory}" columns="#{bindings.CimsShpdat.hints.displayWidth}"
+                              shortDesc="#{bindings.CimsShpdat.hints.tooltip}" id="id2" disabled="#{bindings.CimsShpdat.hints.disabled}" autoSubmit="true">
+                    <f:validator binding="#{bindings.CimsShpdat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsShpdat.format}"/>
+                </af:inputDate>
+                <af:inputDate value="#{bindings.CimsNeeddat.inputValue}" label="#{bindings.CimsNeeddat.hints.label}"
+                              required="#{bindings.CimsNeeddat.hints.mandatory}" columns="#{bindings.CimsNeeddat.hints.displayWidth}"
+                              shortDesc="#{bindings.CimsNeeddat.hints.tooltip}" id="id3" disabled="#{bindings.CimsNeeddat.hints.disabled}">
+                    <f:validator binding="#{bindings.CimsNeeddat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsNeeddat.format}"/>
+                </af:inputDate>
+                <af:inputDate value="#{bindings.CimsBildat.inputValue}" required="#{bindings.CimsBildat.hints.mandatory}"
+                              label="#{bindings.CimsBildat.hints.label}" columns="#{bindings.CimsBildat.hints.displayWidth}"
+                              shortDesc="#{bindings.CimsBildat.hints.tooltip}" id="id4" disabled="true" binding="#{backingBeanScope.EditBean.cimsBildat}">
+                    <f:validator binding="#{bindings.CimsBildat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsBildat.format}"/>
+                </af:inputDate>
+                <af:inputDate value="#{bindings.CimsDuedat.inputValue}" label="#{bindings.CimsDuedat.hints.label}"
+                              required="#{bindings.CimsDuedat.hints.mandatory}" columns="#{bindings.CimsDuedat.hints.displayWidth}"
+                              shortDesc="#{bindings.CimsDuedat.hints.tooltip}" id="id5" disabled="true" binding="#{backingBeanScope.EditBean.cimsDuedate}">
+                    <f:validator binding="#{bindings.CimsDuedat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsDuedat.format}"/>
+                </af:inputDate>
+                <af:panelLabelAndMessage label="#{bindings.CiptDst.hints.label}" id="plam2">
+                    <af:inputListOfValues id="ciptDstId" popupTitle="Search and Select: #{bindings.CiptDst.hints.label}" value="#{bindings.CiptDst.inputValue}"
+                                          label="#{bindings.CiptDst.hints.label}" model="#{bindings.CiptDst.listOfValuesModel}"
+                                          required="#{bindings.CiptDst.hints.mandatory}" columns="#{bindings.CiptDst.hints.displayWidth}"
+                                          shortDesc="#{bindings.CiptDst.hints.tooltip}" simple="true" disabled="#{bindings.CiptDst.hints.disabled}"
+                                          autoSubmit="true">
+                        <f:validator binding="#{bindings.CiptDst.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.MpcyNam.inputValue}" simple="true" required="#{bindings.MpcyNam.hints.mandatory}"
+                                      columns="#{bindings.MpcyNam.hints.displayWidth}" maximumLength="#{bindings.MpcyNam.hints.precision}"
+                                      shortDesc="#{bindings.MpcyNam.hints.tooltip}" id="it4" partialTriggers="ciptDstId">
+                            <f:validator binding="#{bindings.MpcyNam.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CiptPortL.hints.label}" id="plam5">
+                    <af:inputListOfValues id="ciptPortLId" popupTitle="Search and Select: #{bindings.CiptPortL.hints.label}"
+                                          value="#{bindings.CiptPortL.inputValue}" label="#{bindings.CiptPortL.hints.label}" simple="true"
+                                          model="#{bindings.CiptPortL.listOfValuesModel}" required="#{bindings.CiptPortL.hints.mandatory}"
+                                          columns="#{bindings.CiptPortL.hints.displayWidth}" shortDesc="#{bindings.CiptPortL.hints.tooltip}"
+                                          disabled="#{bindings.CiptPortL.hints.disabled}" autoSubmit="true">
+                        <f:validator binding="#{bindings.CiptPortL.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CiptPoldes.inputValue}" simple="true" required="#{bindings.CiptPoldes.hints.mandatory}"
+                                      columns="#{bindings.CiptPoldes.hints.displayWidth}" maximumLength="#{bindings.CiptPoldes.hints.precision}"
+                                      shortDesc="#{bindings.CiptPoldes.hints.tooltip}" id="it5" disabled="#{bindings.CiptPoldes.hints.disabled}"
+                                      partialTriggers="ciptPortLId">
+                            <f:validator binding="#{bindings.CiptPoldes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CiptVia.hints.label}" id="plam6">
+                    <af:inputListOfValues id="ciptViaId" popupTitle="Search and Select: #{bindings.CiptVia.hints.label}" value="#{bindings.CiptVia.inputValue}"
+                                          label="#{bindings.CiptVia.hints.label}" model="#{bindings.CiptVia.listOfValuesModel}"
+                                          required="#{bindings.CiptVia.hints.mandatory}" columns="#{bindings.CiptVia.hints.displayWidth}"
+                                          shortDesc="#{bindings.CiptVia.hints.tooltip}" simple="true" autoSubmit="true"
+                                          disabled="#{bindings.CiptVia.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptVia.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CiptViaDes.inputValue}" simple="true" required="#{bindings.CiptViaDes.hints.mandatory}"
+                                      columns="#{bindings.CiptViaDes.hints.displayWidth}" maximumLength="#{bindings.CiptViaDes.hints.precision}"
+                                      shortDesc="#{bindings.CiptViaDes.hints.tooltip}" id="it7" partialTriggers="ciptViaId" disabled="true">
+                            <f:validator binding="#{bindings.CiptViaDes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CiptPortD.hints.label}" id="plam7">
+                    <af:inputListOfValues id="ciptPortDId" popupTitle="Search and Select: #{bindings.CiptPortD.hints.label}"
+                                          value="#{bindings.CiptPortD.inputValue}" label="#{bindings.CiptPortD.hints.label}" simple="true"
+                                          model="#{bindings.CiptPortD.listOfValuesModel}" required="#{bindings.CiptPortD.hints.mandatory}"
+                                          columns="#{bindings.CiptPortD.hints.displayWidth}" shortDesc="#{bindings.CiptPortD.hints.tooltip}"
+                                          disabled="#{bindings.CiptPortD.hints.disabled}" autoSubmit="true">
+                        <f:validator binding="#{bindings.CiptPortD.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CiptPoddes.inputValue}" simple="true" required="#{bindings.CiptPoddes.hints.mandatory}"
+                                      columns="#{bindings.CiptPoddes.hints.displayWidth}" maximumLength="#{bindings.CiptPoddes.hints.precision}"
+                                      shortDesc="#{bindings.CiptPoddes.hints.tooltip}" id="it8" disabled="#{bindings.CiptPoddes.hints.disabled}"
+                                      partialTriggers="ciptPortDId">
+                            <f:validator binding="#{bindings.CiptPoddes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CiptFindst.hints.label}" id="plam8">
+                    <af:inputListOfValues id="ciptFindstId" popupTitle="Search and Select: #{bindings.CiptFindst.hints.label}"
+                                          value="#{bindings.CiptFindst.inputValue}" label="#{bindings.CiptFindst.hints.label}"
+                                          model="#{bindings.CiptFindst.listOfValuesModel}" required="#{bindings.CiptFindst.hints.mandatory}"
+                                          columns="#{bindings.CiptFindst.hints.displayWidth}" shortDesc="#{bindings.CiptFindst.hints.tooltip}"
+                                          disabled="#{bindings.CiptFindst.hints.disabled}" autoSubmit="true" simple="true">
+                        <f:validator binding="#{bindings.CiptFindst.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CiptFnddes.inputValue}" simple="true" required="#{bindings.CiptFnddes.hints.mandatory}"
+                                      columns="#{bindings.CiptFnddes.hints.displayWidth}" maximumLength="#{bindings.CiptFnddes.hints.precision}"
+                                      shortDesc="#{bindings.CiptFnddes.hints.tooltip}" id="it10" partialTriggers="ciptFindstId"
+                                      disabled="#{bindings.CiptFnddes.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptFnddes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputText value="#{bindings.CimsShippedDat.inputValue}" label="#{bindings.CimsShippedDat.hints.label}"
+                              required="#{bindings.CimsShippedDat.hints.mandatory}" columns="#{bindings.CimsShippedDat.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsShippedDat.hints.precision}" shortDesc="#{bindings.CimsShippedDat.hints.tooltip}" id="it11"
+                              disabled="true">
+                    <f:validator binding="#{bindings.CimsShippedDat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsShippedDat.format}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsPstdat.inputValue}" label="#{bindings.CimsPstdat.hints.label}"
+                              required="#{bindings.CimsPstdat.hints.mandatory}" columns="#{bindings.CimsPstdat.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsPstdat.hints.precision}" shortDesc="#{bindings.CimsPstdat.hints.tooltip}" id="it12" disabled="true">
+                    <f:validator binding="#{bindings.CimsPstdat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsPstdat.format}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.Period.inputValue}" label="#{bindings.Period.hints.label}" required="#{bindings.Period.hints.mandatory}"
+                              columns="#{bindings.Period.hints.displayWidth}" maximumLength="#{bindings.Period.hints.precision}"
+                              shortDesc="#{bindings.Period.hints.tooltip}" id="it13" disabled="true">
+                    <f:validator binding="#{bindings.Period.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsTotamt.inputValue}" label="#{bindings.CimsTotamt.hints.label}"
+                              required="#{bindings.CimsTotamt.hints.mandatory}" columns="#{bindings.CimsTotamt.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsTotamt.hints.precision}" shortDesc="#{bindings.CimsTotamt.hints.tooltip}" id="it14" disabled="true"
+                              contentStyle="text-align:right;">
+                    <f:validator binding="#{bindings.CimsTotamt.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsTotsecamt.inputValue}" label="#{bindings.CimsTotsecamt.hints.label}"
+                              required="#{bindings.CimsTotsecamt.hints.mandatory}" columns="#{bindings.CimsTotsecamt.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsTotsecamt.hints.precision}" shortDesc="#{bindings.CimsTotsecamt.hints.tooltip}" id="it15"
+                              disabled="true" contentStyle="text-align:right;">
+                    <f:validator binding="#{bindings.CimsTotsecamt.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsTotaddamt.inputValue}" label="#{bindings.CimsTotaddamt.hints.label}"
+                              required="#{bindings.CimsTotaddamt.hints.mandatory}" columns="#{bindings.CimsTotaddamt.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsTotaddamt.hints.precision}" shortDesc="#{bindings.CimsTotaddamt.hints.tooltip}" id="it16"
+                              disabled="true" contentStyle="text-align:right;">
+                    <f:validator binding="#{bindings.CimsTotaddamt.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.Totamt.inputValue}" label="#{bindings.Totamt.hints.label}" required="#{bindings.Totamt.hints.mandatory}"
+                              columns="#{bindings.Totamt.hints.displayWidth}" maximumLength="#{bindings.Totamt.hints.precision}"
+                              shortDesc="#{bindings.Totamt.hints.tooltip}" id="it17" disabled="true" contentStyle="text-align:right;">
+                    <f:validator binding="#{bindings.Totamt.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsEcicAmt.inputValue}" label="#{bindings.CimsEcicAmt.hints.label}"
+                              required="#{bindings.CimsEcicAmt.hints.mandatory}" columns="#{bindings.CimsEcicAmt.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsEcicAmt.hints.precision}" shortDesc="#{bindings.CimsEcicAmt.hints.tooltip}" id="it18"
+                              disabled="true" contentStyle="text-align:right;">
+                    <f:validator binding="#{bindings.CimsEcicAmt.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CimsEcicComdat.inputValue}" label="#{bindings.CimsEcicComdat.hints.label}"
+                              required="#{bindings.CimsEcicComdat.hints.mandatory}" columns="#{bindings.CimsEcicComdat.hints.displayWidth}"
+                              maximumLength="#{bindings.CimsEcicComdat.hints.precision}" shortDesc="#{bindings.CimsEcicComdat.hints.tooltip}" id="it19"
+                              disabled="true">
+                    <f:validator binding="#{bindings.CimsEcicComdat.validator}"/>
+                    <af:convertDateTime pattern="#{bindings.CimsEcicComdat.format}"/>
+                </af:inputText>
+                <af:panelLabelAndMessage label="#{bindings.AmdbyUsername.hints.label}" id="plam9">
+                    <af:inputText value="#{bindings.AmdbyUsername.inputValue}" simple="true" required="#{bindings.AmdbyUsername.hints.mandatory}"
+                                  columns="#{bindings.AmdbyUsername.hints.displayWidth}" maximumLength="#{bindings.AmdbyUsername.hints.precision}"
+                                  shortDesc="#{bindings.AmdbyUsername.hints.tooltip}" id="it20" disabled="true">
+                        <f:validator binding="#{bindings.AmdbyUsername.validator}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsAmddat.inputValue}" required="#{bindings.CimsAmddat.hints.mandatory}"
+                                      columns="#{bindings.CimsAmddat.hints.displayWidth}" maximumLength="#{bindings.CimsAmddat.hints.precision}"
+                                      shortDesc="#{bindings.CimsAmddat.hints.tooltip}" id="it21" disabled="true">
+                            <f:validator binding="#{bindings.CimsAmddat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CimsAmddat.format}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CrtbyUsername.hints.label}" id="plam10">
+                    <af:inputText value="#{bindings.CrtbyUsername.inputValue}" simple="true" required="#{bindings.CrtbyUsername.hints.mandatory}"
+                                  columns="#{bindings.CrtbyUsername.hints.displayWidth}" maximumLength="#{bindings.CrtbyUsername.hints.precision}"
+                                  shortDesc="#{bindings.CrtbyUsername.hints.tooltip}" id="it22" disabled="true">
+                        <f:validator binding="#{bindings.CrtbyUsername.validator}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.Crtdat.inputValue}" required="#{bindings.Crtdat.hints.mandatory}"
+                                      columns="#{bindings.Crtdat.hints.displayWidth}" maximumLength="#{bindings.Crtdat.hints.precision}"
+                                      shortDesc="#{bindings.Crtdat.hints.tooltip}" id="it23" disabled="true">
+                            <f:validator binding="#{bindings.Crtdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.Crtdat.format}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+        </af:panelBox>
+        <af:panelBox text="Customer Details and Order / Invoice Terms" id="pb2">
+            <f:facet name="toolbar"/>
+            <af:panelFormLayout id="pfl6" rows="9" maxColumns="2" labelWidth="30%" fieldWidth="70%">
+                <af:matchMediaBehavior matchedPropertyValue="17" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+                <f:facet name="footer"/>
+                <af:panelLabelAndMessage label="#{bindings.CimsPaytrmcod.hints.label}" id="plam19">
+                    <af:inputListOfValues id="cimsPaytrmcodId" popupTitle="Search and Select: #{bindings.CimsPaytrmcod.hints.label}"
+                                          value="#{bindings.CimsPaytrmcod.inputValue}" label="#{bindings.CimsPaytrmcod.hints.label}"
+                                          model="#{bindings.CimsPaytrmcod.listOfValuesModel}" required="#{bindings.CimsPaytrmcod.hints.mandatory}"
+                                          columns="#{bindings.CimsPaytrmcod.hints.displayWidth}" shortDesc="#{bindings.CimsPaytrmcod.hints.tooltip}"
+                                          autoSubmit="true" disabled="#{bindings.CimsPaytrmcod.hints.disabled}" simple="true">
+                        <f:validator binding="#{bindings.CimsPaytrmcod.validator}"/>
+                    </af:inputListOfValues>
+                    <!--<af:inputText value="#{bindings.CimsPaytrmcod.inputValue}" label="#{bindings.CimsPaytrmcod.hints.label}" simple="true"
+                                          required="#{bindings.CimsPaytrmcod.hints.mandatory}" columns="#{bindings.CimsPaytrmcod.hints.displayWidth}"
+                                          autoSummit="true" maximumLength="#{bindings.CimsPaytrmcod.hints.precision}"
+                                          shortDesc="#{bindings.CimsPaytrmcod.hints.tooltip}" id="it24" disabled="#{bindings.CimsPaytrmcod.hints.disabled}">
+                                <f:validator binding="#{bindings.CimsPaytrmcod.validator}"/>
+                            </af:inputText>-->
+                    <f:facet name="end">
+                        <af:inputListOfValues id="cimsPaytrmdesId" popupTitle="Search and Select: #{bindings.CimsPaytrmdes.hints.label}"
+                                              value="#{bindings.CimsPaytrmdes.inputValue}" label="#{bindings.CimsPaytrmdes.hints.label}" autoSummit="true"
+                                              model="#{bindings.CimsPaytrmdes.listOfValuesModel}" required="#{bindings.CimsPaytrmdes.hints.mandatory}"
+                                              simple="true" columns="#{bindings.CimsPaytrmdes.hints.displayWidth}"
+                                              shortDesc="#{bindings.CimsPaytrmdes.hints.tooltip}" inlineStyle="padding-bottom:12px;"
+                                              disabled="#{bindings.CimsPaytrmdes.hints.disabled}">
+                            <f:validator binding="#{bindings.CimsPaytrmdes.validator}"/>
+                        </af:inputListOfValues>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputText value="#{bindings.CimsPaytrmday.inputValue}" label="#{bindings.CimsPaytrmday.hints.label}"
+                              required="#{bindings.CimsPaytrmday.hints.mandatory}" columns="#{bindings.CimsPaytrmday.hints.displayWidth}" disabled="true"
+                              maximumLength="#{bindings.CimsPaytrmday.hints.precision}" shortDesc="#{bindings.CimsPaytrmday.hints.tooltip}" id="it25"
+                              partialTriggers="cimsPaytrmdesId">
+                    <f:validator binding="#{bindings.CimsPaytrmday.validator}"/>
+                    <af:convertNumber groupingUsed="false" pattern="#{bindings.CimsPaytrmday.format}"/>
+                </af:inputText>
+                <af:panelLabelAndMessage label="#{bindings.CimsBildatRef.hints.label}" id="plam11">
+                    <af:inputListOfValues id="cimsBildatRefId" popupTitle="Search and Select: #{bindings.CimsBildatRef.hints.label}" simple="true"
+                                          value="#{bindings.CimsBildatRef.inputValue}" label="#{bindings.CimsBildatRef.hints.label}"
+                                          model="#{bindings.CimsBildatRef.listOfValuesModel}" required="#{bindings.CimsBildatRef.hints.mandatory}"
+                                          columns="#{bindings.CimsBildatRef.hints.displayWidth}" shortDesc="#{bindings.CimsBildatRef.hints.tooltip}"
+                                          disabled="#{bindings.CimsBildatRef.hints.disabled}" autoSubmit="true" partialTriggers="cimsBildatRefId">
+                        <f:validator binding="#{bindings.CimsBildatRef.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsBildatRefDes.inputValue}" simple="true" required="#{bindings.CimsBildatRefDes.hints.mandatory}"
+                                      columns="#{bindings.CimsBildatRefDes.hints.displayWidth}" maximumLength="#{bindings.CimsBildatRefDes.hints.precision}"
+                                      shortDesc="#{bindings.CimsBildatRefDes.hints.tooltip}" id="it26" disabled="true">
+                            <f:validator binding="#{bindings.CimsBildatRefDes.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputListOfValues id="ciptNamId" popupTitle="Search and Select: #{bindings.CiptNam.hints.label}" value="#{bindings.CiptNam.inputValue}"
+                                      label="#{bindings.CiptNam.hints.label}" model="#{bindings.CiptNam.listOfValuesModel}"
+                                      required="#{bindings.CiptNam.hints.mandatory}" columns="#{bindings.CiptNam.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptNam.hints.tooltip}" disabled="#{bindings.CiptNam.hints.disabled}"
+                                      valueChangeListener="#{backingBeanScope.EditBean.ciptNamChgListener}" autoSubmit="true">
+                    <f:validator binding="#{bindings.CiptNam.validator}"/>
+                </af:inputListOfValues>
+                <af:inputText value="#{bindings.CiptAdr1.inputValue}" label="#{bindings.CiptAdr1.hints.label}" required="#{bindings.CiptAdr1.hints.mandatory}"
+                              columns="#{bindings.CiptAdr1.hints.displayWidth}" maximumLength="#{bindings.CiptAdr1.hints.precision}"
+                              shortDesc="#{bindings.CiptAdr1.hints.tooltip}" id="it32" disabled="#{bindings.CiptAdr1.hints.disabled}"
+                              partialTriggers="ciptNamId">
+                    <f:validator binding="#{bindings.CiptAdr1.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptAdr2.inputValue}" label="" required="#{bindings.CiptAdr2.hints.mandatory}"
+                              columns="#{bindings.CiptAdr2.hints.displayWidth}" maximumLength="#{bindings.CiptAdr2.hints.precision}"
+                              shortDesc="#{bindings.CiptAdr2.hints.tooltip}" id="it37" disabled="#{bindings.CiptAdr2.hints.disabled}"
+                              partialTriggers="ciptNamId">
+                    <f:validator binding="#{bindings.CiptAdr2.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptAdr3.inputValue}" label="" required="#{bindings.CiptAdr3.hints.mandatory}"
+                              columns="#{bindings.CiptAdr3.hints.displayWidth}" maximumLength="#{bindings.CiptAdr3.hints.precision}"
+                              shortDesc="#{bindings.CiptAdr3.hints.tooltip}" id="it38" disabled="#{bindings.CiptAdr3.hints.disabled}"
+                              partialTriggers="ciptNamId">
+                    <f:validator binding="#{bindings.CiptAdr3.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptAdr4.inputValue}" label="" required="#{bindings.CiptAdr4.hints.mandatory}"
+                              columns="#{bindings.CiptAdr4.hints.displayWidth}" maximumLength="#{bindings.CiptAdr4.hints.precision}"
+                              shortDesc="#{bindings.CiptAdr4.hints.tooltip}" id="it39" disabled="#{bindings.CiptAdr4.hints.disabled}"
+                              partialTriggers="ciptNamId">
+                    <f:validator binding="#{bindings.CiptAdr4.validator}"/>
+                </af:inputText>
+                <af:panelLabelAndMessage label="#{bindings.CimsConpercod.hints.label}" id="plam12">
+                    <af:inputListOfValues id="cimsConpercodId" popupTitle="Search and Select: #{bindings.CimsConpercod.hints.label}"
+                                          value="#{bindings.CimsConpercod.inputValue}" simple="true" model="#{bindings.CimsConpercod.listOfValuesModel}"
+                                          required="#{bindings.CimsConpercod.hints.mandatory}" columns="#{bindings.CimsConpercod.hints.displayWidth}"
+                                          shortDesc="#{bindings.CimsConpercod.hints.tooltip}" disabled="#{bindings.CimsConpercod.hints.disabled}"
+                                          autoSubmit="true">
+                        <f:validator binding="#{bindings.CimsConpercod.validator}"/>
+                    </af:inputListOfValues>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CpcpConpernam.inputValue}" simple="true" required="#{bindings.CpcpConpernam.hints.mandatory}"
+                                      columns="#{bindings.CpcpConpernam.hints.displayWidth}" maximumLength="#{bindings.CpcpConpernam.hints.precision}"
+                                      shortDesc="#{bindings.CpcpConpernam.hints.tooltip}" id="it28" disabled="true" partialTriggers="cimsConpercodId">
+                            <f:validator binding="#{bindings.CpcpConpernam.validator}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:inputText value="#{bindings.CiptAccnam.inputValue}" label="#{bindings.CiptAccnam.hints.label}"
+                              required="#{bindings.CiptAccnam.hints.mandatory}" columns="#{bindings.CiptAccnam.hints.displayWidth}"
+                              maximumLength="#{bindings.CiptAccnam.hints.precision}" shortDesc="#{bindings.CiptAccnam.hints.tooltip}" id="it35"
+                              disabled="#{bindings.CiptAccnam.hints.disabled}">
+                    <f:validator binding="#{bindings.CiptAccnam.validator}"/>
+                </af:inputText>
+                <af:inputListOfValues id="ciptAccadr1Id" popupTitle="Search and Select: #{bindings.CiptAccadr1.hints.label}"
+                                      value="#{bindings.CiptAccadr1.inputValue}" label="#{bindings.CiptAccadr1.hints.label}"
+                                      model="#{bindings.CiptAccadr1.listOfValuesModel}" required="#{bindings.CiptAccadr1.hints.mandatory}"
+                                      columns="#{bindings.CiptAccadr1.hints.displayWidth}" shortDesc="#{bindings.CiptAccadr1.hints.tooltip}"
+                                      disabled="#{bindings.CiptAccadr1.hints.disabled}" autoSubmit="true">
+                    <f:validator binding="#{bindings.CiptAccadr1.validator}"/>
+                </af:inputListOfValues>
+                <af:inputText value="#{bindings.CiptAccadr2.inputValue}" label="" required="#{bindings.CiptAccadr2.hints.mandatory}"
+                              columns="#{bindings.CiptAccadr2.hints.displayWidth}" maximumLength="#{bindings.CiptAccadr2.hints.precision}"
+                              shortDesc="#{bindings.CiptAccadr2.hints.tooltip}" id="it29" disabled="#{bindings.CiptAccadr2.hints.disabled}"
+                              partialTriggers="ciptAccadr1Id">
+                    <f:validator binding="#{bindings.CiptAccadr2.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptAccadr3.inputValue}" label="" required="#{bindings.CiptAccadr3.hints.mandatory}"
+                              columns="#{bindings.CiptAccadr3.hints.displayWidth}" maximumLength="#{bindings.CiptAccadr3.hints.precision}"
+                              shortDesc="#{bindings.CiptAccadr3.hints.tooltip}" id="it30" disabled="#{bindings.CiptAccadr3.hints.disabled}"
+                              partialTriggers="ciptAccadr1Id">
+                    <f:validator binding="#{bindings.CiptAccadr3.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptAccadr4.inputValue}" label="" required="#{bindings.CiptAccadr4.hints.mandatory}"
+                              columns="#{bindings.CiptAccadr4.hints.displayWidth}" maximumLength="#{bindings.CiptAccadr4.hints.precision}"
+                              shortDesc="#{bindings.CiptAccadr4.hints.tooltip}" id="it31" disabled="#{bindings.CiptAccadr4.hints.disabled}"
+                              partialTriggers="ciptAccadr1Id">
+                    <f:validator binding="#{bindings.CiptAccadr4.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.CiptVatNo.inputValue}" label="#{bindings.CiptVatNo.hints.label}"
+                              required="#{bindings.CiptVatNo.hints.mandatory}" columns="#{bindings.CiptVatNo.hints.displayWidth}"
+                              maximumLength="#{bindings.CiptVatNo.hints.precision}" shortDesc="#{bindings.CiptVatNo.hints.tooltip}" id="it36"
+                              disabled="#{bindings.CiptVatNo.hints.disabled}">
+                    <f:validator binding="#{bindings.CiptVatNo.validator}"/>
+                </af:inputText>
+                <af:panelLabelAndMessage label="#{bindings.CimsEdiSnd.label}" id="plam14">
+                    <af:selectOneRadio value="#{bindings.CimsEdiSnd.inputValue}" label="" required="#{bindings.CimsEdiSnd.hints.mandatory}"
+                                       shortDesc="#{bindings.CimsEdiSnd.hints.tooltip}" id="sor2" layout="horizontal"
+                                       disabled="#{bindings.CimsEdiSnd.hints.disabled}">
+                        <f:selectItems value="#{bindings.CimsEdiSnd.items}" id="si2"/>
+                        <f:validator binding="#{bindings.CimsEdiSnd.validator}"/>
+                    </af:selectOneRadio>
+                    <f:facet name="end">
+                        <af:inputText value="#{bindings.CimsEdiSndver.inputValue}" label="#{bindings.CimsEdiSndver.hints.label}"
+                                      required="#{bindings.CimsEdiSndver.hints.mandatory}" columns="#{bindings.CimsEdiSndver.hints.displayWidth}"
+                                      maximumLength="#{bindings.CimsEdiSndver.hints.precision}" shortDesc="#{bindings.CimsEdiSndver.hints.tooltip}" id="it34"
+                                      disabled="true" binding="#{backingBeanScope.EditBean.cimsEdiSndver}">
+                            <f:validator binding="#{bindings.CimsEdiSndver.validator}"/>
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.CimsEdiSndver.format}"/>
+                        </af:inputText>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{bindings.CimsEdiComdat.hints.label}" id="plam13">
+                    <af:inputText value="#{bindings.CimsEdiComdat.inputValue}" simple="true" required="#{bindings.CimsEdiComdat.hints.mandatory}"
+                                  columns="#{bindings.CimsEdiComdat.hints.displayWidth}" disabled="true"
+                                  maximumLength="#{bindings.CimsEdiComdat.hints.precision}" shortDesc="#{bindings.CimsEdiComdat.hints.tooltip}" id="it33"
+                                  binding="#{backingBeanScope.EditBean.cimsEdiComdat}">
+                        <f:validator binding="#{bindings.CimsEdiComdat.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.CimsEdiComdat.format}"/>
+                    </af:inputText>
+                    <f:facet name="end">
+                        <af:button text="Clear" id="b1" actionListener="#{backingBeanScope.EditBean.ediComdatClr}"
+                                   disabled="#{bindings.CimsEdiComdat.hints.disabled}"/>
+                    </f:facet>
+                </af:panelLabelAndMessage>
+            </af:panelFormLayout>
+        </af:panelBox>
+        <af:panelBox text="Shipping Data" id="pb3">
+            <f:facet name="toolbar"/>
+            <af:panelGroupLayout id="pgl7" layout="vertical">
+                <af:panelFormLayout id="pfl8" labelWidth="15%" maxColumns="1">
+                    <af:matchMediaBehavior matchedPropertyValue="30%" propertyName="labelWidth" mediaQuery="screen and (max-width:1200px)"/>
+                    <f:facet name="footer"/>
+                    <af:panelLabelAndMessage label="#{bindings.CiptCusfindst.hints.label}" id="plam15">
+                        <af:inputListOfValues id="ciptCusfindstId" popupTitle="Search and Select: #{bindings.CiptCusfindst.hints.label}" simple="true"
+                                              value="#{bindings.CiptCusfindst.inputValue}" label="#{bindings.CiptCusfindst.hints.label}"
+                                              model="#{bindings.CiptCusfindst.listOfValuesModel}" required="#{bindings.CiptCusfindst.hints.mandatory}"
+                                              columns="#{bindings.CiptCusfindst.hints.displayWidth}" shortDesc="#{bindings.CiptCusfindst.hints.tooltip}"
+                                              disabled="#{bindings.CiptCusfindst.hints.disabled}" autoSubmit="true">
+                            <f:validator binding="#{bindings.CiptCusfindst.validator}"/>
+                        </af:inputListOfValues>
+                        <f:facet name="end">
+                            <af:inputText value="#{bindings.CiptCusfindes.inputValue}" simple="true" required="#{bindings.CiptCusfindes.hints.mandatory}"
+                                          columns="#{bindings.CiptCusfindes.hints.displayWidth}" maximumLength="#{bindings.CiptCusfindes.hints.precision}"
+                                          shortDesc="#{bindings.CiptCusfindes.hints.tooltip}" id="it40" disabled="#{bindings.CiptCusfindst.hints.disabled}"
+                                          partialTriggers="ciptCusfindstId">
+                                <f:validator binding="#{bindings.CiptCusfindes.validator}"/>
+                            </af:inputText>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                    <af:inputDate value="#{bindings.CiptSchindcdat.inputValue}" label="#{bindings.CiptSchindcdat.hints.label}"
+                                  required="#{bindings.CiptSchindcdat.hints.mandatory}" columns="#{bindings.CiptSchindcdat.hints.displayWidth}"
+                                  shortDesc="#{bindings.CiptSchindcdat.hints.tooltip}" id="id6" disabled="#{bindings.CiptSchindcdat.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptSchindcdat.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.CiptSchindcdat.format}"/>
+                    </af:inputDate>
+                    <af:inputText value="#{bindings.CiptSchindcdatRmk.inputValue}" label="#{bindings.CiptSchindcdatRmk.hints.label}"
+                                  required="#{bindings.CiptSchindcdatRmk.hints.mandatory}" columns="#{bindings.CiptSchindcdatRmk.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptSchindcdatRmk.hints.precision}" shortDesc="#{bindings.CiptSchindcdatRmk.hints.tooltip}"
+                                  id="it41" disabled="#{bindings.CiptSchindcdatRmk.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptSchindcdatRmk.validator}"/>
+                    </af:inputText>
+                    <af:inputDate value="#{bindings.CiptActindcdat.inputValue}" label="#{bindings.CiptActindcdat.hints.label}"
+                                  required="#{bindings.CiptActindcdat.hints.mandatory}" columns="#{bindings.CiptActindcdat.hints.displayWidth}"
+                                  shortDesc="#{bindings.CiptActindcdat.hints.tooltip}" id="id7" disabled="#{bindings.CiptActindcdat.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptActindcdat.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.CiptActindcdat.format}"/>
+                    </af:inputDate>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl9" rows="5" maxColumns="2" labelWidth="30%" fieldWidth="70%">
+                    <af:matchMediaBehavior matchedPropertyValue="9" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+                    <f:facet name="footer"/>
+                    <af:inputListOfValues id="ciptVesnamId" popupTitle="Search and Select: #{bindings.CiptVesnam.hints.label}"
+                                          value="#{bindings.CiptVesnam.inputValue}" label="#{bindings.CiptVesnam.hints.label}"
+                                          model="#{bindings.CiptVesnam.listOfValuesModel}" required="#{bindings.CiptVesnam.hints.mandatory}"
+                                          columns="#{bindings.CiptVesnam.hints.displayWidth}" shortDesc="#{bindings.CiptVesnam.hints.tooltip}"
+                                          disabled="#{bindings.CiptVesnam.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptVesnam.validator}"/>
+                    </af:inputListOfValues>
+                    <af:inputDate value="#{bindings.CimsEtadat.inputValue}" label="#{bindings.CimsEtadat.hints.label}"
+                                  required="#{bindings.CimsEtadat.hints.mandatory}" columns="#{bindings.CimsEtadat.hints.displayWidth}"
+                                  shortDesc="#{bindings.CimsEtadat.hints.tooltip}" id="id8" disabled="#{bindings.CimsEtadat.hints.disabled}">
+                        <f:validator binding="#{bindings.CimsEtadat.validator}"/>
+                        <af:convertDateTime pattern="#{bindings.CimsEtadat.format}"/>
+                    </af:inputDate>
+                    <af:panelLabelAndMessage label="#{bindings.CiptFwdcod.hints.label}" id="plam16">
+                        <af:inputListOfValues id="ciptFwdcodId" popupTitle="Search and Select: #{bindings.CiptFwdcod.hints.label}"
+                                              value="#{bindings.CiptFwdcod.inputValue}" label="#{bindings.CiptFwdcod.hints.label}"
+                                              model="#{bindings.CiptFwdcod.listOfValuesModel}" required="#{bindings.CiptFwdcod.hints.mandatory}"
+                                              columns="#{bindings.CiptFwdcod.hints.displayWidth}" shortDesc="#{bindings.CiptFwdcod.hints.tooltip}" simple="true"
+                                              disabled="#{bindings.CiptFwdcod.hints.disabled}" autoSubmit="true">
+                            <f:validator binding="#{bindings.CiptFwdcod.validator}"/>
+                        </af:inputListOfValues>
+                        <f:facet name="end">
+                            <af:inputText value="#{bindings.CiptFwdcodDes.inputValue}" simple="true" required="#{bindings.CiptFwdcodDes.hints.mandatory}"
+                                          columns="#{bindings.CiptFwdcodDes.hints.displayWidth}" maximumLength="#{bindings.CiptFwdcodDes.hints.precision}"
+                                          shortDesc="#{bindings.CiptFwdcodDes.hints.tooltip}" id="it43" disabled="true" partialTriggers="ciptFwdcodId">
+                                <f:validator binding="#{bindings.CiptFwdcodDes.validator}"/>
+                            </af:inputText>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CimsTotGw.hints.label}" id="plam17">
+                        <af:inputText value="#{bindings.CimsTotGw.inputValue}" required="#{bindings.CimsTotGw.hints.mandatory}" simple="true"
+                                      columns="#{bindings.CimsTotGw.hints.displayWidth}" maximumLength="#{bindings.CimsTotGw.hints.precision}"
+                                      shortDesc="#{bindings.CimsTotGw.hints.tooltip}" id="it44" disabled="#{bindings.CimsTotGw.hints.disabled}"
+                                      contentStyle="text-align:center;">
+                            <f:validator binding="#{bindings.CimsTotGw.validator}"/>
+                            <!--<af:convertNumber groupingUsed="false" pattern="#{bindings.CimsTotGw.format}"/>-->
+                        </af:inputText>
+                        <f:facet name="end">
+                            <af:inputText value="#{bindings.CimsTotNw.inputValue}" label="#{bindings.CimsTotNw.hints.label}"
+                                          required="#{bindings.CimsTotNw.hints.mandatory}" columns="#{bindings.CimsTotNw.hints.displayWidth}"
+                                          maximumLength="#{bindings.CimsTotNw.hints.precision}" shortDesc="#{bindings.CimsTotNw.hints.tooltip}" id="it45"
+                                          disabled="#{bindings.CimsTotNw.hints.disabled}" contentStyle="text-align:center;">
+                                <f:validator binding="#{bindings.CimsTotNw.validator}"/>
+                                <!--<af:convertNumber groupingUsed="false" pattern="#{bindings.CimsTotNw.format}"/>-->
+                            </af:inputText>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{bindings.CimsWgUom.inputValue}" label="#{bindings.CimsWgUom.hints.label}"
+                                  required="#{bindings.CimsWgUom.hints.mandatory}" columns="#{bindings.CimsWgUom.hints.displayWidth}"
+                                  maximumLength="#{bindings.CimsWgUom.hints.precision}" shortDesc="#{bindings.CimsWgUom.hints.tooltip}" id="it46"
+                                  disabled="#{bindings.CimsWgUom.hints.disabled}" contentStyle="text-transform:uppercase;">
+                        <f:validator binding="#{bindings.CimsWgUom.validator}"/>
+                    </af:inputText>
+                    <af:inputListOfValues id="ciptVoynumId" popupTitle="Search and Select: #{bindings.CiptVoynum.hints.label}"
+                                          value="#{bindings.CiptVoynum.inputValue}" label="#{bindings.CiptVoynum.hints.label}"
+                                          model="#{bindings.CiptVoynum.listOfValuesModel}" required="#{bindings.CiptVoynum.hints.mandatory}"
+                                          columns="#{bindings.CiptVoynum.hints.displayWidth}" shortDesc="#{bindings.CiptVoynum.hints.tooltip}"
+                                          disabled="#{bindings.CiptVoynum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptVoynum.validator}"/>
+                    </af:inputListOfValues>
+                    <af:inputText value="#{bindings.CiptBillad.inputValue}" label="#{bindings.CiptBillad.hints.label}"
+                                  required="#{bindings.CiptBillad.hints.mandatory}" columns="#{bindings.CiptBillad.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptBillad.hints.precision}" shortDesc="#{bindings.CiptBillad.hints.tooltip}" id="it47"
+                                  disabled="#{bindings.CiptBillad.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptBillad.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptHawBl.inputValue}" label="#{bindings.CiptHawBl.hints.label}"
+                                  required="#{bindings.CiptHawBl.hints.mandatory}" columns="#{bindings.CiptHawBl.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptHawBl.hints.precision}" shortDesc="#{bindings.CiptHawBl.hints.tooltip}" id="it48"
+                                  disabled="#{bindings.CiptHawBl.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptHawBl.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptMawBl.inputValue}" label="#{bindings.CiptMawBl.hints.label}"
+                                  required="#{bindings.CiptMawBl.hints.mandatory}" columns="#{bindings.CiptMawBl.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptMawBl.hints.precision}" shortDesc="#{bindings.CiptMawBl.hints.tooltip}" id="it49"
+                                  disabled="#{bindings.CiptMawBl.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptMawBl.validator}"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl10" rows="4" maxColumns="2" labelWidth="30%" fieldWidth="70%">
+                    <af:matchMediaBehavior matchedPropertyValue="7" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+                    <f:facet name="footer"/>
+                    <af:panelLabelAndMessage label="#{bindings.CimsMsrvol.hints.label}" id="plam18">
+                        <af:inputText value="#{bindings.CimsMsrvol.inputValue}" required="#{bindings.CimsMsrvol.hints.mandatory}" simple="true"
+                                      columns="#{bindings.CimsMsrvol.hints.displayWidth}" maximumLength="#{bindings.CimsMsrvol.hints.precision}"
+                                      shortDesc="#{bindings.CimsMsrvol.hints.tooltip}" id="it50" disabled="#{bindings.CimsMsrvol.hints.disabled}"
+                                      contentStyle="text-align:center;">
+                            <f:validator binding="#{bindings.CimsMsrvol.validator}"/>
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.CimsMsrvol.format}"/>
+                        </af:inputText>
+                        <f:facet name="end">
+                            <af:inputText value="#{bindings.CimsMsruom.inputValue}" label="#{bindings.CimsMsruom.hints.label}"
+                                          required="#{bindings.CimsMsruom.hints.mandatory}" columns="#{bindings.CimsMsruom.hints.displayWidth}"
+                                          maximumLength="#{bindings.CimsMsruom.hints.precision}" shortDesc="#{bindings.CimsMsruom.hints.tooltip}" id="it51"
+                                          disabled="#{bindings.CimsMsruom.hints.disabled}" contentStyle="text-transform:uppercase;">
+                                <f:validator binding="#{bindings.CimsMsruom.validator}"/>
+                            </af:inputText>
+                        </f:facet>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{bindings.CiptDlrnum.inputValue}" label="#{bindings.CiptDlrnum.hints.label}"
+                                  required="#{bindings.CiptDlrnum.hints.mandatory}" columns="#{bindings.CiptDlrnum.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptDlrnum.hints.precision}" shortDesc="#{bindings.CiptDlrnum.hints.tooltip}" id="it52"
+                                  disabled="#{bindings.CiptDlrnum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptDlrnum.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptCusdnNum.inputValue}" label="#{bindings.CiptCusdnNum.hints.label}"
+                                  required="#{bindings.CiptCusdnNum.hints.mandatory}" columns="#{bindings.CiptCusdnNum.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptCusdnNum.hints.precision}" shortDesc="#{bindings.CiptCusdnNum.hints.tooltip}" id="it53"
+                                  disabled="#{bindings.CiptCusdnNum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptCusdnNum.validator}"/>
+                    </af:inputText>
+                    <af:panelLabelAndMessage label="#{bindings.CiptCusesnNum.hints.label}" id="plam29">
+                        <af:inputText value="#{bindings.CiptCusesnNum.inputValue}" label="#{bindings.CiptCusesnNum.hints.label}" simple="true"
+                                      required="#{bindings.CiptCusesnNum.hints.mandatory}" columns="#{bindings.CiptCusesnNum.hints.displayWidth}"
+                                      maximumLength="#{bindings.CiptCusesnNum.hints.precision}" shortDesc="#{bindings.CiptCusesnNum.hints.tooltip}" id="it54"
+                                      disabled="#{bindings.CiptCusesnNum.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptCusesnNum.validator}"/>
+                        </af:inputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptTlxblDat.hints.label}" id="plam26">
+                        <af:inputDate value="#{bindings.CiptTlxblDat.inputValue}" label="#{bindings.CiptTlxblDat.hints.label}" simple="true"
+                                      required="#{bindings.CiptTlxblDat.hints.mandatory}" columns="#{bindings.CiptTlxblDat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptTlxblDat.hints.tooltip}" id="id9" disabled="#{bindings.CiptTlxblDat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptTlxblDat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptTlxblDat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{bindings.CiptContNo.inputValue}" label="#{bindings.CiptContNo.hints.label}"
+                                  required="#{bindings.CiptContNo.hints.mandatory}" columns="#{bindings.CiptContNo.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptContNo.hints.precision}" shortDesc="#{bindings.CiptContNo.hints.tooltip}" id="it55"
+                                  disabled="#{bindings.CiptContNo.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptContNo.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptDrfnum.inputValue}" label="#{bindings.CiptDrfnum.hints.label}"
+                                  required="#{bindings.CiptDrfnum.hints.mandatory}" columns="#{bindings.CiptDrfnum.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptDrfnum.hints.precision}" shortDesc="#{bindings.CiptDrfnum.hints.tooltip}" id="it56"
+                                  disabled="#{bindings.CiptDrfnum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptDrfnum.validator}"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl11" rows="6" maxColumns="2" labelWidth="30%" fieldWidth="70%">
+                    <af:matchMediaBehavior matchedPropertyValue="11" propertyName="rows" mediaQuery="screen and (max-width:1200px)"/>
+                    <f:facet name="footer"/>
+                    <af:panelLabelAndMessage label="#{bindings.CiptDocFstrecdat.hints.label}" id="plam20">
+                        <af:inputDate value="#{bindings.CiptDocFstrecdat.inputValue}" label="#{bindings.CiptDocFstrecdat.hints.label}"
+                                      required="#{bindings.CiptDocFstrecdat.hints.mandatory}" columns="#{bindings.CiptDocFstrecdat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptDocFstrecdat.hints.tooltip}" id="id11" simple="true"
+                                      disabled="#{bindings.CiptDocFstrecdat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptDocFstrecdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptDocFstrecdat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptDocOrgrecdat.hints.label}" id="plam21">
+                        <af:inputDate value="#{bindings.CiptDocOrgrecdat.inputValue}" label="#{bindings.CiptDocOrgrecdat.hints.label}"
+                                      required="#{bindings.CiptDocOrgrecdat.hints.mandatory}" columns="#{bindings.CiptDocOrgrecdat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptDocOrgrecdat.hints.tooltip}" id="id10" simple="true"
+                                      disabled="#{bindings.CiptDocOrgrecdat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptDocOrgrecdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptDocOrgrecdat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptCstmdocSnddat.hints.label}" id="plam22">
+                        <af:inputDate value="#{bindings.CiptCstmdocSnddat.inputValue}" label="#{bindings.CiptCstmdocSnddat.hints.label}"
+                                      required="#{bindings.CiptCstmdocSnddat.hints.mandatory}" columns="#{bindings.CiptCstmdocSnddat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptCstmdocSnddat.hints.tooltip}" id="id12" simple="true"
+                                      disabled="#{bindings.CiptCstmdocSnddat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptCstmdocSnddat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptCstmdocSnddat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptPaydocSnddat.hints.label}" id="plam23">
+                        <af:inputDate value="#{bindings.CiptPaydocSnddat.inputValue}" label="#{bindings.CiptPaydocSnddat.hints.label}" simple="true"
+                                      required="#{bindings.CiptPaydocSnddat.hints.mandatory}" columns="#{bindings.CiptPaydocSnddat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptPaydocSnddat.hints.tooltip}" id="id13" disabled="#{bindings.CiptPaydocSnddat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptPaydocSnddat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptPaydocSnddat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptDocpty.hints.label}" id="plam24">
+                        <af:inputText value="#{bindings.CiptDocpty.inputValue}" label="#{bindings.CiptDocpty.hints.label}"
+                                      required="#{bindings.CiptDocpty.hints.mandatory}" columns="#{bindings.CiptDocpty.hints.displayWidth}"
+                                      maximumLength="#{bindings.CiptDocpty.hints.precision}" shortDesc="#{bindings.CiptDocpty.hints.tooltip}" id="it57"
+                                      disabled="#{bindings.CiptDocpty.hints.disabled}" simple="true">
+                            <f:validator binding="#{bindings.CiptDocpty.validator}"/>
+                        </af:inputText>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptSndstmdat.hints.label}" id="plam25">
+                        <af:inputDate value="#{bindings.CiptSndstmdat.inputValue}" label="#{bindings.CiptSndstmdat.hints.label}" simple="true"
+                                      required="#{bindings.CiptSndstmdat.hints.mandatory}" columns="#{bindings.CiptSndstmdat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptSndstmdat.hints.tooltip}" id="id14" disabled="#{bindings.CiptSndstmdat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptSndstmdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptSndstmdat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptDocCmprecdat.hints.label}" id="plam27">
+                        <af:inputDate value="#{bindings.CiptDocCmprecdat.inputValue}" label="#{bindings.CiptDocCmprecdat.hints.label}" simple="true"
+                                      required="#{bindings.CiptDocCmprecdat.hints.mandatory}" columns="#{bindings.CiptDocCmprecdat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptDocCmprecdat.hints.tooltip}" id="id15" disabled="#{bindings.CiptDocCmprecdat.hints.disabled}">
+                            <f:validator binding="#{bindings.CiptDocCmprecdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptDocCmprecdat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:panelLabelAndMessage label="#{bindings.CiptFwddocOrgrecdat.hints.label}" id="plam28">
+                        <af:inputDate value="#{bindings.CiptFwddocOrgrecdat.inputValue}" label="#{bindings.CiptFwddocOrgrecdat.hints.label}"
+                                      required="#{bindings.CiptFwddocOrgrecdat.hints.mandatory}" columns="#{bindings.CiptFwddocOrgrecdat.hints.displayWidth}"
+                                      shortDesc="#{bindings.CiptFwddocOrgrecdat.hints.tooltip}" id="id16"
+                                      disabled="#{bindings.CiptFwddocOrgrecdat.hints.disabled}" simple="true">
+                            <f:validator binding="#{bindings.CiptFwddocOrgrecdat.validator}"/>
+                            <af:convertDateTime pattern="#{bindings.CiptFwddocOrgrecdat.format}"/>
+                        </af:inputDate>
+                    </af:panelLabelAndMessage>
+                    <af:inputText value="#{bindings.CiptCstmdocCounum.inputValue}" label="#{bindings.CiptCstmdocCounum.hints.label}"
+                                  required="#{bindings.CiptCstmdocCounum.hints.mandatory}" columns="#{bindings.CiptCstmdocCounum.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptCstmdocCounum.hints.precision}" shortDesc="#{bindings.CiptCstmdocCounum.hints.tooltip}"
+                                  id="it58" disabled="#{bindings.CiptCstmdocCounum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptCstmdocCounum.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptPaydocCounum.inputValue}" label="#{bindings.CiptPaydocCounum.hints.label}"
+                                  required="#{bindings.CiptPaydocCounum.hints.mandatory}" columns="#{bindings.CiptPaydocCounum.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptPaydocCounum.hints.precision}" shortDesc="#{bindings.CiptPaydocCounum.hints.tooltip}" id="it59"
+                                  disabled="#{bindings.CiptPaydocCounum.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptPaydocCounum.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptDocptySrc.inputValue}" label="#{bindings.CiptDocptySrc.hints.label}"
+                                  required="#{bindings.CiptDocptySrc.hints.mandatory}" columns="#{bindings.CiptDocptySrc.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptDocptySrc.hints.precision}" shortDesc="#{bindings.CiptDocptySrc.hints.tooltip}" id="it60"
+                                  disabled="#{bindings.CiptDocptySrc.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptDocptySrc.validator}"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+                <af:panelFormLayout id="pfl12" maxColumns="1" rows="3" labelWidth="15%">
+                    <af:matchMediaBehavior matchedPropertyValue="30%" propertyName="labelWidth" mediaQuery="screen and (max-width:1200px)"/>
+                    <f:facet name="footer"/>
+                    <af:inputText value="#{bindings.CiptLteshpRea.inputValue}" label="#{bindings.CiptLteshpRea.hints.label}"
+                                  required="#{bindings.CiptLteshpRea.hints.mandatory}" columns="#{bindings.CiptLteshpRea.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptLteshpRea.hints.precision}" shortDesc="#{bindings.CiptLteshpRea.hints.tooltip}" id="it61"
+                                  disabled="#{bindings.CiptLteshpRea.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptLteshpRea.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptIntdlyReason.inputValue}" label="#{bindings.CiptIntdlyReason.hints.label}"
+                                  required="#{bindings.CiptIntdlyReason.hints.mandatory}" columns="#{bindings.CiptIntdlyReason.hints.displayWidth}"
+                                  maximumLength="#{bindings.CiptIntdlyReason.hints.precision}" shortDesc="#{bindings.CiptIntdlyReason.hints.tooltip}" id="it62"
+                                  disabled="#{bindings.CiptIntdlyReason.hints.disabled}">
+                        <f:validator binding="#{bindings.CiptIntdlyReason.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{bindings.CiptRmk.inputValue}" label="#{bindings.CiptRmk.hints.label}" required="#{bindings.CiptRmk.hints.mandatory}"
+                                  columns="#{bindings.CiptRmk.hints.displayWidth}" maximumLength="#{bindings.CiptRmk.hints.precision}"
+                                  shortDesc="#{bindings.CiptRmk.hints.tooltip}" id="it63" disabled="#{bindings.CiptRmk.hints.disabled}" rows="5">
+                        <f:validator binding="#{bindings.CiptRmk.validator}"/>
+                    </af:inputText>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </af:panelBox>
+        <af:popup childCreation="deferred" animate="false" id="p3" binding="#{pageFlowScope.RefreshAddamtBean.applyDefaultAddamtPopup}">
+            <af:dialog id="d4" title="Apply Default?" type="cancel">
+                <f:facet name="buttonBar">
+                    <af:button text="OK" id="b4" actionListener="#{pageFlowScope.RefreshAddamtBean.applyDefaultListener}"/>
+                </f:facet>
+                <af:outputLabel value="#{pageFlowScope.applyDefaultMsg}" id="ol1" clientComponent="true"/>
+            </af:dialog>
+        </af:popup>
+    </af:panelGroupLayout>
+</ui:composition>

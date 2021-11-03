@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Home_Page.jspx" id="d1">
+            <af:form id="f1">
+                <af:panelGridLayout id="pgl1" styleClass="AFStretchWidth"
+                                    inlineStyle="margin-left:10px;margin-top:2px">
+                    <af:gridRow height="57px" id="gr1" marginTop="0px"
+                                marginBottom="0px">
+                        <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc2">
+                            <!-- Header -->
+                            <af:panelStretchLayout id="psl1" startWidth="500px" topHeight="50px"
+                                                   endWidth="200px">
+                                <f:facet name="start">
+                                    <af:panelGroupLayout id="pgl2"
+                                                         layout="horizontal">
+                                        <af:image source="/Images/Nord logo1.jpg" shortDesc="Nord_Rack_logo" id="i1"/>
+                                        <af:spacer width="20" height="10" id="s1"/>
+                                        <af:outputText value="RPM Rack Worksheet" id="ot1"
+                                                       inlineStyle="font-size:large;"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                                <f:facet name="end">
+                                    <af:panelGroupLayout id="pgl3" layout="horizontal" halign="start" valign="middle"
+                                                         inlineStyle="margin-top:30px;">
+                                        <af:outputLabel value="#{sessionScope.userName}"
+                                                        id="ol1"/>
+                                        <af:spacer width="10" height="10"
+                                                   id="s7"/>
+                                        <af:image source="/Images/Home logo.png"
+                                                  id="i2" shortDesc=" "/>
+                                        <af:spacer width="3" height="3"
+                                                   id="s6"/>
+                                        <af:commandLink text="Home" id="l1"
+                                                        immediate="true" rendered="#{sessionScope.roleId eq '90'}"
+                                                        action="#{pageFlowScope.HomeMB.defaultHomePage}"
+                                                        actionListener="#{pageFlowScope.HomeMB.showfetchPopUp}">
+                                            <af:setActionListener from="true"
+                                                                  to="#{requestScope.flag2}"/>
+                                            <af:setPropertyListener from="Candidate_Rule_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}" type="action"/>
+                                        </af:commandLink>
+                                        <af:commandLink text="Home" id="cl2"
+                                                        immediate="true" rendered="#{sessionScope.roleId eq '80'}"
+                                                        action="#{pageFlowScope.HomeMB.defaultHomePage}"
+                                                        actionListener="#{pageFlowScope.HomeMB.candidateRuleLinkActionListener}">
+                                            <af:setActionListener from="true"
+                                                                  to="#{requestScope.flag2}"/>
+                                            <af:setPropertyListener from="Clearance_Worksheet_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}" type="action"/>
+                                        </af:commandLink>
+                                        <af:spacer width="10" height="10" id="s2"/>
+                                        <af:commandLink text="Logout" id="l2"
+                                                        actionListener="#{pageFlowScope.HomeMB.RPM_Logout}"
+                                                        immediate="true"/>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                            </af:panelStretchLayout>
+                        </af:gridCell>
+                    </af:gridRow>
+                    <af:gridRow height="100%" id="gr2" marginTop="0px"
+                                marginBottom="0px">
+                        <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                            <af:panelSplitter orientation="horizontal"
+                                              splitterPosition="122" id="ps1"
+                                              inlineStyle="height:auto;">
+                                <f:facet name="first">
+                                    <!-- Left -->
+                                    <af:panelGroupLayout id="pgl4" layout="vertical" halign="start"
+                                                         inlineStyle="margin-top:20px;">
+                                        <af:commandLink text="Clearance Worksheet" id="l3"
+                                                 action="#{pageFlowScope.HomeMB.currentFacet}"
+                                                        immediate="true"
+                                                        rendered="#{sessionScope.roleId eq '80' }">                                                        
+                                            <af:setPropertyListener from="Clearance_Worksheet_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}" type="action"/>
+                                        </af:commandLink>
+                                        <af:spacer width="10" height="10" id="s3"/>
+                                        <af:commandLink text="Candidate Rule" id="l4"
+                                                 action="#{pageFlowScope.HomeMB.currentFacet}"
+                                                        immediate="true"
+                                                        rendered="#{sessionScope.roleId eq '80'}"
+                                                        actionListener="#{pageFlowScope.HomeMB.candidateRuleLinkActionListener}">
+                                            
+                                            <af:setPropertyListener from="Candidate_Rule_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}"
+                                                                    type="action"/> 
+                                                                     <af:setActionListener from="true"
+                                                                  to="#{requestScope.flag2}"/>
+                                        </af:commandLink>
+                                        <af:commandLink text="Candidate Rule"
+                                                        id="cl1"
+                                                 action="#{pageFlowScope.HomeMB.currentFacet}"
+                                                        rendered="#{sessionScope.roleId eq '90'}"
+                                                        actionListener="#{pageFlowScope.HomeMB.showfetchPopUp}">
+                                            <af:setPropertyListener from="Candidate_Rule_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}"
+                                                                    type="action"/>   
+                                                                     <af:setActionListener from="true"
+                                                                  to="#{requestScope.flag2}"/>
+                                            <!--<af:showPopupBehavior popupId="p2"                                                                  
+                                                                  disabled="#{sessionScope.roleId eq '80' }"/>-->
+                                        </af:commandLink>
+                                        <af:spacer width="10" height="10" id="s4"/>
+                                        <af:commandLink text="Rule Parameter" id="l5"
+                                                 action="#{pageFlowScope.HomeMB.currentFacet}"
+                                                        immediate="true"
+                                                        rendered="#{sessionScope.roleId eq '90' }">
+                                            <af:setPropertyListener from="Rule_Parameter_facet"
+                                                                    to="#{pageFlowScope.HomeMB.facetName}" type="action"/>
+                                            <!--<af:setPropertyListener from="true"
+                                                                    to="#{requestScope.cancelEvent}" type="action"/>-->
+                                            <af:setActionListener from="true"
+                                                                  to="#{requestScope.flag}"/>
+                                        </af:commandLink>
+                                    </af:panelGroupLayout>
+                                </f:facet>
+                                <f:facet name="second">
+                                    <!-- Content -->
+                                    <af:switcher id="s5" binding="#{pageFlowScope.HomeMB.bswticher}"
+                                                 defaultFacet="#{(sessionScope.roleId eq '90') ?'Candidate_Rule_facet':'Clearance_Worksheet_facet'}">
+                                        <f:facet name="Clearance_Worksheet_facet">
+                                            <af:panelGroupLayout id="pgl5"
+                                                                 layout="scroll"
+                                                                 partialTriggers="l1">
+                                                <af:region value="#{bindings.Clearance_Worksheet_BTF1.regionModel}"
+                                                           id="r1"/>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                        <f:facet name="Candidate_Rule_facet">
+                                            <af:panelGroupLayout id="pgl6"
+                                                                 layout="scroll"
+                                                                 partialTriggers="l1">
+                                                <af:region value="#{bindings.Candidate_Rule_BTF1.regionModel}"
+                                                           id="r2"/>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                        <f:facet name="Rule_Parameter_facet">
+                                            <af:panelGroupLayout id="pgl7"
+                                                                 layout="scroll"
+                                                                 partialTriggers="l1">
+                                                <af:region value="#{bindings.Rule_Parameter_BTF1.regionModel}"
+                                                           id="r3"/>
+                                            </af:panelGroupLayout>
+                                        </f:facet>
+                                    </af:switcher>
+                                </f:facet>
+                            </af:panelSplitter>
+                        </af:gridCell>
+                    </af:gridRow>
+                </af:panelGridLayout>                
+                <af:popup id="p2" binding="#{pageFlowScope.HomeMB.fetchPopUp}"
+                          partialTriggers="cl1" contentDelivery="immediate"
+                          childCreation="deferred" autoCancel="disabled">
+                    <af:dialog id="d2" title=" " type="okCancel"
+                               dialogListener="#{pageFlowScope.HomeMB.cancelParameterListener}">
+                        <af:panelGroupLayout id="pgl8" layout="vertical">
+                            <af:outputText value="Unsaved changes would be lost." id="ot2"
+                                            inlineStyle="text-align:center;"/>
+                            <af:spacer width="10" height="10" id="s8"/>
+                            <af:outputText value="Are you sure you want to continue?" id="ot3"
+                                    inlineStyle="text-align:center;"/>
+                        </af:panelGroupLayout>
+                    </af:dialog>
+                </af:popup>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

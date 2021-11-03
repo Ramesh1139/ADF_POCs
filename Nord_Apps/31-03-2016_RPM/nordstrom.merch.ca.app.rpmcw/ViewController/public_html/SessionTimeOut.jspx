@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"          
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1" title=" ">
+      <af:form id="f1">
+        <af:panelStretchLayout id="psl1">
+          <f:facet name="top"/>
+          <f:facet name="center">
+            <!-- id="af_one_column_header_footer_stretched"   -->
+            <af:decorativeBox theme="light" id="db2">
+              <f:facet name="center">
+                <af:decorativeBox theme="medium" id="db1" centerLandmark="main"
+                                  topLandmark="main">
+                  <f:facet name="center">
+                    <af:panelGroupLayout layout="vertical"
+                                         xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                                         id="pgl1" valign="middle"
+                                         halign="center">
+                      <af:message id="m1" 
+                                   message="You session was inactive since from the last 2 minutes. Click on the link below to Login"
+                                  messageType="info" for="pgl1"
+                                  inlineStyle="font-size:medium; font-weight:bold;"/>
+                      <af:goLink text="Click here to Login" id="gl1"
+                                 destination="/faces/Login.jspx"
+                                 inlineStyle="font-size:medium; font-weight:bold;"/>                      
+                    </af:panelGroupLayout>
+                  </f:facet>
+                </af:decorativeBox>
+              </f:facet>
+            </af:decorativeBox>
+          </f:facet>
+          <f:facet name="bottom"/>
+        </af:panelStretchLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

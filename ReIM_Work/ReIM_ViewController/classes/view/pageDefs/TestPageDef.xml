@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="TestPageDef" Package="view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator id="maxId1Iterator" Binds="maxId1"
+              DataControl="ReIM_ApplicationModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

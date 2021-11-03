@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="CusItmLink"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge">
+  <ViewLinkDefEnd
+    Name="TciMstVO"
+    Cardinality="1"
+    Source="true"
+    Owner="xts.salinv.model.views.TciMstVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="TciMstVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.TciMstVO.CimsRunnum"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="CusItmVO"
+    Cardinality="-1"
+    Owner="xts.salinv.model.views.vc.CusItmVO">
+    <DesignTime>
+      <Attr Name="_isUpdateable" Value="true"/>
+      <Attr Name="_finderName" Value="CusItmVO"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.salinv.model.views.vc.CusItmVO.CiaiRunnum"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

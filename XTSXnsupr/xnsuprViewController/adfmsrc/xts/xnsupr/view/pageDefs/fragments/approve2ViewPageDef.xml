@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="approve2ViewPageDef"
+                Package="xts.xnsupr.view.pageDefs.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="Blk3Approve21VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve21VOIterator"/>
+    <iterator Binds="Blk3Approve2VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve2VOIterator"/>
+    <iterator Binds="Blk3Approve22VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve22VOIterator"/>
+    <iterator id="Blk1TmpPrfNewcodVOIterator" Binds="Blk1TmpPrfNewcodVO" DataControl="xnsuprAMDataControl"
+              RangeSize="10"/>
+    <iterator Binds="Blk3Approve5VO" RangeSize="10" DataControl="xnsuprAMDataControl" id="Blk3Approve5VOIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="Blk3Approve2VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve2VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve2VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve2VOFieldEvents_ButReject_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve2VOFieldEvents_ButReject_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve2VOFieldEvents_ButReject_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve2VOFieldEvents_ButPrev_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve2VOFieldEvents_ButPrev_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve2VOFieldEvents_ButPrev_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve2VOFieldEvents_ButNext_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve2VOFieldEvents_ButNext_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve2VOFieldEvents_ButNext_bp.dataControl.dataProvider"/>
+    <attributeValues IterBinding="Blk3Approve21VOIterator" id="NewFulnam">
+      <AttrNames>
+        <Item Value="NewFulnama21"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve21VOIterator" id="NewAdr1">
+      <AttrNames>
+        <Item Value="NewAdr1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve21VOIterator" id="NewAdr3">
+      <AttrNames>
+        <Item Value="NewAdr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve21VOIterator" id="NewAdr2">
+      <AttrNames>
+        <Item Value="NewAdr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve21VOIterator" id="NewAdr4">
+      <AttrNames>
+        <Item Value="NewAdr4"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="Blk3Approve2VOIterator" id="Blk3Approve2VO">
+      <nodeDefinition DefName="xts.xnsupr.model.views.Blk3Approve2VO" Name="Blk3Approve2VO0">
+        <AttrNames>
+          <Item Value="MppfsCod"/>
+          <Item Value="SpalFulnam"/>
+          <Item Value="MppfsScr"/>
+          <Item Value="SpalClsdat"/>
+          <Item Value="SpalSup" Binds="SpalSup"/>
+          <Item Value="SpalShp" Binds="SpalShp"/>
+          <Item Value="SpalMan" Binds="SpalMan"/>
+          <Item Value="SpalMat" Binds="SpalMat"/>
+          <Item Value="SpalSupcod"/>
+          <Item Value="SPALCON" Binds="SPALCON"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="Blk3Approve2VOIterator" id="COUNTTOTAL">
+      <AttrNames>
+        <Item Value="COUNTTOTAL"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrAdr1">
+      <AttrNames>
+        <Item Value="SpcrAdr1"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrAdr2">
+      <AttrNames>
+        <Item Value="SpcrAdr2"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrAdr3">
+      <AttrNames>
+        <Item Value="SpcrAdr3"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrAdr4">
+      <AttrNames>
+        <Item Value="SpcrAdr4"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrProv">
+      <AttrNames>
+        <Item Value="SpcrProv"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrCity">
+      <AttrNames>
+        <Item Value="SpcrCity"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrZip">
+      <AttrNames>
+        <Item Value="SpcrZip"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrTel">
+      <AttrNames>
+        <Item Value="SpcrTel"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrFax">
+      <AttrNames>
+        <Item Value="SpcrFax"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="Blk3Approve22VOIterator" id="SpcrEmail1">
+      <AttrNames>
+        <Item Value="SpcrEmail1"/>
+      </AttrNames>
+    </attributeValues>
+    <button IterBinding="Blk3Approve2VOIterator" id="SpalSup" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SpalSup"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="Blk3Approve2VOIterator" id="SpalShp" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SpalShp"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="Blk3Approve2VOIterator" id="SpalMan" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SpalMan"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="Blk3Approve2VOIterator" id="SpalMat" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SpalMat"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <button IterBinding="Blk3Approve2VOIterator" id="SPALCON" DTSupportsMRU="false" StaticList="true">
+      <AttrNames>
+        <Item Value="SPALCON"/>
+      </AttrNames>
+      <ValueList>
+        <Item Value="Y"/>
+        <Item Value="N"/>
+      </ValueList>
+    </button>
+    <attributeValues IterBinding="Blk3Approve5VOIterator" id="DeclineReason">
+      <AttrNames>
+        <Item Value="DeclineReason"/>
+      </AttrNames>
+    </attributeValues>
+    <tree IterBinding="Blk3Approve22VOIterator" id="Blk3Approve22VO">
+      <nodeDefinition DefName="xts.xnsupr.model.views.Blk3Approve22VO" Name="Blk3Approve22VO0">
+        <AttrNames>
+          <Item Value="Profile"/>
+          <Item Value="SpcrAdr1"/>
+          <Item Value="SpcrAdr2"/>
+          <Item Value="SpcrAdr3"/>
+          <Item Value="SpcrAdr4"/>
+          <Item Value="SpcrCity"/>
+          <Item Value="SpcrEmail1"/>
+          <Item Value="SpcrFax"/>
+          <Item Value="SpcrProv"/>
+          <Item Value="SpcrSupcod"/>
+          <Item Value="SpcrTel"/>
+          <Item Value="SpcrZip"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <methodAction id="Blk3Approve22VOFieldEvents_ButNext_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve22VOFieldEvents_ButNext_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve22VOFieldEvents_ButNext_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve22VOFieldEvents_ButPrev_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve22VOFieldEvents_ButPrev_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve22VOFieldEvents_ButPrev_bp.dataControl.dataProvider"/>
+    <methodAction id="Blk3Approve1VOFieldEvents_ButExit_bp" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="Blk3Approve1VOFieldEvents_ButExit_bp" IsViewObjectMethod="false"
+                  DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.Blk3Approve1VOFieldEvents_ButExit_bp.dataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

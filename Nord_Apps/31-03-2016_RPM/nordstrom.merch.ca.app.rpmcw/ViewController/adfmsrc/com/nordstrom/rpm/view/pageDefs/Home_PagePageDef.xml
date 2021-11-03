@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.64.93" id="Home_PagePageDef"
+                Package="com.nordstrom.rpm.view.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="Clearance_Worksheet_BTF1"
+              taskFlowId="/WEB-INF/Clearance_Worksheet_BTF.xml#Clearance_Worksheet_BTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <taskFlow id="Candidate_Rule_BTF1"
+              taskFlowId="/WEB-INF/Candidate_Rule_BTF.xml#Candidate_Rule_BTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              RefreshCondition="#{requestScope.flag2}"/>
+    <taskFlow id="Rule_Parameter_BTF1"
+              taskFlowId="/WEB-INF/Rule_Parameter_BTF.xml#Rule_Parameter_BTF"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              RefreshCondition="#{requestScope.flag}"/>
+    <iterator id="Clr_Wksht_Rule_View1Iterator" Binds="Clr_Wksht_Rule_View1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+    <iterator id="Clr_Wksht_Dept_AccessView1Iterator"
+              Binds="Clr_Wksht_Dept_AccessView1"
+              DataControl="RPM_AppModuleDataControl" RangeSize="25"/>
+  </executables>
+  <bindings>
+    <methodAction IterBinding="Clr_Wksht_Rule_View1Iterator"
+                  id="rollbackOrRevertRowChanges" RequiresUpdateModel="true"
+                  Action="invokeMethod" MethodName="rollbackOrRevertRowChanges"
+                  IsViewObjectMethod="true"
+                  DataControl="RPM_AppModuleDataControl"
+                  InstanceName="RPM_AppModuleDataControl.Clr_Wksht_Rule_View1"/>
+    <methodAction id="deleteDeptAccessOnLogout"
+                  InstanceName="RPM_AppModuleDataControl.dataProvider"
+                  DataControl="RPM_AppModuleDataControl"
+                  RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="deleteDeptAccessOnLogout"
+                  IsViewObjectMethod="false">
+      <NamedData NDName="userID" NDValue="#{sessionScope.userName}"
+                 NDType="java.lang.String"/>
+      <NamedData NDName="deptAccessIterator" NDType="java.lang.String"/>
+    </methodAction>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47" id="editShpitmDesPageDef"
+                Package="xts.salinv.view.pageDefs.fragments.shpitm">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <iterator Binds="TciDesShpitmVO" RangeSize="25" DataControl="XTSSalInvAMDataControl" id="TciDesShpitmVOIterator"/>
+        <iterator id="SaveRemarkVOIterator" Binds="SaveRemarkVO" DataControl="XTSSalInvAMDataControl" RangeSize="25"/>
+        <iterator id="CopyRemarkVOIterator" Binds="CopyRemarkVO" DataControl="XTSSalInvAMDataControl" RangeSize="25"/>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="TciDesShpitmVOIterator" id="CidsItmShpdes">
+            <AttrNames>
+                <Item Value="CidsItmShpdes"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="TciDesShpitmVOIterator" id="CidsItmDesdes">
+            <AttrNames>
+                <Item Value="CidsItmDesdes"/>
+            </AttrNames>
+        </attributeValues>
+        <methodAction id="removeCopiedRemark" RequiresUpdateModel="true" Action="invokeMethod" MethodName="removeCopiedRemark" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO"/>
+        <methodAction id="resetRow" RequiresUpdateModel="true" Action="invokeMethod" MethodName="resetRow" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO"/>
+        <methodAction id="setCopyAttr" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setCopyAttr" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO">
+            <NamedData NDName="loc" NDType="java.lang.String"/>
+            <NamedData NDName="rmkFld" NDType="java.lang.String"/>
+        </methodAction>
+        <methodAction id="saveRemark" RequiresUpdateModel="true" Action="invokeMethod" MethodName="saveRemark" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SaveRemarkVO"/>
+        <methodAction id="setRemarkDesc" RequiresUpdateModel="true" Action="invokeMethod" MethodName="setRemarkDesc" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.SaveRemarkVO">
+            <NamedData NDName="loc" NDType="java.lang.String"/>
+            <NamedData NDName="rmkFld" NDType="java.lang.String"/>
+        </methodAction>
+        <attributeValues IterBinding="SaveRemarkVOIterator" id="RemarkCode">
+            <AttrNames>
+                <Item Value="RemarkCode"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="SaveRemarkVOIterator" id="RemarkDesc">
+            <AttrNames>
+                <Item Value="RemarkDesc"/>
+            </AttrNames>
+        </attributeValues>
+        <listOfValues IterBinding="CopyRemarkVOIterator" StaticList="false" Uses="LOV_SiHdr" id="SiNo"/>
+        <attributeValues IterBinding="CopyRemarkVOIterator" id="Shiseq">
+            <AttrNames>
+                <Item Value="Shiseq"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CopyRemarkVOIterator" id="Itmseq">
+            <AttrNames>
+                <Item Value="Itmseq"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CopyRemarkVOIterator" id="ItemNo">
+            <AttrNames>
+                <Item Value="ItemNo"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="CopyRemarkVOIterator" id="SoNo">
+            <AttrNames>
+                <Item Value="SoNo"/>
+            </AttrNames>
+        </attributeValues>
+        <listOfValues IterBinding="CopyRemarkVOIterator" StaticList="false" Uses="LOV_MprmRmkcod" id="MprmRmkcod"/>
+        <action IterBinding="TciDesShpitmVOIterator" id="CreateInsert" InstanceName="XTSSalInvAMDataControl.TciDesShpitmVO" DataControl="XTSSalInvAMDataControl"
+                RequiresUpdateModel="true" Action="createInsertRow"/>
+        <methodAction id="processCopy" RequiresUpdateModel="true" Action="invokeMethod" MethodName="processCopy" IsViewObjectMethod="true"
+                      DataControl="XTSSalInvAMDataControl" InstanceName="data.XTSSalInvAMDataControl.CopyRemarkVO">
+            <NamedData NDName="loc" NDType="java.lang.String"/>
+        </methodAction>
+    </bindings>
+</pageDefinition>

@@ -1,0 +1,20 @@
+FormName,FormTitle,BlockName,DatabaseBlock,QueryDataSourceType,QueryDataSourceName
+XSIM2,Li & Fung Sample Invoice Master Maintenance,SAM_BLK,false,None,
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK1_TSI_MST,true,Table,V_TSI_MST2
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK1_CONTROL,false,None,None
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK2_CRITERIA,false,None,
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK3_TSI_MST,true,Table,TSI_MST
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK3_CONTROL,false,None,None
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK4_TSI_DES_D,true,Table,TSI_DES
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK4_TSI_DES_A,true,Table,TSI_DES
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK4_TSI_DES_B,true,Table,TSI_DES
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK4_TSI_DES_Q,true,Table,TSI_DES
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK5_CONTROL,false,None,
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK5_TSI_ITM,false,None,TSI_ITM
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK6_CONTROL,false,None,None
+XSIM2,Li & Fung Sample Invoice Master Maintenance,BLK6_UPDLST,false,None,V_TSI_MST
+XSIM2,Li & Fung Sample Invoice Master Maintenance,WORK_ITEM,false,None,None
+XSIM2,Li & Fung Sample Invoice Master Maintenance,REMARK_BLK,false,None,
+XSIM2,Li & Fung Sample Invoice Master Maintenance,INFO_BLK,false,None,None
+XSIM2,Li & Fung Sample Invoice Master Maintenance,ITMRMK_BLK,false,None,
+XSIM2,Li & Fung Sample Invoice Master Maintenance,PRINT_BLK,false,None,

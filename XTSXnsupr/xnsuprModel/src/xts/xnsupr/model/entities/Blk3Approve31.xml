@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk3Approve31"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="TSP_ALL"
+  AliasName="Blk3Approve31"
+  BindingStyle="OracleName"
+  RowClass="xts.xnsupr.model.entities.Blk3Approve31Impl">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Attribute
+    Name="OldPrfcod"
+    TableName="TSP_ALL"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="80"
+    ColumnName="spal_supcod"
+    ColumnType="VARCHAR2"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="80"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OldFulnam"
+    TableName="TSP_ALL"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="100"
+    ColumnName="spal_fulnam"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OldFlagSup"
+    TableName="TSP_ALL"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="100"
+    ColumnName="spal_sup"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OldFlagShp"
+    TableName="TSP_ALL"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="100"
+    ColumnName="spal_shp"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OldFlagFty"
+    TableName="TSP_ALL"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="100"
+    ColumnName="spal_man"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="100"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SpalClsdat"
+    ColumnName="SPAL_CLSDAT"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    ColumnType="DATE"
+    TableName="TSP_ALL"/>
+  <Attribute
+    Name="Rowid"
+    IsUpdateable="false"
+    ColumnName="ROWID"
+    SQLType="ROWID"
+    Type="oracle.jbo.domain.RowID"
+    ColumnType="ROWID"
+    TableName="TSP_ALL"/>
+  <Attribute
+    Name="OldFlagMat"
+    Precision="1"
+    ColumnName="SPAL_MAT"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TSP_ALL">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="OldFlagCon"
+    Precision="1"
+    ColumnName="SPAL_CON"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="TSP_ALL">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="Blk3Approve31Pk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="BLK3_APPROVE_3_1_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="xts.xnsupr.model.entities.Blk3Approve31.OldPrfcod"/>
+    </AttrArray>
+  </Key>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.xnsupr.model.xnsuprModelBundle"/>
+  </ResourceBundle>
+</Entity>

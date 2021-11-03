@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelGroupLayout id="pgl1" layout="horizontal" halign="center"
+                         inlineStyle="padding:150px;">
+        <af:panelBox text="Log In Details" id="pb1" showDisclosure="false"
+                     titleHalign="center">
+            <af:panelFormLayout id="pfl1" inlineStyle="width:350px;">
+                <af:messages id="m1" inline="true"/>
+                <af:spacer width="10" height="10" id="s5"/>
+                <af:inputText label="Username" id="it1"
+                              value="#{requestScope.UserBean.userid}"
+                              required="true"
+                              requiredMessageDetail="Please enter Username"
+                              binding="#{UserBean.userName}"/>
+                <af:spacer width="10" height="7" id="s1"/>
+                <af:inputText label="Password" id="it2"
+                              value="#{requestScope.UserBean.password}"
+                              secret="true" required="true"
+                              requiredMessageDetail="Please enter password"
+                              binding="#{UserBean.upassword}"/>
+                <af:spacer width="10" height="7" id="s2"/>
+                <af:selectOneChoice label="Application" id="soc1"
+                                    requiredMessageDetail="Please select an application"
+                                    required="true"
+                                    value="#{loginBeanMB.selected_application}"
+                                    autoSubmit="true"
+                                    valueChangeListener="#{loginBeanMB.applicationType_VCL}">
+                    <af:selectItem label="RPM" value="RPM" id="si1"/>
+                    <af:selectItem label="ReIM" value="ReIM" id="si2"/>
+                    
+                </af:selectOneChoice>
+                <af:spacer width="10" height="7" id="s3"/>
+                <af:panelGroupLayout id="pgl2">
+                    <af:commandButton text="Log In" id="b1"
+                                      action="#{loginBeanMB.doLogin}"/>
+                    <af:spacer width="10" height="10" id="s4"/>
+                    <af:commandButton text="Cancel" id="cb1" immediate="true">
+                        <af:resetActionListener/>
+                    </af:commandButton>
+                </af:panelGroupLayout>
+            </af:panelFormLayout>
+        </af:panelBox>
+    </af:panelGroupLayout>
+</jsp:root>

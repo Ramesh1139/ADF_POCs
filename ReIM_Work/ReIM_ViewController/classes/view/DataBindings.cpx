@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.64.93" id="DataBindings" SeparateXMLFiles="false"
+             Package="view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/Pages/Login.jspx" usageId="view_LoginPageDef"/>
+    <page path="/Pages/Home.jspx" usageId="view_HomePageDef"/>
+    <page path="/Pages/Test.jspx" usageId="view_TestPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="view_LoginPageDef" path="Pages.LoginPageDef"/>
+    <page id="view_HomePageDef" path="Pages.HomePageDef"/>
+    <page id="view_TestPageDef" path="Pages.TestPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="ReIM_ApplicationModuleDataControl" Package="am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="ReIM_ApplicationModuleLocal"
+                     syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

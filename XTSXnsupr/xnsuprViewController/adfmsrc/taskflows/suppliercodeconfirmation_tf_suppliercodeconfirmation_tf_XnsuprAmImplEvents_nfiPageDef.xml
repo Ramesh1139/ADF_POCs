@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.20.47"
+                id="suppliercodeconfirmation_tf_suppliercodeconfirmation_tf_XnsuprAmImplEvents_nfiPageDef"
+                Package="taskflows" SkipValidation="true">
+  <parameters/>
+  <executables/>
+  <bindings>
+    <methodAction id="XnsuprAmImplEvents_nfi" RequiresUpdateModel="true" Action="invokeMethod"
+                  MethodName="XnsuprAmImplEvents_nfi" IsViewObjectMethod="false" DataControl="xnsuprAMDataControl"
+                  InstanceName="bindings.XnsuprAmImplEvents_nfi.dataControl.dataProvider"/>
+  </bindings>
+</pageDefinition>

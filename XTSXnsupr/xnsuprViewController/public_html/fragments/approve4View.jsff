@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:xts-rc="/xtsComponentLib">
+    <af:pageTemplate viewId="/templates/xtsUIEditTemplate.jsf" id="pt1">
+          <f:facet name="reusableEditToolbar">
+            <xts-rc:EditToolbar id="et1" editBean="#{backingBeanScope.EditBean}" 
+                                 actionBtnRendered="false"
+                                actionBtnDisabled="false" masterIteratorName="" 
+                                attributeHitsDisabled="false" 
+                                saveButtonRendered="false"
+                                editButtonRendered="false"
+                                saveCloseButtonRendered="false"
+                                
+                                >
+                <f:facet name="customButtons">
+          <af:toolbar id="t1" styleClass="ToolbarHeight" inlineStyle="margin-top: -10px; margin-bottom: -3px">
+            <af:group id="g2">
+              <af:button text="Reject" id="b1" accessKey="R" textAndAccessKey="Reject" action="approve5"
+                         actionListener="#{backingBeanScope.EditBean.rejectApprove4}"
+                         icon="#{resource['images:actionicon_edit_status_red_18_V2.png']}"/>
+              <af:button text="Previous" id="b5" action="approve3"
+                         actionListener="#{backingBeanScope.EditBean.previousApprove4}"
+                         icon="#{resource['images:previouspage_active_14_V2.png']}"/>
+              <af:button text="Confirm" id="b4" actionListener="#{backingBeanScope.EditBean.confirmApprove4}"
+                         icon="#{resource['images:actionicon_edit_status_18_V2.png']}"/>
+            </af:group>
+            <!--<af:group id="g1">
+              <af:button text="Cancel and Close" id="dc_b_close" immediate="true"
+                         icon="#{resource['images:actionicon_cancel_24_V2.png']}" action="supplierView"
+                         actionListener="#{backingBeanScope.EditBean.cancelApprove4}"/>
+            </af:group>-->
+          </af:toolbar>
+        </f:facet>
+                <f:facet name="actionCustomButtons"></f:facet>
+            </xts-rc:EditToolbar>
+        </f:facet>
+          <f:facet name="infoDecorativeBoxArea"/>
+         
+           <f:facet name="decorativeBoxArea">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:panelBox text="Confirm New Supplier / Factory Code - Step 4 (Confirmation)" id="pb1" showDisclosure="false">
+          <f:facet name="toolbar"/>
+          <af:panelFormLayout id="pfl3" labelWidth="15%">
+            <f:facet name="footer"/>
+            <af:panelLabelAndMessage label="#{bindings.MppfcGrp.hints.label}" id="plam1">
+              <af:inputText value="#{bindings.MppfcGrp.inputValue}" simple="true"
+                            required="#{bindings.MppfcGrp.hints.mandatory}"
+                            columns="#{bindings.MppfcGrp.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcGrp.hints.precision}"
+                            shortDesc="#{bindings.MppfcGrp.hints.tooltip}" id="it1" disabled="true"
+                            contentStyle="width:250px;">
+                <f:validator binding="#{bindings.MppfcGrp.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MppfcFulnam.hints.label}" id="plam2" showRequired="true">
+              <af:inputText value="#{bindings.MppfcFulnam.inputValue}" simple="true"
+                            required="#{bindings.MppfcFulnam.hints.mandatory}"
+                            columns="#{bindings.MppfcFulnam.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcFulnam.hints.precision}"
+                            shortDesc="#{bindings.MppfcFulnam.hints.tooltip}" id="it2"
+                            contentStyle="text-transform:uppercase; width:250px;">
+                <f:validator binding="#{bindings.MppfcFulnam.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MppfcFulnamLocal.hints.label}" id="plam3">
+              <af:inputText value="#{bindings.MppfcFulnamLocal.inputValue}" simple="true"
+                            required="#{bindings.MppfcFulnamLocal.hints.mandatory}"
+                            columns="#{bindings.MppfcFulnamLocal.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcFulnamLocal.hints.precision}"
+                            shortDesc="#{bindings.MppfcFulnamLocal.hints.tooltip}" id="it3"
+                            contentStyle="text-transform:uppercase; width:250px;">
+                <f:validator binding="#{bindings.MppfcFulnamLocal.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MppfcPrfcod.hints.label}" id="plam5" showRequired="true">
+              <af:inputText value="#{bindings.MppfcPrfcod.inputValue}" simple="true"
+                            required="#{bindings.MppfcPrfcod.hints.mandatory}"
+                            columns="#{bindings.MppfcPrfcod.hints.displayWidth}" maximumLength="6"
+                            shortDesc="#{bindings.MppfcPrfcod.hints.tooltip}" id="it5"
+                            contentStyle="text-transform:uppercase; width:250px;">
+                <f:validator binding="#{bindings.MppfcPrfcod.validator}"/>
+                <!--  maximumLength="#{bindings.MppfcPrfcod.hints.precision}" -->
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.ShortName.hints.label}" id="plam4" showRequired="true">
+              <af:inputText value="#{bindings.ShortName.inputValue}" simple="true"
+                            required="#{bindings.ShortName.hints.mandatory}"
+                            columns="#{bindings.ShortName.hints.displayWidth}" maximumLength="15"
+                            shortDesc="#{bindings.ShortName.hints.tooltip}" id="it4"
+                            contentStyle="text-transform:uppercase; width:250px;">
+                <f:validator binding="#{bindings.ShortName.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="Roles" id="plam6" showRequired="true" labelStyle="font-size:medium;"/>
+            <af:panelLabelAndMessage label="#{bindings.MppfcSup.hints.label}" id="plam7">
+              <af:selectBooleanCheckbox value="#{bindings.MppfcSup1.inputValue}" label="#{bindings.MppfcSup1.label}"
+                                        simple="true" shortDesc="#{bindings.MppfcSup1.hints.tooltip}" id="sbc1"
+                                        autoSubmit="true" disabled="#{bindings.MppfcSup.hints.enabled}"
+                                        partialTriggers="t3:sbc5"/>
+              <f:facet name="end">
+                <af:spacer width="90" height="10" id="s4"/>
+                <af:outputLabel value="Shipper" id="ol3"/>
+                <af:selectBooleanCheckbox value="#{bindings.MppfcShp1.inputValue}" label="#{bindings.MppfcShp1.label}"
+                                          shortDesc="#{bindings.MppfcShp1.hints.tooltip}" id="sbc2" simple="true"
+                                          disabled="#{bindings.MppfcShp.hints.enabled}" autoSubmit="true"
+                                          partialTriggers="t3:sbc5"/>
+                <af:spacer width="10" height="10" id="s12"/>
+                <af:outputLabel value="Manufacturer / Factory" id="ol4"/>
+                <af:selectBooleanCheckbox value="#{bindings.MppfcMan1.inputValue}" label="#{bindings.MppfcMan1.label}"
+                                          shortDesc="#{bindings.MppfcMan1.hints.tooltip}" id="sbc3" simple="true"
+                                          disabled="#{bindings.MppfcMan.hints.enabled}" autoSubmit="true"
+                                          partialTriggers="t3:sbc5"/>
+              </f:facet>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.MppfcMat.hints.label}" id="plam10">
+              <af:selectBooleanCheckbox value="#{bindings.MppfcMat1.inputValue}" label="#{bindings.MppfcMat1.label}"
+                                        shortDesc="#{bindings.MppfcMat1.hints.tooltip}" id="sbc4" simple="true"
+                                        disabled="#{bindings.MppfcMat.hints.enabled}" autoSubmit="true"
+                                        partialTriggers="t3:sbc5"/>
+              <f:facet name="end">
+                <af:spacer width="10" height="10" id="s14"/>
+                <af:outputLabel value="Consumable Supplier" id="ol5"/>
+                <af:selectBooleanCheckbox value="#{bindings.MppfcCon1.inputValue}" label="#{bindings.MppfcCon1.label}"
+                                          shortDesc="#{bindings.MppfcCon1.hints.tooltip}" id="sbc6" simple="true"
+                                          disabled="#{bindings.MppfcCon.hints.enabled}" autoSubmit="true"/>
+                <af:outputText value="#{bindings.MppfcConsubrolDesc.inputValue}"
+                               shortDesc="#{bindings.MppfcConsubrolDesc.hints.tooltip}" id="ot1"
+                               partialTriggers="t3:sbc5" binding="#{backingBeanScope.EditBean.bind_consDesc}"/>
+              </f:facet>
+            </af:panelLabelAndMessage>
+            <af:spacer width="10" height="3" id="s2"/>
+            <af:table value="#{bindings.BlkConsubrolVO.collectionModel}" var="row"
+                      rows="#{bindings.BlkConsubrolVO.rangeSize}"
+                      emptyText="#{bindings.BlkConsubrolVO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      rowBandingInterval="0" selectedRowKeys="#{bindings.BlkConsubrolVO.collectionModel.selectedRow}"
+                      selectionListener="#{bindings.BlkConsubrolVO.collectionModel.makeCurrent}" rowSelection="single"
+                      fetchSize="#{bindings.BlkConsubrolVO.rangeSize}" id="t3" autoHeightRows="4"
+                      columnStretching="column:c2" partialTriggers="::sbc1 ::sbc2 ::sbc3 ::sbc4"
+                      binding="#{backingBeanScope.EditBean.bind_consubrolTable}">
+              <af:column headerText="" id="c1" visible="false">
+                <af:selectBooleanCheckbox value="#{row.bindings.ConsubCheckBox.inputValue}"
+                                          label="#{row.bindings.ConsubCheckBox.label}"
+                                          shortDesc="#{bindings.BlkConsubrolVO.hints.ConsubCheckBox.tooltip}" id="sbc5"
+                                          autoSubmit="true" immediate="true"
+                                          disabled="#{!row.bindings.isConSuballowed.inputValue}"
+                                          valueChangeListener="#{backingBeanScope.EditBean.consubrolCheckBox}"
+                                          partialTriggers="::sbc6 it20"/>
+              </af:column>
+              <af:column headerText="" id="c7">
+                <af:selectBooleanCheckbox value="#{row.bindings.MptmChkbox.inputValue}"
+                                          label="#{row.bindings.MptmChkbox.label}"
+                                          shortDesc="#{bindings.BlkConsubrolVO.hints.MptmChkbox.tooltip}" id="sbc7"
+                                          valueChangeListener="#{backingBeanScope.EditBean.consubrolCheckBox}"
+                                          disabled="#{!row.bindings.isConSuballowed.inputValue}"
+                                          partialTriggers="::sbc6 it20" autoSubmit="true" immediate="true"/>
+              </af:column>
+              <af:column headerText="" id="c2">
+                <af:inputText value="#{row.MptmDes}" shortDesc="#{bindings.BlkConsubrolVO.hints.MptmDes.tooltip}"
+                              id="ot3" label="Label 1" readOnly="true"/>
+              </af:column>
+              <af:column headerText="#{bindings.BlkConsubrolVO.hints.MptmVal1.label}" id="c3" visible="false">
+                <af:inputText value="#{row.MptmVal1}" shortDesc="#{bindings.BlkConsubrolVO.hints.MptmVal1.tooltip}"
+                              id="ot4" label="Label 2"/>
+              </af:column>
+              <af:column headerText="#{bindings.BlkConsubrolVO.hints.MptmColumn.label}" id="c4" visible="false">
+                <af:inputText value="#{row.MptmColumn}" shortDesc="#{bindings.BlkConsubrolVO.hints.MptmColumn.tooltip}"
+                              id="ot5" label="Label 3"/>
+              </af:column>
+              <af:column headerText="#{bindings.BlkConsubrolVO.hints.MptmTypcod.label}" id="c5" visible="false">
+                <af:outputText value="#{row.MptmTypcod}" shortDesc="#{bindings.BlkConsubrolVO.hints.MptmTypcod.tooltip}"
+                               id="ot6"/>
+              </af:column>
+              <af:column headerText="#{bindings.BlkConsubrolVO.hints.isConSuballowed.label}" id="c6" visible="false">
+                <af:inputText value="#{row.bindings.isConSuballowed.inputValue}"
+                              label="#{bindings.BlkConsubrolVO.hints.isConSuballowed.label}"
+                              required="#{bindings.BlkConsubrolVO.hints.isConSuballowed.mandatory}"
+                              columns="#{bindings.BlkConsubrolVO.hints.isConSuballowed.displayWidth}"
+                              maximumLength="#{bindings.BlkConsubrolVO.hints.isConSuballowed.precision}"
+                              shortDesc="#{bindings.BlkConsubrolVO.hints.isConSuballowed.tooltip}" id="it20">
+                  <f:validator binding="#{row.bindings.isConSuballowed.validator}"/>
+                </af:inputText>
+              </af:column>
+            </af:table>
+            <af:panelLabelAndMessage label="" id="plam15">
+              <af:outputLabel value="Address" id="ol1" showRequired="true"/>
+              <af:spacer width="170" height="10" id="s9"/>
+              <af:outputLabel value="Address in Local Language" id="ol2"/>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="" id="plam12">
+              <af:inputText value="#{bindings.MppfcAdr1.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr1.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr1.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr1.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr1.hints.tooltip}" id="it6" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr1.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s3"/>
+              <af:inputText value="#{bindings.MppfcAdr1Local.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr1Local.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr1Local.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr1Local.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr1Local.hints.tooltip}" id="it10" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr1Local.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage id="plam21">
+              <af:inputText value="#{bindings.MppfcAdr2.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr2.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr2.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr2.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr2.hints.tooltip}" id="it7" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr2.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s6"/>
+              <af:inputText value="#{bindings.MppfcAdr2Local.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr2Local.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr2Local.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr2Local.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr2Local.hints.tooltip}" id="it11" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr2Local.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage id="plam13">
+              <af:inputText value="#{bindings.MppfcAdr3.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr3.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr3.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr3.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr3.hints.tooltip}" id="it8" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr3.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s7"/>
+              <af:inputText value="#{bindings.MppfcAdr3Local.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr3Local.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr3Local.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr3Local.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr3Local.hints.tooltip}" id="it12" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr3Local.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage id="plam24">
+              <af:inputText value="#{bindings.MppfcAdr4.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr4.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr4.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr4.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr4.hints.tooltip}" id="it9" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr4.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s8"/>
+              <af:inputText value="#{bindings.MppfcAdr4Local.inputValue}" simple="true"
+                            required="#{bindings.MppfcAdr4Local.hints.mandatory}"
+                            columns="#{bindings.MppfcAdr4Local.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcAdr4Local.hints.precision}"
+                            shortDesc="#{bindings.MppfcAdr4Local.hints.tooltip}" id="it13" contentStyle="width:220px;">
+                <f:validator binding="#{bindings.MppfcAdr4Local.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:spacer width="10" height="10" id="s1"/>
+            <af:panelLabelAndMessage label="Country" id="plam14" showRequired="true">
+              <af:inputListOfValues id="ilov1" popupTitle="Search and Select: #{bindings.MppfcCtycod.hints.label}"
+                                    value="#{bindings.MppfcCtycod.inputValue}"
+                                    label="#{bindings.MppfcCtycod.hints.label}"
+                                    model="#{bindings.MppfcCtycod.listOfValuesModel}"
+                                    required="#{bindings.MppfcCtycod.hints.mandatory}"
+                                    columns="#{bindings.MppfcCtycod.hints.displayWidth}"
+                                    shortDesc="#{bindings.MppfcCtycod.hints.tooltip}" autoSubmit="true" simple="true"
+                                    contentStyle="width:55px; text-transform:uppercase;" autoTab="true"
+                                    immediate="true">
+                <f:validator binding="#{bindings.MppfcCtycod.validator}"/>
+              </af:inputListOfValues>
+              <f:facet name="end">
+                <af:inputText value="#{bindings.CtycodDes.inputValue}" simple="true"
+                              required="#{bindings.CtycodDes.hints.mandatory}"
+                              columns="#{bindings.CtycodDes.hints.displayWidth}"
+                              maximumLength="#{bindings.CtycodDes.hints.precision}"
+                              shortDesc="#{bindings.CtycodDes.hints.tooltip}" id="it14" disabled="true"
+                              partialTriggers="ilov1" contentStyle="width:100px;">
+                  <f:validator binding="#{bindings.CtycodDes.validator}"/>
+                </af:inputText>
+                <af:inputListOfValues id="ilov2" popupTitle="Search and Select: #{bindings.MppfcLoccod.hints.label}"
+                                      value="#{bindings.MppfcLoccod.inputValue}"
+                                      label="#{bindings.MppfcLoccod.hints.label}"
+                                      model="#{bindings.MppfcLoccod.listOfValuesModel}"
+                                      required="#{bindings.MppfcLoccod.hints.mandatory}"
+                                      columns="#{bindings.MppfcLoccod.hints.displayWidth}"
+                                      shortDesc="#{bindings.MppfcLoccod.hints.tooltip}" autoSubmit="true"
+                                      partialTriggers="ilov1" contentStyle="width:55px;text-transform:uppercase;"
+                                      autoTab="true" inlineStyle="margin-top: -10px;" immediate="true"
+                                      valueChangeListener="#{backingBeanScope.EditBean.locationVCL}">
+                  <f:validator binding="#{bindings.MppfcLoccod.validator}"/>
+                </af:inputListOfValues>
+                <af:inputText value="#{bindings.LocDes.inputValue}" required="#{bindings.LocDes.hints.mandatory}"
+                              columns="#{bindings.LocDes.hints.displayWidth}"
+                              maximumLength="#{bindings.LocDes.hints.precision}"
+                              shortDesc="#{bindings.LocDes.hints.tooltip}" id="it15" disabled="true"
+                              partialTriggers="ilov2" label="" inlineStyle="margin-top: -4px;margin-left: -18px;"
+                              contentStyle="width:120px;">
+                  <f:validator binding="#{bindings.LocDes.validator}"/>
+                </af:inputText>
+              </f:facet>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="Remark" id="plam16">
+              <af:inputText value="#{bindings.MppfcRmk.inputValue}" simple="true"
+                            required="#{bindings.MppfcRmk.hints.mandatory}"
+                            columns="#{bindings.MppfcRmk.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcRmk.hints.precision}"
+                            shortDesc="#{bindings.MppfcRmk.hints.tooltip}" id="it16" disabled="true" rows="4"
+                            contentStyle="width:450px;">
+                <f:validator binding="#{bindings.MppfcRmk.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="Submit By :" id="plam17">
+              <af:inputText value="#{bindings.MppfcSbmby.inputValue}" simple="true"
+                            required="#{bindings.MppfcSbmby.hints.mandatory}"
+                            columns="#{bindings.MppfcSbmby.hints.displayWidth}"
+                            maximumLength="#{bindings.MppfcSbmby.hints.precision}"
+                            shortDesc="#{bindings.MppfcSbmby.hints.tooltip}" id="it17" disabled="true">
+                <f:validator binding="#{bindings.MppfcSbmby.validator}"/>
+              </af:inputText>
+              <f:facet name="end">
+                <af:inputText value="#{bindings.MppfcSbmbyDivision.inputValue}" simple="true"
+                              required="#{bindings.MppfcSbmbyDivision.hints.mandatory}"
+                              columns="#{bindings.MppfcSbmbyDivision.hints.displayWidth}"
+                              maximumLength="#{bindings.MppfcSbmbyDivision.hints.precision}"
+                              shortDesc="#{bindings.MppfcSbmbyDivision.hints.tooltip}" id="it18" disabled="true">
+                  <f:validator binding="#{bindings.MppfcSbmbyDivision.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.MppfcSbmbyFulnam.inputValue}" simple="true"
+                              required="#{bindings.MppfcSbmbyFulnam.hints.mandatory}"
+                              columns="#{bindings.MppfcSbmbyFulnam.hints.displayWidth}"
+                              maximumLength="#{bindings.MppfcSbmbyFulnam.hints.precision}"
+                              shortDesc="#{bindings.MppfcSbmbyFulnam.hints.tooltip}" id="it19" disabled="true"
+                              contentStyle="width:150px;">
+                  <f:validator binding="#{bindings.MppfcSbmbyFulnam.validator}"/>
+                </af:inputText>
+              </f:facet>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="Submit Date :" id="plam18">
+              <af:inputText value="#{bindings.MppfcSbmdat.inputValue}"
+                            required="#{bindings.MppfcSbmdat.hints.mandatory}"
+                            dfsdfcolumns="#{bindings.MppfcSbmdat.hints.displayWidth}"
+                            shortDesc="#{bindings.MppfcSbmdat.hints.tooltip}" id="id1" disabled="true" simple="true"
+                            label="Label 4">
+                <f:validator binding="#{bindings.MppfcSbmdat.validator}"/>
+                <af:convertDateTime pattern="#{bindings.MppfcSbmdat.format}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+        </af:panelBox>
+        <af:popup childCreation="deferred" autoCancel="disabled" id="p1"
+                  binding="#{backingBeanScope.EditBean.bind_confirmpopup}" contentDelivery="immediate"
+                  partialTriggers="et1:b4">
+          <af:dialog id="d1" title="Confirmation" dialogListener="#{backingBeanScope.EditBean.confirmpopup}">
+            <f:facet name="buttonBar"/>
+            <af:panelGroupLayout id="pgl9" layout="scroll">
+              <af:panelLabelAndMessage label="Are you confirm to create the supplier / factory code?" id="plam19"/>
+            </af:panelGroupLayout>
+          </af:dialog>
+        </af:popup>
+      </af:panelGroupLayout>
+    </f:facet>
+              <f:facet name="panelBoxToolbar"/>
+        <f:facet name="panelBoxArea"/>
+        <f:attribute name="formName" value="Supplier Code Confirmation Module"/>
+        <f:attribute name="editBean" value="#{backingBeanScope.EditBean}"/>
+        <f:attribute name="infoDecorativeBoxAreaRendered" value="false"/>
+        <f:attribute name="panelBoxAreaRendered" value="false"/>
+   </af:pageTemplate>
+</ui:composition>

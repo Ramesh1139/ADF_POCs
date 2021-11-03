@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Blk1TsiMst"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="V_TSI_MST2"
+  AliasName="Blk1TsiMst"
+  BindingStyle="OracleName">
+  <Attribute
+    Name="SimsInvno"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="16"
+    ColumnName="SIMS_INVNO"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="16"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsYear"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="4"
+    ColumnName="SIMS_YEAR"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="4"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsCuscod"
+    TableName="V_TSI_MST2"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="7"
+    ColumnName="SIMS_CUSCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="7"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsDptcod"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="8"
+    ColumnName="SIMS_DPTCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="8"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsInvdat"
+    TableName="V_TSI_MST2"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="SIMS_INVDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="SimsShpdat"
+    TableName="V_TSI_MST2"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="SIMS_SHPDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="SimsPortD"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="3"
+    ColumnName="SIMS_PORT_D"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="3"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MpcpNamD"
+    TableName="V_TSI_MST2"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    Precision="25"
+    ColumnName="MPCP_NAM"
+    ColumnType="Char">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="25"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsShpmodcod"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="1"
+    ColumnName="SIMS_SHPMODCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="MpsmDes"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="10"
+    ColumnName="MPSM_DES"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsCndsal"
+    TableName="V_TSI_MST2"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="32"
+    ColumnName="SIMS_CNDSAL"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="32"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsTrmcur"
+    TableName="V_TSI_MST2"
+    IsUpdateable="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="25"
+    ColumnName="SIMS_TRMCUR"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="25"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsClsdat"
+    TableName="V_TSI_MST2"
+    SQLType="DATE"
+    Type="java.sql.Date"
+    Precision="11"
+    ColumnName="SIMS_CLSDAT"
+    ColumnType="DATE"/>
+  <Attribute
+    Name="SimsDivcod"
+    TableName="V_TSI_MST2"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="5"
+    ColumnName="SIMS_DIVCOD"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="5"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="SimsSaminvrun"
+    IsNotNull="true"
+    TableName="V_TSI_MST2"
+    SQLType="NUMERIC"
+    Type="java.math.BigDecimal"
+    Precision="10"
+    ColumnName="SIMS_SAMINVRUN"
+    ColumnType="NUMBER"
+    PrimaryKey="true"/>  <Attribute
+    Name="Active"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="CHAR"
+    Type="java.lang.String"
+    Precision="10"
+    ColumnName="ACTIVE"
+    ColumnType="Char">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="10"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="Blk1Chk"
+    IsPersistent="false"
+    IsQueriable="false"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    Precision="1"
+    ColumnName="BLK1_CHK"
+    ColumnType="VARCHAR2">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </Attribute>
+  <Key
+    Name="VTsiMst2Pk"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="BLK1_TSI_MST_PK"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">      <Item Value="xts.xsim2.model.entities.Blk1TsiMst.SimsSaminvrun"/>
+    </AttrArray>
+  </Key>
+</Entity>

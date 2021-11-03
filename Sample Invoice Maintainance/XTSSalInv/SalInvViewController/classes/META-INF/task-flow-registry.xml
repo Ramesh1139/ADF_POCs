@@ -1,0 +1,52 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="WEB-INF/flows/header/descAddamtCusfld-tf.xml" id="descAddamtCusfld-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/header/invsum-tf.xml" id="invsum-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/salinv-tf.xml" id="salinv-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/shpitm/editShpitm-tf.xml" id="editShpitm-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/shpitm/editShpitmAddamt-tf.xml" id="editShpitmAddamt-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/shpitm/editShpitmCusfld-tf.xml" id="editShpitmCusfld-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+   <task-flow-descriptor path="WEB-INF/flows/shpitm/editShpitmDes-tf.xml" id="editShpitmDes-tf" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="tfName"/>
+      <input-parameter name="XTSDisabledLogicContainerBean"/>
+      <input-parameter name="divisionParam"/>
+      <input-parameter name="customParams"/>
+      <input-parameter name="singleSearchKey"/>
+   </task-flow-descriptor>
+</task-flow-registry>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="Candidate_Rule_BTF">
+    <default-activity id="__1">candidate_listing_logic</default-activity>
+    <managed-bean id="__14">
+      <managed-bean-name id="__13">CandidateRuleImpl</managed-bean-name>
+      <managed-bean-class id="__15">com.nordstrom.rpm.Impl.CandidateRuleImpl</managed-bean-class>
+      <managed-bean-scope id="__12">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__19">
+      <managed-bean-name id="__18">CandidateRuleMB</managed-bean-name>
+      <managed-bean-class id="__16">com.nordstrom.rpm.Backing.CandidateRuleMB</managed-bean-class>
+      <managed-bean-scope id="__17">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="Candidate_Rule">
+      <page>/Candidate_Rule.jsff</page>
+    </view>
+    <view id="Rule_Creation">
+      <page>/Rule_Creation.jsff</page>
+    </view>
+    <method-call id="candidate_listing_logic">
+      <method>#{pageFlowScope.CandidateRuleMB.loginUser_view}</method>
+      <outcome id="__33">
+        <fixed-outcome>go</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__2">
+      <from-activity-id id="__3">Candidate_Rule</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome id="__6">RuleCreation</from-outcome>
+        <to-activity-id id="__4">Rule_Creation</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__7">
+      <from-activity-id id="__8">Rule_Creation</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__11">Save</from-outcome>
+        <to-activity-id id="__10">Candidate_Rule</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__34">
+      <from-activity-id id="__35">candidate_listing_logic</from-activity-id>
+      <control-flow-case id="__37">
+        <from-outcome id="__38">go</from-outcome>
+        <to-activity-id id="__36">Candidate_Rule</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

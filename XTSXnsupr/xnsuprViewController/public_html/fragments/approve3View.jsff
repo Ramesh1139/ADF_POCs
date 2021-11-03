@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:xts-rc="/xtsComponentLib">
+    <af:pageTemplate viewId="/templates/xtsUIEditTemplate.jsf" id="pt1">
+      <f:facet name="reusableEditToolbar">
+            <xts-rc:EditToolbar id="et1" editBean="#{backingBeanScope.EditBean}" 
+                                 actionBtnRendered="false"
+                                actionBtnDisabled="false" masterIteratorName="" 
+                                attributeHitsDisabled="false" 
+                                saveButtonRendered="false"
+                                editButtonRendered="false"
+                                saveCloseButtonRendered="false"
+                                
+                                >
+                <f:facet name="customButtons">
+          <af:toolbar id="t1" styleClass="ToolbarHeight" inlineStyle="margin-top: -10px; margin-bottom: -3px">
+            <af:group id="g2">
+              <af:button text="Reject" id="b1" accessKey="R" textAndAccessKey="Reject" action="approve5"
+                         actionListener="#{backingBeanScope.EditBean.rejectApprove3}"
+                         icon="#{resource['images:actionicon_edit_status_red_18_V2.png']}"/>
+              <af:button text="Previous" id="b5" action="approve2"
+                         actionListener="#{backingBeanScope.EditBean.previousApprove3}"
+                         icon="#{resource['images:previouspage_active_14_V2.png']}"/>
+              <af:button text="Next" id="b4" action="approve4"
+                         actionListener="#{backingBeanScope.EditBean.nextApprove3}"
+                         icon="#{resource['images:nextpage_active_14_V2.png']}"/>
+            </af:group>
+            <!--<af:group id="g1">
+              <af:button text="Cancel and Close" id="dc_b_close" immediate="true"
+                         icon="#{resource['images:actionicon_cancel_24_V2.png']}" action="supplierView"
+                         actionListener="#{backingBeanScope.EditBean.cancelApprove3}"/>
+            </af:group>-->
+          </af:toolbar>
+        </f:facet>
+                <f:facet name="actionCustomButtons"></f:facet>
+            </xts-rc:EditToolbar>
+        </f:facet>
+        
+         <f:facet name="infoDecorativeBoxArea"/>
+         
+           <f:facet name="decorativeBoxArea">
+      <af:panelGroupLayout id="pgl1" layout="vertical">
+        <af:panelBox text="Confirm New Supplier / factory Code - Step 3 (Manual Matching)" id="pb1"
+                     showDisclosure="false">
+          <f:facet name="toolbar"/>
+          <af:panelFormLayout id="pfl1">
+            <f:facet name="footer"/>
+            <af:panelLabelAndMessage label="#{bindings.NewFulnam.hints.label}" id="plam1">
+              <af:inputText value="#{bindings.NewFulnam.inputValue}" simple="true"
+                            required="#{bindings.NewFulnam.hints.mandatory}"
+                            columns="#{bindings.NewFulnam.hints.displayWidth}"
+                            maximumLength="#{bindings.NewFulnam.hints.precision}"
+                            shortDesc="#{bindings.NewFulnam.hints.tooltip}" id="it1" disabled="true"
+                            contentStyle="width:450px;">
+                <f:validator binding="#{bindings.NewFulnam.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="Address" id="plam2">
+              <af:inputText value="#{bindings.NewAdr1.inputValue}" simple="true"
+                            required="#{bindings.NewAdr1.hints.mandatory}"
+                            columns="#{bindings.NewAdr1.hints.displayWidth}"
+                            maximumLength="#{bindings.NewAdr1.hints.precision}"
+                            shortDesc="#{bindings.NewAdr1.hints.tooltip}" id="it2" disabled="true"
+                            contentStyle="width:220px;">
+                <f:validator binding="#{bindings.NewAdr1.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s5"/>
+              <af:inputText value="#{bindings.NewAdr3.inputValue}" simple="true"
+                            required="#{bindings.NewAdr3.hints.mandatory}"
+                            columns="#{bindings.NewAdr3.hints.displayWidth}"
+                            maximumLength="#{bindings.NewAdr3.hints.precision}"
+                            shortDesc="#{bindings.NewAdr3.hints.tooltip}" id="it3" disabled="true"
+                            contentStyle="width:220px;">
+                <f:validator binding="#{bindings.NewAdr3.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage id="plam15">
+              <af:inputText value="#{bindings.NewAdr2.inputValue}" simple="true"
+                            required="#{bindings.NewAdr2.hints.mandatory}"
+                            columns="#{bindings.NewAdr2.hints.displayWidth}"
+                            maximumLength="#{bindings.NewAdr2.hints.precision}"
+                            shortDesc="#{bindings.NewAdr2.hints.tooltip}" id="it4" disabled="true"
+                            contentStyle="width:220px;">
+                <f:validator binding="#{bindings.NewAdr2.validator}"/>
+              </af:inputText>
+              <af:spacer width="10" height="10" id="s6"/>
+              <af:inputText value="#{bindings.NewAdr4.inputValue}" simple="true"
+                            required="#{bindings.NewAdr4.hints.mandatory}"
+                            columns="#{bindings.NewAdr4.hints.displayWidth}"
+                            maximumLength="#{bindings.NewAdr4.hints.precision}"
+                            shortDesc="#{bindings.NewAdr4.hints.tooltip}" id="it5" disabled="true"
+                            contentStyle="width:220px;">
+                <f:validator binding="#{bindings.NewAdr4.validator}"/>
+              </af:inputText>
+            </af:panelLabelAndMessage>
+            <af:panelLabelAndMessage label="#{bindings.SearchNam1.hints.label}" id="plam3">
+              <af:inputText value="#{bindings.SearchNam1.inputValue}" simple="true"
+                            required="#{bindings.SearchNam1.hints.mandatory}"
+                            columns="#{bindings.SearchNam1.hints.displayWidth}"
+                            maximumLength="#{bindings.SearchNam1.hints.precision}"
+                            shortDesc="#{bindings.SearchNam1.hints.tooltip}" id="it6"
+                            contentStyle="text-transform:uppercase;">
+                <f:validator binding="#{bindings.SearchNam1.validator}"/>
+              </af:inputText>
+              <f:facet name="end">
+                <af:inputText value="#{bindings.SearchNam2.inputValue}" autoSubmit="true"
+                              required="#{bindings.SearchNam2.hints.mandatory}"
+                              columns="#{bindings.SearchNam2.hints.displayWidth}"
+                              maximumLength="#{bindings.SearchNam2.hints.precision}"
+                              shortDesc="#{bindings.SearchNam2.hints.tooltip}" id="it7" label="AND"
+                              contentStyle="text-transform:uppercase;">
+                  <f:validator binding="#{bindings.SearchNam2.validator}"/>
+                </af:inputText>
+                <af:inputText value="#{bindings.SearchNam3.inputValue}"
+                              required="#{bindings.SearchNam3.hints.mandatory}"
+                              columns="#{bindings.SearchNam3.hints.displayWidth}"
+                              maximumLength="#{bindings.SearchNam3.hints.precision}"
+                              shortDesc="#{bindings.SearchNam3.hints.tooltip}" id="it8" label="AND"
+                              contentStyle="text-transform:uppercase;">
+                  <f:validator binding="#{bindings.SearchNam3.validator}"/>
+                </af:inputText>
+                <af:button text="Find" id="b6" actionListener="#{backingBeanScope.EditBean.findApprove3}"/>
+                <af:button text="Reset" id="b7" actionListener="#{backingBeanScope.EditBean.resetApprove3}"/>
+              </f:facet>
+            </af:panelLabelAndMessage>
+          </af:panelFormLayout>
+          <af:spacer width="10" height="10" id="s2"/>
+          <af:panelBox text="Existing Suppliers / Factories with similar name" id="pb2">
+            <f:facet name="toolbar"/>
+            <af:panelGroupLayout id="pgl2">
+              <af:spacer width="10" height="10" id="s3"/>
+              <af:table value="#{bindings.Blk3Approve31VO.collectionModel}" var="row"
+                        rows="#{bindings.Blk3Approve31VO.rangeSize}"
+                        emptyText="#{bindings.Blk3Approve31VO.viewable ? 'No data to display.' : 'Access Denied.'}"
+                        rowBandingInterval="0" selectedRowKeys="#{bindings.Blk3Approve31VO.collectionModel.selectedRow}"
+                        selectionListener="#{bindings.Blk3Approve31VO.collectionModel.makeCurrent}"
+                        rowSelection="single" fetchSize="#{bindings.Blk3Approve31VO.rangeSize}" id="t2"
+                        columnStretching="column:c2" scrollPolicy="page">
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldPrfcod.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldPrfcod.label}" id="c1">
+                  <af:outputText value="#{row.OldPrfcod}"
+                                 shortDesc="#{bindings.Blk3Approve31VO.hints.OldPrfcod.tooltip}" id="ot3"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFulnam.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFulnam.label}" id="c2">
+                  <af:outputText value="#{row.OldFulnam}"
+                                 shortDesc="#{bindings.Blk3Approve31VO.hints.OldFulnam.tooltip}" id="ot8"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.SpalClsdat.name}" sortable="true"
+                           headerText="Deactivated date" id="c3">
+                  <af:outputText value="#{row.SpalClsdat}"
+                                 shortDesc="#{bindings.Blk3Approve31VO.hints.SpalClsdat.tooltip}" id="ot9">
+                    <af:convertDateTime pattern="#{bindings.Blk3Approve31VO.hints.SpalClsdat.format}"/>
+                  </af:outputText>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFlagSup.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFlagSup.label}" id="c4" align="center">
+                  <af:selectBooleanCheckbox value="#{row.bindings.OldFlagSup.inputValue}"
+                                            label="#{row.bindings.OldFlagSup.label}" disabled="true"
+                                            shortDesc="#{bindings.Blk3Approve31VO.hints.OldFlagSup.tooltip}" id="sbc1"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFlagShp.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFlagShp.label}" id="c5" align="center">
+                  <af:selectBooleanCheckbox value="#{row.bindings.OldFlagShp.inputValue}"
+                                            label="#{row.bindings.OldFlagShp.label}" disabled="true"
+                                            shortDesc="#{bindings.Blk3Approve31VO.hints.OldFlagShp.tooltip}" id="sbc2"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFlagFty.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFlagFty.label}" id="c6" align="center">
+                  <af:selectBooleanCheckbox value="#{row.bindings.OldFlagFty.inputValue}"
+                                            label="#{row.bindings.OldFlagFty.label}" disabled="true"
+                                            shortDesc="#{bindings.Blk3Approve31VO.hints.OldFlagFty.tooltip}" id="sbc3"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFlagMat.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFlagMat.label}" id="c7" align="center">
+                  <af:selectBooleanCheckbox value="#{row.bindings.OldFlagMat.inputValue}"
+                                            label="#{row.bindings.OldFlagMat.label}" disabled="true"
+                                            shortDesc="#{bindings.Blk3Approve31VO.hints.OldFlagMat.tooltip}" id="sbc4"/>
+                </af:column>
+                <af:column sortProperty="#{bindings.Blk3Approve31VO.hints.OldFlagCon.name}" sortable="true"
+                           headerText="#{bindings.Blk3Approve31VO.hints.OldFlagCon.label}" id="c8" align="center">
+                  <af:selectBooleanCheckbox value="#{row.bindings.OldFlagCon.inputValue}"
+                                            label="#{row.bindings.OldFlagCon.label}" disabled="true"
+                                            shortDesc="#{bindings.Blk3Approve31VO.hints.OldFlagCon.tooltip}" id="sbc5"/>
+                </af:column>
+              </af:table>
+            </af:panelGroupLayout>
+            <af:spacer width="6" height="10" id="s4"/>
+            <af:panelBox text="Details (info extracted from Supp Core Sheet or Fty Eval )" id="pb3"
+                         showDisclosure="false">
+              <f:facet name="toolbar">
+                <af:panelLabelAndMessage label="No. of addr record:" id="plam8">
+                  <af:outputText value="#{bindings.CountTotal.inputValue}"
+                                 shortDesc="#{bindings.CountTotal.hints.tooltip}" id="ot1">
+                    <af:convertNumber groupingUsed="false" pattern="#{bindings.CountTotal.format}"/>
+                  </af:outputText>
+                </af:panelLabelAndMessage>
+              </f:facet>
+              <!-- <af:iterator id="i1" value="#{bindings.Blk3Approve32VO.collectionModel}" var="row"
+                           rows="#{bindings.Blk3Approve32VO.rangeSize}"> -->
+              <af:panelFormLayout id="pfl2">
+                <f:facet name="footer"/>
+                <af:panelLabelAndMessage label="Address" id="plam7">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrAdr1']}" simple="true"
+                                required="#{bindings.SpcrAdr1.hints.mandatory}"
+                                columns="#{bindings.SpcrAdr1.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrAdr1.hints.precision}"
+                                shortDesc="#{bindings.SpcrAdr1.hints.tooltip}" id="it16" disabled="true"
+                                contentStyle="width:450px;text-transform:uppercase;">
+                    <f:validator binding="#{bindings.SpcrAdr1.validator}"/>
+                  </af:inputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage id="plam4" label="(Supp core)">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrAdr2']}" simple="true"
+                                required="#{bindings.SpcrAdr2.hints.mandatory}"
+                                columns="#{bindings.SpcrAdr2.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrAdr2.hints.precision}"
+                                shortDesc="#{bindings.SpcrAdr2.hints.tooltip}" id="it17" disabled="true"
+                                contentStyle="width:450px;text-transform:uppercase;">
+                    <f:validator binding="#{bindings.SpcrAdr2.validator}"/>
+                  </af:inputText>
+                  <f:facet name="end">
+                    <af:button text="Next Address" id="b2"
+                               actionListener="#{bindings.Blk3Approve32VOFieldEvents_ButNext_bp.execute}"
+                               disabled="#{empty bindings.CountTotal.inputValue or  bindings.CountTotal.inputValue eq 1 or  bindings.CountTotal.inputValue eq 0}"/>
+                  </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage id="plam5">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrAdr3']}" simple="true"
+                                required="#{bindings.SpcrAdr3.hints.mandatory}"
+                                columns="#{bindings.SpcrAdr3.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrAdr3.hints.precision}"
+                                shortDesc="#{bindings.SpcrAdr3.hints.tooltip}" id="it18" disabled="true"
+                                contentStyle="width:450px;text-transform:uppercase;">
+                    <f:validator binding="#{bindings.SpcrAdr3.validator}"/>
+                  </af:inputText>
+                  <f:facet name="end">
+                    <af:button text="Previous Address" id="b3"
+                               actionListener="#{bindings.Blk3Approve32VOFieldEvents_ButPrev_bp.execute}"
+                               disabled="#{empty bindings.CountTotal.inputValue or  bindings.CountTotal.inputValue eq 1 or  bindings.CountTotal.inputValue eq 0}"/>
+                  </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage id="plam17">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrAdr4']}" simple="true"
+                                required="#{bindings.SpcrAdr4.hints.mandatory}"
+                                columns="#{bindings.SpcrAdr4.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrAdr4.hints.precision}"
+                                shortDesc="#{bindings.SpcrAdr4.hints.tooltip}" id="it19" disabled="true"
+                                contentStyle="width:450px;text-transform:uppercase;">
+                    <f:validator binding="#{bindings.SpcrAdr4.validator}"/>
+                  </af:inputText>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Province" id="plam9">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrProv']}" simple="true"
+                                required="#{bindings.SpcrProv.hints.mandatory}"
+                                columns="#{bindings.SpcrProv.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrProv.hints.precision}"
+                                shortDesc="#{bindings.SpcrProv.hints.tooltip}" id="it20" disabled="true"
+                                contentStyle="width:120px;">
+                    <f:validator binding="#{bindings.SpcrProv.validator}"/>
+                  </af:inputText>
+                  <f:facet name="end">
+                    <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrCity']}"
+                                  required="#{bindings.SpcrCity.hints.mandatory}"
+                                  columns="#{bindings.SpcrCity.hints.displayWidth}"
+                                  maximumLength="#{bindings.SpcrCity.hints.precision}"
+                                  shortDesc="#{bindings.SpcrCity.hints.tooltip}" id="it21" disabled="true"
+                                  contentStyle="width:130px;" label="City">
+                      <f:validator binding="#{bindings.SpcrCity.validator}"/>
+                    </af:inputText>
+                    <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrZip']}"
+                                  required="#{bindings.SpcrZip.hints.mandatory}"
+                                  columns="#{bindings.SpcrZip.hints.displayWidth}"
+                                  maximumLength="#{bindings.SpcrZip.hints.precision}"
+                                  shortDesc="#{bindings.SpcrZip.hints.tooltip}" id="it22" disabled="true"
+                                  contentStyle="width:116px;" label="Zip">
+                      <f:validator binding="#{bindings.SpcrZip.validator}"/>
+                    </af:inputText>
+                  </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Tel No." id="plam12">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrTel']}" simple="true"
+                                required="#{bindings.SpcrTel.hints.mandatory}"
+                                columns="#{bindings.SpcrTel.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrTel.hints.precision}"
+                                shortDesc="#{bindings.SpcrTel.hints.tooltip}" id="it23" disabled="true"
+                                contentStyle="width:200px;">
+                    <f:validator binding="#{bindings.SpcrTel.validator}"/>
+                  </af:inputText>
+                  <f:facet name="end">
+                    <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrFax']}"
+                                  required="#{bindings.SpcrFax.hints.mandatory}"
+                                  columns="#{bindings.SpcrFax.hints.displayWidth}"
+                                  maximumLength="#{bindings.SpcrFax.hints.precision}"
+                                  shortDesc="#{bindings.SpcrFax.hints.tooltip}" id="it24" disabled="true"
+                                  contentStyle="width:188px;" label="Fax No.">
+                      <f:validator binding="#{bindings.SpcrFax.validator}"/>
+                    </af:inputText>
+                  </f:facet>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="Email" id="plam14">
+                  <af:inputText value="#{backingBeanScope.EditBean.boundAtributeValue['SpcrEmail1']}" simple="true"
+                                required="#{bindings.SpcrEmail1.hints.mandatory}"
+                                columns="#{bindings.SpcrEmail1.hints.displayWidth}"
+                                maximumLength="#{bindings.SpcrEmail1.hints.precision}"
+                                shortDesc="#{bindings.SpcrEmail1.hints.tooltip}" id="it25" disabled="true"
+                                contentStyle="width:300px;">
+                    <f:validator binding="#{bindings.SpcrEmail1.validator}"/>
+                  </af:inputText>
+                </af:panelLabelAndMessage>
+              </af:panelFormLayout>
+              <!--  </af:iterator> -->
+            </af:panelBox>
+          </af:panelBox>
+        </af:panelBox>
+      </af:panelGroupLayout>
+    </f:facet>
+              <f:facet name="panelBoxToolbar"/>
+        <f:facet name="panelBoxArea"/>
+        <f:attribute name="formName" value="Supplier Code Confirmation Module"/>
+        <f:attribute name="editBean" value="#{backingBeanScope.EditBean}"/>
+        <f:attribute name="infoDecorativeBoxAreaRendered" value="false"/>
+        <f:attribute name="panelBoxAreaRendered" value="false"/>
+   </af:pageTemplate>
+</ui:composition>

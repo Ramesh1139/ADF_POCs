@@ -1,0 +1,113 @@
+package com.infosys.nordstrom.reim;
+
+
+
+import java.io.FileInputStream;
+
+import java.io.InputStream;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+import javax.faces.event.ActionEvent;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+
+import oracle.adf.model.BindingContext;
+import oracle.adf.model.binding.DCBindingContainer;
+import oracle.adf.model.binding.DCIteratorBinding;
+
+import oracle.binding.OperationBinding;
+
+import oracle.jbo.Row;
+import oracle.jbo.ViewObject;
+
+public class invoiceUploadBean {
+    public invoiceUploadBean() {
+        super();
+    }
+
+
+    public void uploadActionListener(ActionEvent actionEvent) {
+        // Add event code here...
+
+        if (null != actionEvent) {
+            DCBindingContainer bc =
+                (DCBindingContainer)BindingContext.getCurrent().getCurrentBindingsEntry();
+            DCIteratorBinding dci =
+                bc.findIteratorBinding("Xxinvoice_vo1Iterator");
+            ViewObject vo = dci.getViewObject();
+            System.out.println("in Action Method..");
+            ArrayList<String> strArr = new ArrayList<String>();
+            strArr.add("C://Users//Ramesh//Desktop//ReIM.xlsx");
+           
+          
+            int i = 0;
+            
+            try {
+                for (String s : strArr) {
+                    System.out.println("-----------------" + s +
+                                       "----------------");
+                    InputStream excelFileRead = new FileInputStream(s);
+                    HSSFWorkbook wb = new HSSFWorkbook(excelFileRead);
+                    HSSFSheet sheet = wb.getSheetAt(0);
+                    HSSFRow row;
+                    HSSFCell cell;
+                    Iterator rows = sheet.rowIterator();
+
+                    int j = 0;
+                    int count=vo.getRowCount();
+                    while (rows.hasNext())
+                    {
+                        if (j == 0) {
+                            j = 1;
+                            continue;
+                        }
+                        row = (HSSFRow)rows.next();
+                        // New Row creation
+                        Iterator<Cell> cellIterator = row.cellIterator();
+
+
+                        Row r = vo.createRow();
+
+
+                        while (cellIterator.hasNext()) {
+                            cell = (HSSFCell)cellIterator.next();
+                            System.out.println(cell.getColumnIndex() + "\t" +
+                                               cell.toString());
+                            if (cell.getColumnIndex() == 0) 
+                            {
+                                r.setAttribute(cell.getColumnIndex(),
+                                               (count+1)+"");
+                            }
+                            else
+                            r.setAttribute(cell.getColumnIndex(),
+                                           cell.toString());
+
+                        }
+                        vo.insertRow(r);
+                        count++;
+                        System.out.println();
+                    }
+
+                }
+               
+                OperationBinding oBinding =
+                    BindingContext.getCurrent().getCurrentBindingsEntry().getOperationBinding("Commit");
+                oBinding.execute();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+}
+

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Clr_Wksht_User_Role"
+  Version="11.1.1.64.93"
+  InheritPersonalization="true"
+  DBObjectType="synonym"
+  DBObjectName="MV_USER_ROLE"
+  AliasName="Clr_Wksht_User_Role"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="UserId"
+    IsNotNull="true"
+    Precision="255"
+    ColumnName="USER_ID"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="MV_USER_ROLE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="255"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RoleId"
+    IsNotNull="true"
+    Precision="18"
+    Scale="0"
+    ColumnName="ROLE_ID"
+    SQLType="NUMERIC"
+    Type="oracle.jbo.domain.Number"
+    ColumnType="NUMBER"
+    TableName="MV_USER_ROLE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="19"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="StartDateTime"
+    ColumnName="START_DATE_TIME"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="MV_USER_ROLE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="EndDateTime"
+    ColumnName="END_DATE_TIME"
+    SQLType="TIMESTAMP"
+    Type="oracle.jbo.domain.Timestamp"
+    ColumnType="TIMESTAMP"
+    TableName="MV_USER_ROLE">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="11"/>
+    </DesignTime>
+  </Attribute>
+  <Attribute
+    Name="RowID"
+    IsUpdateable="false"
+    Precision="80"
+    ColumnName="ROWID"
+    SQLType="ROWID"
+    Type="oracle.jbo.domain.RowID"
+    ColumnType="ROWID"    
+    PrimaryKey="true"/>
+  <Key
+    Name="ClrWkshtUserRolePrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="CLR_WKSHT_USER_ROLE_PRIMARY_KE"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_User_Role.Attr"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0044200">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0044200"/>
+      <Attr Name="_checkCondition" Value='"ROLE_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_User_Role.RoleId"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="SysC0044201">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="SYS_C0044201"/>
+      <Attr Name="_checkCondition" Value='"USER_ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.nordstrom.rpm.EO.Clr_Wksht_User_Role.UserId"/>
+    </AttrArray>
+  </Key>
+</Entity>

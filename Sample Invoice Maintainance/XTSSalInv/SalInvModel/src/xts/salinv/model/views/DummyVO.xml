@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DummyVO"
+  Version="12.2.1.20.47"
+  InheritPersonalization="merge"
+  BindingStyle="OracleName"
+  CustomQuery="true"
+  RowClass="xts.salinv.model.views.DummyVORowImpl"
+  ComponentClass="xts.salinv.model.views.DummyVOImpl"
+  PageIterMode="Full"
+  ComponentInterface="xts.salinv.model.views.common.DummyVO">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access|Coll|VarAccess"/>
+    <Attr Name="_isExpertMode" Value="true"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <SQLQuery><![CDATA[SELECT 1 ID, 0 SI_CHKBOX_CNT, null DISABLE_CIAI_ACTQTY  
+FROM DUAL]]></SQLQuery>
+  <ViewAttribute
+    Name="Id"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.math.BigDecimal"
+    ColumnType="NUMBER"
+    AliasName="ID"
+    Expression="ID"
+    SQLType="NUMERIC"
+    Passivate="true"/>
+  <ViewAttribute
+    Name="SiChkboxCnt"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    AliasName="SI_CHKBOX_CNT"
+    Expression="SI_CHKBOX_CNT"
+    SQLType="INTEGER"
+    Passivate="true"/>
+  <ViewAttribute
+    Name="DisableCiaiActqty"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="1"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="DISABLE_CIAI_ACTQTY"
+    Expression="DISABLE_CIAI_ACTQTY"
+    SQLType="VARCHAR"
+    Passivate="true">
+    <DesignTime>
+      <Attr Name="_DisplaySize" Value="1"/>
+    </DesignTime>
+  </ViewAttribute>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="Id"/>
+  </AttrArray>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="setDisableCiaiActqty"
+      MethodName="setDisableCiaiActqty">
+      <Return
+        Name="_return_type_"
+        Type="void"/>
+      <Parameter
+        Name="value"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="xts.salinv.model.SalInvModelBundle"/>
+  </ResourceBundle>
+</ViewObject>
